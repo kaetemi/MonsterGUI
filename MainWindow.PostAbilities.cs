@@ -9,7 +9,7 @@ namespace MonsterGUI
 {
 	public partial class MainWindow
 	{
-		volatile bool postAbilitiesOn = false;
+		volatile bool autoClickerOn = false;
 		volatile bool laneSwitcherOn = true;
 		volatile bool respawnerOn = true;
 		volatile bool healerOn = false;
@@ -28,7 +28,7 @@ namespace MonsterGUI
 		{
 			resultPostAbilitiesDelegate = new JsonCallback(resultPostAbilities);
 			laneSwitcherCheck.Checked = laneSwitcherOn;
-			postAbilitiesRunCheck.Checked = postAbilitiesOn;
+			autoClickerCheck.Checked = autoClickerOn;
 			respawnerCheck.Checked = respawnerOn;
 			healerCheck.Checked = healerOn;
 		}
@@ -134,7 +134,7 @@ namespace MonsterGUI
 						}
 					}
 
-					if (postAbilitiesOn)
+					if (autoClickerOn && maxClicks >= minClicks)
 					{
 						int nb = minClicks + random.Next(maxClicks - minClicks);
 						addClicks = nb;

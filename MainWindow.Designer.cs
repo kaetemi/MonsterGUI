@@ -37,7 +37,7 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.clicksText = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.postAbilitiesRunCheck = new System.Windows.Forms.CheckBox();
+			this.autoClickerCheck = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.minText = new System.Windows.Forms.NumericUpDown();
@@ -175,7 +175,7 @@
 			this.groupBox2.Controls.Add(this.button1);
 			this.groupBox2.Controls.Add(this.clicksText);
 			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.postAbilitiesRunCheck);
+			this.groupBox2.Controls.Add(this.autoClickerCheck);
 			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.minText);
@@ -208,14 +208,14 @@
 			// 
 			// postAbilitiesRunCheck
 			// 
-			this.postAbilitiesRunCheck.AutoSize = true;
-			this.postAbilitiesRunCheck.Location = new System.Drawing.Point(192, 19);
-			this.postAbilitiesRunCheck.Name = "postAbilitiesRunCheck";
-			this.postAbilitiesRunCheck.Size = new System.Drawing.Size(66, 17);
-			this.postAbilitiesRunCheck.TabIndex = 4;
-			this.postAbilitiesRunCheck.Text = "Running";
-			this.postAbilitiesRunCheck.UseVisualStyleBackColor = true;
-			this.postAbilitiesRunCheck.CheckedChanged += new System.EventHandler(this.postAbilitiesRunCheck_CheckedChanged);
+			this.autoClickerCheck.AutoSize = true;
+			this.autoClickerCheck.Location = new System.Drawing.Point(192, 19);
+			this.autoClickerCheck.Name = "postAbilitiesRunCheck";
+			this.autoClickerCheck.Size = new System.Drawing.Size(66, 17);
+			this.autoClickerCheck.TabIndex = 4;
+			this.autoClickerCheck.Text = "Running";
+			this.autoClickerCheck.UseVisualStyleBackColor = true;
+			this.autoClickerCheck.CheckedChanged += new System.EventHandler(this.postAbilitiesRunCheck_CheckedChanged);
 			// 
 			// label4
 			// 
@@ -708,7 +708,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel postAbilitiesState;
 		private System.Windows.Forms.Label clicksText;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.CheckBox postAbilitiesRunCheck;
+		private System.Windows.Forms.CheckBox autoClickerCheck;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;

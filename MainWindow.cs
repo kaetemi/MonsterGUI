@@ -107,7 +107,7 @@ namespace MonsterGUI
 
 		private void postAbilitiesRunCheck_CheckedChanged(object sender, EventArgs e)
 		{
-			postAbilitiesOn = postAbilitiesRunCheck.Checked;
+			autoClickerOn = autoClickerCheck.Checked;
 		}
 
 		private void laneSwitcherCheck_CheckedChanged(object sender, EventArgs e)
@@ -118,13 +118,11 @@ namespace MonsterGUI
 		private void minText_ValueChanged(object sender, EventArgs e)
 		{
 			minClicks = (int)minText.Value;
-			maxText.Minimum = minClicks;
 		}
 
 		private void maxText_ValueChanged(object sender, EventArgs e)
 		{
 			maxClicks = (int)maxText.Value;
-			minText.Maximum = maxClicks;
 		}
 
 		private void laneSwitcherTimer_ValueChanged(object sender, EventArgs e)
