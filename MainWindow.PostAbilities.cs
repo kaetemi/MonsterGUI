@@ -14,9 +14,9 @@ namespace MonsterGUI
 		volatile bool respawnerOn = true;
 		volatile bool healerOn = false;
 
-		int clickCount = 0;
+		long clickCount = 0;
 		volatile int addClicks = 0;
-		int minClicks = 8;
+		int minClicks = 12;
 		int maxClicks = 24;
 
 		int laneSwitcherTime = 3;
@@ -48,7 +48,7 @@ namespace MonsterGUI
 			JSONNode playerData = response["player_data"];
 			if (playerData == null)
 				return;
-			clickCount += addClicks;
+			clickCount += (long)addClicks;
 			decodePlayerData(playerData);
 			clicksText.Text = clickCount.ToString();
 		}

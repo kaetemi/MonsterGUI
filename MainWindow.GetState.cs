@@ -8,10 +8,24 @@ using SimpleJSON;
 
 namespace MonsterGUI
 {
+	enum Abilities
+	{
+		Medics = 7
+	}
+
 	enum AbilitiesBitfield
 	{
 		Medics = 0x80,
 		MetalDetector = 0x100,
+	}
+
+	enum EnemyType
+	{
+		Spawner = 0,
+		Creep = 1,
+		Boss = 2,
+		MiniBoss = 3,
+		Treasure = 4
 	}
 
 	struct PlayerData

@@ -146,5 +146,17 @@ namespace MonsterGUI
 		{
 			healerOn = healerCheck.Checked;
 		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			minText.Value = 12;
+			maxText.Value = 24;
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			minText.Value = 2147483647 / 2;
+			maxText.Value = 2147483647;
+		}
 	}
 }
