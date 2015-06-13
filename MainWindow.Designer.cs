@@ -189,10 +189,11 @@
 			// 
 			// clicksText
 			// 
-			this.clicksText.AutoSize = true;
+			this.clicksText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.clicksText.Location = new System.Drawing.Point(236, 47);
 			this.clicksText.Name = "clicksText";
-			this.clicksText.Size = new System.Drawing.Size(13, 13);
+			this.clicksText.Size = new System.Drawing.Size(65, 13);
 			this.clicksText.TabIndex = 6;
 			this.clicksText.Text = "0";
 			// 
