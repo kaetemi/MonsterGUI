@@ -10,17 +10,42 @@ namespace MonsterGUI
 {
 	enum Abilities
 	{
-		Medics = 7
+		Click = 1,
+		SwitchLane = 2,
+		Respawn = 3,
+		SwitchTarget = 4,
+		MoraleBooster = 5,
+		GoodLuck = 6,
+		Medics = 7,
+		MetalDetector = 8,
+		Cooldown = 9, 
+		Nuke = 10,
+		ClusterBomb = 11,
+		Napalm = 12,
+		Revive = 13,
+		CrippleSpawner = 14,
+ 		CrippleMonster = 15,
+		MaximizeElement = 16,
+		GoldRain = 17,
+		Crit = 18,
+		//
+		//
+		GodMode = 21,
+		//
+		//
+		ReflectDamage = 24
 	}
 
 	enum AbilitiesBitfield
 	{
-		Medics = 0x80,
-		MetalDetector = 0x100,
+		Medics = 1 << Abilities.Medics,
+		MetalDetector = 1 << Abilities.MetalDetector,
+		GoldRain = 1 << Abilities.GoldRain
 	}
 
 	enum EnemyType
 	{
+		None = -1,
 		Spawner = 0,
 		Creep = 1,
 		Boss = 2,
@@ -43,6 +68,9 @@ namespace MonsterGUI
 
 	struct Enemy
 	{
+		public decimal Hp;
+		public EnemyType Type;
+
 		// type
 		// hp
 		// gold
@@ -55,13 +83,28 @@ namespace MonsterGUI
 		// enemies
 		// active player abilities
 		// etc
+
+		public void Init() 
+		{
+			Enemies = new Enemy[4]; 
+		}
+
+		public Enemy[] Enemies;
+		public decimal ActivePlayerAbilityGoldPerClick;
 	}
 
 	struct GameData
 	{
+		public void Init()
+		{
+			Lanes = new Lane[3];
+			for (int i = 0; i < Lanes.Length; ++i)
+				Lanes[i].Init();
+		}
+
 		public int Level;
 
-		// public Lane[] Lanes = new Lane[3];
+		public Lane[] Lanes;
 
 		public long Timestamp;
 		public long TimestampLevelStart;
@@ -102,6 +145,7 @@ namespace MonsterGUI
 		{
 			resultPlayerNamesDelegate = new JsonCallback(resultPlayerNames);
 			resultGameDataDelegate = new JsonCallback(resultGameData);
+			gameData.Init();
 		}
 
 		private void getStateGo()
@@ -110,6 +154,7 @@ namespace MonsterGUI
 
 			playerData = new PlayerData();
 			gameData = new GameData();
+			gameData.Init();
 			stats = new Stats();
 			printPlayerData();
 			printGameData();
@@ -154,7 +199,7 @@ namespace MonsterGUI
 		{
 			hpLabel.Text = playerData.Hp.ToString();
 			goldLabel.Text = playerData.Gold.ToString();
-			currentLaneLabel.Text = playerData.CurrentLane.ToString();
+			currentLaneLabel.Text = (playerData.CurrentLane + 1).ToString();
 			targetLabel.Text = playerData.Target.ToString();
 			deadAliveText.Text = (playerData.TimeDied == 0) ? "Alive" : "Dead";
 			medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
@@ -194,10 +239,46 @@ namespace MonsterGUI
 				JSONNode level = gameData["level"];
 				JSONNode timestamp = gameData["timestamp"];
 				JSONNode timestampLevelStart = gameData["timestamp_level_start"];
+				JSONNode lanes = gameData["lanes"];
 
 				if (level != null) this.gameData.Level = Convert.ToInt32(level.Value, CultureInfo.InvariantCulture) + 1;
 				if (timestamp != null) this.gameData.Timestamp = Convert.ToInt64(timestamp.Value, CultureInfo.InvariantCulture);
 				if (timestampLevelStart != null) this.gameData.TimestampLevelStart = Convert.ToInt64(timestampLevelStart.Value, CultureInfo.InvariantCulture);
+				
+				if (lanes != null)
+				{
+					int i = 0;
+					foreach (JSONNode lane in lanes.Childs)
+					{
+						JSONNode activePlayerAbilityGoldPerClick = lane["active_player_ability_gold_per_click"];
+						JSONNode enemies = lane["enemies"];
+
+						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Convert.ToDecimal(activePlayerAbilityGoldPerClick.Value, CultureInfo.InvariantCulture);
+
+						if (enemies != null)
+						{
+							int j = 0;
+							foreach (JSONNode enemy in enemies.Childs)
+							{
+								JSONNode hp = enemy["hp"];
+								JSONNode type = enemy["type"];
+
+								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = Convert.ToDecimal(hp.Value, CultureInfo.InvariantCulture);
+								if (type != null) this.gameData.Lanes[i].Enemies[j].Type = (EnemyType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
+
+								++j;
+								if (j > this.gameData.Lanes[i].Enemies.Length)
+									break;
+							}
+							for (; j < this.gameData.Lanes[i].Enemies.Length; ++j)
+								this.gameData.Lanes[i].Enemies[j].Type = EnemyType.None;
+						}
+
+						++i;
+						if (i > this.gameData.Lanes.Length) 
+							break;
+					}
+				}
 			}
 			JSONNode stats = response["stats"];
 			if (stats != null)
@@ -214,6 +295,9 @@ namespace MonsterGUI
 		{
 			levelText.Text = gameData.Level.ToString() + " (" + (gameData.Timestamp - gameData.TimestampLevelStart).ToString() + "s)";
 			activePlayersText.Text = stats.NumActivePlayers.ToString();
+			lane1Gold.Text = decimal.Round(gameData.Lanes[0].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(0) ? "" : " (no enemies)");
+			lane2Gold.Text = decimal.Round(gameData.Lanes[1].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(1) ? "" : " (no enemies)");
+			lane3Gold.Text = decimal.Round(gameData.Lanes[2].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(2) ? "" : " (no enemies)");
 		}
 
 		private void getStateThread()

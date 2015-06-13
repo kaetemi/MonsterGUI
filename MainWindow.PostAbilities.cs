@@ -11,6 +11,7 @@ namespace MonsterGUI
 	{
 		volatile bool autoClickerOn = false;
 		volatile bool laneSwitcherOn = true;
+		volatile bool goldLaneSwitcherOn = true;
 		volatile bool respawnerOn = true;
 		volatile bool healerOn = false;
 
@@ -19,7 +20,7 @@ namespace MonsterGUI
 		int minClicks = 12;
 		int maxClicks = 24;
 
-		int laneSwitcherTime = 3;
+		int laneSwitcherTime = 1;
 		int laneSwitcherTimeCounter = 0;
 
 		int laneRequested = 0;
@@ -27,8 +28,9 @@ namespace MonsterGUI
 		private void postAbilitiesInit()
 		{
 			resultPostAbilitiesDelegate = new JsonCallback(resultPostAbilities);
-			laneSwitcherCheck.Checked = laneSwitcherOn;
 			autoClickerCheck.Checked = autoClickerOn;
+			laneSwitcherCheck.Checked = laneSwitcherOn;
+			goldLaneCheck.Checked = goldLaneSwitcherOn;
 			respawnerCheck.Checked = respawnerOn;
 			healerCheck.Checked = healerOn;
 		}
@@ -51,6 +53,16 @@ namespace MonsterGUI
 			clickCount += (long)addClicks;
 			decodePlayerData(playerData);
 			clicksText.Text = clickCount.ToString();
+		}
+
+		private bool enemiesAliveInLane(int i)
+		{
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].Hp != 0)
+					return true;
+			}
+			return false;
 		}
 
 		private void postAbilitiesThread()
@@ -104,9 +116,39 @@ namespace MonsterGUI
 							++laneRequested;
 							laneRequested %= 3;
 						}
+
+						for (int i = 0; i < 3; ++i)
+						{
+							if (!enemiesAliveInLane(laneRequested))
+							{
+								++laneRequested;
+								laneRequested %= 3;
+							}
+						}
 					}
 
-					if (laneSwitcherOn) // If any lane switching algorithm is enabled
+					bool goldLane = false;
+					if (goldLaneSwitcherOn)
+					{
+						int bestLane = -1;
+						decimal bestGold = 0.0m;
+						for (int i = 0; i < gameData.Lanes.Length; ++i)
+						{
+							if (gameData.Lanes[i].ActivePlayerAbilityGoldPerClick > bestGold
+								&& enemiesAliveInLane(i))
+							{
+								bestLane = i;
+								bestGold = gameData.Lanes[i].ActivePlayerAbilityGoldPerClick;
+							}
+						}
+						if (bestLane >= 0)
+						{
+							laneRequested = bestLane;
+							goldLane = true;
+						}
+					}
+
+					if (laneSwitcherOn || goldLane) // If any lane switching algorithm is enabled
 					{
 						if (laneRequested != playerData.CurrentLane)
 						{
@@ -141,6 +183,10 @@ namespace MonsterGUI
 						if (abilities) abilties_json += ",";
 						abilties_json += "{\"ability\":1,\"num_clicks\":" + nb + "}";
 						abilities = true;
+					}
+					else
+					{
+						addClicks = 0;
 					}
 
 					if (abilities || !upgrades) // blank abilities to refresh player state in case no other post sent

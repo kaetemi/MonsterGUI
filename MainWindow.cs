@@ -156,5 +156,10 @@ namespace MonsterGUI
 			minText.Value = 2147483647 / 2;
 			maxText.Value = 2147483647;
 		}
+
+		private void goldLaneCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			goldLaneSwitcherOn = goldLaneCheck.Checked;
+		}
 	}
 }
