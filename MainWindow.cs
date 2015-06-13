@@ -153,8 +153,10 @@ namespace MonsterGUI
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			minText.Value = 2147483647 / 2;
-			maxText.Value = 2147483647;
+			// minText.Value = 2147483647 / 2;
+			// maxText.Value = 2147483647;
+			minText.Value = 120;
+			maxText.Value = 240;
 		}
 
 		private void goldLaneCheck_CheckedChanged(object sender, EventArgs e)
