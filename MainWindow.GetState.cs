@@ -200,7 +200,7 @@ namespace MonsterGUI
 			hpLabel.Text = playerData.Hp.ToString();
 			goldLabel.Text = playerData.Gold.ToString();
 			currentLaneLabel.Text = (playerData.CurrentLane + 1).ToString();
-			targetLabel.Text = playerData.Target.ToString();
+			targetLabel.Text = (playerData.Target + 1).ToString();
 			deadAliveText.Text = (playerData.TimeDied == 0) ? "Alive" : "Dead";
 			medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
 		}
