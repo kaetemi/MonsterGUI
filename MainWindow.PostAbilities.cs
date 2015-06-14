@@ -117,6 +117,17 @@ namespace MonsterGUI
 			return false;
 		}
 
+		private decimal highestHpFactorOnLane(int i)
+		{
+			decimal highest = 0;
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].HpMax != 0 && (gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].HpMax) > highest)
+					return gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].HpMax;
+			}
+			return highest;
+		}
+
 		private bool farmingGoldOnLane(int i)
 		{
 			return ((gameData.Level < 1000 || ((gameData.Level % 200) == 0)) && bossMonsterOnLane(i));
@@ -252,9 +263,20 @@ namespace MonsterGUI
 									abilities = true;
 								}
 							}
+							else // We're farming gold
+							{
+								if (hasPurchasedAbility(Abilities.MetalDetector) && !isAbilityCoolingDown(Abilities.MetalDetector))
+								{
+									if (highestHpFactorOnLane(laneRequested) > 0.9m)
+									{
+										if (abilities) abilties_json += ",";
+										abilties_json += "{\"ability\":" + (int)Abilities.MetalDetector + "}"; // Increase Gold Drops
+										abilities = true;
+									}
+								}
+							}
 						}
-						// MetalDetector: IncreaseGoldDropped
-						// Cooldown: DecreaseCooldowns
+						// Cooldown: DecreaseCooldowns .. ?
 					}
 
 					long ac = 0;

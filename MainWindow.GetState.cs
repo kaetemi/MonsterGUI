@@ -135,6 +135,8 @@ namespace MonsterGUI
 	struct Enemy
 	{
 		public decimal Hp;
+		public decimal HpMax;
+
 		public EnemyType Type;
 
 		// type
@@ -440,9 +442,11 @@ namespace MonsterGUI
 							foreach (JSONNode enemy in enemies.Childs)
 							{
 								JSONNode hp = enemy["hp"];
+								JSONNode hpMax = enemy["hp_max"];
 								JSONNode type = enemy["type"];
 
 								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = Convert.ToDecimal(hp.Value, CultureInfo.InvariantCulture);
+								if (hpMax != null) this.gameData.Lanes[i].Enemies[j].HpMax = Convert.ToDecimal(hpMax.Value, CultureInfo.InvariantCulture);
 								if (type != null) this.gameData.Lanes[i].Enemies[j].Type = (EnemyType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
 
 								++j;
