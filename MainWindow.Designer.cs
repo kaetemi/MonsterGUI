@@ -212,9 +212,9 @@
 			this.label12.AutoSize = true;
 			this.label12.Location = new System.Drawing.Point(6, 73);
 			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(37, 13);
+			this.label12.Size = new System.Drawing.Size(42, 13);
 			this.label12.TabIndex = 9;
-			this.label12.Text = "Boost:";
+			this.label12.Text = "Queue:";
 			// 
 			// boostText
 			// 
