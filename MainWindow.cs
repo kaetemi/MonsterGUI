@@ -158,7 +158,7 @@ namespace MonsterGUI
 
 		private void healerCheck_CheckedChanged(object sender, EventArgs e)
 		{
-			healerOn = healerCheck.Checked;
+			supportAbilitiesOn = supportAbilitiesCheck.Checked;
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -193,7 +193,7 @@ namespace MonsterGUI
 			laneSwitcherCheck.Checked = status;
 			goldLaneCheck.Checked = status;
 			respawnerCheck.Checked = status;
-			healerCheck.Checked = status;
+			supportAbilitiesCheck.Checked = status;
 		}
 
 		private void presetEverythingOff_Click(object sender, EventArgs e)

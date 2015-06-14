@@ -14,7 +14,7 @@ namespace MonsterGUI
 		volatile bool laneSwitcherOn = true;
 		volatile bool goldLaneSwitcherOn = true;
 		volatile bool respawnerOn = true;
-		volatile bool healerOn = false;
+		volatile bool supportAbilitiesOn = false;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -40,7 +40,7 @@ namespace MonsterGUI
 			laneSwitcherCheck.Checked = laneSwitcherOn;
 			goldLaneCheck.Checked = goldLaneSwitcherOn;
 			respawnerCheck.Checked = respawnerOn;
-			healerCheck.Checked = healerOn;
+			supportAbilitiesCheck.Checked = supportAbilitiesOn;
 		}
 
 		/// <summary>
@@ -83,6 +83,43 @@ namespace MonsterGUI
 					return true;
 			}
 			return false;
+		}
+
+		private decimal highestMonsterOnLane(int i)
+		{
+			decimal highest = 0;
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].Hp > highest)
+					highest = gameData.Lanes[i].Enemies[j].Hp;
+			}
+			return highest;
+		}
+
+		private int numberMonstersAliveOnLane(int i)
+		{
+			int count = 0;
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].Hp != 0)
+					++count;
+			}
+			return count;
+		}
+
+		private bool bossMonsterOnLane(int i)
+		{
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type == EnemyType.Boss && gameData.Lanes[i].Enemies[j].Hp != 0)
+					return true;
+			}
+			return false;
+		}
+
+		private bool farmingGoldOnLane(int i)
+		{
+			return ((gameData.Level < 1000 || ((gameData.Level % 200) == 0)) && bossMonsterOnLane(i));
 		}
 
 		/// <summary>
@@ -132,7 +169,8 @@ namespace MonsterGUI
 
 						if (laneSwitcherTimeCounter == 0)
 						{
-							++laneRequested;
+							// ++laneRequested;
+							laneRequested += random.Next(1, 3); // incl min, excl max
 							laneRequested %= 3;
 						}
 
@@ -177,19 +215,46 @@ namespace MonsterGUI
 							abilities = true;
 						}
 					}
+					else
+					{
+						laneRequested = playerData.CurrentLane;
+					}
 
 					// After lane switched
 					// NOTE: Target switching is already done by the server so not entirely useful since the monsters die too fast
 
-					if (healerOn)
+					if (supportAbilitiesOn && enemiesAliveInLane(laneRequested) && enemiesAliveInLane(playerData.CurrentLane))
 					{
-						if ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) != AbilitiesBitfield.Medics)
+						if (hasPurchasedAbility(Abilities.Medics) && !isAbilityCoolingDown(Abilities.Medics))
 						{
-							// Medics
+							// Medics, always spam them as soon as possible
 							if (abilities) abilties_json += ",";
-							abilties_json += "{\"ability\":7}";
+							abilties_json += "{\"ability\":" + (int)Abilities.Medics + "}";
 							abilities = true;
 						}
+						if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
+						{
+							if (!farmingGoldOnLane(laneRequested)) // Don't do extra damage when farming gold
+							{
+								if (hasPurchasedAbility(Abilities.MoraleBooster) && !isAbilityCoolingDown(Abilities.MoraleBooster))
+								{
+									if (highestMonsterOnLane(laneRequested) > 100000000 && numberMonstersAliveOnLane(laneRequested) >= 2)
+									{
+										if (abilities) abilties_json += ",";
+										abilties_json += "{\"ability\":" + (int)Abilities.MoraleBooster + "}"; // More Damage
+										abilities = true;
+									}
+								}
+								if (hasPurchasedAbility(Abilities.GoodLuckCharm) && !isAbilityCoolingDown(Abilities.GoodLuckCharm))
+								{
+									if (abilities) abilties_json += ",";
+									abilties_json += "{\"ability\":" + (int)Abilities.GoodLuckCharm + "}"; // IncreaseCritPercentage
+									abilities = true;
+								}
+							}
+						}
+						// MetalDetector: IncreaseGoldDropped
+						// Cooldown: DecreaseCooldowns
 					}
 
 					long ac = 0;

@@ -22,8 +22,9 @@ namespace MonsterGUI
 		Respawn = 3,
 		ChangeTarget = 4,
 
+		StartAbility = 5,
 		MoraleBooster = 5, // IncreaseDamage
-		GoodLuck = 6, // IncreaseCritPercentage
+		GoodLuckCharm = 6, // IncreaseCritPercentage
 		Medics = 7, // Heal
 		MetalDetector = 8, // IncreaseGoldDropped
 		Cooldown = 9, // DecreaseCooldowns
@@ -58,7 +59,7 @@ namespace MonsterGUI
 		Respawn = 1 << Abilities.Respawn,
 		ChangeTarget = 1 << Abilities.ChangeTarget,
 		MoraleBooster = 1 << Abilities.MoraleBooster,
-		GoodLuck = 1 << Abilities.GoodLuck,
+		GoodLuckCharm = 1 << Abilities.GoodLuckCharm,
 		Medics = 1 << Abilities.Medics,
 		MetalDetector = 1 << Abilities.MetalDetector,
 		Cooldown = 1 << Abilities.Cooldown,
@@ -89,11 +90,32 @@ namespace MonsterGUI
 		Treasure = 4
 	}
 
+	// g_TuningData
 	enum UpgradeType
 	{
-		Fire = 4,
-		// etc
-
+		LightArmor = 0,
+		AutoFireCannon = 1,
+		ArmorPiercingRound = 2,
+		ElementalFire = 3,
+		ElementalWater = 4,
+		ElementalAir = 5,
+		ElementalEarth = 6,
+		LuckyShot = 7,
+		HeavyArmor = 8,
+		AdvancedTargeting = 9,
+		ExplosiveRounds = 10,
+		Medics = 11,
+		MoraleBooster = 12,
+		GoodLuckCharms = 13,
+		MetalDetector = 14,
+		DecreaseCooldowns = 15,
+		TacticalNuke = 16,
+		ClusterBomb = 17,
+		Napalm = 18,
+		BossLoot = 19,
+		EnergyShields = 20,
+		FarmingEquipment = 21,
+		Railgun = 22,
 		Nb = 23
 	}
 
@@ -200,7 +222,7 @@ namespace MonsterGUI
 
 		// public Upgrade[] Upgrades; // TODO
 
-		// public AbilitiesBitfield UnlockedAbilitiesBitfield; TODO
+		public AbilitiesBitfield UnlockedAbilitiesBitfield;
 
 		// public int[] AbilityItems; TODO
 
@@ -233,6 +255,13 @@ namespace MonsterGUI
 		private void getStateGo()
 		{
 			getPlayerNames = true;
+
+			abilitiesIntfs = new System.Windows.Forms.Label[5];
+			abilitiesIntfs[(int)Abilities.MoraleBooster - (int)Abilities.StartAbility] = moraleBoosterIntf;
+			abilitiesIntfs[(int)Abilities.GoodLuckCharm - (int)Abilities.StartAbility] = goodLuckCharmIntf;
+			abilitiesIntfs[(int)Abilities.Medics - (int)Abilities.StartAbility] = medicsIntf;
+			abilitiesIntfs[(int)Abilities.MetalDetector - (int)Abilities.StartAbility] = metalDetectorIntf;
+			abilitiesIntfs[(int)Abilities.Cooldown - (int)Abilities.StartAbility] = coolDownIntf;
 
 			playerData = new PlayerData();
 			gameData = new GameData();
@@ -306,11 +335,15 @@ namespace MonsterGUI
 			currentLaneLabel.Text = laneNumbers[playerData.CurrentLane];//(playerData.CurrentLane + 1).ToString();
 			targetLabel.Text = targetNumbers[playerData.Target];
 			deadAliveText.Text = (playerData.TimeDied == 0) ? "Alive" : "Dead";
-			medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
+			printPlayerTech();
 		}
 
 		void decodeTechTree(JSONNode json)
 		{
+			JSONNode unlockedAbilitiesBitfield = json["unlocked_abilities_bitfield"];
+
+			if (unlockedAbilitiesBitfield != null) techTree.UnlockedAbilitiesBitfield = (AbilitiesBitfield)Convert.ToInt32(unlockedAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
+
 			printTechTree();
 		}
 
@@ -319,7 +352,32 @@ namespace MonsterGUI
 		/// </summary>
 		void printTechTree()
 		{
+			printPlayerTech();
+		}
 
+		bool hasPurchasedAbility(Abilities ability)
+		{
+			AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << (int)ability);
+			return (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
+		}
+
+		bool isAbilityCoolingDown(Abilities ability)
+		{
+			AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << (int)ability);
+			return (playerData.ActiveAbilitiesBitfield & abbit) == abbit;
+		}
+
+		System.Windows.Forms.Label[] abilitiesIntfs;
+		void printPlayerTech()
+		{
+			// medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
+			for (int i = 0; i < abilitiesIntfs.Length; ++i)
+			{
+				int ab = i + (int)Abilities.StartAbility;
+				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << ab);
+				abilitiesIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
+				abilitiesIntfs[i].Visible = (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
+			}
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;
