@@ -102,6 +102,8 @@
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.bossLaneText = new System.Windows.Forms.Label();
 			this.bossLaneCheck = new System.Windows.Forms.CheckBox();
+			this.groupBox10 = new System.Windows.Forms.GroupBox();
+			this.targetSpawnerCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -122,6 +124,7 @@
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox5.SuspendLayout();
+			this.groupBox10.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -390,6 +393,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.groupBox10);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox9);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox6);
@@ -695,14 +699,12 @@
 			// 
 			// groupBox4
 			// 
-			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.laneSwitcherCheck);
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.laneSwitcherTimer);
 			this.groupBox4.Location = new System.Drawing.Point(209, 106);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(388, 45);
+			this.groupBox4.Size = new System.Drawing.Size(266, 45);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Timed Lane Switcher";
@@ -974,6 +976,29 @@
 			this.bossLaneCheck.UseVisualStyleBackColor = true;
 			this.bossLaneCheck.CheckedChanged += new System.EventHandler(this.bossLaneCheck_CheckedChanged);
 			// 
+			// groupBox10
+			// 
+			this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox10.Controls.Add(this.targetSpawnerCheck);
+			this.groupBox10.Location = new System.Drawing.Point(481, 109);
+			this.groupBox10.Name = "groupBox10";
+			this.groupBox10.Size = new System.Drawing.Size(116, 45);
+			this.groupBox10.TabIndex = 4;
+			this.groupBox10.TabStop = false;
+			this.groupBox10.Text = "Target Spawners";
+			// 
+			// targetSpawnerCheck
+			// 
+			this.targetSpawnerCheck.AutoSize = true;
+			this.targetSpawnerCheck.Location = new System.Drawing.Point(14, 16);
+			this.targetSpawnerCheck.Name = "targetSpawnerCheck";
+			this.targetSpawnerCheck.Size = new System.Drawing.Size(66, 17);
+			this.targetSpawnerCheck.TabIndex = 2;
+			this.targetSpawnerCheck.Text = "Running";
+			this.targetSpawnerCheck.UseVisualStyleBackColor = true;
+			this.targetSpawnerCheck.CheckedChanged += new System.EventHandler(this.targetSpawnerCheck_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1016,6 +1041,8 @@
 			this.statusStrip1.PerformLayout();
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
+			this.groupBox10.ResumeLayout(false);
+			this.groupBox10.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1097,6 +1124,8 @@
 		private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.Label bossLaneText;
 		private System.Windows.Forms.CheckBox bossLaneCheck;
+		private System.Windows.Forms.GroupBox groupBox10;
+		private System.Windows.Forms.CheckBox targetSpawnerCheck;
 	}
 }
 

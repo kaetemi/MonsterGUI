@@ -211,5 +211,10 @@ namespace MonsterGUI
 		{
 			bossLaneOn = bossLaneCheck.Checked;
 		}
+
+		private void targetSpawnerCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			targetSpawnersOn = targetSpawnerCheck.Checked;
+		}
 	}
 }

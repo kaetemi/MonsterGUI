@@ -12,6 +12,7 @@ namespace MonsterGUI
 		// Switched by the callbacks from the checkboxes in the GUI
 		volatile bool autoClickerOn = false;
 		volatile bool laneSwitcherOn = true;
+		volatile bool targetSpawnersOn = true;
 		volatile bool goldLaneSwitcherOn = true;
 		volatile bool bossLaneOn = true;
 		volatile bool respawnerOn = true;
@@ -39,6 +40,7 @@ namespace MonsterGUI
 			resultPostAbilitiesDelegate = new JsonCallback(resultPostAbilities);
 			autoClickerCheck.Checked = autoClickerOn;
 			laneSwitcherCheck.Checked = laneSwitcherOn;
+			targetSpawnerCheck.Checked = targetSpawnersOn;
 			goldLaneCheck.Checked = goldLaneSwitcherOn;
 			bossLaneCheck.Checked = bossLaneOn;
 			respawnerCheck.Checked = respawnerOn;
@@ -127,6 +129,26 @@ namespace MonsterGUI
 					return true;
 			}
 			return false;
+		}
+
+		private int findSpawnerOnLane(int i)
+		{
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type == EnemyType.Spawner && gameData.Lanes[i].Enemies[j].Hp != 0)
+					return j;
+			}
+			return -1;
+		}
+
+		private int findTreasureOnLane(int i)
+		{
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type == EnemyType.Treasure && gameData.Lanes[i].Enemies[j].Hp != 0)
+					return j;
+			}
+			return -1;
 		}
 
 		private decimal highestHpFactorOnLane(int i)
@@ -267,6 +289,22 @@ namespace MonsterGUI
 
 					// After lane switched
 					// NOTE: Target switching is already done by the server so not entirely useful since the monsters die too fast
+
+					if (targetSpawnersOn) // Useful for nuking spawners at early levels and treasure
+					{
+						int preferTarget = findTreasureOnLane(laneRequested);
+						if (preferTarget < 0)
+							preferTarget = findSpawnerOnLane(laneRequested);
+						if (preferTarget >= 0)
+						{
+							if (preferTarget != playerData.Target)
+							{
+								if (abilities) abilties_json += ",";
+								abilties_json += "{\"ability\":2,\"new_target\":" + preferTarget + "}"; // Only using this for spawners
+								abilities = true;
+							}
+						}
+					}
 
 					if (supportAbilitiesOn && enemiesAliveInLane(laneRequested) && enemiesAliveInLane(playerData.CurrentLane))
 					{
