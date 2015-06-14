@@ -11,6 +11,8 @@ namespace MonsterGUI
 {
 	public partial class MainWindow
 	{
+		volatile bool refreshUpgrades = false;
+
 		private void postUpgradesInit()
 		{
 			resultPostUpgradesDelegate = new JsonCallback(resultPostUpgrades);
@@ -91,8 +93,9 @@ namespace MonsterGUI
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultPostUpgradesDelegate, json);
 						notSentCount = 0;
+						refreshUpgrades = false;
 					}
-					else if (notSentCount >= notSentCountLimit && !string.IsNullOrEmpty(steamId))
+					else if ((notSentCount >= notSentCountLimit || refreshUpgrades) && !string.IsNullOrEmpty(steamId))
 					{
 						StringBuilder url = new StringBuilder();
 						url.Append("http://");
@@ -107,6 +110,7 @@ namespace MonsterGUI
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultPostUpgradesDelegate, json);
 						notSentCount = 0;
+						refreshUpgrades = false;
 					}
 					else
 					{
