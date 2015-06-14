@@ -6,8 +6,13 @@ using System.Net;
 using System.Globalization;
 using SimpleJSON;
 
+// This file specifies all game abilities and upgrades, and handles parsing and reading of all game state responses.
+
 namespace MonsterGUI
 {
+	/// <summary>
+	/// Numeric values for abilities
+	/// </summary>
 	enum Abilities
 	{
 		Click = 1,
@@ -33,14 +38,35 @@ namespace MonsterGUI
 		GodMode = 21,
 		//
 		//
-		ReflectDamage = 24
+		ReflectDamage = 24,
+		Nb = 25
 	}
 
+	/// <summary>
+	/// Bitfield format for abilities
+	/// </summary>
 	enum AbilitiesBitfield
 	{
+		Click = 1 << Abilities.Click,
+		SwitchLane = 1 << Abilities.SwitchLane,
+		Respawn = 1 << Abilities.Respawn,
+		SwitchTarget = 1 << Abilities.SwitchTarget,
+		MoraleBooster = 1 << Abilities.MoraleBooster,
+		GoodLuck = 1 << Abilities.GoodLuck,
 		Medics = 1 << Abilities.Medics,
 		MetalDetector = 1 << Abilities.MetalDetector,
-		GoldRain = 1 << Abilities.GoldRain
+		Cooldown = 1 << Abilities.Cooldown,
+		Nuke = 1 << Abilities.Nuke,
+		ClusterBomb = 1 << Abilities.ClusterBomb,
+		Napalm = 1 << Abilities.Napalm,
+		Revive = 1 << Abilities.Revive,
+		CrippleSpawner = 1 << Abilities.CrippleSpawner,
+		CrippleMonster = 1 << Abilities.CrippleMonster,
+		MaximizeElement = 1 << Abilities.MaximizeElement,
+		GoldRain = 1 << Abilities.GoldRain,
+		Crit = 1 << Abilities.Crit,
+		GodMode = 1 << Abilities.GodMode,
+		ReflectDamage = 1 << Abilities.ReflectDamage
 	}
 
 	enum EnemyType
@@ -51,6 +77,14 @@ namespace MonsterGUI
 		Boss = 2,
 		MiniBoss = 3,
 		Treasure = 4
+	}
+
+	enum UpgradeType
+	{
+		Fire = 4,
+		// etc
+
+		Nb = 23
 	}
 
 	struct PlayerData
@@ -84,8 +118,9 @@ namespace MonsterGUI
 		// active player abilities
 		// etc
 
-		public void Init() 
+		public void Init()
 		{
+			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
 			Enemies = new Enemy[4]; 
 		}
 
@@ -97,6 +132,7 @@ namespace MonsterGUI
 	{
 		public void Init()
 		{
+			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
 			Lanes = new Lane[3];
 			for (int i = 0; i < Lanes.Length; ++i)
 				Lanes[i].Init();
@@ -134,21 +170,56 @@ namespace MonsterGUI
 			"time_saving": 28.79324529773146*/
 	}
 
+	struct Upgrade
+	{
+		bool Has;
+		// TODO int Level;
+	}
+
+	/// <summary>
+	/// See TechTreeExample.txt
+	/// </summary>
+	struct TechTree
+	{
+		public void Init()
+		{
+			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
+			// Upgrades = new Upgrade[(int)UpgradeType.Nb];
+			// AbilityItems = new int[(int)Abilities.Nb];
+		}
+
+		// public Upgrade[] Upgrades; // TODO
+
+		// public AbilitiesBitfield UnlockedAbilitiesBitfield; TODO
+
+		// public int[] AbilityItems; TODO
+
+	}
+
 	public partial class MainWindow
 	{
+		// Game state data
 		PlayerData playerData = new PlayerData();
 		GameData gameData = new GameData();
 		Stats stats = new Stats();
+		TechTree techTree = new TechTree();
 
 		volatile bool getPlayerNames = false;
 
+		/// <summary>
+		/// App init
+		/// </summary>
 		private void getStateInit()
 		{
 			resultPlayerNamesDelegate = new JsonCallback(resultPlayerNames);
 			resultGameDataDelegate = new JsonCallback(resultGameData);
 			gameData.Init();
+			techTree.Init();
 		}
 
+		/// <summary>
+		/// User GO
+		/// </summary>
 		private void getStateGo()
 		{
 			getPlayerNames = true;
@@ -157,13 +228,19 @@ namespace MonsterGUI
 			gameData = new GameData();
 			gameData.Init();
 			stats = new Stats();
+			TechTree techTree = new TechTree();
+			techTree.Init();
 			printPlayerData();
 			printGameData();
+			printTechTree();
 		}
 
 		private void critDamage(long value)
 		{
-			// ... Do something?
+			// It seems this is sent to the client to increment a global counter which is then
+			// decremented every time the user clicks to do a critic using the calculated crit 
+			// amount, until the counter reaches zero again.
+			// Not useful here.
 		}
 
 		private void decodePlayerData(JSONNode json)
@@ -196,6 +273,9 @@ namespace MonsterGUI
 			printPlayerData();
 		}
 
+		/// <summary>
+		/// Display all player specific data to screen (stuff in playerData changed)
+		/// </summary>
 		private void printPlayerData()
 		{
 			hpLabel.Text = playerData.Hp.ToString();
@@ -204,6 +284,19 @@ namespace MonsterGUI
 			targetLabel.Text = (playerData.Target + 1).ToString();
 			deadAliveText.Text = (playerData.TimeDied == 0) ? "Alive" : "Dead";
 			medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
+		}
+
+		void decodeTechTree(JSONNode json)
+		{
+			printTechTree();
+		}
+
+		/// <summary>
+		/// Display all tech tree data on screen (stuff in techTree changed)
+		/// </summary>
+		void printTechTree()
+		{
+
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;
@@ -229,6 +322,10 @@ namespace MonsterGUI
 		}
 
 		private JsonCallback resultGameDataDelegate;
+		/// <summary>
+		/// Parse game data
+		/// </summary>
+		/// <param name="json"></param>
 		private void resultGameData(JSONNode json)
 		{
 			JSONNode response = json["response"];
@@ -296,6 +393,9 @@ namespace MonsterGUI
 
 		long lastTimestamp;
 		long lastNumClicks;
+		/// <summary>
+		/// Display all game data on screen (stuff in gameData and stats changed)
+		/// </summary>
 		private void printGameData()
 		{
 			levelText.Text = gameData.Level.ToString() + " (" + (gameData.Timestamp - gameData.TimestampLevelStart).ToString() + "s)";
@@ -315,6 +415,9 @@ namespace MonsterGUI
 			}
 		}
 
+		/// <summary>
+		/// Thread which runs GetGameData every second
+		/// </summary>
 		private void getStateThread()
 		{
 			// Tech Tree: http://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetPlayerData/v0001/?gameid=XXXX&steamid=XXXXXXXXXXXXXXX&include_tech_tree=1

@@ -1,0 +1,208 @@
+﻿{
+        "response": {
+                "tech_tree": {
+                        "upgrades": [
+                                {
+                                        "upgrade": 0,
+                                        "level": 20,
+                                        "cost_for_next_level": 9094947010
+                                },
+                                {
+                                        "upgrade": 1,
+                                        "level": 15,
+                                        "cost_for_next_level": 7670
+                                },
+                                {
+                                        "upgrade": 2,
+                                        "level": 15,
+                                        "cost_for_next_level": 3080
+                                },
+                                {
+                                        "upgrade": 3,
+                                        "level": 7,
+                                        "cost_for_next_level": 425821927190
+                                },
+                                {
+                                        "upgrade": 4,
+                                        "level": 7,
+                                        "cost_for_next_level": 425821927190
+                                },
+                                {
+                                        "upgrade": 5,
+                                        "level": 7,
+                                        "cost_for_next_level": 425821927190
+                                },
+                                {
+                                        "upgrade": 6,
+                                        "level": 7,
+                                        "cost_for_next_level": 425821927190
+                                },
+                                {
+                                        "upgrade": 7,
+                                        "level": 25,
+                                        "cost_for_next_level": 444089209850
+                                },
+                                {
+                                        "upgrade": 8,
+                                        "level": 15,
+                                        "cost_for_next_level": 1368801120
+                                },
+                                {
+                                        "upgrade": 9,
+                                        "level": 10,
+                                        "cost_for_next_level": 26559920
+                                },
+                                {
+                                        "upgrade": 10,
+                                        "level": 15,
+                                        "cost_for_next_level": 1368801120
+                                },
+                                {
+                                        "upgrade": 11,
+                                        "level": 1,
+                                        "cost_for_next_level": 11000
+                                },
+                                {
+                                        "upgrade": 12,
+                                        "level": 0,
+                                        "cost_for_next_level": 10000000
+                                },
+                                {
+                                        "upgrade": 13,
+                                        "level": 1,
+                                        "cost_for_next_level": 2200000
+                                },
+                                {
+                                        "upgrade": 14,
+                                        "level": 1,
+                                        "cost_for_next_level": 22000000
+                                },
+                                {
+                                        "upgrade": 15,
+                                        "level": 1,
+                                        "cost_for_next_level": 22000000
+                                },
+                                {
+                                        "upgrade": 16,
+                                        "level": 1,
+                                        "cost_for_next_level": 500000
+                                },
+                                {
+                                        "upgrade": 17,
+                                        "level": 1,
+                                        "cost_for_next_level": 2200000
+                                },
+                                {
+                                        "upgrade": 18,
+                                        "level": 1,
+                                        "cost_for_next_level": 4400000
+                                },
+                                {
+                                        "upgrade": 19,
+                                        "level": 10,
+                                        "cost_for_next_level": 265599280
+                                },
+                                {
+                                        "upgrade": 20,
+                                        "level": 15,
+                                        "cost_for_next_level": 13688011250
+                                },
+                                {
+                                        "upgrade": 21,
+                                        "level": 10,
+                                        "cost_for_next_level": 265599280
+                                },
+                                {
+                                        "upgrade": 22,
+                                        "level": 25,
+                                        "cost_for_next_level": 36355260081210
+                                }
+                        ]
+                        ,
+                        "damage_per_click": 26660,
+                        "damage_multiplier_fire": 11.5,
+                        "damage_multiplier_water": 11.5,
+                        "damage_multiplier_air": 11.5,
+                        "damage_multiplier_earth": 11.5,
+                        "damage_multiplier_crit": 39.5,
+                        "unlocked_abilities_bitfield": "8128",
+                        "hp_multiplier": 1678.5999990701675,
+                        "crit_percentage": 0.389999995008111,
+                        "badge_points": 0,
+                        "ability_items": [
+                                {
+                                        "ability": 18,
+                                        "quantity": 18
+                                },
+                                {
+                                        "ability": 22,
+                                        "quantity": 9
+                                },
+                                {
+                                        "ability": 23,
+                                        "quantity": 13
+                                },
+                                {
+                                        "ability": 13,
+                                        "quantity": 16
+                                },
+                                {
+                                        "ability": 20,
+                                        "quantity": 11
+                                },
+                                {
+                                        "ability": 24,
+                                        "quantity": 6
+                                },
+                                {
+                                        "ability": 21,
+                                        "quantity": 10
+                                },
+                                {
+                                        "ability": 14,
+                                        "quantity": 15
+                                },
+                                {
+                                        "ability": 15,
+                                        "quantity": 5
+                                },
+                                {
+                                        "ability": 16,
+                                        "quantity": 18
+                                }
+                        ]
+                        ,
+                        "boss_loot_drop_percentage": 0.34999999776482582,
+                        "damage_multiplier_dps": 1115,
+                        "base_dps": 10,
+                        "damage_per_click_multiplier": 2666,
+                        "max_hp": 1678599.9990701675,
+                        "dps": 11150
+                }
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

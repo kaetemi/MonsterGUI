@@ -1,0 +1,520 @@
+﻿{
+	"response": {
+		"game_data": {
+			"level": 3321,
+			"lanes": [
+				{
+					"enemies": [
+						{
+							"id": "39853",
+							"type": 0,
+							"hp": 0,
+							"max_hp": 15101586949,
+							"dps": 4152,
+							"timer": 2,
+							"gold": 1253347
+						},
+						{
+							"id": "39854",
+							"type": 1,
+							"hp": 32965567.590838209,
+							"max_hp": 964304562,
+							"dps": 3322,
+							"gold": 141160
+						},
+						{
+							"id": "39855",
+							"type": 1,
+							"hp": 526968359.55761188,
+							"max_hp": 3025910064,
+							"dps": 3322,
+							"gold": 141160
+						},
+						{
+							"id": "39856",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 4300931945,
+							"dps": 3322,
+							"gold": 141160
+						}
+					]
+					,
+					"dps": 9966,
+					"active_player_abilities": [
+						{
+							"accountid_caster": 22066825,
+							"ability": 6,
+							"timestamp_done": 1434228920,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 74017534,
+							"ability": 6,
+							"timestamp_done": 1434228908,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 5,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.20000000298023224
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 9,
+							"timestamp_done": 1434228915,
+							"multiplier": 0.25
+						},
+						{
+							"accountid_caster": 35234653,
+							"ability": 6,
+							"timestamp_done": 1434228912,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 24454844,
+							"ability": 6,
+							"timestamp_done": 1434228914,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 16,
+							"timestamp_done": 1434228906,
+							"multiplier": 1
+						},
+						{
+							"accountid_caster": 6194103,
+							"ability": 6,
+							"timestamp_done": 1434228911,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 6,
+							"timestamp_done": 1434228917,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 18,
+							"timestamp_done": 1434228907,
+							"multiplier": 0.0099999997764825821
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 12,
+							"timestamp_done": 1434228911,
+							"multiplier": 0.05000000074505806
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 8,
+							"timestamp_done": 1434228920,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 94494379,
+							"ability": 8,
+							"timestamp_done": 1434228925,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 6,
+							"timestamp_done": 1434228915,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 74017534,
+							"ability": 8,
+							"timestamp_done": 1434228924,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 129235943,
+							"ability": 10,
+							"timestamp_done": 1434228909,
+							"multiplier": 0
+						},
+						{
+							"accountid_caster": 37029036,
+							"ability": 14,
+							"timestamp_done": 1434228909,
+							"multiplier": 1
+						}
+					]
+					,
+					"player_hp_buckets": [
+						29,
+						0,
+						0,
+						0,
+						0,
+						0,
+						0,
+						0,
+						0,
+						362
+					]
+					,
+					"element": 2,
+					"active_player_ability_decrease_cooldowns": 0.25,
+					"active_player_ability_gold_per_click": 0
+				},
+				{
+					"enemies": [
+						{
+							"id": "39857",
+							"type": 0,
+							"hp": 0,
+							"max_hp": 15101586949,
+							"dps": 4152,
+							"timer": 2,
+							"gold": 1253347
+						},
+						{
+							"id": "39858",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 3146893900,
+							"dps": 3322,
+							"gold": 141160
+						},
+						{
+							"id": "39859",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 1679539402,
+							"dps": 3322,
+							"gold": 141160
+						},
+						{
+							"id": "39860",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 4193099750,
+							"dps": 3322,
+							"gold": 141160
+						}
+					]
+					,
+					"dps": 9966,
+					"active_player_abilities": [
+						{
+							"accountid_caster": 11716787,
+							"ability": 24,
+							"timestamp_done": 1434228906,
+							"multiplier": 0.5
+						},
+						{
+							"accountid_caster": 81057625,
+							"ability": 6,
+							"timestamp_done": 1434228912,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 58683574,
+							"ability": 8,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 117238700,
+							"ability": 6,
+							"timestamp_done": 1434228913,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 42588632,
+							"ability": 17,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.0099999997764825821
+						},
+						{
+							"accountid_caster": 193931,
+							"ability": 21,
+							"timestamp_done": 1434228907,
+							"multiplier": 1
+						},
+						{
+							"accountid_caster": 10479971,
+							"ability": 8,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 87635407,
+							"ability": 6,
+							"timestamp_done": 1434228914,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 64321451,
+							"ability": 20,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 91134405,
+							"ability": 6,
+							"timestamp_done": 1434228920,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 24644664,
+							"ability": 6,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 239822939,
+							"ability": 8,
+							"timestamp_done": 1434228924,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 42588632,
+							"ability": 8,
+							"timestamp_done": 1434228912,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 73837271,
+							"ability": 8,
+							"timestamp_done": 1434228906,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 84216971,
+							"ability": 8,
+							"timestamp_done": 1434228907,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 93484576,
+							"ability": 16,
+							"timestamp_done": 1434228908,
+							"multiplier": 1
+						},
+						{
+							"accountid_caster": 18297496,
+							"ability": 20,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 18297496,
+							"ability": 24,
+							"timestamp_done": 1434228915,
+							"multiplier": 0.5
+						},
+						{
+							"accountid_caster": 108661834,
+							"ability": 8,
+							"timestamp_done": 1434228907,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 11216110,
+							"ability": 8,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 87136774,
+							"ability": 16,
+							"timestamp_done": 1434228908,
+							"multiplier": 1
+						},
+						{
+							"accountid_caster": 58260172,
+							"ability": 6,
+							"timestamp_done": 1434228907,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 78664222,
+							"ability": 8,
+							"timestamp_done": 1434228912,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 47981974,
+							"ability": 10,
+							"timestamp_done": 1434228910,
+							"multiplier": 0
+						}
+					]
+					,
+					"player_hp_buckets": [
+						23,
+						0,
+						0,
+						0,
+						0,
+						0,
+						1,
+						5,
+						9,
+						617
+					]
+					,
+					"element": 1,
+					"active_player_ability_decrease_cooldowns": 0,
+					"active_player_ability_gold_per_click": 0.0099999997764825821
+				},
+				{
+					"enemies": [
+						{
+							"id": "39861",
+							"type": 0,
+							"hp": 0,
+							"max_hp": 15101586949,
+							"dps": 4152,
+							"timer": 1,
+							"gold": 1253347
+						},
+						{
+							"id": "39862",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 1277056775,
+							"dps": 3322,
+							"gold": 141160
+						},
+						{
+							"id": "39863",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 1990193088,
+							"dps": 3322,
+							"gold": 141160
+						},
+						{
+							"id": "39864",
+							"type": 1,
+							"hp": 0,
+							"max_hp": 1125764796,
+							"dps": 3322,
+							"gold": 141160
+						}
+					]
+					,
+					"dps": 0,
+					"active_player_abilities": [
+						{
+							"accountid_caster": 64321451,
+							"ability": 7,
+							"timestamp_done": 1434228909,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 10972713,
+							"ability": 10,
+							"timestamp_done": 1434228908,
+							"multiplier": 0
+						},
+						{
+							"accountid_caster": 668302,
+							"ability": 8,
+							"timestamp_done": 1434228908,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 108661834,
+							"ability": 9,
+							"timestamp_done": 1434228906,
+							"multiplier": 0.25
+						},
+						{
+							"accountid_caster": 103136972,
+							"ability": 6,
+							"timestamp_done": 1434228918,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 55689127,
+							"ability": 5,
+							"timestamp_done": 1434228915,
+							"multiplier": 0.20000000298023224
+						},
+						{
+							"accountid_caster": 3848627,
+							"ability": 8,
+							"timestamp_done": 1434228920,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 103136972,
+							"ability": 18,
+							"timestamp_done": 1434228908,
+							"multiplier": 0.0099999997764825821
+						},
+						{
+							"accountid_caster": 50660620,
+							"ability": 7,
+							"timestamp_done": 1434228907,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 50660620,
+							"ability": 19,
+							"timestamp_done": 1434228907,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 3848627,
+							"ability": 23,
+							"timestamp_done": 1434228912,
+							"multiplier": 0.10000000149011612
+						},
+						{
+							"accountid_caster": 3848627,
+							"ability": 17,
+							"timestamp_done": 1434228910,
+							"multiplier": 0.0099999997764825821
+						}
+					]
+					,
+					"player_hp_buckets": [
+						0,
+						0,
+						0,
+						0,
+						0,
+						0,
+						0,
+						1,
+						0,
+						453
+					]
+					,
+					"element": 1,
+					"active_player_ability_decrease_cooldowns": 0.25,
+					"active_player_ability_gold_per_click": 0.0099999997764825821
+				}
+			]
+			,
+			"timestamp": 1434228906,
+			"status": 2,
+			"timestamp_game_start": 1434211782,
+			"timestamp_level_start": 1434228903
+		},
+		"stats": {
+			"num_players": 1500,
+			"num_mobs_killed": "26829",
+			"num_towers_killed": "8970",
+			"num_minibosses_killed": "1992",
+			"num_bosses_killed": "332",
+			"num_clicks": "77047306569883",
+			"num_abilities_activated": "28212",
+			"num_players_reaching_milestone_level": "1500",
+			"num_ability_items_activated": "64467",
+			"num_active_players": 483,
+			"time_simulating": 1.4846193849802267,
+			"time_saving": 43.786625981117233
+		}
+	}
+}

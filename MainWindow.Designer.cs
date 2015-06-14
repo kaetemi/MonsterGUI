@@ -35,6 +35,8 @@
 			this.accessTokenText = new System.Windows.Forms.TextBox();
 			this.go = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.boostText = new System.Windows.Forms.NumericUpDown();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.clicksText = new System.Windows.Forms.Label();
@@ -46,6 +48,10 @@
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.cpsText = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.clicksNumText = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
 			this.levelText = new System.Windows.Forms.Label();
 			this.activePlayersText = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
@@ -53,6 +59,15 @@
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.medicsText = new System.Windows.Forms.Label();
 			this.healerCheck = new System.Windows.Forms.CheckBox();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.lane3Gold = new System.Windows.Forms.Label();
+			this.lane2Gold = new System.Windows.Forms.Label();
+			this.lane1Gold = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.goldLaneCheck = new System.Windows.Forms.CheckBox();
 			this.respawnerGroup = new System.Windows.Forms.GroupBox();
 			this.deadAliveText = new System.Windows.Forms.Label();
 			this.respawnerCheck = new System.Windows.Forms.CheckBox();
@@ -75,24 +90,11 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
-			this.groupBox7 = new System.Windows.Forms.GroupBox();
-			this.label11 = new System.Windows.Forms.Label();
-			this.goldLaneCheck = new System.Windows.Forms.CheckBox();
-			this.lane1Gold = new System.Windows.Forms.Label();
-			this.lane2Gold = new System.Windows.Forms.Label();
-			this.lane3Gold = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.boostText = new System.Windows.Forms.NumericUpDown();
-			this.label12 = new System.Windows.Forms.Label();
-			this.clicksNumText = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
-			this.cpsText = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
+			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.boostText)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.minText)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.maxText)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -100,14 +102,13 @@
 			this.splitContainer1.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.groupBox5.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.respawnerGroup.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).BeginInit();
 			this.groupBox3.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			this.groupBox7.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.boostText)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -205,6 +206,38 @@
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Auto Clicker";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(6, 73);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(37, 13);
+			this.label12.TabIndex = 9;
+			this.label12.Text = "Boost:";
+			// 
+			// boostText
+			// 
+			this.boostText.Location = new System.Drawing.Point(66, 71);
+			this.boostText.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+			this.boostText.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.boostText.Name = "boostText";
+			this.boostText.Size = new System.Drawing.Size(120, 20);
+			this.boostText.TabIndex = 8;
+			this.boostText.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.boostText.ValueChanged += new System.EventHandler(this.boostText_ValueChanged);
 			// 
 			// button2
 			// 
@@ -365,6 +398,42 @@
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Game Data";
 			// 
+			// cpsText
+			// 
+			this.cpsText.AutoSize = true;
+			this.cpsText.Location = new System.Drawing.Point(83, 55);
+			this.cpsText.Name = "cpsText";
+			this.cpsText.Size = new System.Drawing.Size(0, 13);
+			this.cpsText.TabIndex = 10;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(46, 55);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(31, 13);
+			this.label20.TabIndex = 9;
+			this.label20.Text = "CPS:";
+			this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// clicksNumText
+			// 
+			this.clicksNumText.AutoSize = true;
+			this.clicksNumText.Location = new System.Drawing.Point(83, 42);
+			this.clicksNumText.Name = "clicksNumText";
+			this.clicksNumText.Size = new System.Drawing.Size(0, 13);
+			this.clicksNumText.TabIndex = 8;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(39, 42);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(38, 13);
+			this.label14.TabIndex = 7;
+			this.label14.Text = "Clicks:";
+			this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// levelText
 			// 
 			this.levelText.AutoSize = true;
@@ -432,6 +501,95 @@
 			this.healerCheck.Text = "Running";
 			this.healerCheck.UseVisualStyleBackColor = true;
 			this.healerCheck.CheckedChanged += new System.EventHandler(this.healerCheck_CheckedChanged);
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox7.Controls.Add(this.label17);
+			this.groupBox7.Controls.Add(this.label16);
+			this.groupBox7.Controls.Add(this.label15);
+			this.groupBox7.Controls.Add(this.lane3Gold);
+			this.groupBox7.Controls.Add(this.lane2Gold);
+			this.groupBox7.Controls.Add(this.lane1Gold);
+			this.groupBox7.Controls.Add(this.label11);
+			this.groupBox7.Controls.Add(this.goldLaneCheck);
+			this.groupBox7.Location = new System.Drawing.Point(209, 157);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(388, 58);
+			this.groupBox7.TabIndex = 4;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Gold Lane Switcher";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(6, 42);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(43, 13);
+			this.label17.TabIndex = 10;
+			this.label17.Text = "Lane 3:";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(6, 29);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(43, 13);
+			this.label16.TabIndex = 9;
+			this.label16.Text = "Lane 2:";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(6, 16);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(43, 13);
+			this.label15.TabIndex = 8;
+			this.label15.Text = "Lane 1:";
+			// 
+			// lane3Gold
+			// 
+			this.lane3Gold.AutoSize = true;
+			this.lane3Gold.Location = new System.Drawing.Point(63, 42);
+			this.lane3Gold.Name = "lane3Gold";
+			this.lane3Gold.Size = new System.Drawing.Size(0, 13);
+			this.lane3Gold.TabIndex = 7;
+			// 
+			// lane2Gold
+			// 
+			this.lane2Gold.AutoSize = true;
+			this.lane2Gold.Location = new System.Drawing.Point(63, 29);
+			this.lane2Gold.Name = "lane2Gold";
+			this.lane2Gold.Size = new System.Drawing.Size(0, 13);
+			this.lane2Gold.TabIndex = 6;
+			// 
+			// lane1Gold
+			// 
+			this.lane1Gold.AutoSize = true;
+			this.lane1Gold.Location = new System.Drawing.Point(63, 16);
+			this.lane1Gold.Name = "lane1Gold";
+			this.lane1Gold.Size = new System.Drawing.Size(0, 13);
+			this.lane1Gold.TabIndex = 5;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(6, 21);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(0, 13);
+			this.label11.TabIndex = 4;
+			// 
+			// goldLaneCheck
+			// 
+			this.goldLaneCheck.AutoSize = true;
+			this.goldLaneCheck.Location = new System.Drawing.Point(192, 19);
+			this.goldLaneCheck.Name = "goldLaneCheck";
+			this.goldLaneCheck.Size = new System.Drawing.Size(66, 17);
+			this.goldLaneCheck.TabIndex = 3;
+			this.goldLaneCheck.Text = "Running";
+			this.goldLaneCheck.UseVisualStyleBackColor = true;
+			this.goldLaneCheck.CheckedChanged += new System.EventHandler(this.goldLaneCheck_CheckedChanged);
 			// 
 			// respawnerGroup
 			// 
@@ -648,7 +806,8 @@
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.getStateStatus,
-            this.postAbilitiesState});
+            this.postAbilitiesState,
+            this.postUpgradesState});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 540);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(784, 22);
@@ -669,162 +828,12 @@
 			this.postAbilitiesState.Size = new System.Drawing.Size(17, 17);
 			this.postAbilitiesState.Text = "▲";
 			// 
-			// groupBox7
+			// postUpgradesState
 			// 
-			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox7.Controls.Add(this.label17);
-			this.groupBox7.Controls.Add(this.label16);
-			this.groupBox7.Controls.Add(this.label15);
-			this.groupBox7.Controls.Add(this.lane3Gold);
-			this.groupBox7.Controls.Add(this.lane2Gold);
-			this.groupBox7.Controls.Add(this.lane1Gold);
-			this.groupBox7.Controls.Add(this.label11);
-			this.groupBox7.Controls.Add(this.goldLaneCheck);
-			this.groupBox7.Location = new System.Drawing.Point(209, 157);
-			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(388, 58);
-			this.groupBox7.TabIndex = 4;
-			this.groupBox7.TabStop = false;
-			this.groupBox7.Text = "Gold Lane Switcher";
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(6, 21);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(0, 13);
-			this.label11.TabIndex = 4;
-			// 
-			// goldLaneCheck
-			// 
-			this.goldLaneCheck.AutoSize = true;
-			this.goldLaneCheck.Location = new System.Drawing.Point(192, 19);
-			this.goldLaneCheck.Name = "goldLaneCheck";
-			this.goldLaneCheck.Size = new System.Drawing.Size(66, 17);
-			this.goldLaneCheck.TabIndex = 3;
-			this.goldLaneCheck.Text = "Running";
-			this.goldLaneCheck.UseVisualStyleBackColor = true;
-			this.goldLaneCheck.CheckedChanged += new System.EventHandler(this.goldLaneCheck_CheckedChanged);
-			// 
-			// lane1Gold
-			// 
-			this.lane1Gold.AutoSize = true;
-			this.lane1Gold.Location = new System.Drawing.Point(63, 16);
-			this.lane1Gold.Name = "lane1Gold";
-			this.lane1Gold.Size = new System.Drawing.Size(0, 13);
-			this.lane1Gold.TabIndex = 5;
-			// 
-			// lane2Gold
-			// 
-			this.lane2Gold.AutoSize = true;
-			this.lane2Gold.Location = new System.Drawing.Point(63, 29);
-			this.lane2Gold.Name = "lane2Gold";
-			this.lane2Gold.Size = new System.Drawing.Size(0, 13);
-			this.lane2Gold.TabIndex = 6;
-			// 
-			// lane3Gold
-			// 
-			this.lane3Gold.AutoSize = true;
-			this.lane3Gold.Location = new System.Drawing.Point(63, 42);
-			this.lane3Gold.Name = "lane3Gold";
-			this.lane3Gold.Size = new System.Drawing.Size(0, 13);
-			this.lane3Gold.TabIndex = 7;
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(6, 16);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(43, 13);
-			this.label15.TabIndex = 8;
-			this.label15.Text = "Lane 1:";
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(6, 29);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(43, 13);
-			this.label16.TabIndex = 9;
-			this.label16.Text = "Lane 2:";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(6, 42);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(43, 13);
-			this.label17.TabIndex = 10;
-			this.label17.Text = "Lane 3:";
-			// 
-			// boostText
-			// 
-			this.boostText.Location = new System.Drawing.Point(66, 71);
-			this.boostText.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-			this.boostText.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.boostText.Name = "boostText";
-			this.boostText.Size = new System.Drawing.Size(120, 20);
-			this.boostText.TabIndex = 8;
-			this.boostText.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.boostText.ValueChanged += new System.EventHandler(this.boostText_ValueChanged);
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(6, 73);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(37, 13);
-			this.label12.TabIndex = 9;
-			this.label12.Text = "Boost:";
-			// 
-			// clicksNumText
-			// 
-			this.clicksNumText.AutoSize = true;
-			this.clicksNumText.Location = new System.Drawing.Point(83, 42);
-			this.clicksNumText.Name = "clicksNumText";
-			this.clicksNumText.Size = new System.Drawing.Size(0, 13);
-			this.clicksNumText.TabIndex = 8;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(39, 42);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(38, 13);
-			this.label14.TabIndex = 7;
-			this.label14.Text = "Clicks:";
-			this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// cpsText
-			// 
-			this.cpsText.AutoSize = true;
-			this.cpsText.Location = new System.Drawing.Point(83, 55);
-			this.cpsText.Name = "cpsText";
-			this.cpsText.Size = new System.Drawing.Size(0, 13);
-			this.cpsText.TabIndex = 10;
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(46, 55);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(31, 13);
-			this.label20.TabIndex = 9;
-			this.label20.Text = "CPS:";
-			this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			this.postUpgradesState.Enabled = false;
+			this.postUpgradesState.Name = "postUpgradesState";
+			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
+			this.postUpgradesState.Text = "◆";
 			// 
 			// MainWindow
 			// 
@@ -843,6 +852,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.boostText)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.minText)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.maxText)).EndInit();
 			this.splitContainer1.Panel1.ResumeLayout(false);
@@ -852,6 +862,8 @@
 			this.groupBox6.PerformLayout();
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox5.PerformLayout();
+			this.groupBox7.ResumeLayout(false);
+			this.groupBox7.PerformLayout();
 			this.respawnerGroup.ResumeLayout(false);
 			this.respawnerGroup.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
@@ -862,9 +874,6 @@
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			this.groupBox7.ResumeLayout(false);
-			this.groupBox7.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.boostText)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -934,6 +943,7 @@
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label cpsText;
 		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.ToolStripStatusLabel postUpgradesState;
 	}
 }
 

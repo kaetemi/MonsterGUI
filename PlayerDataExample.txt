@@ -1,0 +1,25 @@
+﻿{
+        "response": {
+                "player_data": {
+                        "hp": 1662225.9990701675,
+                        "current_lane": 1,
+                        "target": 2,
+                        "gold": 54417242018725.031,
+                        "active_abilities_bitfield": "640",
+                        "active_abilities": [
+                                {
+                                        "ability": 9,
+                                        "timestamp_done": 1434247271,
+                                        "timestamp_cooldown": 1434250856
+                                },
+                                {
+                                        "ability": 7,
+                                        "timestamp_done": 1434249484,
+                                        "timestamp_cooldown": 1434249779
+                                }
+                        ]
+                        ,
+                        "crit_damage": 18955260
+                }
+        }
+}

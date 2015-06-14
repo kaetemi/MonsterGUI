@@ -9,23 +9,30 @@ namespace MonsterGUI
 {
 	public partial class MainWindow
 	{
+		// Switched by the callbacks from the checkboxes in the GUI
 		volatile bool autoClickerOn = false;
 		volatile bool laneSwitcherOn = true;
 		volatile bool goldLaneSwitcherOn = true;
 		volatile bool respawnerOn = true;
 		volatile bool healerOn = false;
 
+		// Auto clicker runtime info
 		long clickCount = 0;
 		long addClicks = 0;
 		int minClicks = 16;
 		int maxClicks = 20;
 		int clickBoost = 1;
 
+		// Timed Lane Switcher runtime info
 		int laneSwitcherTime = 1;
 		int laneSwitcherTimeCounter = 0;
 
+		// Lane Switcher runtime info
 		int laneRequested = 0;
 
+		/// <summary>
+		/// App init
+		/// </summary>
 		private void postAbilitiesInit()
 		{
 			resultPostAbilitiesDelegate = new JsonCallback(resultPostAbilities);
@@ -36,6 +43,9 @@ namespace MonsterGUI
 			healerCheck.Checked = healerOn;
 		}
 
+		/// <summary>
+		/// User GO
+		/// </summary>
 		private void postAbilitiesGo()
 		{
 			clickCount = 0;
@@ -43,6 +53,10 @@ namespace MonsterGUI
 		}
 
 		private JsonCallback resultPostAbilitiesDelegate;
+		/// <summary>
+		/// Success response from server
+		/// </summary>
+		/// <param name="json"></param>
 		private void resultPostAbilities(JSONNode json)
 		{
 			JSONNode response = json["response"];
@@ -56,6 +70,11 @@ namespace MonsterGUI
 			clicksText.Text = clickCount.ToString();
 		}
 
+		/// <summary>
+		/// Check if there are any enemies alive in the specified lane (lane index 0, 1, 2)
+		/// </summary>
+		/// <param name="i"></param>
+		/// <returns></returns>
 		private bool enemiesAliveInLane(int i)
 		{
 			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
@@ -66,9 +85,11 @@ namespace MonsterGUI
 			return false;
 		}
 
+		/// <summary>
+		/// Thread which posts abilities
+		/// </summary>
 		private void postAbilitiesThread()
 		{
-			// ChooseUpgrade(s?): {"gameid":"6059","upgrades":[4]} (NOTE: Double check for correct URL!!!)
 			// UseAbilities: {"requested_abilities":[{"ability":2,"new_lane":0},{"ability":4,"new_target":0},{"ability":1,"num_clicks":1}],"gameid":"6059"}
 			// 1: Click [num_clicks]
 			// 2: Switch Lane [new_lane]
@@ -161,10 +182,7 @@ namespace MonsterGUI
 					}
 
 					// After lane switched
-
-					// TODO: Targeting (only useful for boss gold rain, otherwise not enough time in level)
-
-					// After target switched
+					// NOTE: Target switching is already done by the server so not entirely useful since the monsters die too fast
 
 					if (healerOn)
 					{
@@ -180,9 +198,9 @@ namespace MonsterGUI
 					long ac = 0;
 					if (autoClickerOn && maxClicks >= minClicks)
 					{
-						for (int i = 0; i < clickBoost; ++i)
+						for (int i = 0; i < clickBoost; ++i) // Send clicks ability multiple times
 						{
-							int nb = minClicks + random.Next(maxClicks - minClicks);
+							int nb = minClicks + random.Next(maxClicks - minClicks); // Random clicks number
 							ac += (long)nb;
 							if (abilities) abilties_json += ",";
 							abilties_json += "{\"ability\":1,\"num_clicks\":" + nb + "}";
@@ -191,33 +209,26 @@ namespace MonsterGUI
 					}
 					addClicks = ac;
 
-					if (abilities || !upgrades) // blank abilities to refresh player state in case no other post sent
-					{
-						abilties_json += "]}";
-						StringBuilder url = new StringBuilder();
-						url.Append("https://");
-						url.Append(host);
-						url.Append("UseAbilities/v0001/");
-						StringBuilder query = new StringBuilder();
-						query.Append("input_json=");
-						query.Append(WebUtilities.UrlEncode(abilties_json));
-						query.Append("&access_token=");
-						query.Append(accessToken);
-						query.Append("&format=json");
-						wc.Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
-						wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-						if (!exiting) Invoke(enableDelegate, postAbilitiesState, true);
-						Console.WriteLine(abilties_json);
-						string res = wc.UploadString(url.ToString(), query.ToString());
-						Console.WriteLine(res);
-						JSONNode json = JSON.Parse(res);
-						if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
-					}
-
-					if (upgrades)
-					{
-						// TODO
-					}
+					// Send the UseAbilities POST request
+					abilties_json += "]}";
+					StringBuilder url = new StringBuilder();
+					url.Append("https://");
+					url.Append(host);
+					url.Append("UseAbilities/v0001/");
+					StringBuilder query = new StringBuilder();
+					query.Append("input_json=");
+					query.Append(WebUtilities.UrlEncode(abilties_json));
+					query.Append("&access_token=");
+					query.Append(accessToken);
+					query.Append("&format=json");
+					wc.Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
+					wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+					if (!exiting) Invoke(enableDelegate, postAbilitiesState, true);
+					Console.WriteLine(abilties_json);
+					string res = wc.UploadString(url.ToString(), query.ToString());
+					Console.WriteLine(res);
+					JSONNode json = JSON.Parse(res);
+					if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
 				}
 				catch (Exception ex)
 				{

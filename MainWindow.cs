@@ -21,7 +21,7 @@ namespace MonsterGUI
 
 		Thread getState;
 		Thread postAbilities;
-		Thread controlCommand;
+		Thread postUpgrades;
 		volatile int runCount = 0;
 		volatile bool running = false;
 		volatile bool exiting = false;
@@ -36,6 +36,7 @@ namespace MonsterGUI
 			enableDelegate = new EnableCallback(enable);
 			getStateInit();
 			postAbilitiesInit();
+			postUpgradesInit();
 			// splitContainer1.Enabled = false;
 		}
 
@@ -56,7 +57,7 @@ namespace MonsterGUI
 			}
 			else
 			{
-				runCount = 2;
+				runCount = 3;
 				running = true;
 
 				accessToken = accessTokenText.Text;
@@ -66,11 +67,14 @@ namespace MonsterGUI
 
 				getStateGo();
 				postAbilitiesGo();
+				postUpgradesGo();
 
 				getState = new Thread(new ThreadStart(getStateThread));
 				postAbilities = new Thread(new ThreadStart(postAbilitiesThread));
+				postUpgrades = new Thread(new ThreadStart(postUpgradesThread));
 				getState.Start();
 				postAbilities.Start();
+				postUpgrades.Start();
 				go.Text = "Stop";
 				// splitContainer1.Enabled = true;
 			}
