@@ -265,12 +265,15 @@ namespace MonsterGUI
 			getPlayerNames = true;
 			getSteamId = true;
 
-			abilitiesIntfs = new System.Windows.Forms.Label[5];
+			abilitiesIntfs = new System.Windows.Forms.Label[8];
 			abilitiesIntfs[(int)Abilities.MoraleBooster - (int)Abilities.StartAbility] = moraleBoosterIntf;
 			abilitiesIntfs[(int)Abilities.GoodLuckCharm - (int)Abilities.StartAbility] = goodLuckCharmIntf;
 			abilitiesIntfs[(int)Abilities.Medics - (int)Abilities.StartAbility] = medicsIntf;
 			abilitiesIntfs[(int)Abilities.MetalDetector - (int)Abilities.StartAbility] = metalDetectorIntf;
 			abilitiesIntfs[(int)Abilities.Cooldown - (int)Abilities.StartAbility] = coolDownIntf;
+			abilitiesIntfs[(int)Abilities.Nuke - (int)Abilities.StartAbility] = tacticalNukeIntf;
+			abilitiesIntfs[(int)Abilities.ClusterBomb - (int)Abilities.StartAbility] = clusterBombIntf;
+			abilitiesIntfs[(int)Abilities.Napalm - (int)Abilities.StartAbility] = napalmIntf;
 
 			playerData = new PlayerData();
 			gameData = new GameData();

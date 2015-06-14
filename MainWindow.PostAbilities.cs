@@ -17,6 +17,7 @@ namespace MonsterGUI
 		volatile bool bossLaneOn = true;
 		volatile bool respawnerOn = true;
 		volatile bool supportAbilitiesOn = false;
+		volatile bool offenseiveAbilitiesOn = false;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -45,6 +46,7 @@ namespace MonsterGUI
 			bossLaneCheck.Checked = bossLaneOn;
 			respawnerCheck.Checked = respawnerOn;
 			supportAbilitiesCheck.Checked = supportAbilitiesOn;
+			ovenzifCheck.Checked = offenseiveAbilitiesOn;
 		}
 
 		/// <summary>
@@ -339,7 +341,7 @@ namespace MonsterGUI
 							{
 								if (hasPurchasedAbility(Abilities.MetalDetector) && !isAbilityCoolingDown(Abilities.MetalDetector))
 								{
-									if (highestHpFactorOnLane(laneRequested) > 0.9m)
+									if (highestHpFactorOnLane(laneRequested) > 0.8m)
 									{
 										if (abilities) abilties_json += ",";
 										abilties_json += "{\"ability\":" + (int)Abilities.MetalDetector + "}"; // Increase Gold Drops

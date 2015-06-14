@@ -104,6 +104,11 @@
 			this.bossLaneCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.targetSpawnerCheck = new System.Windows.Forms.CheckBox();
+			this.groupBox11 = new System.Windows.Forms.GroupBox();
+			this.ovenzifCheck = new System.Windows.Forms.CheckBox();
+			this.napalmIntf = new System.Windows.Forms.Label();
+			this.clusterBombIntf = new System.Windows.Forms.Label();
+			this.tacticalNukeIntf = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -125,6 +130,7 @@
 			this.statusStrip1.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox10.SuspendLayout();
+			this.groupBox11.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -393,6 +399,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.groupBox11);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox10);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox9);
@@ -423,7 +430,7 @@
 			this.groupBox9.Controls.Add(this.moraleBoosterIntf);
 			this.groupBox9.Location = new System.Drawing.Point(209, 272);
 			this.groupBox9.Name = "groupBox9";
-			this.groupBox9.Size = new System.Drawing.Size(388, 69);
+			this.groupBox9.Size = new System.Drawing.Size(388, 49);
 			this.groupBox9.TabIndex = 9;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Support Abilities";
@@ -433,7 +440,7 @@
 			this.coolDownIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.coolDownIntf.Location = new System.Drawing.Point(230, 16);
 			this.coolDownIntf.Name = "coolDownIntf";
-			this.coolDownIntf.Size = new System.Drawing.Size(50, 50);
+			this.coolDownIntf.Size = new System.Drawing.Size(50, 30);
 			this.coolDownIntf.TabIndex = 1;
 			this.coolDownIntf.Text = "Cool down";
 			this.coolDownIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -454,7 +461,7 @@
 			this.metalDetectorIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.metalDetectorIntf.Location = new System.Drawing.Point(174, 16);
 			this.metalDetectorIntf.Name = "metalDetectorIntf";
-			this.metalDetectorIntf.Size = new System.Drawing.Size(50, 50);
+			this.metalDetectorIntf.Size = new System.Drawing.Size(50, 30);
 			this.metalDetectorIntf.TabIndex = 1;
 			this.metalDetectorIntf.Text = "Metal Detector";
 			this.metalDetectorIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -464,7 +471,7 @@
 			this.medicsIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.medicsIntf.Location = new System.Drawing.Point(118, 16);
 			this.medicsIntf.Name = "medicsIntf";
-			this.medicsIntf.Size = new System.Drawing.Size(50, 50);
+			this.medicsIntf.Size = new System.Drawing.Size(50, 30);
 			this.medicsIntf.TabIndex = 1;
 			this.medicsIntf.Text = "Medics";
 			this.medicsIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -474,9 +481,9 @@
 			this.goodLuckCharmIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.goodLuckCharmIntf.Location = new System.Drawing.Point(62, 16);
 			this.goodLuckCharmIntf.Name = "goodLuckCharmIntf";
-			this.goodLuckCharmIntf.Size = new System.Drawing.Size(50, 50);
+			this.goodLuckCharmIntf.Size = new System.Drawing.Size(50, 30);
 			this.goodLuckCharmIntf.TabIndex = 1;
-			this.goodLuckCharmIntf.Text = "Good Luck Charm";
+			this.goodLuckCharmIntf.Text = "Luck Charm";
 			this.goodLuckCharmIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// moraleBoosterIntf
@@ -484,7 +491,7 @@
 			this.moraleBoosterIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.moraleBoosterIntf.Location = new System.Drawing.Point(6, 16);
 			this.moraleBoosterIntf.Name = "moraleBoosterIntf";
-			this.moraleBoosterIntf.Size = new System.Drawing.Size(50, 50);
+			this.moraleBoosterIntf.Size = new System.Drawing.Size(50, 30);
 			this.moraleBoosterIntf.TabIndex = 0;
 			this.moraleBoosterIntf.Text = "Morale Booster";
 			this.moraleBoosterIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -999,6 +1006,62 @@
 			this.targetSpawnerCheck.UseVisualStyleBackColor = true;
 			this.targetSpawnerCheck.CheckedChanged += new System.EventHandler(this.targetSpawnerCheck_CheckedChanged);
 			// 
+			// groupBox11
+			// 
+			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox11.Controls.Add(this.ovenzifCheck);
+			this.groupBox11.Controls.Add(this.napalmIntf);
+			this.groupBox11.Controls.Add(this.clusterBombIntf);
+			this.groupBox11.Controls.Add(this.tacticalNukeIntf);
+			this.groupBox11.Location = new System.Drawing.Point(209, 327);
+			this.groupBox11.Name = "groupBox11";
+			this.groupBox11.Size = new System.Drawing.Size(388, 49);
+			this.groupBox11.TabIndex = 10;
+			this.groupBox11.TabStop = false;
+			this.groupBox11.Text = "Offensive Abilities";
+			// 
+			// ovenzifCheck
+			// 
+			this.ovenzifCheck.AutoSize = true;
+			this.ovenzifCheck.Location = new System.Drawing.Point(192, 16);
+			this.ovenzifCheck.Name = "ovenzifCheck";
+			this.ovenzifCheck.Size = new System.Drawing.Size(66, 17);
+			this.ovenzifCheck.TabIndex = 3;
+			this.ovenzifCheck.Text = "Running";
+			this.ovenzifCheck.UseVisualStyleBackColor = true;
+			this.ovenzifCheck.CheckedChanged += new System.EventHandler(this.ovenzifCheck_CheckedChanged);
+			// 
+			// napalmIntf
+			// 
+			this.napalmIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.napalmIntf.Location = new System.Drawing.Point(118, 16);
+			this.napalmIntf.Name = "napalmIntf";
+			this.napalmIntf.Size = new System.Drawing.Size(50, 30);
+			this.napalmIntf.TabIndex = 1;
+			this.napalmIntf.Text = "Napalm";
+			this.napalmIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// clusterBombIntf
+			// 
+			this.clusterBombIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.clusterBombIntf.Location = new System.Drawing.Point(62, 16);
+			this.clusterBombIntf.Name = "clusterBombIntf";
+			this.clusterBombIntf.Size = new System.Drawing.Size(50, 30);
+			this.clusterBombIntf.TabIndex = 1;
+			this.clusterBombIntf.Text = "Cluster Bomb";
+			this.clusterBombIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// tacticalNukeIntf
+			// 
+			this.tacticalNukeIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tacticalNukeIntf.Location = new System.Drawing.Point(6, 16);
+			this.tacticalNukeIntf.Name = "tacticalNukeIntf";
+			this.tacticalNukeIntf.Size = new System.Drawing.Size(50, 30);
+			this.tacticalNukeIntf.TabIndex = 0;
+			this.tacticalNukeIntf.Text = "Tactical Nuke";
+			this.tacticalNukeIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1043,6 +1106,8 @@
 			this.groupBox5.PerformLayout();
 			this.groupBox10.ResumeLayout(false);
 			this.groupBox10.PerformLayout();
+			this.groupBox11.ResumeLayout(false);
+			this.groupBox11.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1126,6 +1191,11 @@
 		private System.Windows.Forms.CheckBox bossLaneCheck;
 		private System.Windows.Forms.GroupBox groupBox10;
 		private System.Windows.Forms.CheckBox targetSpawnerCheck;
+		private System.Windows.Forms.GroupBox groupBox11;
+		private System.Windows.Forms.CheckBox ovenzifCheck;
+		private System.Windows.Forms.Label napalmIntf;
+		private System.Windows.Forms.Label clusterBombIntf;
+		private System.Windows.Forms.Label tacticalNukeIntf;
 	}
 }
 
