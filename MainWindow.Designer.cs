@@ -136,6 +136,7 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.button3 = new System.Windows.Forms.Button();
+			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -427,6 +428,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.fireImmediatelyCheck);
 			this.splitContainer1.Panel1.Controls.Add(this.button3);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox12);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox11);
@@ -1378,6 +1380,18 @@
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
+			// fireImmediatelyCheck
+			// 
+			this.fireImmediatelyCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.fireImmediatelyCheck.AutoSize = true;
+			this.fireImmediatelyCheck.Location = new System.Drawing.Point(496, 330);
+			this.fireImmediatelyCheck.Name = "fireImmediatelyCheck";
+			this.fireImmediatelyCheck.Size = new System.Drawing.Size(101, 17);
+			this.fireImmediatelyCheck.TabIndex = 13;
+			this.fireImmediatelyCheck.Text = "Fire Immediately";
+			this.fireImmediatelyCheck.UseVisualStyleBackColor = true;
+			this.fireImmediatelyCheck.CheckedChanged += new System.EventHandler(this.fireImmediatelyCheck_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1399,6 +1413,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.minText)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.maxText)).EndInit();
 			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
 			this.groupBox12.ResumeLayout(false);
@@ -1541,6 +1556,7 @@
 		private System.Windows.Forms.Label crippleSpawnIntf;
 		private System.Windows.Forms.Label resurrIntf;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.CheckBox fireImmediatelyCheck;
 	}
 }
 

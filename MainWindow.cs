@@ -234,5 +234,10 @@ namespace MonsterGUI
 		{
 			refreshUpgrades = true;
 		}
+
+		private void fireImmediatelyCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			fireImmediately = fireImmediatelyCheck.Checked;
+		}
 	}
 }

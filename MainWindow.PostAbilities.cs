@@ -35,6 +35,7 @@ namespace MonsterGUI
 		int laneRequested = 0;
 
 		// Abilities info
+		volatile bool fireImmediately = false;
 		int lastGoldRainLevel = 0;
 
 		/// <summary>
@@ -52,6 +53,7 @@ namespace MonsterGUI
 			supportAbilitiesCheck.Checked = supportAbilitiesOn;
 			ovenzifCheck.Checked = offensiveAbilitiesOn;
 			itemsCheck.Checked = itemAbilitiesOn;
+			fireImmediatelyCheck.Checked = fireImmediately;
 		}
 
 		/// <summary>
@@ -328,7 +330,7 @@ namespace MonsterGUI
 
 					bool requestTreeRefresh = false;
 
-					if (enemiesAliveInLane(laneRequested) && enemiesAliveInLane(playerData.CurrentLane))
+					if (enemiesAliveInLane(laneRequested) && (fireImmediately || enemiesAliveInLane(playerData.CurrentLane)))
 					{
 						if (supportAbilitiesOn)
 						{
@@ -339,7 +341,7 @@ namespace MonsterGUI
 								abilties_json += "{\"ability\":" + (int)Abilities.Medics + "}";
 								abilities = true;
 							}
-							if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
+							if (fireImmediately || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
 								if (!farmingGoldOnLane(laneRequested)) // Don't do extra damage when farming gold
 								{
@@ -377,7 +379,7 @@ namespace MonsterGUI
 
 						if (offensiveAbilitiesOn)
 						{
-							if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
+							if (fireImmediately || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
 								if (hasPurchasedAbility(Abilities.Nuke) && !isAbilityCoolingDown(Abilities.Nuke))
 								{
@@ -412,9 +414,10 @@ namespace MonsterGUI
 								abilities = true;
 								requestTreeRefresh = true;
 							}
-							if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
+							if (fireImmediately || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
-								if (lastGoldRainLevel != gameData.Level && hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
+								if ((itemCount(Abilities.GoldRain) > 12 || lastGoldRainLevel != gameData.Level) // If not many left over, only fire maximum of one per level
+									&& hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
 								{
 									// Gold rain
 									if (farmingGoldOnLane(laneRequested))

@@ -418,6 +418,12 @@ namespace MonsterGUI
 			printPlayerTech();
 		}
 
+		int itemCount(Abilities ability)
+		{
+			int abilityI = (int)ability - (int)Abilities.StartItem;
+			return techTree.AbilityItems[abilityI];
+		}
+
 		bool hasPurchasedAbility(Abilities ability)
 		{
 			if (ability >= Abilities.StartItem)
