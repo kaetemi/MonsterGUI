@@ -497,7 +497,7 @@ namespace MonsterGUI
 									}
 								}
 
-								if (random.Next(2) == 0 && hasPurchasedAbility(Abilities.ReflectDamage) && !isAbilityCoolingDown(Abilities.ReflectDamage))
+								if (hasPurchasedAbility(Abilities.ReflectDamage) && !isAbilityCoolingDown(Abilities.ReflectDamage))
 								{
 									if ((gameData.Level % 10) == 0) // Use this on boss levels, but not in boss lanes
 									{
@@ -519,7 +519,7 @@ namespace MonsterGUI
 								{
 									if (highestHpFactorOnLane(laneRequested) > 0.75m)
 									{
-										if (random.Next(2) == 0 && hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
+										if (hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.StealHealth + "}";
@@ -529,7 +529,7 @@ namespace MonsterGUI
 
 										if ((gameData.Level % 10) == 0) // Use this on boss levels
 										{
-											if (random.Next(2) == 0 && hasPurchasedAbility(Abilities.Revive) && !isAbilityCoolingDown(Abilities.Revive)) // Resurrection
+											if (hasPurchasedAbility(Abilities.Revive) && !isAbilityCoolingDown(Abilities.Revive)) // Resurrection
 											{
 												if (abilities) abilties_json += ",";
 												abilties_json += "{\"ability\":" + (int)Abilities.Revive + "}";
