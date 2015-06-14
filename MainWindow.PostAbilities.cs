@@ -183,7 +183,7 @@ namespace MonsterGUI
 			}
 			else
 			{
-				return findSpawnerOnLane(i) >= 0;
+				return (findSpawnerOnLane(i) >= 0) && ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
 			}
 		}
 
