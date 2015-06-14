@@ -197,6 +197,7 @@ namespace MonsterGUI
 			bossLaneCheck.Checked = status;
 			targetSpawnerCheck.Checked = status;
 			ovenzifCheck.Checked = status;
+			itemsCheck.Checked = status;
 		}
 
 		private void presetEverythingOff_Click(object sender, EventArgs e)
@@ -222,6 +223,11 @@ namespace MonsterGUI
 		private void ovenzifCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			offenseiveAbilitiesOn = ovenzifCheck.Checked;
+		}
+
+		private void itemsCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			itemAbilitiesOn = itemsCheck.Checked;
 		}
 	}
 }

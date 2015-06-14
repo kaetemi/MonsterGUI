@@ -33,6 +33,7 @@ namespace MonsterGUI
 		ClusterBomb = 11,
 		Napalm = 12,
 
+		StartItem = 13,
 		Revive = 13,
 		CrippleSpawner = 14,
  		CrippleMonster = 15,
@@ -204,11 +205,11 @@ namespace MonsterGUI
 			"time_saving": 28.79324529773146*/
 	}
 
-	struct Upgrade
+	/*struct Upgrade
 	{
 		bool Has;
 		// TODO int Level;
-	}
+	}*/
 
 	/// <summary>
 	/// See TechTreeExample.txt
@@ -219,14 +220,14 @@ namespace MonsterGUI
 		{
 			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
 			// Upgrades = new Upgrade[(int)UpgradeType.Nb];
-			// AbilityItems = new int[(int)Abilities.Nb];
+			AbilityItems = new int[(int)Abilities.Nb - (int)Abilities.StartItem];
 		}
 
 		// public Upgrade[] Upgrades; // TODO
 
 		public AbilitiesBitfield UnlockedAbilitiesBitfield;
 
-		// public int[] AbilityItems; TODO
+		public int[] AbilityItems;
 
 	}
 
@@ -274,6 +275,34 @@ namespace MonsterGUI
 			abilitiesIntfs[(int)Abilities.Nuke - (int)Abilities.StartAbility] = tacticalNukeIntf;
 			abilitiesIntfs[(int)Abilities.ClusterBomb - (int)Abilities.StartAbility] = clusterBombIntf;
 			abilitiesIntfs[(int)Abilities.Napalm - (int)Abilities.StartAbility] = napalmIntf;
+
+			itemsIntfs = new System.Windows.Forms.Label[12];
+			itemsIntfs[(int)(int)Abilities.Revive - (int)Abilities.StartItem] = resurrIntf;
+			itemsIntfs[(int)(int)Abilities.CrippleSpawner - (int)Abilities.StartItem] = crippleSpawnIntf;
+			itemsIntfs[(int)(int)Abilities.CrippleMonster - (int)Abilities.StartItem] = crppleMonstIntf;
+			itemsIntfs[(int)(int)Abilities.MaximizeElement - (int)Abilities.StartItem] = maxEleIntf;
+			itemsIntfs[(int)(int)Abilities.GoldRain - (int)Abilities.StartItem] = rainGoldIntf;
+			itemsIntfs[(int)(int)Abilities.IncreaseCritPercentagePermanently - (int)Abilities.StartItem] = critPermIntf;
+			itemsIntfs[(int)(int)Abilities.IncreaseHPPermanently - (int)Abilities.StartItem] = hpPermIntf;
+			itemsIntfs[(int)(int)Abilities.GoldForDamage - (int)Abilities.StartItem] = throwGoldIntf;
+			itemsIntfs[(int)(int)Abilities.GodMode - (int)Abilities.StartItem] = godModeIntf;
+			itemsIntfs[(int)(int)Abilities.GiveGold - (int)Abilities.StartItem] = treasureIntf;
+			itemsIntfs[(int)(int)Abilities.StealHealth - (int)Abilities.StartItem] = stealHpIntf;
+			itemsIntfs[(int)(int)Abilities.ReflectDamage - (int)Abilities.StartItem] = reflctDmgIntf;
+
+			itemsCounts = new System.Windows.Forms.Label[12];
+			itemsCounts[(int)(int)Abilities.Revive - (int)Abilities.StartItem] = resurrCount;
+			itemsCounts[(int)(int)Abilities.CrippleSpawner - (int)Abilities.StartItem] = crpplSpawnCount;
+			itemsCounts[(int)(int)Abilities.CrippleMonster - (int)Abilities.StartItem] = crippleMonstCount;
+			itemsCounts[(int)(int)Abilities.MaximizeElement - (int)Abilities.StartItem] = maxEleCount;
+			itemsCounts[(int)(int)Abilities.GoldRain - (int)Abilities.StartItem] = rainGoldCount;
+			itemsCounts[(int)(int)Abilities.IncreaseCritPercentagePermanently - (int)Abilities.StartItem] = critPermCount;
+			itemsCounts[(int)(int)Abilities.IncreaseHPPermanently - (int)Abilities.StartItem] = hpPermCount;
+			itemsCounts[(int)(int)Abilities.GoldForDamage - (int)Abilities.StartItem] = throwGoldCount;
+			itemsCounts[(int)(int)Abilities.GodMode - (int)Abilities.StartItem] = godModeCount;
+			itemsCounts[(int)(int)Abilities.GiveGold - (int)Abilities.StartItem] = treasureCount;
+			itemsCounts[(int)(int)Abilities.StealHealth - (int)Abilities.StartItem] = stealHpCount;
+			itemsCounts[(int)(int)Abilities.ReflectDamage - (int)Abilities.StartItem] = reflectDmgCount;
 
 			playerData = new PlayerData();
 			gameData = new GameData();
@@ -353,8 +382,30 @@ namespace MonsterGUI
 		void decodeTechTree(JSONNode json)
 		{
 			JSONNode unlockedAbilitiesBitfield = json["unlocked_abilities_bitfield"];
+			JSONNode abilityItems = json["ability_items"];
 
 			if (unlockedAbilitiesBitfield != null) techTree.UnlockedAbilitiesBitfield = (AbilitiesBitfield)Convert.ToInt32(unlockedAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
+			int hasAbilityItem = 0;
+			if (abilityItems != null)
+			{
+				foreach (JSONNode abilityItem in abilityItems.Childs)
+				{
+					JSONNode ability = abilityItem["ability"];
+					JSONNode quantity = abilityItem["quantity"];
+					if (ability != null && quantity != null)
+					{
+						int abilityI = Convert.ToInt32(ability.Value, CultureInfo.InvariantCulture) - (int)Abilities.StartItem;
+						int quantityI = Convert.ToInt32(quantity.Value, CultureInfo.InvariantCulture);
+						techTree.AbilityItems[abilityI] = quantityI;
+						hasAbilityItem |= (1 << abilityI);
+					}
+				}
+			}
+			for (int i = 0; i < techTree.AbilityItems.Length; ++i)
+			{
+				if ((hasAbilityItem & (1 << i)) == 0)
+					techTree.AbilityItems[i] = 0;
+			}
 
 			printTechTree();
 		}
@@ -369,8 +420,16 @@ namespace MonsterGUI
 
 		bool hasPurchasedAbility(Abilities ability)
 		{
-			AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << (int)ability);
-			return (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
+			if (ability >= Abilities.StartItem)
+			{
+				int abilityI = (int)ability - (int)Abilities.StartItem;
+				return techTree.AbilityItems[abilityI] > 0;
+			}
+			else
+			{
+				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << (int)ability);
+				return (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
+			}
 		}
 
 		bool isAbilityCoolingDown(Abilities ability)
@@ -380,6 +439,8 @@ namespace MonsterGUI
 		}
 
 		System.Windows.Forms.Label[] abilitiesIntfs;
+		System.Windows.Forms.Label[] itemsIntfs;
+		System.Windows.Forms.Label[] itemsCounts;
 		void printPlayerTech()
 		{
 			// medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
@@ -389,6 +450,16 @@ namespace MonsterGUI
 				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << ab);
 				abilitiesIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
 				abilitiesIntfs[i].Visible = (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
+			}
+			for (int i = 0; i < itemsIntfs.Length; ++i)
+			{
+				int ab = i + (int)Abilities.StartItem;
+				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << ab);
+				itemsIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
+				itemsIntfs[i].Visible = (techTree.AbilityItems[i] > 0);
+				itemsCounts[i].Text = techTree.AbilityItems[i].ToString();
+				itemsCounts[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
+				itemsCounts[i].Visible = (techTree.AbilityItems[i] > 0);
 			}
 		}
 

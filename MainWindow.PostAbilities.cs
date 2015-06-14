@@ -18,6 +18,7 @@ namespace MonsterGUI
 		volatile bool respawnerOn = true;
 		volatile bool supportAbilitiesOn = false;
 		volatile bool offenseiveAbilitiesOn = false;
+		volatile bool itemAbilitiesOn = false;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -47,6 +48,7 @@ namespace MonsterGUI
 			respawnerCheck.Checked = respawnerOn;
 			supportAbilitiesCheck.Checked = supportAbilitiesOn;
 			ovenzifCheck.Checked = offenseiveAbilitiesOn;
+			itemsCheck.Checked = itemAbilitiesOn;
 		}
 
 		/// <summary>
