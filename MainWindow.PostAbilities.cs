@@ -525,7 +525,7 @@ namespace MonsterGUI
 								// Use this on lanes with enough live monsters
 								if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && farmingGold) || (((gameData.Level % 10) == 0) && countLiveMonstersOnLane(laneRequested) >= 2))
 								{
-									if (highestHpFactorOnLane(laneRequested) > 0.75m)
+									if (highestHpFactorOnLane(laneRequested) > (((gameData.Level % 10) == 0) ? 0.35m : 0.75m))
 									{
 										if (hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
 										{
