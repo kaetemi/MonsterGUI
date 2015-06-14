@@ -15,30 +15,36 @@ namespace MonsterGUI
 	/// </summary>
 	enum Abilities
 	{
-		Click = 1,
-		SwitchLane = 2,
+		Invalid = 0,
+
+		Attack = 1,
+		ChangeLane = 2,
 		Respawn = 3,
-		SwitchTarget = 4,
-		MoraleBooster = 5,
-		GoodLuck = 6,
-		Medics = 7,
-		MetalDetector = 8,
-		Cooldown = 9, 
+		ChangeTarget = 4,
+
+		MoraleBooster = 5, // IncreaseDamage
+		GoodLuck = 6, // IncreaseCritPercentage
+		Medics = 7, // Heal
+		MetalDetector = 8, // IncreaseGoldDropped
+		Cooldown = 9, // DecreaseCooldowns
+
 		Nuke = 10,
 		ClusterBomb = 11,
 		Napalm = 12,
+
 		Revive = 13,
 		CrippleSpawner = 14,
  		CrippleMonster = 15,
 		MaximizeElement = 16,
 		GoldRain = 17,
-		Crit = 18,
-		//
-		//
+		IncreaseCritPercentagePermanently = 18,
+		IncreaseHPPermanently = 19,
+		GoldForDamage = 20,
 		GodMode = 21,
-		//
-		//
+		GiveGold = 22, 
+		StealHealth = 23,
 		ReflectDamage = 24,
+
 		Nb = 25
 	}
 
@@ -47,10 +53,10 @@ namespace MonsterGUI
 	/// </summary>
 	enum AbilitiesBitfield
 	{
-		Click = 1 << Abilities.Click,
-		SwitchLane = 1 << Abilities.SwitchLane,
+		Attack = 1 << Abilities.Attack,
+		ChangeLane = 1 << Abilities.ChangeLane,
 		Respawn = 1 << Abilities.Respawn,
-		SwitchTarget = 1 << Abilities.SwitchTarget,
+		ChangeTarget = 1 << Abilities.ChangeTarget,
 		MoraleBooster = 1 << Abilities.MoraleBooster,
 		GoodLuck = 1 << Abilities.GoodLuck,
 		Medics = 1 << Abilities.Medics,
@@ -64,8 +70,12 @@ namespace MonsterGUI
 		CrippleMonster = 1 << Abilities.CrippleMonster,
 		MaximizeElement = 1 << Abilities.MaximizeElement,
 		GoldRain = 1 << Abilities.GoldRain,
-		Crit = 1 << Abilities.Crit,
+		IncreaseCritPercentagePermanently = 1 << Abilities.IncreaseCritPercentagePermanently,
+		GoldForDamage = 1 << Abilities.GoldForDamage,
+		IncreaseHPPermanently = 1 << Abilities.IncreaseHPPermanently,
 		GodMode = 1 << Abilities.GodMode,
+		GiveGold = 1 << Abilities.GiveGold,
+		StealHealth = 1 << Abilities.StealHealth,
 		ReflectDamage = 1 << Abilities.ReflectDamage
 	}
 
@@ -273,6 +283,19 @@ namespace MonsterGUI
 			printPlayerData();
 		}
 
+		static string[] laneNumbers = new string[] {
+			"❶ ② ③",
+			"① ❷ ③",
+			"① ② ❸",
+		};
+
+		static string[] targetNumbers = new string[] {
+			"❶ ② ③ ④",
+			"① ❷ ③ ④",
+			"① ② ❸ ④",
+			"① ② ③ ❹",
+		};
+
 		/// <summary>
 		/// Display all player specific data to screen (stuff in playerData changed)
 		/// </summary>
@@ -280,8 +303,8 @@ namespace MonsterGUI
 		{
 			hpLabel.Text = playerData.Hp.ToString();
 			goldLabel.Text = playerData.Gold.ToString();
-			currentLaneLabel.Text = (playerData.CurrentLane + 1).ToString();
-			targetLabel.Text = (playerData.Target + 1).ToString();
+			currentLaneLabel.Text = laneNumbers[playerData.CurrentLane];//(playerData.CurrentLane + 1).ToString();
+			targetLabel.Text = targetNumbers[playerData.Target];
 			deadAliveText.Text = (playerData.TimeDied == 0) ? "Alive" : "Dead";
 			medicsText.Text = ((playerData.ActiveAbilitiesBitfield & AbilitiesBitfield.Medics) == AbilitiesBitfield.Medics) ? "Cooldown Active" : "Available";
 		}

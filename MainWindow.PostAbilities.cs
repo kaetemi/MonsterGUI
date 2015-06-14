@@ -112,9 +112,6 @@ namespace MonsterGUI
 					bool abilities = false;
 					string abilties_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":[";
 
-					bool upgrades = false;
-					string upgrades_json = "{\"gameid\":\"" + room + "\",\"upgrades\":[";
-
 					if (respawnerOn)
 					{
 						if (playerData.TimeDied != 0)
