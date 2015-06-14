@@ -92,6 +92,9 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.label13 = new System.Windows.Forms.Label();
+			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.presetEverythingOff = new System.Windows.Forms.Button();
+			this.presetEverythingON = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -110,6 +113,7 @@
 			this.groupBox3.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
+			this.groupBox8.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -378,6 +382,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.groupBox8);
 			this.splitContainer1.Panel2.Controls.Add(this.playerGroup);
 			this.splitContainer1.Size = new System.Drawing.Size(760, 448);
 			this.splitContainer1.SplitterDistance = 600;
@@ -773,9 +778,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.playerGroup.Controls.Add(this.playerListRefresh);
 			this.playerGroup.Controls.Add(this.playerList);
-			this.playerGroup.Location = new System.Drawing.Point(3, 3);
+			this.playerGroup.Location = new System.Drawing.Point(3, 86);
 			this.playerGroup.Name = "playerGroup";
-			this.playerGroup.Size = new System.Drawing.Size(149, 442);
+			this.playerGroup.Size = new System.Drawing.Size(150, 359);
 			this.playerGroup.TabIndex = 0;
 			this.playerGroup.TabStop = false;
 			this.playerGroup.Text = "Players";
@@ -783,7 +788,7 @@
 			// playerListRefresh
 			// 
 			this.playerListRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.playerListRefresh.Location = new System.Drawing.Point(68, 413);
+			this.playerListRefresh.Location = new System.Drawing.Point(69, 330);
 			this.playerListRefresh.Name = "playerListRefresh";
 			this.playerListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.playerListRefresh.TabIndex = 1;
@@ -800,7 +805,7 @@
 			this.playerList.IntegralHeight = false;
 			this.playerList.Location = new System.Drawing.Point(6, 19);
 			this.playerList.Name = "playerList";
-			this.playerList.Size = new System.Drawing.Size(137, 388);
+			this.playerList.Size = new System.Drawing.Size(138, 305);
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
@@ -847,6 +852,43 @@
 			this.label13.TabIndex = 10;
 			this.label13.Text = "Defaults:";
 			// 
+			// groupBox8
+			// 
+			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox8.Controls.Add(this.presetEverythingON);
+			this.groupBox8.Controls.Add(this.presetEverythingOff);
+			this.groupBox8.Location = new System.Drawing.Point(3, 3);
+			this.groupBox8.Name = "groupBox8";
+			this.groupBox8.Size = new System.Drawing.Size(150, 77);
+			this.groupBox8.TabIndex = 1;
+			this.groupBox8.TabStop = false;
+			this.groupBox8.Text = "Presets";
+			// 
+			// presetEverythingOff
+			// 
+			this.presetEverythingOff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.presetEverythingOff.Location = new System.Drawing.Point(6, 19);
+			this.presetEverythingOff.Name = "presetEverythingOff";
+			this.presetEverythingOff.Size = new System.Drawing.Size(138, 23);
+			this.presetEverythingOff.TabIndex = 0;
+			this.presetEverythingOff.Text = "Everything OFF";
+			this.presetEverythingOff.UseVisualStyleBackColor = true;
+			this.presetEverythingOff.Click += new System.EventHandler(this.presetEverythingOff_Click);
+			// 
+			// presetEverythingON
+			// 
+			this.presetEverythingON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.presetEverythingON.Location = new System.Drawing.Point(6, 48);
+			this.presetEverythingON.Name = "presetEverythingON";
+			this.presetEverythingON.Size = new System.Drawing.Size(138, 23);
+			this.presetEverythingON.TabIndex = 1;
+			this.presetEverythingON.Text = "Everything ON";
+			this.presetEverythingON.UseVisualStyleBackColor = true;
+			this.presetEverythingON.Click += new System.EventHandler(this.presetEverythingON_Click);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -886,6 +928,7 @@
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			this.groupBox8.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -957,6 +1000,9 @@
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.ToolStripStatusLabel postUpgradesState;
 		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.GroupBox groupBox8;
+		private System.Windows.Forms.Button presetEverythingON;
+		private System.Windows.Forms.Button presetEverythingOff;
 	}
 }
 

@@ -175,5 +175,24 @@ namespace MonsterGUI
 		{
 			clickBoost = (int)boostText.Value;
 		}
+
+		void everythingEnable(bool status)
+		{
+			autoClickerCheck.Checked = status;
+			laneSwitcherCheck.Checked = status;
+			goldLaneCheck.Checked = status;
+			respawnerCheck.Checked = status;
+			healerCheck.Checked = status;
+		}
+
+		private void presetEverythingOff_Click(object sender, EventArgs e)
+		{
+			everythingEnable(false);
+		}
+
+		private void presetEverythingON_Click(object sender, EventArgs e)
+		{
+			everythingEnable(true);
+		}
 	}
 }
