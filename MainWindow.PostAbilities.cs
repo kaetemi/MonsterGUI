@@ -17,7 +17,7 @@ namespace MonsterGUI
 		volatile bool bossLaneOn = true;
 		volatile bool respawnerOn = true;
 		volatile bool supportAbilitiesOn = false;
-		volatile bool offenseiveAbilitiesOn = false;
+		volatile bool offensiveAbilitiesOn = false;
 		volatile bool itemAbilitiesOn = false;
 
 		// Auto clicker runtime info
@@ -34,6 +34,9 @@ namespace MonsterGUI
 		// Lane Switcher runtime info
 		int laneRequested = 0;
 
+		// Abilities info
+		int lastGoldRainLevel = 0;
+
 		/// <summary>
 		/// App init
 		/// </summary>
@@ -47,7 +50,7 @@ namespace MonsterGUI
 			bossLaneCheck.Checked = bossLaneOn;
 			respawnerCheck.Checked = respawnerOn;
 			supportAbilitiesCheck.Checked = supportAbilitiesOn;
-			ovenzifCheck.Checked = offenseiveAbilitiesOn;
+			ovenzifCheck.Checked = offensiveAbilitiesOn;
 			itemsCheck.Checked = itemAbilitiesOn;
 		}
 
@@ -58,6 +61,7 @@ namespace MonsterGUI
 		{
 			clickCount = 0;
 			clicksText.Text = "0";
+			lastGoldRainLevel = 0;
 		}
 
 		private JsonCallback resultPostAbilitiesDelegate;
@@ -169,6 +173,18 @@ namespace MonsterGUI
 		private bool farmingGoldOnLane(int i)
 		{
 			return ((gameData.Level < 1000 || ((gameData.Level % 200) == 0)) && bossMonsterOnLane(i));
+		}
+
+		private bool nukeOnLane(int i)
+		{
+			if (gameData.Level > 1000)
+			{
+				return ((gameData.Level % 200) != 0) && bossMonsterOnLane(laneRequested);
+			}
+			else
+			{
+				return findSpawnerOnLane(i) >= 0;
+			}
 		}
 
 		/// <summary>
@@ -310,49 +326,114 @@ namespace MonsterGUI
 						}
 					}
 
-					if (supportAbilitiesOn && enemiesAliveInLane(laneRequested) && enemiesAliveInLane(playerData.CurrentLane))
+					bool requestTreeRefresh = false;
+
+					if (enemiesAliveInLane(laneRequested) && enemiesAliveInLane(playerData.CurrentLane))
 					{
-						if (hasPurchasedAbility(Abilities.Medics) && !isAbilityCoolingDown(Abilities.Medics))
+						if (supportAbilitiesOn)
 						{
-							// Medics, always spam them as soon as possible
-							if (abilities) abilties_json += ",";
-							abilties_json += "{\"ability\":" + (int)Abilities.Medics + "}";
-							abilities = true;
-						}
-						if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
-						{
-							if (!farmingGoldOnLane(laneRequested)) // Don't do extra damage when farming gold
+							if (hasPurchasedAbility(Abilities.Medics) && !isAbilityCoolingDown(Abilities.Medics))
 							{
-								if (hasPurchasedAbility(Abilities.MoraleBooster) && !isAbilityCoolingDown(Abilities.MoraleBooster))
+								// Medics, always spam them as soon as possible
+								if (abilities) abilties_json += ",";
+								abilties_json += "{\"ability\":" + (int)Abilities.Medics + "}";
+								abilities = true;
+							}
+							if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
+							{
+								if (!farmingGoldOnLane(laneRequested)) // Don't do extra damage when farming gold
 								{
-									if (highestMonsterOnLane(laneRequested) > 100000000 && numberMonstersAliveOnLane(laneRequested) >= 2)
+									if (hasPurchasedAbility(Abilities.MoraleBooster) && !isAbilityCoolingDown(Abilities.MoraleBooster))
+									{
+										if (highestMonsterOnLane(laneRequested) > 100000000 && numberMonstersAliveOnLane(laneRequested) >= 2)
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.MoraleBooster + "}"; // More Damage
+											abilities = true;
+										}
+									}
+									if (hasPurchasedAbility(Abilities.GoodLuckCharm) && !isAbilityCoolingDown(Abilities.GoodLuckCharm))
 									{
 										if (abilities) abilties_json += ",";
-										abilties_json += "{\"ability\":" + (int)Abilities.MoraleBooster + "}"; // More Damage
+										abilties_json += "{\"ability\":" + (int)Abilities.GoodLuckCharm + "}"; // IncreaseCritPercentage
 										abilities = true;
 									}
 								}
-								if (hasPurchasedAbility(Abilities.GoodLuckCharm) && !isAbilityCoolingDown(Abilities.GoodLuckCharm))
+								else // We're farming gold
 								{
-									if (abilities) abilties_json += ",";
-									abilties_json += "{\"ability\":" + (int)Abilities.GoodLuckCharm + "}"; // IncreaseCritPercentage
-									abilities = true;
+									if (hasPurchasedAbility(Abilities.MetalDetector) && !isAbilityCoolingDown(Abilities.MetalDetector))
+									{
+										if (highestHpFactorOnLane(laneRequested) > 0.8m)
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.MetalDetector + "}"; // Increase Gold Drops
+											abilities = true;
+										}
+									}
 								}
 							}
-							else // We're farming gold
+							// Cooldown: DecreaseCooldowns .. ?
+						}
+
+						if (offensiveAbilitiesOn)
+						{
+							if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
-								if (hasPurchasedAbility(Abilities.MetalDetector) && !isAbilityCoolingDown(Abilities.MetalDetector))
+								if (hasPurchasedAbility(Abilities.Nuke) && !isAbilityCoolingDown(Abilities.Nuke))
 								{
-									if (highestHpFactorOnLane(laneRequested) > 0.8m)
+									if (nukeOnLane(laneRequested))
 									{
-										if (abilities) abilties_json += ",";
-										abilties_json += "{\"ability\":" + (int)Abilities.MetalDetector + "}"; // Increase Gold Drops
-										abilities = true;
+										if (highestHpFactorOnLane(laneRequested) > 0.65m)
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.Nuke + "}"; // Nuke
+											abilities = true;
+										}
 									}
 								}
 							}
 						}
-						// Cooldown: DecreaseCooldowns .. ?
+
+						if (itemAbilitiesOn)
+						{
+							if (hasPurchasedAbility(Abilities.IncreaseCritPercentagePermanently) && !isAbilityCoolingDown(Abilities.IncreaseCritPercentagePermanently))
+							{
+								// Permanent upgrades, always spam them as soon as possible
+								if (abilities) abilties_json += ",";
+								abilties_json += "{\"ability\":" + (int)Abilities.IncreaseCritPercentagePermanently + "}";
+								abilities = true;
+								requestTreeRefresh = true;
+							}
+							if (hasPurchasedAbility(Abilities.IncreaseHPPermanently) && !isAbilityCoolingDown(Abilities.IncreaseHPPermanently))
+							{
+								// Permanent upgrades, always spam them as soon as possible
+								if (abilities) abilties_json += ",";
+								abilties_json += "{\"ability\":" + (int)Abilities.IncreaseHPPermanently + "}";
+								abilities = true;
+								requestTreeRefresh = true;
+							}
+							if (laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
+							{
+								if (lastGoldRainLevel != gameData.Level && hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
+								{
+									// Gold rain
+									if (farmingGoldOnLane(laneRequested))
+									{
+										if (highestHpFactorOnLane(laneRequested) > 0.75m)
+										{
+											if (gameData.Level > 1000 || random.Next(100) == 0) // Less often for lower levels for better spread
+											{
+												if (abilities) abilties_json += ",";
+												abilties_json += "{\"ability\":" + (int)Abilities.GoldRain + "}";
+												abilities = true;
+												lastGoldRainLevel = gameData.Level;
+												requestTreeRefresh = true;
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 
 					long ac = 0;
@@ -407,6 +488,9 @@ namespace MonsterGUI
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
 					}
+
+					if (requestTreeRefresh)
+						refreshUpgrades = true;
 				}
 				catch (Exception ex)
 				{

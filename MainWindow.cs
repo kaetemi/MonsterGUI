@@ -222,7 +222,7 @@ namespace MonsterGUI
 
 		private void ovenzifCheck_CheckedChanged(object sender, EventArgs e)
 		{
-			offenseiveAbilitiesOn = ovenzifCheck.Checked;
+			offensiveAbilitiesOn = ovenzifCheck.Checked;
 		}
 
 		private void itemsCheck_CheckedChanged(object sender, EventArgs e)
