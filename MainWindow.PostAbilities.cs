@@ -497,27 +497,24 @@ namespace MonsterGUI
 									}
 								}
 
-								if ((gameData.Level % 10) == 0) // Use this on boss levels, but not in boss lanes
+								if ((gameData.Level % 10) == 0 && !farmingGold) // Use this on boss levels, but not in boss lanes
 								{
-									if (!bossMonsterOnLane(laneRequested))
+									if (bossMonsterOnLane(laneRequested) || countLiveMonstersOnLane(laneRequested) >= 2)
 									{
-										if (countLiveMonstersOnLane(laneRequested) >= 2)
+										if (hasPurchasedAbility(Abilities.ReflectDamage) && !isAbilityCoolingDown(Abilities.ReflectDamage))
 										{
-											if (hasPurchasedAbility(Abilities.ReflectDamage) && !isAbilityCoolingDown(Abilities.ReflectDamage))
-											{
-												if (abilities) abilties_json += ",";
-												abilties_json += "{\"ability\":" + (int)Abilities.ReflectDamage + "}";
-												abilities = true;
-												requestTreeRefresh = true;
-											}
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.ReflectDamage + "}";
+											abilities = true;
+											requestTreeRefresh = true;
+										}
 
-											if (hasPurchasedAbility(Abilities.MaximizeElement) && !isAbilityCoolingDown(Abilities.MaximizeElement))
-											{
-												if (abilities) abilties_json += ",";
-												abilties_json += "{\"ability\":" + (int)Abilities.MaximizeElement + "}";
-												abilities = true;
-												requestTreeRefresh = true;
-											}
+										if (hasPurchasedAbility(Abilities.MaximizeElement) && !isAbilityCoolingDown(Abilities.MaximizeElement))
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.MaximizeElement + "}";
+											abilities = true;
+											requestTreeRefresh = true;
 										}
 									}
 								}
