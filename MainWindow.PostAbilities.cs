@@ -497,9 +497,9 @@ namespace MonsterGUI
 									}
 								}
 
-								if ((gameData.Level % 10) == 0 && !farmingGold) // Use this on boss levels, but not in boss lanes
+								if ((gameData.Level % 10) == 0 && !farmingGold) // Use this on boss levels, but not when farming gold
 								{
-									if (bossMonsterOnLane(laneRequested) || countLiveMonstersOnLane(laneRequested) >= 2)
+									if (bossMonsterOnLane(laneRequested) || countLiveMonstersOnLane(laneRequested) >= 2) // Either in boss lane or in a lane with enough live monsters
 									{
 										if (hasPurchasedAbility(Abilities.ReflectDamage) && !isAbilityCoolingDown(Abilities.ReflectDamage))
 										{
