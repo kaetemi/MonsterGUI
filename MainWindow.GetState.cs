@@ -119,6 +119,7 @@ namespace MonsterGUI
 	{
 
 		public int NumActivePlayers;
+		public long NumClicks;
 
 		/*	"num_players": 1500,
 			"num_mobs_killed": "355",
@@ -284,13 +285,17 @@ namespace MonsterGUI
 			if (stats != null)
 			{
 				JSONNode numActivePlayers = stats["num_active_players"];
+				JSONNode numClicks = stats["num_clicks"];
 
 				if (numActivePlayers != null) this.stats.NumActivePlayers = Convert.ToInt32(numActivePlayers.Value, CultureInfo.InvariantCulture);
+				if (numClicks != null) this.stats.NumClicks = Convert.ToInt64(numClicks.Value, CultureInfo.InvariantCulture);
 			}
 			if (gameData != null || stats != null)
 				printGameData();
 		}
 
+		long lastTimestamp;
+		long lastNumClicks;
 		private void printGameData()
 		{
 			levelText.Text = gameData.Level.ToString() + " (" + (gameData.Timestamp - gameData.TimestampLevelStart).ToString() + "s)";
@@ -298,6 +303,16 @@ namespace MonsterGUI
 			lane1Gold.Text = decimal.Round(gameData.Lanes[0].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(0) ? "" : " (no enemies)");
 			lane2Gold.Text = decimal.Round(gameData.Lanes[1].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(1) ? "" : " (no enemies)");
 			lane3Gold.Text = decimal.Round(gameData.Lanes[2].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(2) ? "" : " (no enemies)");
+			clicksNumText.Text = stats.NumClicks.ToString();
+			long timestampDiff = gameData.Timestamp - lastTimestamp;
+			if (timestampDiff > 0)
+			{
+				long clickDiff = stats.NumClicks - lastNumClicks;
+				long cps = clickDiff / timestampDiff;
+				cpsText.Text = cps.ToString();
+				lastNumClicks = stats.NumClicks;
+				lastTimestamp = gameData.Timestamp;
+			}
 		}
 
 		private void getStateThread()

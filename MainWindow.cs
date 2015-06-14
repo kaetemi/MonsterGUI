@@ -95,6 +95,7 @@ namespace MonsterGUI
 			if (running)
 			{
 				running = false;
+				System.Threading.Thread.Sleep(1000); // ...
 				getState.Join();
 				postAbilities.Join();
 			}
@@ -147,21 +148,28 @@ namespace MonsterGUI
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			minText.Value = 12;
-			maxText.Value = 24;
+			minText.Value = 16;
+			maxText.Value = 20;
+			boostText.Value = 1;
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
 			// minText.Value = 2147483647 / 2;
 			// maxText.Value = 2147483647;
-			minText.Value = 120;
-			maxText.Value = 240;
+			minText.Value = 16;
+			maxText.Value = 20;
+			boostText.Value = 20;
 		}
 
 		private void goldLaneCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			goldLaneSwitcherOn = goldLaneCheck.Checked;
+		}
+
+		private void boostText_ValueChanged(object sender, EventArgs e)
+		{
+			clickBoost = (int)boostText.Value;
 		}
 	}
 }

@@ -84,6 +84,12 @@
 			this.label15 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
+			this.boostText = new System.Windows.Forms.NumericUpDown();
+			this.label12 = new System.Windows.Forms.Label();
+			this.clicksNumText = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.cpsText = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -101,6 +107,7 @@
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox7.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.boostText)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -181,6 +188,8 @@
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.label12);
+			this.groupBox2.Controls.Add(this.boostText);
 			this.groupBox2.Controls.Add(this.button2);
 			this.groupBox2.Controls.Add(this.button1);
 			this.groupBox2.Controls.Add(this.clicksText);
@@ -192,7 +201,7 @@
 			this.groupBox2.Controls.Add(this.maxText);
 			this.groupBox2.Location = new System.Drawing.Point(209, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(388, 71);
+			this.groupBox2.Size = new System.Drawing.Size(388, 97);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Auto Clicker";
@@ -284,7 +293,7 @@
 			this.minText.Size = new System.Drawing.Size(120, 20);
 			this.minText.TabIndex = 1;
 			this.minText.Value = new decimal(new int[] {
-            12,
+            16,
             0,
             0,
             0});
@@ -307,7 +316,7 @@
 			this.maxText.Size = new System.Drawing.Size(120, 20);
 			this.maxText.TabIndex = 0;
 			this.maxText.Value = new decimal(new int[] {
-            24,
+            20,
             0,
             0,
             0});
@@ -341,13 +350,17 @@
 			// 
 			// groupBox6
 			// 
+			this.groupBox6.Controls.Add(this.cpsText);
+			this.groupBox6.Controls.Add(this.label20);
+			this.groupBox6.Controls.Add(this.clicksNumText);
+			this.groupBox6.Controls.Add(this.label14);
 			this.groupBox6.Controls.Add(this.levelText);
 			this.groupBox6.Controls.Add(this.activePlayersText);
 			this.groupBox6.Controls.Add(this.label18);
 			this.groupBox6.Controls.Add(this.label19);
 			this.groupBox6.Location = new System.Drawing.Point(3, 80);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(200, 45);
+			this.groupBox6.Size = new System.Drawing.Size(200, 71);
 			this.groupBox6.TabIndex = 8;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Game Data";
@@ -394,7 +407,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.medicsText);
 			this.groupBox5.Controls.Add(this.healerCheck);
-			this.groupBox5.Location = new System.Drawing.Point(209, 246);
+			this.groupBox5.Location = new System.Drawing.Point(209, 272);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(388, 45);
 			this.groupBox5.TabIndex = 5;
@@ -426,7 +439,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.respawnerGroup.Controls.Add(this.deadAliveText);
 			this.respawnerGroup.Controls.Add(this.respawnerCheck);
-			this.respawnerGroup.Location = new System.Drawing.Point(209, 195);
+			this.respawnerGroup.Location = new System.Drawing.Point(209, 221);
 			this.respawnerGroup.Name = "respawnerGroup";
 			this.respawnerGroup.Size = new System.Drawing.Size(388, 45);
 			this.respawnerGroup.TabIndex = 4;
@@ -459,7 +472,7 @@
 			this.groupBox4.Controls.Add(this.laneSwitcherCheck);
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.laneSwitcherTimer);
-			this.groupBox4.Location = new System.Drawing.Point(209, 80);
+			this.groupBox4.Location = new System.Drawing.Point(209, 106);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(388, 45);
 			this.groupBox4.TabIndex = 3;
@@ -668,7 +681,7 @@
 			this.groupBox7.Controls.Add(this.lane1Gold);
 			this.groupBox7.Controls.Add(this.label11);
 			this.groupBox7.Controls.Add(this.goldLaneCheck);
-			this.groupBox7.Location = new System.Drawing.Point(209, 131);
+			this.groupBox7.Location = new System.Drawing.Point(209, 157);
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.Size = new System.Drawing.Size(388, 58);
 			this.groupBox7.TabIndex = 4;
@@ -745,6 +758,74 @@
 			this.label17.TabIndex = 10;
 			this.label17.Text = "Lane 3:";
 			// 
+			// boostText
+			// 
+			this.boostText.Location = new System.Drawing.Point(66, 71);
+			this.boostText.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+			this.boostText.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.boostText.Name = "boostText";
+			this.boostText.Size = new System.Drawing.Size(120, 20);
+			this.boostText.TabIndex = 8;
+			this.boostText.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.boostText.ValueChanged += new System.EventHandler(this.boostText_ValueChanged);
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(6, 73);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(37, 13);
+			this.label12.TabIndex = 9;
+			this.label12.Text = "Boost:";
+			// 
+			// clicksNumText
+			// 
+			this.clicksNumText.AutoSize = true;
+			this.clicksNumText.Location = new System.Drawing.Point(83, 42);
+			this.clicksNumText.Name = "clicksNumText";
+			this.clicksNumText.Size = new System.Drawing.Size(0, 13);
+			this.clicksNumText.TabIndex = 8;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(39, 42);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(38, 13);
+			this.label14.TabIndex = 7;
+			this.label14.Text = "Clicks:";
+			this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// cpsText
+			// 
+			this.cpsText.AutoSize = true;
+			this.cpsText.Location = new System.Drawing.Point(83, 55);
+			this.cpsText.Name = "cpsText";
+			this.cpsText.Size = new System.Drawing.Size(0, 13);
+			this.cpsText.TabIndex = 10;
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(46, 55);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(31, 13);
+			this.label20.TabIndex = 9;
+			this.label20.Text = "CPS:";
+			this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -783,6 +864,7 @@
 			this.statusStrip1.PerformLayout();
 			this.groupBox7.ResumeLayout(false);
 			this.groupBox7.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.boostText)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -846,6 +928,12 @@
 		private System.Windows.Forms.Label lane3Gold;
 		private System.Windows.Forms.Label lane2Gold;
 		private System.Windows.Forms.Label lane1Gold;
+		private System.Windows.Forms.NumericUpDown boostText;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label clicksNumText;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label cpsText;
+		private System.Windows.Forms.Label label20;
 	}
 }
 

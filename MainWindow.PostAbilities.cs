@@ -16,9 +16,10 @@ namespace MonsterGUI
 		volatile bool healerOn = false;
 
 		long clickCount = 0;
-		volatile int addClicks = 0;
-		int minClicks = 12;
-		int maxClicks = 24;
+		long addClicks = 0;
+		int minClicks = 16;
+		int maxClicks = 20;
+		int clickBoost = 1;
 
 		int laneSwitcherTime = 1;
 		int laneSwitcherTimeCounter = 0;
@@ -176,18 +177,19 @@ namespace MonsterGUI
 						}
 					}
 
+					long ac = 0;
 					if (autoClickerOn && maxClicks >= minClicks)
 					{
-						int nb = minClicks + random.Next(maxClicks - minClicks);
-						addClicks = nb;
-						if (abilities) abilties_json += ",";
-						abilties_json += "{\"ability\":1,\"num_clicks\":" + nb + "}";
-						abilities = true;
+						for (int i = 0; i < clickBoost; ++i)
+						{
+							int nb = minClicks + random.Next(maxClicks - minClicks);
+							ac += (long)nb;
+							if (abilities) abilties_json += ",";
+							abilties_json += "{\"ability\":1,\"num_clicks\":" + nb + "}";
+							abilities = true;
+						}
 					}
-					else
-					{
-						addClicks = 0;
-					}
+					addClicks = ac;
 
 					if (abilities || !upgrades) // blank abilities to refresh player state in case no other post sent
 					{
