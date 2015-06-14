@@ -544,6 +544,45 @@ namespace MonsterGUI
 										}
 									}
 								}
+
+								if (!farmingGold)
+								{
+									if (gameData.Level > 1000)
+									{
+										if (hasPurchasedAbility(Abilities.CrippleMonster) && !isAbilityCoolingDown(Abilities.CrippleMonster)) // Cripple Monster
+										{
+											if (bossMonsterOnLane(laneRequested)) // Cripple bosses
+											{
+												if (highestHpFactorOnLane(laneRequested) >= 0.5m)
+												{
+													if (abilities) abilties_json += ",";
+													abilties_json += "{\"ability\":" + (int)Abilities.CrippleMonster + "}";
+													abilities = true;
+													requestTreeRefresh = true;
+												}
+											}
+										}
+									}
+
+									if (hasPurchasedAbility(Abilities.CrippleSpawner) && !isAbilityCoolingDown(Abilities.CrippleSpawner)) // Cripple Spawner
+									{
+										int spawner = findSpawnerOnLane(laneRequested);
+										if (spawner >= 0)
+										{
+											if (gameData.Lanes[laneRequested].Enemies[spawner].MaxHp != 0)
+											{
+												decimal ratio = gameData.Lanes[laneRequested].Enemies[spawner].Hp / gameData.Lanes[laneRequested].Enemies[spawner].MaxHp;
+												if (ratio > 0.95m)
+												{
+													if (abilities) abilties_json += ",";
+													abilties_json += "{\"ability\":" + (int)Abilities.CrippleSpawner + "}";
+													abilities = true;
+													requestTreeRefresh = true;
+												}
+											}
+										}
+									}
+								}
 							}
 						}
 					}
