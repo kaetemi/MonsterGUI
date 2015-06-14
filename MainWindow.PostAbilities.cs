@@ -421,14 +421,11 @@ namespace MonsterGUI
 									{
 										if (highestHpFactorOnLane(laneRequested) > 0.75m)
 										{
-											if (gameData.Level > 1000 || random.Next(100) == 0) // Less often for lower levels for better spread
-											{
-												if (abilities) abilties_json += ",";
-												abilties_json += "{\"ability\":" + (int)Abilities.GoldRain + "}";
-												abilities = true;
-												lastGoldRainLevel = gameData.Level;
-												requestTreeRefresh = true;
-											}
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.GoldRain + "}";
+											abilities = true;
+											lastGoldRainLevel = gameData.Level;
+											requestTreeRefresh = true;
 										}
 									}
 								}
