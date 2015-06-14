@@ -42,8 +42,8 @@ namespace MonsterGUI
 		private void postUpgradesThread()
 		{
 			// ChooseUpgrade: {"gameid":"6059","upgrades":[4,4,5,6]}
-			
-			WebClient wc = new WebClient();
+
+			WebClient wc = new TimeoutWebClient();
 			const int notSentCountLimit = 60; // Send a blank upgrade request every 60 ticks to force update the player state
 			int notSentCount = notSentCountLimit;
 			while (running)

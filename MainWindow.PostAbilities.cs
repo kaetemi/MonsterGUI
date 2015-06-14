@@ -119,13 +119,23 @@ namespace MonsterGUI
 			return false;
 		}
 
+		private bool treasureMonsterOnLane(int i)
+		{
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type == EnemyType.Treasure && gameData.Lanes[i].Enemies[j].Hp != 0)
+					return true;
+			}
+			return false;
+		}
+
 		private decimal highestHpFactorOnLane(int i)
 		{
 			decimal highest = 0;
 			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
 			{
-				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].HpMax != 0 && (gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].HpMax) > highest)
-					return gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].HpMax;
+				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].MaxHp != 0 && (gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].MaxHp) > highest)
+					return gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].MaxHp;
 			}
 			return highest;
 		}
@@ -147,7 +157,7 @@ namespace MonsterGUI
 			// 4: Switch Target [new_target] (NOTE: Server automatically switches targets as well)
 
 			Random random = new Random();
-			WebClient wc = new WebClient();
+			WebClient wc = new TimeoutWebClient();
 			while (running)
 			{
 				int startTick = System.Environment.TickCount;
@@ -220,6 +230,15 @@ namespace MonsterGUI
 
 					if (bossLaneOn)
 					{
+						for (int i = 0; i < gameData.Lanes.Length; ++i)
+						{
+							if (treasureMonsterOnLane(i))
+							{
+								laneRequested = i;
+								smartLane = true;
+								break;
+							}
+						}
 						for (int i = 0; i < gameData.Lanes.Length; ++i)
 						{
 							if (bossMonsterOnLane(i))

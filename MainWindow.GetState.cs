@@ -135,7 +135,7 @@ namespace MonsterGUI
 	struct Enemy
 	{
 		public decimal Hp;
-		public decimal HpMax;
+		public decimal MaxHp;
 
 		public EnemyType Type;
 
@@ -442,11 +442,11 @@ namespace MonsterGUI
 							foreach (JSONNode enemy in enemies.Childs)
 							{
 								JSONNode hp = enemy["hp"];
-								JSONNode hpMax = enemy["hp_max"];
+								JSONNode maxHp = enemy["max_hp"];
 								JSONNode type = enemy["type"];
 
 								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = Convert.ToDecimal(hp.Value, CultureInfo.InvariantCulture);
-								if (hpMax != null) this.gameData.Lanes[i].Enemies[j].HpMax = Convert.ToDecimal(hpMax.Value, CultureInfo.InvariantCulture);
+								if (maxHp != null) this.gameData.Lanes[i].Enemies[j].MaxHp = Convert.ToDecimal(maxHp.Value, CultureInfo.InvariantCulture);
 								if (type != null) this.gameData.Lanes[i].Enemies[j].Type = (EnemyType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
 
 								++j;
@@ -503,7 +503,17 @@ namespace MonsterGUI
 			{
 				if (bossMonsterOnLane(i))
 				{
-					bossLaneText.Text = laneNumbers[i];
+					try { bossLaneText.Text = laneNumbers[i] + " (" + decimal.Round(gameData.Lanes[i].Enemies[0].Hp * 100.0m / gameData.Lanes[i].Enemies[0].MaxHp) + " %)"; }
+					catch { bossLaneText.Text = laneNumbers[i]; }
+					bossMonster = true;
+					break;
+				}
+			}
+			if (!bossMonster) for (int i = 0; i < 3; ++i)
+			{
+				if (treasureMonsterOnLane(i))
+				{
+					bossLaneText.Text = laneNumbers[i] + " (treasure)";
 					bossMonster = true;
 					break;
 				}
@@ -523,7 +533,7 @@ namespace MonsterGUI
 			// Player List: http://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetPlayerNames/v0001/?gameid=XXXX
 			// Game Data: http://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetGameData/v0001/?gameid=37559&include_stats=1
 
-			WebClient wc = new WebClient();
+			WebClient wc = new TimeoutWebClient();
 			wc.Headers.Add("Accept-Charset", "utf-8");
 			while (running)
 			{
