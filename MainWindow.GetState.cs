@@ -342,6 +342,7 @@ namespace MonsterGUI
 			JSONNode critDamage = json["crit_damage"];
 			JSONNode timeDied = json["time_died"];
 			JSONNode activeAbilities = json["active_abilities"];
+			JSONNode loot = json["loot"];
 
 			if (hp != null) playerData.Hp = Convert.ToDecimal(hp.Value, CultureInfo.InvariantCulture);
 			if (gold != null) playerData.Gold = Convert.ToDecimal(gold.Value, CultureInfo.InvariantCulture);
@@ -349,6 +350,11 @@ namespace MonsterGUI
 			if (target != null) playerData.Target = Convert.ToInt32(target.Value, CultureInfo.InvariantCulture);
 			if (activeAbilitiesBitfield != null) playerData.ActiveAbilitiesBitfield = (AbilitiesBitfield)Convert.ToInt32(activeAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
 			if (timeDied != null) playerData.TimeDied = Convert.ToInt32(timeDied.Value, CultureInfo.InvariantCulture);
+
+			if (loot != null)
+			{
+				refreshUpgrades = true;
+			}
 
 			if (critDamage != null)
 			{
