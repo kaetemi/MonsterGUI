@@ -498,6 +498,20 @@ namespace MonsterGUI
 				lastNumClicks = stats.NumClicks;
 				lastTimestamp = gameData.Timestamp;
 			}
+			bool bossMonster = false;
+			for (int i = 0; i < 3; ++i)
+			{
+				if (bossMonsterOnLane(i))
+				{
+					bossLaneText.Text = laneNumbers[i];
+					bossMonster = true;
+					break;
+				}
+			}
+			if (!bossMonster)
+			{
+				bossLaneText.Text = "";
+			}
 		}
 
 		/// <summary>

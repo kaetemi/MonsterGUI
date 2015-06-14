@@ -100,7 +100,7 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.label21 = new System.Windows.Forms.Label();
+			this.bossLaneText = new System.Windows.Forms.Label();
 			this.bossLaneCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
@@ -946,7 +946,7 @@
 			// 
 			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox5.Controls.Add(this.label21);
+			this.groupBox5.Controls.Add(this.bossLaneText);
 			this.groupBox5.Controls.Add(this.bossLaneCheck);
 			this.groupBox5.Location = new System.Drawing.Point(481, 157);
 			this.groupBox5.Name = "groupBox5";
@@ -955,13 +955,13 @@
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Boss Lane Switcher";
 			// 
-			// label21
+			// bossLaneText
 			// 
-			this.label21.AutoSize = true;
-			this.label21.Location = new System.Drawing.Point(6, 21);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(0, 13);
-			this.label21.TabIndex = 4;
+			this.bossLaneText.AutoSize = true;
+			this.bossLaneText.Location = new System.Drawing.Point(11, 39);
+			this.bossLaneText.Name = "bossLaneText";
+			this.bossLaneText.Size = new System.Drawing.Size(0, 13);
+			this.bossLaneText.TabIndex = 4;
 			// 
 			// bossLaneCheck
 			// 
@@ -1095,7 +1095,7 @@
 		private System.Windows.Forms.Label coolDownIntf;
 		private System.Windows.Forms.Label metalDetectorIntf;
 		private System.Windows.Forms.GroupBox groupBox5;
-		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Label bossLaneText;
 		private System.Windows.Forms.CheckBox bossLaneCheck;
 	}
 }
