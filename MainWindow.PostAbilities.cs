@@ -513,18 +513,29 @@ namespace MonsterGUI
 										}
 									}
 								}
-
-								if (hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
+								
+								// Use this on lanes with enough live monsters
+								if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && farmingGold))
 								{
-									// Use this on lanes with enough live monsters
-									if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && farmingGold))
+									if (highestHpFactorOnLane(laneRequested) > 0.75m)
 									{
-										if (highestHpFactorOnLane(laneRequested) > 0.75m)
+										if (hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.StealHealth + "}";
 											abilities = true;
 											requestTreeRefresh = true;
+										}
+
+										if ((gameData.Level % 10) == 0) // Use this on boss levels
+										{
+											if (hasPurchasedAbility(Abilities.Revive) && !isAbilityCoolingDown(Abilities.Revive)) // Resurrection
+											{
+												if (abilities) abilties_json += ",";
+												abilties_json += "{\"ability\":" + (int)Abilities.Revive + "}";
+												abilities = true;
+												requestTreeRefresh = true;
+											}
 										}
 									}
 								}
