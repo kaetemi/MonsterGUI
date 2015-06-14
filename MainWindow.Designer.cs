@@ -1384,11 +1384,11 @@
 			// 
 			this.fireImmediatelyCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.fireImmediatelyCheck.AutoSize = true;
-			this.fireImmediatelyCheck.Location = new System.Drawing.Point(496, 330);
+			this.fireImmediatelyCheck.Location = new System.Drawing.Point(504, 330);
 			this.fireImmediatelyCheck.Name = "fireImmediatelyCheck";
-			this.fireImmediatelyCheck.Size = new System.Drawing.Size(101, 17);
+			this.fireImmediatelyCheck.Size = new System.Drawing.Size(93, 17);
 			this.fireImmediatelyCheck.TabIndex = 13;
-			this.fireImmediatelyCheck.Text = "Fire Immediately";
+			this.fireImmediatelyCheck.Text = "Trigger Happy";
 			this.fireImmediatelyCheck.UseVisualStyleBackColor = true;
 			this.fireImmediatelyCheck.CheckedChanged += new System.EventHandler(this.fireImmediatelyCheck_CheckedChanged);
 			// 
