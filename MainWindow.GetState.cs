@@ -46,8 +46,11 @@ namespace MonsterGUI
 		GiveGold = 22, 
 		StealHealth = 23,
 		ReflectDamage = 24,
+		FeelingLucky = 25,
+		Wormhole = 26,
+		LikeNew = 27,
 
-		Nb = 25
+		Nb = 28
 	}
 
 	/// <summary>
@@ -78,7 +81,10 @@ namespace MonsterGUI
 		GodMode = 1 << Abilities.GodMode,
 		GiveGold = 1 << Abilities.GiveGold,
 		StealHealth = 1 << Abilities.StealHealth,
-		ReflectDamage = 1 << Abilities.ReflectDamage
+		ReflectDamage = 1 << Abilities.ReflectDamage,
+		FeelingLucky = 1 << Abilities.FeelingLucky,
+		Wormhole = 1 << Abilities.Wormhole,
+		LikeNew = 1 << Abilities.LikeNew
 	}
 
 	enum EnemyType
@@ -117,7 +123,10 @@ namespace MonsterGUI
 		EnergyShields = 20,
 		FarmingEquipment = 21,
 		Railgun = 22,
-		Nb = 23
+		PersonalTraining = 23,
+		AFKEquipment = 24,
+		NewMouseButton = 25,
+		Nb = 26
 	}
 
 	struct PlayerData
@@ -396,8 +405,11 @@ namespace MonsterGUI
 					{
 						int abilityI = Convert.ToInt32(ability.Value, CultureInfo.InvariantCulture) - (int)Abilities.StartItem;
 						int quantityI = Convert.ToInt32(quantity.Value, CultureInfo.InvariantCulture);
-						techTree.AbilityItems[abilityI] = quantityI;
-						hasAbilityItem |= (1 << abilityI);
+						if (abilityI < techTree.AbilityItems.Length)
+						{
+							techTree.AbilityItems[abilityI] = quantityI;
+							hasAbilityItem |= (1 << abilityI);
+						}
 					}
 				}
 			}
