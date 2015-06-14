@@ -268,6 +268,7 @@
 			this.label13.Size = new System.Drawing.Size(49, 13);
 			this.label13.TabIndex = 10;
 			this.label13.Text = "Defaults:";
+			this.label13.Visible = false;
 			// 
 			// label12
 			// 
@@ -310,6 +311,7 @@
 			this.button2.TabIndex = 7;
 			this.button2.Text = "Turbo";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Visible = false;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// button1
@@ -321,6 +323,7 @@
 			this.button1.TabIndex = 7;
 			this.button1.Text = "Regular";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Visible = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// clicksText
