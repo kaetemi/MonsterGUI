@@ -91,6 +91,7 @@
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
+			this.label13 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -189,6 +190,7 @@
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.label13);
 			this.groupBox2.Controls.Add(this.label12);
 			this.groupBox2.Controls.Add(this.boostText);
 			this.groupBox2.Controls.Add(this.button2);
@@ -242,18 +244,18 @@
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(307, 42);
+			this.button2.Location = new System.Drawing.Point(307, 58);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
 			this.button2.TabIndex = 7;
-			this.button2.Text = "Power";
+			this.button2.Text = "Turbo";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(307, 13);
+			this.button1.Location = new System.Drawing.Point(307, 29);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 7;
@@ -835,6 +837,16 @@
 			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
 			this.postUpgradesState.Text = "◆";
 			// 
+			// label13
+			// 
+			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(333, 13);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(49, 13);
+			this.label13.TabIndex = 10;
+			this.label13.Text = "Defaults:";
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -944,6 +956,7 @@
 		private System.Windows.Forms.Label cpsText;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.ToolStripStatusLabel postUpgradesState;
+		private System.Windows.Forms.Label label13;
 	}
 }
 
