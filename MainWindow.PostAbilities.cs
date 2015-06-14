@@ -13,6 +13,7 @@ namespace MonsterGUI
 		volatile bool autoClickerOn = false;
 		volatile bool laneSwitcherOn = true;
 		volatile bool goldLaneSwitcherOn = true;
+		volatile bool bossLaneOn = true;
 		volatile bool respawnerOn = true;
 		volatile bool supportAbilitiesOn = false;
 
@@ -39,6 +40,7 @@ namespace MonsterGUI
 			autoClickerCheck.Checked = autoClickerOn;
 			laneSwitcherCheck.Checked = laneSwitcherOn;
 			goldLaneCheck.Checked = goldLaneSwitcherOn;
+			bossLaneCheck.Checked = bossLaneOn;
 			respawnerCheck.Checked = respawnerOn;
 			supportAbilitiesCheck.Checked = supportAbilitiesOn;
 		}
@@ -195,7 +197,7 @@ namespace MonsterGUI
 						}
 					}
 
-					bool goldLane = false;
+					bool smartLane = false;
 					if (goldLaneSwitcherOn)
 					{
 						int bestLane = -1;
@@ -212,11 +214,24 @@ namespace MonsterGUI
 						if (bestLane >= 0)
 						{
 							laneRequested = bestLane;
-							goldLane = true;
+							smartLane = true;
 						}
 					}
 
-					if (laneSwitcherOn || goldLane) // If any lane switching algorithm is enabled
+					if (bossLaneOn)
+					{
+						for (int i = 0; i < gameData.Lanes.Length; ++i)
+						{
+							if (bossMonsterOnLane(i))
+							{
+								laneRequested = i;
+								smartLane = true;
+								break;
+							}
+						}
+					}
+
+					if (laneSwitcherOn || smartLane) // If any lane switching algorithm is enabled
 					{
 						if (laneRequested != playerData.CurrentLane)
 						{

@@ -96,11 +96,6 @@ namespace MonsterGUI
 					{
 						++notSentCount;
 					}
-
-					if (upgrades)
-					{
-						// TODO
-					}
 				}
 				catch (Exception ex)
 				{
