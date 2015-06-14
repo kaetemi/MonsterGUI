@@ -365,7 +365,7 @@ namespace MonsterGUI
 								{
 									if (hasPurchasedAbility(Abilities.MetalDetector) && !isAbilityCoolingDown(Abilities.MetalDetector))
 									{
-										if (highestHpFactorOnLane(laneRequested) > 0.8m)
+										if (highestHpFactorOnLane(laneRequested) > 0.75m)
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.MetalDetector + "}"; // Increase Gold Drops
@@ -416,11 +416,13 @@ namespace MonsterGUI
 							}
 							if (fireImmediately || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
-								if ((itemCount(Abilities.GoldRain) > 12 || lastGoldRainLevel != gameData.Level) // If not many left over, only fire maximum of one per level
-									&& hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
+								bool farmingGold = farmingGoldOnLane(laneRequested);
+
+								if (farmingGold)
 								{
 									// Gold rain
-									if (farmingGoldOnLane(laneRequested))
+									if ((itemCount(Abilities.GoldRain) > 12 || lastGoldRainLevel != gameData.Level) // If not many left over, only fire maximum of one per level
+										&& hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
 									{
 										// When already done gold rain on this level, allow for a lower HP, as this means the boss is going down slowly
 										if (highestHpFactorOnLane(laneRequested) > ((lastGoldRainLevel != gameData.Level) ? 0.75m : 0.35m))
@@ -431,6 +433,19 @@ namespace MonsterGUI
 											lastGoldRainLevel = gameData.Level;
 											requestTreeRefresh = true;
 										}
+									}
+								}
+
+								if (hasPurchasedAbility(Abilities.GiveGold) && !isAbilityCoolingDown(Abilities.GiveGold)) // Treasure
+								{
+									// When no player money or under same circumstances as Metal Detector
+									if ((playerData.Gold < 100000.0m)
+										|| (farmingGold && highestHpFactorOnLane(laneRequested) > 0.75m))
+									{
+										if (abilities) abilties_json += ",";
+										abilties_json += "{\"ability\":" + (int)Abilities.GiveGold + "}";
+										abilities = true;
+										requestTreeRefresh = true;
 									}
 								}
 							}
