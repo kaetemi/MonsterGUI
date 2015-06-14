@@ -365,26 +365,44 @@ namespace MonsterGUI
 					}
 					addClicks = ac;
 
-					// Send the UseAbilities POST request
-					abilties_json += "]}";
-					StringBuilder url = new StringBuilder();
-					url.Append("https://");
-					url.Append(host);
-					url.Append("UseAbilities/v0001/");
-					StringBuilder query = new StringBuilder();
-					query.Append("input_json=");
-					query.Append(WebUtilities.UrlEncode(abilties_json));
-					query.Append("&access_token=");
-					query.Append(accessToken);
-					query.Append("&format=json");
-					wc.Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
-					wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-					if (!exiting) Invoke(enableDelegate, postAbilitiesState, true);
-					Console.WriteLine(abilties_json);
-					string res = wc.UploadString(url.ToString(), query.ToString());
-					Console.WriteLine(res);
-					JSONNode json = JSON.Parse(res);
-					if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
+					if (abilities)
+					{
+						// Send the UseAbilities POST request
+						abilties_json += "]}";
+						StringBuilder url = new StringBuilder();
+						url.Append("https://");
+						url.Append(host);
+						url.Append("UseAbilities/v0001/");
+						StringBuilder query = new StringBuilder();
+						query.Append("input_json=");
+						query.Append(WebUtilities.UrlEncode(abilties_json));
+						query.Append("&access_token=");
+						query.Append(accessToken);
+						query.Append("&format=json");
+						wc.Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
+						wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+						if (!exiting) Invoke(enableDelegate, postAbilitiesState, true);
+						Console.WriteLine(abilties_json);
+						string res = wc.UploadString(url.ToString(), query.ToString());
+						Console.WriteLine(res);
+						JSONNode json = JSON.Parse(res);
+						if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
+					}
+					else if (!string.IsNullOrEmpty(steamId))
+					{
+						StringBuilder url = new StringBuilder();
+						url.Append("http://");
+						url.Append(host);
+						url.Append("GetPlayerData/v0001/?gameid=");
+						url.Append(room);
+						url.Append("&steamid=");
+						url.Append(steamId);
+						url.Append("&include_tech_tree=0&format=json");
+						if (!exiting) Invoke(enableDelegate, postAbilitiesState, true);
+						string res = wc.DownloadString(url.ToString());
+						JSONNode json = JSON.Parse(res);
+						if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
+					}
 				}
 				catch (Exception ex)
 				{

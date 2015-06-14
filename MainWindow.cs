@@ -195,6 +195,7 @@ namespace MonsterGUI
 			respawnerCheck.Checked = status;
 			supportAbilitiesCheck.Checked = status;
 			bossLaneCheck.Checked = status;
+			targetSpawnerCheck.Checked = status;
 		}
 
 		private void presetEverythingOff_Click(object sender, EventArgs e)

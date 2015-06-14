@@ -239,12 +239,16 @@ namespace MonsterGUI
 		TechTree techTree = new TechTree();
 
 		volatile bool getPlayerNames = false;
+		bool getSteamId = false;
+
+		string steamId = "";
 
 		/// <summary>
 		/// App init
 		/// </summary>
 		private void getStateInit()
 		{
+			resultTokenDetailsDelegate = new JsonCallback(resultTokenDetails);
 			resultPlayerNamesDelegate = new JsonCallback(resultPlayerNames);
 			resultGameDataDelegate = new JsonCallback(resultGameData);
 			gameData.Init();
@@ -256,7 +260,10 @@ namespace MonsterGUI
 		/// </summary>
 		private void getStateGo()
 		{
+			steamId = "";
+
 			getPlayerNames = true;
+			getSteamId = true;
 
 			abilitiesIntfs = new System.Windows.Forms.Label[5];
 			abilitiesIntfs[(int)Abilities.MoraleBooster - (int)Abilities.StartAbility] = moraleBoosterIntf;
@@ -380,6 +387,15 @@ namespace MonsterGUI
 				abilitiesIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
 				abilitiesIntfs[i].Visible = (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
 			}
+		}
+
+		private JsonCallback resultTokenDetailsDelegate;
+		private void resultTokenDetails(JSONNode json)
+		{
+			JSONNode steamid = json["steamid"];
+			if (steamid != null) steamId = steamid.Value;
+
+			Console.WriteLine("steamid: " + steamId);
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;
@@ -540,7 +556,18 @@ namespace MonsterGUI
 				int startTick = System.Environment.TickCount;
 				try
 				{
-					if (getPlayerNames)
+					if (getSteamId)
+					{
+						StringBuilder url = new StringBuilder();
+						url.Append("https://steamapi-a.akamaihd.net/ISteamUserOAuth/GetTokenDetails/v1/?access_token=");
+						url.Append(accessToken);
+						Invoke(enableDelegate, getStateStatus, true);
+						string res = wc.DownloadString(url.ToString());
+						JSONNode json = JSON.Parse(res);
+						if (!exiting) Invoke(resultTokenDetailsDelegate, json);
+						getSteamId = false;
+					}
+					else if (getPlayerNames)
 					{
 						StringBuilder url = new StringBuilder();
 						url.Append("http://");

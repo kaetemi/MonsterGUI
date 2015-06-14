@@ -69,7 +69,7 @@ namespace MonsterGUI
 					*/
 
 					// Send the upgrade packet
-					if (upgrades || notSentCount >= notSentCountLimit)
+					if (upgrades)
 					{
 						upgrades_json += "]}";
 						StringBuilder url = new StringBuilder();
@@ -88,6 +88,22 @@ namespace MonsterGUI
 						Console.WriteLine(upgrades_json);
 						string res = wc.UploadString(url.ToString(), query.ToString());
 						Console.WriteLine(res);
+						JSONNode json = JSON.Parse(res);
+						if (!exiting) Invoke(resultPostUpgradesDelegate, json);
+						notSentCount = 0;
+					}
+					else if (notSentCount >= notSentCountLimit && !string.IsNullOrEmpty(steamId))
+					{
+						StringBuilder url = new StringBuilder();
+						url.Append("http://");
+						url.Append(host);
+						url.Append("GetPlayerData/v0001/?gameid=");
+						url.Append(room);
+						url.Append("&steamid=");
+						url.Append(steamId);
+						url.Append("&include_tech_tree=1&format=json");
+						if (!exiting) Invoke(enableDelegate, postUpgradesState, true);
+						string res = wc.DownloadString(url.ToString());
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultPostUpgradesDelegate, json);
 						notSentCount = 0;
