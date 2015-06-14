@@ -20,6 +20,14 @@
                         ]
                         ,
                         "crit_damage": 18955260
+                        "loot": [
+                                {
+                                        "ability": 17
+                                },
+                                {
+                                        "ability": 20
+                                }
+                        ]
                 }
         }
 }
