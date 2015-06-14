@@ -422,7 +422,8 @@ namespace MonsterGUI
 									// Gold rain
 									if (farmingGoldOnLane(laneRequested))
 									{
-										if (highestHpFactorOnLane(laneRequested) > 0.75m)
+										// When already done gold rain on this level, allow for a lower HP, as this means the boss is going down slowly
+										if (highestHpFactorOnLane(laneRequested) > ((lastGoldRainLevel != gameData.Level) ? 0.75m : 0.35m))
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.GoldRain + "}";
