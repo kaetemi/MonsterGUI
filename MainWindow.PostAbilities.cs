@@ -37,6 +37,7 @@ namespace MonsterGUI
 		// Abilities info
 		volatile bool fireImmediately = false;
 		int lastGoldRainLevel = 0;
+		int lastBombLevel = 0;
 
 		/// <summary>
 		/// App init
@@ -161,6 +162,17 @@ namespace MonsterGUI
 			return -1;
 		}
 
+		private int countLiveMonstersOnLane(int i)
+		{
+			int count = 0;
+			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
+			{
+				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].Hp != 0)
+					++count;
+			}
+			return count;
+		}
+
 		private decimal highestHpFactorOnLane(int i)
 		{
 			decimal highest = 0;
@@ -187,6 +199,14 @@ namespace MonsterGUI
 			{
 				return (findSpawnerOnLane(i) >= 0) && ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
 			}
+		}
+
+		private bool bombOnLane(int i)
+		{
+			return !bossMonsterOnLane(laneRequested)
+				&& (findSpawnerOnLane(i) >= 0)
+				&& (countLiveMonstersOnLane(i) >= 3)
+				&& ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
 		}
 
 		/// <summary>
@@ -390,6 +410,34 @@ namespace MonsterGUI
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.Nuke + "}"; // Nuke
 											abilities = true;
+										}
+									}
+								}
+
+								if (hasPurchasedAbility(Abilities.ClusterBomb) && !isAbilityCoolingDown(Abilities.ClusterBomb))
+								{
+									if (lastBombLevel != gameData.Level) // Don't bomb/napalm on same level to get better spread
+									{
+										if (bombOnLane(laneRequested))
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.ClusterBomb + "}";
+											abilities = true;
+											lastBombLevel = gameData.Level;
+										}
+									}
+								}
+
+								if (hasPurchasedAbility(Abilities.Napalm) && !isAbilityCoolingDown(Abilities.Napalm))
+								{
+									if (lastBombLevel != gameData.Level) // Don't bomb/napalm on same level to get better spread
+									{
+										if (bombOnLane(laneRequested))
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.Napalm + "}";
+											abilities = true;
+											lastBombLevel = gameData.Level;
 										}
 									}
 								}
