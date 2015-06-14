@@ -13,6 +13,7 @@ namespace MonsterGUI
 		volatile bool autoClickerOn = false;
 		volatile bool laneSwitcherOn = true;
 		volatile bool targetSpawnersOn = true;
+		volatile bool elementSwitcherOn = true;
 		volatile bool goldLaneSwitcherOn = true;
 		volatile bool bossLaneOn = true;
 		volatile bool respawnerOn = true;
@@ -47,6 +48,7 @@ namespace MonsterGUI
 			resultPostAbilitiesDelegate = new JsonCallback(resultPostAbilities);
 			autoClickerCheck.Checked = autoClickerOn;
 			laneSwitcherCheck.Checked = laneSwitcherOn;
+			elementSwitcherCheck.Checked = elementSwitcherOn;
 			targetSpawnerCheck.Checked = targetSpawnersOn;
 			goldLaneCheck.Checked = goldLaneSwitcherOn;
 			bossLaneCheck.Checked = bossLaneOn;
@@ -209,6 +211,18 @@ namespace MonsterGUI
 				&& ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
 		}
 
+		private int bestElementLevel()
+		{
+			int bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalAir].Level;
+			if (techTree.Upgrades[(int)UpgradeType.ElementalEarth].Level > bestLevel)
+				bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalEarth].Level;
+			if (techTree.Upgrades[(int)UpgradeType.ElementalFire].Level > bestLevel)
+				bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalFire].Level;
+			if (techTree.Upgrades[(int)UpgradeType.ElementalWater].Level > bestLevel)
+				bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalWater].Level;
+			return bestLevel;
+		}
+
 		/// <summary>
 		/// Thread which posts abilities
 		/// </summary>
@@ -268,6 +282,28 @@ namespace MonsterGUI
 								++laneRequested;
 								laneRequested %= 3;
 							}
+							else
+							{
+								break;
+							}
+						}
+					}
+
+					if (elementSwitcherOn)
+					{
+						int bestElement = bestElementLevel();
+						for (int i = 0; i < 3; ++i)
+						{
+							// Cycle until an appropriate lane found
+							if (techTree.Upgrades[(int)gameData.Lanes[laneRequested].Element].Level < bestElement || !enemiesAliveInLane(laneRequested))
+							{
+								++laneRequested;
+								laneRequested %= 3;
+							}
+							else
+							{
+								break;
+							}
 						}
 					}
 
@@ -314,7 +350,7 @@ namespace MonsterGUI
 						}
 					}
 
-					if (laneSwitcherOn || smartLane) // If any lane switching algorithm is enabled
+					if (laneSwitcherOn || elementSwitcherOn || smartLane) // If any lane switching algorithm is enabled
 					{
 						if (laneRequested != playerData.CurrentLane)
 						{

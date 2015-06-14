@@ -191,6 +191,7 @@ namespace MonsterGUI
 		{
 			autoClickerCheck.Checked = status;
 			laneSwitcherCheck.Checked = status;
+			elementSwitcherCheck.Checked = status;
 			goldLaneCheck.Checked = status;
 			respawnerCheck.Checked = status;
 			supportAbilitiesCheck.Checked = status;
@@ -238,6 +239,11 @@ namespace MonsterGUI
 		private void fireImmediatelyCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			fireImmediately = fireImmediatelyCheck.Checked;
+		}
+
+		private void elementSwitcherCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			elementSwitcherOn = elementSwitcherCheck.Checked;
 		}
 	}
 }

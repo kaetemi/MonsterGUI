@@ -170,6 +170,7 @@ namespace MonsterGUI
 
 		public Enemy[] Enemies;
 		public decimal ActivePlayerAbilityGoldPerClick;
+		public UpgradeType Element;
 	}
 
 	struct GameData
@@ -214,11 +215,11 @@ namespace MonsterGUI
 			"time_saving": 28.79324529773146*/
 	}
 
-	/*struct Upgrade
+	struct Upgrade
 	{
-		bool Has;
-		// TODO int Level;
-	}*/
+		public int Level;
+		public decimal CostForNextLevel;
+	}
 
 	/// <summary>
 	/// See TechTreeExample.txt
@@ -228,11 +229,11 @@ namespace MonsterGUI
 		public void Init()
 		{
 			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
-			// Upgrades = new Upgrade[(int)UpgradeType.Nb];
+			Upgrades = new Upgrade[(int)UpgradeType.Nb];
 			AbilityItems = new int[(int)Abilities.Nb - (int)Abilities.StartItem];
 		}
 
-		// public Upgrade[] Upgrades; // TODO
+		public Upgrade[] Upgrades;
 
 		public AbilitiesBitfield UnlockedAbilitiesBitfield;
 
@@ -394,10 +395,70 @@ namespace MonsterGUI
 			printPlayerTech();
 		}
 
+		static string[] elementIcons = new string[] {
+			"◇", // Fire
+			"◎", // "🌊", // Water
+			"☴", // Air
+			"▽", // "🌴", // Earth
+		};
+		private void printGameTree()
+		{
+			int bestElement = bestElementLevel();
+			string res = "";
+			for (int i = 0; i < gameData.Lanes.Length; ++i)
+			{
+				if (gameData.Lanes[i].Element >= UpgradeType.ElementalFire && gameData.Lanes[i].Element <= UpgradeType.ElementalEarth)
+				{
+					int laneEleLevel = techTree.Upgrades[(int)gameData.Lanes[i].Element].Level;
+					if (laneEleLevel >= bestElement)
+					{
+						res += "【" + elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeType.ElementalFire] + "】 ";
+					}
+					else
+					{
+						res += elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeType.ElementalFire] + " ";
+					}
+				}
+			}
+			elementText.Text = res;
+		}
+
 		void decodeTechTree(JSONNode json)
 		{
 			JSONNode unlockedAbilitiesBitfield = json["unlocked_abilities_bitfield"];
 			JSONNode abilityItems = json["ability_items"];
+			JSONNode upgrades = json["upgrades"];
+
+			// "level": 20,
+			// "cost_for_next_level": 9094947010
+			int hasUpgrade = 0;
+			if (upgrades != null)
+			{
+				foreach (JSONNode upgrade in upgrades.Childs)
+				{
+					JSONNode upgrade_ = upgrade["upgrade"];
+					JSONNode level = upgrade["level"];
+					JSONNode costForNextLevel = upgrade["cost_for_next_level"];
+					if (upgrade_ != null && level != null && costForNextLevel != null)
+					{
+						int upgradeI = Convert.ToInt32(upgrade_.Value, CultureInfo.InvariantCulture);
+						if (upgradeI < techTree.Upgrades.Length)
+						{
+							techTree.Upgrades[upgradeI].Level = Convert.ToInt32(level.Value, CultureInfo.InvariantCulture);
+							techTree.Upgrades[upgradeI].CostForNextLevel = Convert.ToDecimal(costForNextLevel.Value, CultureInfo.InvariantCulture);
+							hasUpgrade |= (1 << upgradeI);
+						}
+					}
+				}
+			}
+			for (int i = 0; i < techTree.Upgrades.Length; ++i)
+			{
+				if ((hasUpgrade & (1 << i)) == 0)
+				{
+					techTree.Upgrades[i].Level = 0;
+					techTree.Upgrades[i].CostForNextLevel = 0;
+				}
+			}
 
 			if (unlockedAbilitiesBitfield != null) techTree.UnlockedAbilitiesBitfield = (AbilitiesBitfield)Convert.ToInt32(unlockedAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
 			int hasAbilityItem = 0;
@@ -434,6 +495,7 @@ namespace MonsterGUI
 		void printTechTree()
 		{
 			printPlayerTech();
+			printGameTree();
 		}
 
 		int itemCount(Abilities ability)
@@ -547,8 +609,10 @@ namespace MonsterGUI
 					{
 						JSONNode activePlayerAbilityGoldPerClick = lane["active_player_ability_gold_per_click"];
 						JSONNode enemies = lane["enemies"];
+						JSONNode element = lane["element"];
 
 						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Convert.ToDecimal(activePlayerAbilityGoldPerClick.Value, CultureInfo.InvariantCulture);
+						if (element != null) this.gameData.Lanes[i].Element = (UpgradeType)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeType.ElementalFire);
 
 						if (enemies != null)
 						{
@@ -636,6 +700,7 @@ namespace MonsterGUI
 			{
 				bossLaneText.Text = "";
 			}
+			printGameTree();
 		}
 
 		/// <summary>

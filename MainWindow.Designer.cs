@@ -137,6 +137,9 @@
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.button3 = new System.Windows.Forms.Button();
 			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
+			this.elementSwitcherBox = new System.Windows.Forms.GroupBox();
+			this.elementSwitcherCheck = new System.Windows.Forms.CheckBox();
+			this.elementText = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -160,6 +163,7 @@
 			this.groupBox8.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
+			this.elementSwitcherBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -431,6 +435,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.elementSwitcherBox);
 			this.splitContainer1.Panel1.Controls.Add(this.fireImmediatelyCheck);
 			this.splitContainer1.Panel1.Controls.Add(this.button3);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox12);
@@ -730,8 +735,6 @@
 			// 
 			// groupBox11
 			// 
-			this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox11.Controls.Add(this.ovenzifCheck);
 			this.groupBox11.Controls.Add(this.napalmIntf);
 			this.groupBox11.Controls.Add(this.clusterBombIntf);
@@ -789,17 +792,17 @@
 			this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox10.Controls.Add(this.targetSpawnerCheck);
-			this.groupBox10.Location = new System.Drawing.Point(481, 109);
+			this.groupBox10.Location = new System.Drawing.Point(388, 221);
 			this.groupBox10.Name = "groupBox10";
-			this.groupBox10.Size = new System.Drawing.Size(116, 45);
+			this.groupBox10.Size = new System.Drawing.Size(87, 45);
 			this.groupBox10.TabIndex = 4;
 			this.groupBox10.TabStop = false;
-			this.groupBox10.Text = "Target Spawners";
+			this.groupBox10.Text = "Auto Target";
 			// 
 			// targetSpawnerCheck
 			// 
 			this.targetSpawnerCheck.AutoSize = true;
-			this.targetSpawnerCheck.Location = new System.Drawing.Point(14, 16);
+			this.targetSpawnerCheck.Location = new System.Drawing.Point(13, 19);
 			this.targetSpawnerCheck.Name = "targetSpawnerCheck";
 			this.targetSpawnerCheck.Size = new System.Drawing.Size(66, 17);
 			this.targetSpawnerCheck.TabIndex = 2;
@@ -813,7 +816,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.bossLaneText);
 			this.groupBox5.Controls.Add(this.bossLaneCheck);
-			this.groupBox5.Location = new System.Drawing.Point(481, 157);
+			this.groupBox5.Location = new System.Drawing.Point(481, 170);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(116, 58);
 			this.groupBox5.TabIndex = 5;
@@ -1101,7 +1104,7 @@
 			this.respawnerGroup.Controls.Add(this.respawnerCheck);
 			this.respawnerGroup.Location = new System.Drawing.Point(209, 221);
 			this.respawnerGroup.Name = "respawnerGroup";
-			this.respawnerGroup.Size = new System.Drawing.Size(388, 45);
+			this.respawnerGroup.Size = new System.Drawing.Size(173, 45);
 			this.respawnerGroup.TabIndex = 4;
 			this.respawnerGroup.TabStop = false;
 			this.respawnerGroup.Text = "Respawner";
@@ -1117,7 +1120,7 @@
 			// respawnerCheck
 			// 
 			this.respawnerCheck.AutoSize = true;
-			this.respawnerCheck.Location = new System.Drawing.Point(192, 19);
+			this.respawnerCheck.Location = new System.Drawing.Point(101, 19);
 			this.respawnerCheck.Name = "respawnerCheck";
 			this.respawnerCheck.Size = new System.Drawing.Size(66, 17);
 			this.respawnerCheck.TabIndex = 3;
@@ -1395,6 +1398,38 @@
 			this.fireImmediatelyCheck.UseVisualStyleBackColor = true;
 			this.fireImmediatelyCheck.CheckedChanged += new System.EventHandler(this.fireImmediatelyCheck_CheckedChanged);
 			// 
+			// elementSwitcherBox
+			// 
+			this.elementSwitcherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.elementSwitcherBox.Controls.Add(this.elementText);
+			this.elementSwitcherBox.Controls.Add(this.elementSwitcherCheck);
+			this.elementSwitcherBox.Location = new System.Drawing.Point(481, 106);
+			this.elementSwitcherBox.Name = "elementSwitcherBox";
+			this.elementSwitcherBox.Size = new System.Drawing.Size(116, 58);
+			this.elementSwitcherBox.TabIndex = 5;
+			this.elementSwitcherBox.TabStop = false;
+			this.elementSwitcherBox.Text = "Element Switcher";
+			// 
+			// elementSwitcherCheck
+			// 
+			this.elementSwitcherCheck.AutoSize = true;
+			this.elementSwitcherCheck.Location = new System.Drawing.Point(14, 19);
+			this.elementSwitcherCheck.Name = "elementSwitcherCheck";
+			this.elementSwitcherCheck.Size = new System.Drawing.Size(66, 17);
+			this.elementSwitcherCheck.TabIndex = 2;
+			this.elementSwitcherCheck.Text = "Running";
+			this.elementSwitcherCheck.UseVisualStyleBackColor = true;
+			this.elementSwitcherCheck.CheckedChanged += new System.EventHandler(this.elementSwitcherCheck_CheckedChanged);
+			// 
+			// elementText
+			// 
+			this.elementText.AutoSize = true;
+			this.elementText.Location = new System.Drawing.Point(11, 39);
+			this.elementText.Name = "elementText";
+			this.elementText.Size = new System.Drawing.Size(0, 13);
+			this.elementText.TabIndex = 5;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1444,6 +1479,8 @@
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			this.elementSwitcherBox.ResumeLayout(false);
+			this.elementSwitcherBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1560,6 +1597,9 @@
 		private System.Windows.Forms.Label resurrIntf;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.CheckBox fireImmediatelyCheck;
+		private System.Windows.Forms.GroupBox elementSwitcherBox;
+		private System.Windows.Forms.CheckBox elementSwitcherCheck;
+		private System.Windows.Forms.Label elementText;
 	}
 }
 
