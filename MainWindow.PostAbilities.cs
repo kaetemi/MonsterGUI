@@ -513,6 +513,21 @@ namespace MonsterGUI
 										}
 									}
 								}
+
+								if (hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
+								{
+									// Use this on lanes with enough live monsters
+									if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && farmingGold))
+									{
+										if (highestHpFactorOnLane(laneRequested) > 0.75m)
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.StealHealth + "}";
+											abilities = true;
+											requestTreeRefresh = true;
+										}
+									}
+								}
 							}
 						}
 					}
