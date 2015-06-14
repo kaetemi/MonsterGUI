@@ -473,7 +473,7 @@ namespace MonsterGUI
 										&& hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
 									{
 										// When already done gold rain on this level, allow for a lower HP, as this means the boss is going down slowly
-										if (highestHpFactorOnLane(laneRequested) > ((lastGoldRainLevel != gameData.Level) ? 0.75m : 0.35m))
+										if (highestHpFactorOnLane(laneRequested) >= ((lastGoldRainLevel != gameData.Level) ? 0.75m : 0.25m))
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.GoldRain + "}";
