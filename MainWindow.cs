@@ -90,18 +90,29 @@ namespace MonsterGUI
 				go.Text = "Go";
 				accessTokenText.Enabled = true;
 				roomText.Enabled = true;
+				if (exiting)
+				{
+					exiting = false;
+					Close();
+				}
 			}
 		}
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			exiting = true;
-			if (running)
+			if (exiting)
 			{
-				running = false;
-				System.Threading.Thread.Sleep(1000); // ...
-				getState.Join();
-				postAbilities.Join();
+				e.Cancel = true;
+			}
+			else
+			{
+				exiting = true;
+				if (running)
+				{
+					running = false;
+					this.Enabled = false;
+					e.Cancel = true;
+				}
 			}
 		}
 

@@ -240,7 +240,7 @@ namespace MonsterGUI
 				if (toSleep > 0) System.Threading.Thread.Sleep(toSleep);
 			}
 			wc.Dispose();
-			if (!exiting) Invoke(endedThreadDelegate);
+			Invoke(endedThreadDelegate);
 		}
 	}
 }
