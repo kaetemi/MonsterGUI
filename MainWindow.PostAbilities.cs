@@ -426,7 +426,7 @@ namespace MonsterGUI
 							if (preferTarget != playerData.Target)
 							{
 								if (abilities) abilties_json += ",";
-								abilties_json += "{\"ability\":2,\"new_target\":" + preferTarget + "}"; // Only using this for spawners
+								abilties_json += "{\"ability\":4,\"new_target\":" + preferTarget + "}"; // Only using this for spawners
 								abilities = true;
 								printRequestedTargetSwitch = true;
 								printRequestedTarget = preferTarget;

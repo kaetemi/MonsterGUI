@@ -170,6 +170,12 @@
 			this.upgrStatLoot = new System.Windows.Forms.Label();
 			this.upgrStatDPS = new System.Windows.Forms.Label();
 			this.upgrStatHP = new System.Windows.Forms.Label();
+			this.giveRandomCount = new System.Windows.Forms.Label();
+			this.giveRandomIntf = new System.Windows.Forms.Label();
+			this.skipLevelCount = new System.Windows.Forms.Label();
+			this.skipLevelIntf = new System.Windows.Forms.Label();
+			this.clearCoolCount = new System.Windows.Forms.Label();
+			this.clearCoolIntf = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -416,7 +422,7 @@
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox14);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox8);
 			this.splitContainer1.Panel2.Controls.Add(this.playerGroup);
-			this.splitContainer1.Size = new System.Drawing.Size(760, 451);
+			this.splitContainer1.Size = new System.Drawing.Size(760, 406);
 			this.splitContainer1.SplitterDistance = 600;
 			this.splitContainer1.TabIndex = 2;
 			// 
@@ -531,6 +537,13 @@
 			// 
 			this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox12.Controls.Add(this.itemsCheck);
+			this.groupBox12.Controls.Add(this.clearCoolCount);
+			this.groupBox12.Controls.Add(this.clearCoolIntf);
+			this.groupBox12.Controls.Add(this.skipLevelCount);
+			this.groupBox12.Controls.Add(this.skipLevelIntf);
+			this.groupBox12.Controls.Add(this.giveRandomCount);
+			this.groupBox12.Controls.Add(this.giveRandomIntf);
 			this.groupBox12.Controls.Add(this.reflectDmgCount);
 			this.groupBox12.Controls.Add(this.reflctDmgIntf);
 			this.groupBox12.Controls.Add(this.stealHpCount);
@@ -540,7 +553,6 @@
 			this.groupBox12.Controls.Add(this.treasureCount);
 			this.groupBox12.Controls.Add(this.treasureIntf);
 			this.groupBox12.Controls.Add(this.godModeCount);
-			this.groupBox12.Controls.Add(this.itemsCheck);
 			this.groupBox12.Controls.Add(this.godModeIntf);
 			this.groupBox12.Controls.Add(this.hpPermCount);
 			this.groupBox12.Controls.Add(this.critPermCount);
@@ -556,16 +568,16 @@
 			this.groupBox12.Controls.Add(this.crppleMonstIntf);
 			this.groupBox12.Controls.Add(this.crippleSpawnIntf);
 			this.groupBox12.Controls.Add(this.resurrIntf);
-			this.groupBox12.Location = new System.Drawing.Point(3, 382);
+			this.groupBox12.Location = new System.Drawing.Point(207, 337);
 			this.groupBox12.Name = "groupBox12";
-			this.groupBox12.Size = new System.Drawing.Size(594, 69);
+			this.groupBox12.Size = new System.Drawing.Size(390, 69);
 			this.groupBox12.TabIndex = 11;
 			this.groupBox12.TabStop = false;
 			this.groupBox12.Text = "Items";
 			// 
 			// reflectDmgCount
 			// 
-			this.reflectDmgCount.Location = new System.Drawing.Point(512, 46);
+			this.reflectDmgCount.Location = new System.Drawing.Point(144, 46);
 			this.reflectDmgCount.Name = "reflectDmgCount";
 			this.reflectDmgCount.Size = new System.Drawing.Size(40, 20);
 			this.reflectDmgCount.TabIndex = 24;
@@ -575,7 +587,7 @@
 			// reflctDmgIntf
 			// 
 			this.reflctDmgIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.reflctDmgIntf.Location = new System.Drawing.Point(512, 16);
+			this.reflctDmgIntf.Location = new System.Drawing.Point(144, 16);
 			this.reflctDmgIntf.Name = "reflctDmgIntf";
 			this.reflctDmgIntf.Size = new System.Drawing.Size(40, 30);
 			this.reflctDmgIntf.TabIndex = 23;
@@ -584,7 +596,7 @@
 			// 
 			// stealHpCount
 			// 
-			this.stealHpCount.Location = new System.Drawing.Point(466, 46);
+			this.stealHpCount.Location = new System.Drawing.Point(144, 46);
 			this.stealHpCount.Name = "stealHpCount";
 			this.stealHpCount.Size = new System.Drawing.Size(40, 20);
 			this.stealHpCount.TabIndex = 22;
@@ -594,7 +606,7 @@
 			// stealHpIntf
 			// 
 			this.stealHpIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.stealHpIntf.Location = new System.Drawing.Point(466, 16);
+			this.stealHpIntf.Location = new System.Drawing.Point(144, 16);
 			this.stealHpIntf.Name = "stealHpIntf";
 			this.stealHpIntf.Size = new System.Drawing.Size(40, 30);
 			this.stealHpIntf.TabIndex = 21;
@@ -603,7 +615,7 @@
 			// 
 			// throwGoldCount
 			// 
-			this.throwGoldCount.Location = new System.Drawing.Point(328, 46);
+			this.throwGoldCount.Location = new System.Drawing.Point(144, 46);
 			this.throwGoldCount.Name = "throwGoldCount";
 			this.throwGoldCount.Size = new System.Drawing.Size(40, 20);
 			this.throwGoldCount.TabIndex = 20;
@@ -613,7 +625,7 @@
 			// throwGoldIntf
 			// 
 			this.throwGoldIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.throwGoldIntf.Location = new System.Drawing.Point(328, 16);
+			this.throwGoldIntf.Location = new System.Drawing.Point(144, 16);
 			this.throwGoldIntf.Name = "throwGoldIntf";
 			this.throwGoldIntf.Size = new System.Drawing.Size(40, 30);
 			this.throwGoldIntf.TabIndex = 19;
@@ -622,7 +634,7 @@
 			// 
 			// treasureCount
 			// 
-			this.treasureCount.Location = new System.Drawing.Point(420, 46);
+			this.treasureCount.Location = new System.Drawing.Point(144, 46);
 			this.treasureCount.Name = "treasureCount";
 			this.treasureCount.Size = new System.Drawing.Size(40, 20);
 			this.treasureCount.TabIndex = 18;
@@ -632,7 +644,7 @@
 			// treasureIntf
 			// 
 			this.treasureIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.treasureIntf.Location = new System.Drawing.Point(420, 16);
+			this.treasureIntf.Location = new System.Drawing.Point(144, 16);
 			this.treasureIntf.Name = "treasureIntf";
 			this.treasureIntf.Size = new System.Drawing.Size(40, 30);
 			this.treasureIntf.TabIndex = 17;
@@ -641,7 +653,7 @@
 			// 
 			// godModeCount
 			// 
-			this.godModeCount.Location = new System.Drawing.Point(374, 46);
+			this.godModeCount.Location = new System.Drawing.Point(144, 46);
 			this.godModeCount.Name = "godModeCount";
 			this.godModeCount.Size = new System.Drawing.Size(40, 20);
 			this.godModeCount.TabIndex = 16;
@@ -650,11 +662,10 @@
 			// 
 			// itemsCheck
 			// 
-			this.itemsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.itemsCheck.Location = new System.Drawing.Point(558, 19);
+			this.itemsCheck.AutoSize = true;
+			this.itemsCheck.Location = new System.Drawing.Point(286, 14);
 			this.itemsCheck.Name = "itemsCheck";
-			this.itemsCheck.Size = new System.Drawing.Size(30, 17);
+			this.itemsCheck.Size = new System.Drawing.Size(66, 17);
 			this.itemsCheck.TabIndex = 3;
 			this.itemsCheck.Text = "Running";
 			this.itemsCheck.UseVisualStyleBackColor = true;
@@ -663,7 +674,7 @@
 			// godModeIntf
 			// 
 			this.godModeIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.godModeIntf.Location = new System.Drawing.Point(374, 16);
+			this.godModeIntf.Location = new System.Drawing.Point(144, 16);
 			this.godModeIntf.Name = "godModeIntf";
 			this.godModeIntf.Size = new System.Drawing.Size(40, 30);
 			this.godModeIntf.TabIndex = 15;
@@ -672,7 +683,7 @@
 			// 
 			// hpPermCount
 			// 
-			this.hpPermCount.Location = new System.Drawing.Point(282, 46);
+			this.hpPermCount.Location = new System.Drawing.Point(144, 46);
 			this.hpPermCount.Name = "hpPermCount";
 			this.hpPermCount.Size = new System.Drawing.Size(40, 20);
 			this.hpPermCount.TabIndex = 14;
@@ -681,7 +692,7 @@
 			// 
 			// critPermCount
 			// 
-			this.critPermCount.Location = new System.Drawing.Point(236, 46);
+			this.critPermCount.Location = new System.Drawing.Point(144, 46);
 			this.critPermCount.Name = "critPermCount";
 			this.critPermCount.Size = new System.Drawing.Size(40, 20);
 			this.critPermCount.TabIndex = 13;
@@ -691,7 +702,7 @@
 			// hpPermIntf
 			// 
 			this.hpPermIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.hpPermIntf.Location = new System.Drawing.Point(282, 16);
+			this.hpPermIntf.Location = new System.Drawing.Point(144, 16);
 			this.hpPermIntf.Name = "hpPermIntf";
 			this.hpPermIntf.Size = new System.Drawing.Size(40, 30);
 			this.hpPermIntf.TabIndex = 12;
@@ -701,7 +712,7 @@
 			// critPermIntf
 			// 
 			this.critPermIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.critPermIntf.Location = new System.Drawing.Point(236, 16);
+			this.critPermIntf.Location = new System.Drawing.Point(144, 16);
 			this.critPermIntf.Name = "critPermIntf";
 			this.critPermIntf.Size = new System.Drawing.Size(40, 30);
 			this.critPermIntf.TabIndex = 11;
@@ -710,7 +721,7 @@
 			// 
 			// rainGoldCount
 			// 
-			this.rainGoldCount.Location = new System.Drawing.Point(190, 46);
+			this.rainGoldCount.Location = new System.Drawing.Point(98, 46);
 			this.rainGoldCount.Name = "rainGoldCount";
 			this.rainGoldCount.Size = new System.Drawing.Size(40, 20);
 			this.rainGoldCount.TabIndex = 10;
@@ -719,7 +730,7 @@
 			// 
 			// maxEleCount
 			// 
-			this.maxEleCount.Location = new System.Drawing.Point(144, 46);
+			this.maxEleCount.Location = new System.Drawing.Point(98, 46);
 			this.maxEleCount.Name = "maxEleCount";
 			this.maxEleCount.Size = new System.Drawing.Size(40, 20);
 			this.maxEleCount.TabIndex = 9;
@@ -728,7 +739,7 @@
 			// 
 			// crippleMonstCount
 			// 
-			this.crippleMonstCount.Location = new System.Drawing.Point(98, 46);
+			this.crippleMonstCount.Location = new System.Drawing.Point(52, 46);
 			this.crippleMonstCount.Name = "crippleMonstCount";
 			this.crippleMonstCount.Size = new System.Drawing.Size(40, 20);
 			this.crippleMonstCount.TabIndex = 8;
@@ -737,7 +748,7 @@
 			// 
 			// crpplSpawnCount
 			// 
-			this.crpplSpawnCount.Location = new System.Drawing.Point(52, 46);
+			this.crpplSpawnCount.Location = new System.Drawing.Point(6, 46);
 			this.crpplSpawnCount.Name = "crpplSpawnCount";
 			this.crpplSpawnCount.Size = new System.Drawing.Size(40, 20);
 			this.crpplSpawnCount.TabIndex = 7;
@@ -756,7 +767,7 @@
 			// rainGoldIntf
 			// 
 			this.rainGoldIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.rainGoldIntf.Location = new System.Drawing.Point(190, 16);
+			this.rainGoldIntf.Location = new System.Drawing.Point(98, 16);
 			this.rainGoldIntf.Name = "rainGoldIntf";
 			this.rainGoldIntf.Size = new System.Drawing.Size(40, 30);
 			this.rainGoldIntf.TabIndex = 5;
@@ -766,7 +777,7 @@
 			// maxEleIntf
 			// 
 			this.maxEleIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.maxEleIntf.Location = new System.Drawing.Point(144, 16);
+			this.maxEleIntf.Location = new System.Drawing.Point(98, 16);
 			this.maxEleIntf.Name = "maxEleIntf";
 			this.maxEleIntf.Size = new System.Drawing.Size(40, 30);
 			this.maxEleIntf.TabIndex = 4;
@@ -776,7 +787,7 @@
 			// crppleMonstIntf
 			// 
 			this.crppleMonstIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.crppleMonstIntf.Location = new System.Drawing.Point(98, 16);
+			this.crppleMonstIntf.Location = new System.Drawing.Point(52, 16);
 			this.crppleMonstIntf.Name = "crppleMonstIntf";
 			this.crppleMonstIntf.Size = new System.Drawing.Size(40, 30);
 			this.crppleMonstIntf.TabIndex = 1;
@@ -786,7 +797,7 @@
 			// crippleSpawnIntf
 			// 
 			this.crippleSpawnIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.crippleSpawnIntf.Location = new System.Drawing.Point(52, 16);
+			this.crippleSpawnIntf.Location = new System.Drawing.Point(6, 16);
 			this.crippleSpawnIntf.Name = "crippleSpawnIntf";
 			this.crippleSpawnIntf.Size = new System.Drawing.Size(40, 30);
 			this.crippleSpawnIntf.TabIndex = 1;
@@ -1350,7 +1361,7 @@
 			this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox14.Controls.Add(this.checkBox1);
-			this.groupBox14.Location = new System.Drawing.Point(3, 406);
+			this.groupBox14.Location = new System.Drawing.Point(3, 361);
 			this.groupBox14.Name = "groupBox14";
 			this.groupBox14.Size = new System.Drawing.Size(150, 45);
 			this.groupBox14.TabIndex = 2;
@@ -1416,7 +1427,7 @@
 			this.playerGroup.Controls.Add(this.playerList);
 			this.playerGroup.Location = new System.Drawing.Point(3, 86);
 			this.playerGroup.Name = "playerGroup";
-			this.playerGroup.Size = new System.Drawing.Size(150, 314);
+			this.playerGroup.Size = new System.Drawing.Size(150, 269);
 			this.playerGroup.TabIndex = 0;
 			this.playerGroup.TabStop = false;
 			this.playerGroup.Text = "Players";
@@ -1424,7 +1435,7 @@
 			// playerListRefresh
 			// 
 			this.playerListRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.playerListRefresh.Location = new System.Drawing.Point(69, 285);
+			this.playerListRefresh.Location = new System.Drawing.Point(69, 240);
 			this.playerListRefresh.Name = "playerListRefresh";
 			this.playerListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.playerListRefresh.TabIndex = 1;
@@ -1441,7 +1452,7 @@
 			this.playerList.IntegralHeight = false;
 			this.playerList.Location = new System.Drawing.Point(6, 19);
 			this.playerList.Name = "playerList";
-			this.playerList.Size = new System.Drawing.Size(138, 260);
+			this.playerList.Size = new System.Drawing.Size(138, 215);
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
@@ -1451,7 +1462,7 @@
             this.getStateStatus,
             this.postAbilitiesState,
             this.postUpgradesState});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 543);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 498);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(784, 22);
 			this.statusStrip1.TabIndex = 3;
@@ -1769,11 +1780,68 @@
 			this.upgrStatHP.TabIndex = 28;
 			this.upgrStatHP.Text = "...";
 			// 
+			// giveRandomCount
+			// 
+			this.giveRandomCount.Location = new System.Drawing.Point(190, 46);
+			this.giveRandomCount.Name = "giveRandomCount";
+			this.giveRandomCount.Size = new System.Drawing.Size(40, 20);
+			this.giveRandomCount.TabIndex = 26;
+			this.giveRandomCount.Text = "0";
+			this.giveRandomCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// giveRandomIntf
+			// 
+			this.giveRandomIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.giveRandomIntf.Location = new System.Drawing.Point(190, 16);
+			this.giveRandomIntf.Name = "giveRandomIntf";
+			this.giveRandomIntf.Size = new System.Drawing.Size(40, 30);
+			this.giveRandomIntf.TabIndex = 25;
+			this.giveRandomIntf.Text = "Give Rand";
+			this.giveRandomIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// skipLevelCount
+			// 
+			this.skipLevelCount.Location = new System.Drawing.Point(190, 46);
+			this.skipLevelCount.Name = "skipLevelCount";
+			this.skipLevelCount.Size = new System.Drawing.Size(40, 20);
+			this.skipLevelCount.TabIndex = 28;
+			this.skipLevelCount.Text = "0";
+			this.skipLevelCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// skipLevelIntf
+			// 
+			this.skipLevelIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.skipLevelIntf.Location = new System.Drawing.Point(190, 16);
+			this.skipLevelIntf.Name = "skipLevelIntf";
+			this.skipLevelIntf.Size = new System.Drawing.Size(40, 30);
+			this.skipLevelIntf.TabIndex = 27;
+			this.skipLevelIntf.Text = "Worm Hole";
+			this.skipLevelIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// clearCoolCount
+			// 
+			this.clearCoolCount.Location = new System.Drawing.Point(190, 46);
+			this.clearCoolCount.Name = "clearCoolCount";
+			this.clearCoolCount.Size = new System.Drawing.Size(40, 20);
+			this.clearCoolCount.TabIndex = 30;
+			this.clearCoolCount.Text = "0";
+			this.clearCoolCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// clearCoolIntf
+			// 
+			this.clearCoolIntf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.clearCoolIntf.Location = new System.Drawing.Point(190, 16);
+			this.clearCoolIntf.Name = "clearCoolIntf";
+			this.clearCoolIntf.Size = new System.Drawing.Size(40, 30);
+			this.clearCoolIntf.TabIndex = 29;
+			this.clearCoolIntf.Text = "Clear Cool";
+			this.clearCoolIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 565);
+			this.ClientSize = new System.Drawing.Size(784, 520);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.groupBox1);
@@ -1797,6 +1865,7 @@
 			this.elementSwitcherBox.ResumeLayout(false);
 			this.elementSwitcherBox.PerformLayout();
 			this.groupBox12.ResumeLayout(false);
+			this.groupBox12.PerformLayout();
 			this.groupBox11.ResumeLayout(false);
 			this.groupBox11.PerformLayout();
 			this.groupBox10.ResumeLayout(false);
@@ -1982,6 +2051,12 @@
 		private System.Windows.Forms.Label upgrStatLoot;
 		private System.Windows.Forms.Label upgrStatCrit;
 		private System.Windows.Forms.Label upgrStatDmg;
+		private System.Windows.Forms.Label giveRandomCount;
+		private System.Windows.Forms.Label giveRandomIntf;
+		private System.Windows.Forms.Label skipLevelCount;
+		private System.Windows.Forms.Label skipLevelIntf;
+		private System.Windows.Forms.Label clearCoolCount;
+		private System.Windows.Forms.Label clearCoolIntf;
 	}
 }
 

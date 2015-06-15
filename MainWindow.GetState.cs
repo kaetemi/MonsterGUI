@@ -46,9 +46,9 @@ namespace MonsterGUI
 		GiveGold = 22, 
 		StealHealth = 23,
 		ReflectDamage = 24,
-		FeelingLucky = 25,
+		RandomItem = 25,
 		Wormhole = 26,
-		LikeNew = 27,
+		ClearCool = 27,
 
 		Nb = 28,
 		Max = 64
@@ -273,7 +273,7 @@ namespace MonsterGUI
 			abilitiesIntfs[(int)Abilities.ClusterBomb - (int)Abilities.StartAbility] = clusterBombIntf;
 			abilitiesIntfs[(int)Abilities.Napalm - (int)Abilities.StartAbility] = napalmIntf;
 
-			itemsIntfs = new System.Windows.Forms.Label[12];
+			itemsIntfs = new System.Windows.Forms.Label[15];
 			itemsIntfs[(int)(int)Abilities.Revive - (int)Abilities.StartItem] = resurrIntf;
 			itemsIntfs[(int)(int)Abilities.CrippleSpawner - (int)Abilities.StartItem] = crippleSpawnIntf;
 			itemsIntfs[(int)(int)Abilities.CrippleMonster - (int)Abilities.StartItem] = crppleMonstIntf;
@@ -286,8 +286,11 @@ namespace MonsterGUI
 			itemsIntfs[(int)(int)Abilities.GiveGold - (int)Abilities.StartItem] = treasureIntf;
 			itemsIntfs[(int)(int)Abilities.StealHealth - (int)Abilities.StartItem] = stealHpIntf;
 			itemsIntfs[(int)(int)Abilities.ReflectDamage - (int)Abilities.StartItem] = reflctDmgIntf;
+			itemsIntfs[(int)(int)Abilities.RandomItem - (int)Abilities.StartItem] = giveRandomIntf;
+			itemsIntfs[(int)(int)Abilities.Wormhole - (int)Abilities.StartItem] = skipLevelIntf;
+			itemsIntfs[(int)(int)Abilities.ClearCool - (int)Abilities.StartItem] = clearCoolIntf;
 
-			itemsCounts = new System.Windows.Forms.Label[12];
+			itemsCounts = new System.Windows.Forms.Label[15];
 			itemsCounts[(int)(int)Abilities.Revive - (int)Abilities.StartItem] = resurrCount;
 			itemsCounts[(int)(int)Abilities.CrippleSpawner - (int)Abilities.StartItem] = crpplSpawnCount;
 			itemsCounts[(int)(int)Abilities.CrippleMonster - (int)Abilities.StartItem] = crippleMonstCount;
@@ -300,6 +303,9 @@ namespace MonsterGUI
 			itemsCounts[(int)(int)Abilities.GiveGold - (int)Abilities.StartItem] = treasureCount;
 			itemsCounts[(int)(int)Abilities.StealHealth - (int)Abilities.StartItem] = stealHpCount;
 			itemsCounts[(int)(int)Abilities.ReflectDamage - (int)Abilities.StartItem] = reflectDmgCount;
+			itemsCounts[(int)(int)Abilities.RandomItem - (int)Abilities.StartItem] = giveRandomCount;
+			itemsCounts[(int)(int)Abilities.Wormhole - (int)Abilities.StartItem] = skipLevelCount;
+			itemsCounts[(int)(int)Abilities.ClearCool - (int)Abilities.StartItem] = clearCoolCount;
 
 			playerData = new PlayerData();
 			gameData = new GameData();
@@ -523,6 +529,7 @@ namespace MonsterGUI
 				abilitiesIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
 				abilitiesIntfs[i].Visible = (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
 			}
+			int xpos = 6;
 			for (int i = 0; i < itemsIntfs.Length; ++i)
 			{
 				int ab = i + (int)Abilities.StartItem;
@@ -532,6 +539,12 @@ namespace MonsterGUI
 				itemsCounts[i].Text = techTree.AbilityItems[ab].ToString();
 				itemsCounts[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
 				itemsCounts[i].Visible = (techTree.AbilityItems[ab] > 0);
+				if (techTree.AbilityItems[ab] > 0)
+				{
+					itemsIntfs[i].Location = new System.Drawing.Point(xpos, itemsIntfs[i].Location.Y);
+					itemsCounts[i].Location = new System.Drawing.Point(xpos, itemsCounts[i].Location.Y);
+					xpos += 46;
+				}
 			}
 		}
 
