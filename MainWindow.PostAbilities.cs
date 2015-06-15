@@ -39,6 +39,11 @@ namespace MonsterGUI
 		// Lane Switcher runtime info
 		int laneRequested = 0;
 
+		// GUI info
+		volatile bool printRequestedLaneSwitch = false;
+		volatile bool printRequestedTargetSwitch = false;
+		int printRequestedTarget = 0;
+
 		// Abilities info
 		volatile bool triggerHappy = false;
 		int lastGoldRainLevel = 0;
@@ -50,6 +55,7 @@ namespace MonsterGUI
 		private void postAbilitiesInit()
 		{
 			resultPostAbilitiesDelegate = new JsonCallback(resultPostAbilities);
+			printRequestedLaneTargetDelegate = new EmptyCallback(printRequestedLaneTarget);
 			autoClickerCheck.Checked = autoClickerOn;
 			laneSwitcherCheck.Checked = laneSwitcherOn;
 			elementSwitcherCheck.Checked = elementSwitcherOn;
@@ -73,6 +79,17 @@ namespace MonsterGUI
 			lastGoldRainLevel = 0;
 		}
 
+		EmptyCallback printRequestedLaneTargetDelegate;
+		void printRequestedLaneTarget()
+		{
+			requestedLaneText.Enabled = printRequestedLaneSwitch;
+			if (printRequestedLaneSwitch)
+				requestedLaneText.Text = laneNumbers[laneRequested];
+			requestedTargetText.Enabled = printRequestedTargetSwitch;
+			if (printRequestedTargetSwitch)
+				requestedTargetText.Text = targetNumbers[printRequestedTarget];
+		}
+
 		private JsonCallback resultPostAbilitiesDelegate;
 		/// <summary>
 		/// Success response from server
@@ -89,6 +106,11 @@ namespace MonsterGUI
 			clickCount += (long)addClicks;
 			decodePlayerData(playerData);
 			clicksText.Text = clickCount.ToString();
+		}
+
+		private void printRequestedLane()
+		{
+
 		}
 
 		/// <summary>
@@ -365,6 +387,7 @@ namespace MonsterGUI
 							smartLane = true;
 					}
 
+					printRequestedLaneSwitch = false;
 					if (laneSwitcherOn || smartLane) // If any lane switching algorithm is enabled
 					{
 						if (laneRequested != playerData.CurrentLane)
@@ -373,6 +396,7 @@ namespace MonsterGUI
 							if (abilities) abilties_json += ",";
 							abilties_json += "{\"ability\":2,\"new_lane\":" + laneRequested + "}";
 							abilities = true;
+							printRequestedLaneSwitch = true;
 						}
 					}
 					else
@@ -383,6 +407,7 @@ namespace MonsterGUI
 					// After lane switched
 					// NOTE: Target switching is already done by the server so not entirely useful since the monsters die too fast
 
+					printRequestedTargetSwitch = false;
 					if (targetSpawnersOn) // Useful for nuking spawners at early levels and treasure
 					{
 						int preferTarget = findTreasureOnLane(laneRequested);
@@ -395,9 +420,13 @@ namespace MonsterGUI
 								if (abilities) abilties_json += ",";
 								abilties_json += "{\"ability\":2,\"new_target\":" + preferTarget + "}"; // Only using this for spawners
 								abilities = true;
+								printRequestedTargetSwitch = true;
+								printRequestedTarget = preferTarget;
 							}
 						}
 					}
+
+					BeginInvoke(printRequestedLaneTargetDelegate);
 
 					bool requestTreeRefresh = false;
 

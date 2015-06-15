@@ -35,11 +35,6 @@
 			this.accessTokenText = new System.Windows.Forms.TextBox();
 			this.go = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.label12 = new System.Windows.Forms.Label();
-			this.boostText = new System.Windows.Forms.NumericUpDown();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
 			this.clicksText = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.autoClickerCheck = new System.Windows.Forms.CheckBox();
@@ -48,6 +43,11 @@
 			this.minText = new System.Windows.Forms.NumericUpDown();
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.groupBox13 = new System.Windows.Forms.GroupBox();
+			this.requestedLaneText = new System.Windows.Forms.Label();
+			this.label21 = new System.Windows.Forms.Label();
+			this.requestedTargetText = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
 			this.elementSwitcherBox = new System.Windows.Forms.GroupBox();
 			this.elementText = new System.Windows.Forms.Label();
 			this.elementSwitcherCheck = new System.Windows.Forms.CheckBox();
@@ -143,12 +143,12 @@
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.boostText)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.minText)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.maxText)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.groupBox13.SuspendLayout();
 			this.elementSwitcherBox.SuspendLayout();
 			this.groupBox12.SuspendLayout();
 			this.groupBox11.SuspendLayout();
@@ -244,11 +244,6 @@
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox2.Controls.Add(this.label13);
-			this.groupBox2.Controls.Add(this.label12);
-			this.groupBox2.Controls.Add(this.boostText);
-			this.groupBox2.Controls.Add(this.button2);
-			this.groupBox2.Controls.Add(this.button1);
 			this.groupBox2.Controls.Add(this.clicksText);
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.autoClickerCheck);
@@ -258,77 +253,10 @@
 			this.groupBox2.Controls.Add(this.maxText);
 			this.groupBox2.Location = new System.Drawing.Point(209, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(388, 97);
+			this.groupBox2.Size = new System.Drawing.Size(388, 71);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Auto Clicker";
-			// 
-			// label13
-			// 
-			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(333, 13);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(49, 13);
-			this.label13.TabIndex = 10;
-			this.label13.Text = "Defaults:";
-			this.label13.Visible = false;
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(6, 73);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(42, 13);
-			this.label12.TabIndex = 9;
-			this.label12.Text = "Queue:";
-			// 
-			// boostText
-			// 
-			this.boostText.Location = new System.Drawing.Point(66, 71);
-			this.boostText.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-			this.boostText.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.boostText.Name = "boostText";
-			this.boostText.Size = new System.Drawing.Size(120, 20);
-			this.boostText.TabIndex = 8;
-			this.boostText.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.boostText.ValueChanged += new System.EventHandler(this.boostText_ValueChanged);
-			// 
-			// button2
-			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(307, 58);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 7;
-			this.button2.Text = "Turbo";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Visible = false;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// button1
-			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(307, 29);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 7;
-			this.button1.Text = "Regular";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Visible = false;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// clicksText
 			// 
@@ -435,6 +363,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.groupBox13);
 			this.splitContainer1.Panel1.Controls.Add(this.elementSwitcherBox);
 			this.splitContainer1.Panel1.Controls.Add(this.fireImmediatelyCheck);
 			this.splitContainer1.Panel1.Controls.Add(this.button3);
@@ -458,15 +387,66 @@
 			this.splitContainer1.SplitterDistance = 600;
 			this.splitContainer1.TabIndex = 2;
 			// 
+			// groupBox13
+			// 
+			this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox13.Controls.Add(this.requestedLaneText);
+			this.groupBox13.Controls.Add(this.label21);
+			this.groupBox13.Controls.Add(this.requestedTargetText);
+			this.groupBox13.Controls.Add(this.label12);
+			this.groupBox13.Location = new System.Drawing.Point(477, 202);
+			this.groupBox13.Name = "groupBox13";
+			this.groupBox13.Size = new System.Drawing.Size(120, 45);
+			this.groupBox13.TabIndex = 14;
+			this.groupBox13.TabStop = false;
+			this.groupBox13.Text = "Requested";
+			// 
+			// requestedLaneText
+			// 
+			this.requestedLaneText.AutoSize = true;
+			this.requestedLaneText.Location = new System.Drawing.Point(53, 16);
+			this.requestedLaneText.Name = "requestedLaneText";
+			this.requestedLaneText.Size = new System.Drawing.Size(16, 13);
+			this.requestedLaneText.TabIndex = 7;
+			this.requestedLaneText.Text = "...";
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Location = new System.Drawing.Point(6, 29);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(41, 13);
+			this.label21.TabIndex = 6;
+			this.label21.Text = "Target:";
+			// 
+			// requestedTargetText
+			// 
+			this.requestedTargetText.AutoSize = true;
+			this.requestedTargetText.Location = new System.Drawing.Point(53, 29);
+			this.requestedTargetText.Name = "requestedTargetText";
+			this.requestedTargetText.Size = new System.Drawing.Size(16, 13);
+			this.requestedTargetText.TabIndex = 5;
+			this.requestedTargetText.Text = "...";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(6, 16);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(34, 13);
+			this.label12.TabIndex = 0;
+			this.label12.Text = "Lane:";
+			// 
 			// elementSwitcherBox
 			// 
 			this.elementSwitcherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.elementSwitcherBox.Controls.Add(this.elementText);
 			this.elementSwitcherBox.Controls.Add(this.elementSwitcherCheck);
-			this.elementSwitcherBox.Location = new System.Drawing.Point(481, 106);
+			this.elementSwitcherBox.Location = new System.Drawing.Point(477, 80);
 			this.elementSwitcherBox.Name = "elementSwitcherBox";
-			this.elementSwitcherBox.Size = new System.Drawing.Size(116, 58);
+			this.elementSwitcherBox.Size = new System.Drawing.Size(120, 55);
 			this.elementSwitcherBox.TabIndex = 5;
 			this.elementSwitcherBox.TabStop = false;
 			this.elementSwitcherBox.Text = "Element Switcher";
@@ -474,10 +454,11 @@
 			// elementText
 			// 
 			this.elementText.AutoSize = true;
-			this.elementText.Location = new System.Drawing.Point(11, 39);
+			this.elementText.Location = new System.Drawing.Point(6, 39);
 			this.elementText.Name = "elementText";
-			this.elementText.Size = new System.Drawing.Size(0, 13);
+			this.elementText.Size = new System.Drawing.Size(16, 13);
 			this.elementText.TabIndex = 5;
+			this.elementText.Text = "...";
 			// 
 			// elementSwitcherCheck
 			// 
@@ -636,12 +617,13 @@
 			// 
 			// itemsCheck
 			// 
-			this.itemsCheck.AutoSize = true;
+			this.itemsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.itemsCheck.Location = new System.Drawing.Point(558, 19);
 			this.itemsCheck.Name = "itemsCheck";
-			this.itemsCheck.Size = new System.Drawing.Size(34, 17);
+			this.itemsCheck.Size = new System.Drawing.Size(30, 17);
 			this.itemsCheck.TabIndex = 3;
-			this.itemsCheck.Text = "R";
+			this.itemsCheck.Text = "Running";
 			this.itemsCheck.UseVisualStyleBackColor = true;
 			this.itemsCheck.CheckedChanged += new System.EventHandler(this.itemsCheck_CheckedChanged);
 			// 
@@ -796,7 +778,7 @@
 			this.groupBox11.Controls.Add(this.tacticalNukeIntf);
 			this.groupBox11.Location = new System.Drawing.Point(209, 327);
 			this.groupBox11.Name = "groupBox11";
-			this.groupBox11.Size = new System.Drawing.Size(266, 49);
+			this.groupBox11.Size = new System.Drawing.Size(262, 49);
 			this.groupBox11.TabIndex = 10;
 			this.groupBox11.TabStop = false;
 			this.groupBox11.Text = "Offensive Abilities";
@@ -844,12 +826,10 @@
 			// 
 			// groupBox10
 			// 
-			this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox10.Controls.Add(this.targetSpawnerCheck);
-			this.groupBox10.Location = new System.Drawing.Point(388, 221);
+			this.groupBox10.Location = new System.Drawing.Point(388, 195);
 			this.groupBox10.Name = "groupBox10";
-			this.groupBox10.Size = new System.Drawing.Size(87, 45);
+			this.groupBox10.Size = new System.Drawing.Size(83, 45);
 			this.groupBox10.TabIndex = 4;
 			this.groupBox10.TabStop = false;
 			this.groupBox10.Text = "Auto Target";
@@ -871,9 +851,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.bossLaneText);
 			this.groupBox5.Controls.Add(this.bossLaneCheck);
-			this.groupBox5.Location = new System.Drawing.Point(481, 170);
+			this.groupBox5.Location = new System.Drawing.Point(477, 141);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(116, 58);
+			this.groupBox5.Size = new System.Drawing.Size(120, 55);
 			this.groupBox5.TabIndex = 5;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Boss Lane Switcher";
@@ -881,10 +861,11 @@
 			// bossLaneText
 			// 
 			this.bossLaneText.AutoSize = true;
-			this.bossLaneText.Location = new System.Drawing.Point(11, 39);
+			this.bossLaneText.Location = new System.Drawing.Point(6, 39);
 			this.bossLaneText.Name = "bossLaneText";
-			this.bossLaneText.Size = new System.Drawing.Size(0, 13);
+			this.bossLaneText.Size = new System.Drawing.Size(16, 13);
 			this.bossLaneText.TabIndex = 4;
+			this.bossLaneText.Text = "...";
 			// 
 			// bossLaneCheck
 			// 
@@ -1074,9 +1055,9 @@
 			this.groupBox7.Controls.Add(this.lane1Gold);
 			this.groupBox7.Controls.Add(this.label11);
 			this.groupBox7.Controls.Add(this.goldLaneCheck);
-			this.groupBox7.Location = new System.Drawing.Point(209, 157);
+			this.groupBox7.Location = new System.Drawing.Point(209, 131);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(266, 58);
+			this.groupBox7.Size = new System.Drawing.Size(262, 58);
 			this.groupBox7.TabIndex = 4;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Gold Lane Switcher";
@@ -1157,7 +1138,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.respawnerGroup.Controls.Add(this.deadAliveText);
 			this.respawnerGroup.Controls.Add(this.respawnerCheck);
-			this.respawnerGroup.Location = new System.Drawing.Point(209, 221);
+			this.respawnerGroup.Location = new System.Drawing.Point(209, 195);
 			this.respawnerGroup.Name = "respawnerGroup";
 			this.respawnerGroup.Size = new System.Drawing.Size(173, 45);
 			this.respawnerGroup.TabIndex = 4;
@@ -1167,10 +1148,11 @@
 			// deadAliveText
 			// 
 			this.deadAliveText.AutoSize = true;
-			this.deadAliveText.Location = new System.Drawing.Point(6, 21);
+			this.deadAliveText.Location = new System.Drawing.Point(6, 20);
 			this.deadAliveText.Name = "deadAliveText";
-			this.deadAliveText.Size = new System.Drawing.Size(0, 13);
+			this.deadAliveText.Size = new System.Drawing.Size(16, 13);
 			this.deadAliveText.TabIndex = 4;
+			this.deadAliveText.Text = "...";
 			// 
 			// respawnerCheck
 			// 
@@ -1188,9 +1170,9 @@
 			this.groupBox4.Controls.Add(this.laneSwitcherCheck);
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.laneSwitcherTimer);
-			this.groupBox4.Location = new System.Drawing.Point(209, 106);
+			this.groupBox4.Location = new System.Drawing.Point(209, 80);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(266, 45);
+			this.groupBox4.Size = new System.Drawing.Size(262, 45);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Timed Lane Switcher";
@@ -1447,17 +1429,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.boostText)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.minText)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.maxText)).EndInit();
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
+			this.groupBox13.ResumeLayout(false);
+			this.groupBox13.PerformLayout();
 			this.elementSwitcherBox.ResumeLayout(false);
 			this.elementSwitcherBox.PerformLayout();
 			this.groupBox12.ResumeLayout(false);
-			this.groupBox12.PerformLayout();
 			this.groupBox11.ResumeLayout(false);
 			this.groupBox11.PerformLayout();
 			this.groupBox10.ResumeLayout(false);
@@ -1531,8 +1513,6 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.CheckBox supportAbilitiesCheck;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox groupBox7;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.CheckBox goldLaneCheck;
@@ -1542,14 +1522,11 @@
 		private System.Windows.Forms.Label lane3Gold;
 		private System.Windows.Forms.Label lane2Gold;
 		private System.Windows.Forms.Label lane1Gold;
-		private System.Windows.Forms.NumericUpDown boostText;
-		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label clicksNumText;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label cpsText;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.ToolStripStatusLabel postUpgradesState;
-		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.GroupBox groupBox8;
 		private System.Windows.Forms.Button presetEverythingON;
 		private System.Windows.Forms.Button presetEverythingOff;
@@ -1600,6 +1577,11 @@
 		private System.Windows.Forms.GroupBox elementSwitcherBox;
 		private System.Windows.Forms.CheckBox elementSwitcherCheck;
 		private System.Windows.Forms.Label elementText;
+		private System.Windows.Forms.GroupBox groupBox13;
+		private System.Windows.Forms.Label requestedLaneText;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Label requestedTargetText;
+		private System.Windows.Forms.Label label12;
 	}
 }
 

@@ -165,7 +165,6 @@ namespace MonsterGUI
 		{
 			minText.Value = 16;
 			maxText.Value = 20;
-			boostText.Value = 1;
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -174,17 +173,11 @@ namespace MonsterGUI
 			// maxText.Value = 2147483647;
 			minText.Value = 16;
 			maxText.Value = 20;
-			boostText.Value = 20;
 		}
 
 		private void goldLaneCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			goldLaneSwitcherOn = goldLaneCheck.Checked;
-		}
-
-		private void boostText_ValueChanged(object sender, EventArgs e)
-		{
-			clickBoost = (int)boostText.Value;
 		}
 
 		void everythingEnable(bool status)
