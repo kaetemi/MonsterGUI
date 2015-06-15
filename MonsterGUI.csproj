@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.PostAbilities.cs" />
-    <Compile Include="MainWindow.GetState.cs" />
+    <Compile Include="MainWindow.GetState.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +90,7 @@
     <Content Include="GameDataExample.txt" />
     <Content Include="PlayerDataExample.txt" />
     <Content Include="TechTreeExample.txt" />
+    <Content Include="TuningDataExample.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

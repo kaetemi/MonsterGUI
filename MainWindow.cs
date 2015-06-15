@@ -107,7 +107,7 @@ namespace MonsterGUI
 			else
 			{
 				exiting = true;
-				if (running)
+				if (running || go.Enabled == false)
 				{
 					running = false;
 					this.Enabled = false;

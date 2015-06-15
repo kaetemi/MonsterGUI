@@ -1,0 +1,661 @@
+{
+	"version": 1434297503,
+	"player": {
+		"respawn_time": 60,
+		"min_dead_time": 5,
+		"hp": 1000,
+		"dps": 0,
+		"gold_multiplier_while_dead": "0.75",
+		"damage_per_click": 10,
+		"damage_multiplier_fire": 1,
+		"damage_multiplier_water": 1,
+		"damage_multiplier_air": 1,
+		"damage_multiplier_earth": 1,
+		"damage_multiplier_crit": 2,
+		"crit_percentage": "0.1",
+		"loot_chance": "0.25",
+		"start_condition_minigame_badge": {
+			"badge_points_per_level_factor": "0.1"
+		}
+,
+		"start_condition_summersale_badge": {
+			"badge_points_per_level_factor": 1
+		}
+,
+		"start_condition_summersale_foil_badge": {
+			"badge_points_per_level_factor": 10
+		}
+
+	}
+,
+	"tower": {
+		"respawn_time": 30,
+		"hp": 60000,
+		"dps": "1.25",
+		"gold": 100,
+		"hp_multiplier": "1.2",
+		"hp_exponent": "1.5",
+		"dps_multiplier": 1,
+		"dps_exponent": 1,
+		"gold_multiplier": "1.6",
+		"gold_exponent": "1.1"
+	}
+,
+	"mob": {
+		"hp": 5000,
+		"dps": 1,
+		"gold": 30,
+		"hp_multiplier": "1.2",
+		"hp_multiplier_variance": "0.2",
+		"hp_exponent": "1.5",
+		"dps_multiplier": 1,
+		"dps_exponent": 1,
+		"gold_multiplier": "1.2",
+		"gold_exponent": "1.02"
+	}
+,
+	"miniboss": {
+		"respawn_time": 900,
+		"hp": 60000,
+		"dps": "1.25",
+		"gold": 100,
+		"hp_multiplier": "1.2",
+		"hp_exponent": "1.5",
+		"dps_multiplier": 1,
+		"dps_exponent": 1,
+		"gold_multiplier": "1.7",
+		"gold_exponent": "1.1"
+	}
+,
+	"boss": {
+		"hp": 260000,
+		"dps": 3,
+		"gold": 500,
+		"hp_multiplier": "1.5",
+		"hp_exponent": 3,
+		"dps_multiplier": 1,
+		"dps_exponent": 1,
+		"gold_multiplier": "1.9",
+		"gold_exponent": "1.25"
+	}
+,
+	"treasure_mob": {
+		"hp": 60000,
+		"dps": 1,
+		"gold": 200,
+		"hp_multiplier": "1.2",
+		"hp_exponent": "1.5",
+		"dps_exponent": 1,
+		"lifetime": 10,
+		"chance": "0.01",
+		"gold_multiplier": "1.7",
+		"gold_exponent": "1.1"
+	}
+,
+	"abilities": {
+		"1": {
+			"name": "click attack",
+			"name_token": "#TowerAttack_Ability_Click",
+			"max_num_clicks": 20
+		}
+,
+		"2": {
+			"name": "change lane",
+			"name_token": "#TowerAttack_Ability_ChangeLane",
+			"cost": 0
+		}
+,
+		"3": {
+			"name": "respawn",
+			"name_token": "#TowerAttack_Ability_Respawn",
+			"cost": 0
+		}
+,
+		"4": {
+			"name": "change target",
+			"name_token": "#TowerAttack_Ability_ChangeTarget",
+			"cost": 0
+		}
+,
+		"5": {
+			"name": "lane - increase damage",
+			"name_token": "#TowerAttack_Ability_IncreaseDamage",
+			"desc_token": "#TowerAttack_Ability_IncreaseDamage_Desc",
+			"multiplier": "0.2",
+			"cost": 0,
+			"duration": 10,
+			"cooldown": 1800
+		}
+,
+		"6": {
+			"name": "lane - increase crit percentage",
+			"name_token": "#TowerAttack_Ability_IncreaseCrit",
+			"desc_token": "#TowerAttack_Ability_IncreaseCrit_Desc",
+			"multiplier": "0.1",
+			"cost": 0,
+			"duration": 15,
+			"cooldown": 1800
+		}
+,
+		"7": {
+			"name": "lane - heal",
+			"name_token": "#TowerAttack_Ability_Heal",
+			"desc_token": "#TowerAttack_Ability_Heal_Desc",
+			"multiplier": "0.1",
+			"cost": 0,
+			"duration": 5,
+			"cooldown": 300
+		}
+,
+		"8": {
+			"name": "lane - increase gold dropped",
+			"name_token": "#TowerAttack_Ability_IncreaseGold",
+			"desc_token": "#TowerAttack_Ability_IncreaseGold_Desc",
+			"multiplier": "0.1",
+			"cost": 0,
+			"duration": 20,
+			"cooldown": 3600
+		}
+,
+		"9": {
+			"name": "lane - decrease cooldowns",
+			"name_token": "#TowerAttack_Ability_DecreaseCooldowns",
+			"desc_token": "#TowerAttack_Ability_DecreaseCooldowns_Desc",
+			"multiplier": "0.25",
+			"cost": 0,
+			"duration": 15,
+			"cooldown": 3600
+		}
+,
+		"10": {
+			"name": "high damage one target",
+			"name_token": "#TowerAttack_Ability_HighDamageOneTarget",
+			"desc_token": "#TowerAttack_Ability_HighDamageOneTarget_Desc",
+			"multiplier": "0.5",
+			"multiplier_boss": "0.2",
+			"cost": 0,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 3600
+		}
+,
+		"11": {
+			"name": "lane - damage all targets",
+			"name_token": "#TowerAttack_Ability_DamageAllTargets",
+			"desc_token": "#TowerAttack_Ability_DamageAllTargets_Desc",
+			"multiplier": "0.20",
+			"cost": 0,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 3600
+		}
+,
+		"12": {
+			"name": "lane - damage over time all targets",
+			"name_token": "#TowerAttack_Ability_DOTAllTargets",
+			"desc_token": "#TowerAttack_Ability_DOTAllTargets_Desc",
+			"multiplier": "0.05",
+			"cost": 0,
+			"duration": 10,
+			"cooldown": 3600
+		}
+,
+		"13": {
+			"name": "item - resurrection",
+			"name_token": "#TowerAttack_Ability_Item_Resurrection",
+			"desc_token": "#TowerAttack_Ability_Item_Resurrection_Desc",
+			"multiplier": 1,
+			"badge_points_cost": 10,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 30
+		}
+,
+		"14": {
+			"name": "item - kill tower",
+			"name_token": "#TowerAttack_Ability_Item_KillTower",
+			"desc_token": "#TowerAttack_Ability_Item_KillTower_Desc",
+			"multiplier": 1,
+			"badge_points_cost": 10,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 60
+		}
+,
+		"15": {
+			"name": "item - kill mob",
+			"name_token": "#TowerAttack_Ability_Item_KillMob",
+			"desc_token": "#TowerAttack_Ability_Item_KillMob_Desc",
+			"multiplier": "0.05",
+			"badge_points_cost": 5,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 60
+		}
+,
+		"16": {
+			"name": "item - max elemental damage",
+			"name_token": "#TowerAttack_Ability_Item_MaxElementalDamage",
+			"desc_token": "#TowerAttack_Ability_Item_MaxElementalDamage_Desc",
+			"multiplier": 1,
+			"badge_points_cost": 10,
+			"duration": 5,
+			"cooldown": 60
+		}
+,
+		"17": {
+			"name": "item - gold per click",
+			"name_token": "#TowerAttack_Ability_Item_GoldPerClick",
+			"desc_token": "#TowerAttack_Ability_Item_GoldPerClick_Desc",
+			"multiplier": "0.01",
+			"badge_points_cost": 10,
+			"duration": 10,
+			"cooldown": 30
+		}
+,
+		"18": {
+			"name": "item - increase crit percentage permanently",
+			"name_token": "#TowerAttack_Ability_Item_IncreaseCritPermanent",
+			"desc_token": "#TowerAttack_Ability_Item_IncreaseCritPermanent_Desc",
+			"multiplier": "0.01",
+			"badge_points_cost": 10,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 60
+		}
+,
+		"19": {
+			"name": "item - increase hp permanently",
+			"name_token": "#TowerAttack_Ability_Item_IncreaseHPPermanent",
+			"desc_token": "#TowerAttack_Ability_Item_IncreaseHPPermanent_Desc",
+			"multiplier": "0.1",
+			"badge_points_cost": 1,
+			"instant": 1,
+			"duration": 5,
+			"cooldown": 10
+		}
+,
+		"20": {
+			"name": "item - gold for damage",
+			"name_token": "#TowerAttack_Ability_Item_GoldForDamage",
+			"desc_token": "#TowerAttack_Ability_Item_GoldForDamage_Desc",
+			"multiplier": "0.1",
+			"badge_points_cost": 10,
+			"duration": 5,
+			"cooldown": 10
+		}
+,
+		"21": {
+			"name": "item - invulnerability",
+			"name_token": "#TowerAttack_Ability_Item_Invulnerability",
+			"desc_token": "#TowerAttack_Ability_Item_Invulnerability_Desc",
+			"multiplier": 1,
+			"badge_points_cost": 1,
+			"duration": 5,
+			"cooldown": 5
+		}
+,
+		"22": {
+			"name": "item - give gold",
+			"name_token": "#TowerAttack_Ability_Item_GiveGold",
+			"desc_token": "#TowerAttack_Ability_Item_GiveGold_Desc",
+			"multiplier": 100000,
+			"badge_points_cost": 2,
+			"instant": 1,
+			"duration": 0,
+			"cooldown": 5
+		}
+,
+		"23": {
+			"name": "item - steal health",
+			"name_token": "#TowerAttack_Ability_Item_StealHealth",
+			"desc_token": "#TowerAttack_Ability_Item_StealHealth_Desc",
+			"multiplier": "0.1",
+			"badge_points_cost": 5,
+			"duration": 10,
+			"cooldown": 10
+		}
+,
+		"24": {
+			"name": "item - reflect damage",
+			"name_token": "#TowerAttack_Ability_Item_ReflectDamage",
+			"desc_token": "#TowerAttack_Ability_Item_ReflectDamage_Desc",
+			"multiplier": "0.5",
+			"badge_points_cost": 5,
+			"duration": 10,
+			"cooldown": 30
+		}
+,
+		"25": {
+			"name": "item - random item",
+			"name_token": "#TowerAttack_Ability_Item_GiveRandomItem",
+			"desc_token": "#TowerAttack_Ability_Item_GiveRandomItem_Desc",
+			"multiplier": 1,
+			"badge_points_cost": 200,
+			"instant": 1,
+			"duration": 10,
+			"cooldown": 1800
+		}
+,
+		"26": {
+			"name": "item - skip levels",
+			"name_token": "#TowerAttack_Ability_Item_SkipLevels",
+			"desc_token": "#TowerAttack_Ability_Item_SkipLevels_Desc",
+			"multiplier": 1,
+			"gold_multiplier": 50000,
+			"badge_points_cost": 100,
+			"instant": 1,
+			"duration": 10,
+			"cooldown": 60
+		}
+,
+		"27": {
+			"name": "item - clear cooldowns",
+			"name_token": "#TowerAttack_Ability_Item_ClearCooldowns",
+			"desc_token": "#TowerAttack_Ability_Item_ClearCooldowns_Desc",
+			"multiplier": 1,
+			"badge_points_cost": 100,
+			"duration": 5,
+			"cooldown": 1
+		}
+
+	}
+,
+	"upgrades": {
+		"0": {
+			"name": "HP upgrade",
+			"name_token": "#TowerAttack_Upgrade_HP",
+			"desc_token": "#TowerAttack_Upgrade_HP_Desc",
+			"multiplier": "1.3",
+			"type": 0,
+			"cost": 100,
+			"cost_exponential_base": "2.5"
+		}
+,
+		"1": {
+			"name": "generic DPS upgrade",
+			"name_token": "#TowerAttack_Upgrade_DPS",
+			"desc_token": "#TowerAttack_Upgrade_DPS_Desc",
+			"initial_value": 10,
+			"multiplier": 1,
+			"type": 1,
+			"cost": 150,
+			"cost_exponential_base": "1.3"
+		}
+,
+		"2": {
+			"name": "generic click damage",
+			"name_token": "#TowerAttack_Upgrade_Click",
+			"desc_token": "#TowerAttack_Upgrade_Click_Desc",
+			"multiplier": 1,
+			"type": 2,
+			"cost": 200,
+			"cost_exponential_base": "1.2"
+		}
+,
+		"3": {
+			"name": "damage multiplier fire",
+			"name_token": "#TowerAttack_Upgrade_FireMultiplier",
+			"desc_token": "#TowerAttack_Upgrade_FireMultiplier_Desc",
+			"multiplier": "1.5",
+			"type": 3,
+			"cost": 50,
+			"cost_exponential_base": "2.2"
+		}
+,
+		"4": {
+			"name": "damage multiplier water",
+			"name_token": "#TowerAttack_Upgrade_WaterMultiplier",
+			"desc_token": "#TowerAttack_Upgrade_WaterMultiplier_Desc",
+			"multiplier": "1.5",
+			"type": 4,
+			"cost": 50,
+			"cost_exponential_base": "2.2"
+		}
+,
+		"5": {
+			"name": "damage multiplier air",
+			"name_token": "#TowerAttack_Upgrade_AirMultiplier",
+			"desc_token": "#TowerAttack_Upgrade_AirMultiplier_Desc",
+			"multiplier": "1.5",
+			"type": 5,
+			"cost": 50,
+			"cost_exponential_base": "2.2"
+		}
+,
+		"6": {
+			"name": "damage multiplier earth",
+			"name_token": "#TowerAttack_Upgrade_EarthMultiplier",
+			"desc_token": "#TowerAttack_Upgrade_EarthMultiplier_Desc",
+			"multiplier": "1.5",
+			"type": 6,
+			"cost": 50,
+			"cost_exponential_base": "2.2"
+		}
+,
+		"7": {
+			"name": "damage multiplier crit",
+			"name_token": "#TowerAttack_Upgrade_Crit",
+			"desc_token": "#TowerAttack_Upgrade_Crit_Desc",
+			"multiplier": "1.5",
+			"type": 7,
+			"cost": 50,
+			"cost_exponential_base": "2.5",
+			"required_upgrade": 2,
+			"required_upgrade_level": 5
+		}
+,
+		"8": {
+			"name": "HP upgrade 2",
+			"name_token": "#TowerAttack_Upgrade_HP2",
+			"desc_token": "#TowerAttack_Upgrade_HP2_Desc",
+			"multiplier": 10,
+			"type": 0,
+			"cost": 10000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 0,
+			"required_upgrade_level": 10
+		}
+,
+		"9": {
+			"name": "generic DPS upgrade 2",
+			"name_token": "#TowerAttack_Upgrade_DPS2",
+			"desc_token": "#TowerAttack_Upgrade_DPS2_Desc",
+			"multiplier": 10,
+			"type": 1,
+			"cost": 10000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 1,
+			"required_upgrade_level": 10
+		}
+,
+		"10": {
+			"name": "generic click damage 2",
+			"name_token": "#TowerAttack_Upgrade_Click2",
+			"desc_token": "#TowerAttack_Upgrade_Click2_Desc",
+			"multiplier": 10,
+			"type": 2,
+			"cost": 10000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 2,
+			"required_upgrade_level": 10
+		}
+,
+		"11": {
+			"name": "purchase ability - heal",
+			"name_token": "#TowerAttack_Ability_Heal",
+			"desc_token": "#TowerAttack_Ability_Heal_Desc",
+			"type": 8,
+			"cost": 5000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 0,
+			"ability": 7
+		}
+,
+		"12": {
+			"name": "purchase ability - increase damage",
+			"name_token": "#TowerAttack_Ability_IncreaseDamage",
+			"desc_token": "#TowerAttack_Ability_IncreaseDamage_Desc",
+			"type": 8,
+			"cost": 10000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 1,
+			"required_upgrade_level": 20,
+			"ability": 5
+		}
+,
+		"13": {
+			"name": "purchase ability - increase crit percentage",
+			"name_token": "#TowerAttack_Ability_IncreaseCrit",
+			"desc_token": "#TowerAttack_Ability_IncreaseCrit_Desc",
+			"type": 8,
+			"cost": 1000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 2,
+			"required_upgrade_level": 5,
+			"ability": 6
+		}
+,
+		"14": {
+			"name": "purchase ability - increase gold dropped",
+			"name_token": "#TowerAttack_Ability_IncreaseGold",
+			"desc_token": "#TowerAttack_Ability_IncreaseGold_Desc",
+			"type": 8,
+			"cost": 10000000,
+			"cost_exponential_base": "2.2",
+			"ability": 8
+		}
+,
+		"15": {
+			"name": "purchase ability - decrease cooldowns",
+			"name_token": "#TowerAttack_Ability_DecreaseCooldowns",
+			"desc_token": "#TowerAttack_Ability_DecreaseCooldowns_Desc",
+			"type": 8,
+			"cost": 10000000,
+			"cost_exponential_base": "2.2",
+			"ability": 9
+		}
+,
+		"16": {
+			"name": "purchase ability - high damage one target",
+			"name_token": "#TowerAttack_Ability_HighDamageOneTarget",
+			"desc_token": "#TowerAttack_Ability_HighDamageOneTarget_Desc",
+			"type": 8,
+			"cost": 100000,
+			"cost_exponential_base": 5,
+			"required_upgrade": 2,
+			"required_upgrade_level": 10,
+			"ability": 10
+		}
+,
+		"17": {
+			"name": "purchase ability - damage all targets",
+			"name_token": "#TowerAttack_Ability_DamageAllTargets",
+			"desc_token": "#TowerAttack_Ability_DamageAllTargets_Desc",
+			"type": 8,
+			"cost": 1000000,
+			"cost_exponential_base": "2.2",
+			"ability": 11,
+			"required_upgrade": 1,
+			"required_upgrade_level": 10
+		}
+,
+		"18": {
+			"name": "purchase ability - DOT all targets",
+			"name_token": "#TowerAttack_Ability_DOTAllTargets",
+			"desc_token": "#TowerAttack_Ability_DOTAllTargets_Desc",
+			"type": 8,
+			"cost": 2000000,
+			"cost_exponential_base": "2.2",
+			"ability": 12,
+			"required_upgrade": 1,
+			"required_upgrade_level": 10
+		}
+,
+		"19": {
+			"name": "boss loot drop percentage",
+			"name_token": "#TowerAttack_Upgrade_BossLootDropPercentage",
+			"desc_token": "#TowerAttack_Upgrade_BossLootDropPercentage_Desc",
+			"multiplier": "0.01",
+			"type": 9,
+			"cost": 100000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 1,
+			"required_upgrade_level": 10
+		}
+,
+		"20": {
+			"name": "HP upgrade 3",
+			"name_token": "#TowerAttack_Upgrade_HP3",
+			"desc_token": "#TowerAttack_Upgrade_HP3_Desc",
+			"multiplier": 100,
+			"type": 0,
+			"cost": 100000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 8,
+			"required_upgrade_level": 10
+		}
+,
+		"21": {
+			"name": "generic DPS upgrade 3",
+			"name_token": "#TowerAttack_Upgrade_DPS3",
+			"desc_token": "#TowerAttack_Upgrade_DPS3_Desc",
+			"multiplier": 100,
+			"type": 1,
+			"cost": 100000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 9,
+			"required_upgrade_level": 10
+		}
+,
+		"22": {
+			"name": "generic click damage 3",
+			"name_token": "#TowerAttack_Upgrade_Click3",
+			"desc_token": "#TowerAttack_Upgrade_Click3_Desc",
+			"multiplier": 100,
+			"type": 2,
+			"cost": 100000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 10,
+			"required_upgrade_level": 10
+		}
+,
+		"23": {
+			"name": "HP upgrade 4",
+			"name_token": "#TowerAttack_Upgrade_HP4",
+			"desc_token": "#TowerAttack_Upgrade_HP4_Desc",
+			"multiplier": 1000,
+			"type": 0,
+			"cost": 1000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 20,
+			"required_upgrade_level": 10
+		}
+,
+		"24": {
+			"name": "generic DPS upgrade 4",
+			"name_token": "#TowerAttack_Upgrade_DPS4",
+			"desc_token": "#TowerAttack_Upgrade_DPS4_Desc",
+			"multiplier": 1000,
+			"type": 1,
+			"cost": 1000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 21,
+			"required_upgrade_level": 10
+		}
+,
+		"25": {
+			"name": "generic click damage 4",
+			"name_token": "#TowerAttack_Upgrade_Click4",
+			"desc_token": "#TowerAttack_Upgrade_Click4_Desc",
+			"multiplier": 1000,
+			"type": 2,
+			"cost": 1000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 22,
+			"required_upgrade_level": 10
+		}
+
+	}
+
+}

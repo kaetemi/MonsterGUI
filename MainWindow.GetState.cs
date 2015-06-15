@@ -251,6 +251,7 @@ namespace MonsterGUI
 
 		volatile bool getPlayerNames = false;
 		bool getSteamId = false;
+		bool getTuningData = false;
 
 		string steamId = "";
 
@@ -262,6 +263,7 @@ namespace MonsterGUI
 			resultTokenDetailsDelegate = new JsonCallback(resultTokenDetails);
 			resultPlayerNamesDelegate = new JsonCallback(resultPlayerNames);
 			resultGameDataDelegate = new JsonCallback(resultGameData);
+			resultTuningDataDelegate = new JsonCallback(resultTuningData);
 			gameData.Init();
 			techTree.Init();
 		}
@@ -275,6 +277,7 @@ namespace MonsterGUI
 
 			getPlayerNames = true;
 			getSteamId = true;
+			getTuningData = true;
 
 			abilitiesIntfs = new System.Windows.Forms.Label[8];
 			abilitiesIntfs[(int)Abilities.MoraleBooster - (int)Abilities.StartAbility] = moraleBoosterIntf;
@@ -558,6 +561,21 @@ namespace MonsterGUI
 			Console.WriteLine("steamid: " + steamId);
 		}
 
+		private JsonCallback resultTuningDataDelegate;
+		private void resultTuningData(JSONNode jsonNotReally)
+		{
+			JSONNode response = jsonNotReally["response"];
+			if (response == null)
+				return;
+			JSONNode jsonNode = response["json"];
+			if (jsonNode == null)
+				return;
+			// Console.WriteLine(jsonNode.Value);
+			// System.IO.File.WriteAllText("TuningDataExample.txt", jsonNode.Value);
+			JSONNode json = JSON.Parse(jsonNode.Value);
+
+		}
+
 		private JsonCallback resultPlayerNamesDelegate;
 		private void resultPlayerNames(JSONNode json)
 		{
@@ -729,6 +747,22 @@ namespace MonsterGUI
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultTokenDetailsDelegate, json);
 						getSteamId = false;
+					}
+					else if (getTuningData)
+					{
+						// https://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetTuningData/v0001/?game_type=1&gameid=41671&access_token=***
+						StringBuilder url = new StringBuilder();
+						url.Append("https://");
+						url.Append(host);
+						url.Append("GetTuningData/v0001/?game_type=1&gameid=");
+						url.Append(room);
+						url.Append("&access_token=");
+						url.Append(accessToken);
+						Invoke(enableDelegate, getStateStatus, true);
+						string res = wc.DownloadString(url.ToString());
+						JSONNode json = JSON.Parse(res);
+						if (!exiting) Invoke(resultTuningDataDelegate, json);
+						getTuningData = false;
 					}
 					else if (getPlayerNames)
 					{
