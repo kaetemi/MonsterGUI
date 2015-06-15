@@ -48,6 +48,11 @@
 			this.minText = new System.Windows.Forms.NumericUpDown();
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.elementSwitcherBox = new System.Windows.Forms.GroupBox();
+			this.elementText = new System.Windows.Forms.Label();
+			this.elementSwitcherCheck = new System.Windows.Forms.CheckBox();
+			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
+			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
 			this.reflectDmgCount = new System.Windows.Forms.Label();
 			this.reflctDmgIntf = new System.Windows.Forms.Label();
@@ -135,11 +140,6 @@
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
-			this.button3 = new System.Windows.Forms.Button();
-			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
-			this.elementSwitcherBox = new System.Windows.Forms.GroupBox();
-			this.elementSwitcherCheck = new System.Windows.Forms.CheckBox();
-			this.elementText = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -149,6 +149,7 @@
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.elementSwitcherBox.SuspendLayout();
 			this.groupBox12.SuspendLayout();
 			this.groupBox11.SuspendLayout();
 			this.groupBox10.SuspendLayout();
@@ -163,7 +164,6 @@
 			this.groupBox8.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			this.elementSwitcherBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -196,7 +196,7 @@
 			this.roomText.Size = new System.Drawing.Size(579, 20);
 			this.roomText.TabIndex = 5;
 			this.roomText.Value = new decimal(new int[] {
-            39650,
+            41671,
             0,
             0,
             0});
@@ -457,6 +457,61 @@
 			this.splitContainer1.Size = new System.Drawing.Size(760, 448);
 			this.splitContainer1.SplitterDistance = 600;
 			this.splitContainer1.TabIndex = 2;
+			// 
+			// elementSwitcherBox
+			// 
+			this.elementSwitcherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.elementSwitcherBox.Controls.Add(this.elementText);
+			this.elementSwitcherBox.Controls.Add(this.elementSwitcherCheck);
+			this.elementSwitcherBox.Location = new System.Drawing.Point(481, 106);
+			this.elementSwitcherBox.Name = "elementSwitcherBox";
+			this.elementSwitcherBox.Size = new System.Drawing.Size(116, 58);
+			this.elementSwitcherBox.TabIndex = 5;
+			this.elementSwitcherBox.TabStop = false;
+			this.elementSwitcherBox.Text = "Element Switcher";
+			// 
+			// elementText
+			// 
+			this.elementText.AutoSize = true;
+			this.elementText.Location = new System.Drawing.Point(11, 39);
+			this.elementText.Name = "elementText";
+			this.elementText.Size = new System.Drawing.Size(0, 13);
+			this.elementText.TabIndex = 5;
+			// 
+			// elementSwitcherCheck
+			// 
+			this.elementSwitcherCheck.AutoSize = true;
+			this.elementSwitcherCheck.Location = new System.Drawing.Point(14, 19);
+			this.elementSwitcherCheck.Name = "elementSwitcherCheck";
+			this.elementSwitcherCheck.Size = new System.Drawing.Size(66, 17);
+			this.elementSwitcherCheck.TabIndex = 2;
+			this.elementSwitcherCheck.Text = "Running";
+			this.elementSwitcherCheck.UseVisualStyleBackColor = true;
+			this.elementSwitcherCheck.CheckedChanged += new System.EventHandler(this.elementSwitcherCheck_CheckedChanged);
+			// 
+			// fireImmediatelyCheck
+			// 
+			this.fireImmediatelyCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.fireImmediatelyCheck.AutoSize = true;
+			this.fireImmediatelyCheck.Location = new System.Drawing.Point(504, 330);
+			this.fireImmediatelyCheck.Name = "fireImmediatelyCheck";
+			this.fireImmediatelyCheck.Size = new System.Drawing.Size(93, 17);
+			this.fireImmediatelyCheck.TabIndex = 13;
+			this.fireImmediatelyCheck.Text = "Trigger Happy";
+			this.fireImmediatelyCheck.UseVisualStyleBackColor = true;
+			this.fireImmediatelyCheck.CheckedChanged += new System.EventHandler(this.fireImmediatelyCheck_CheckedChanged);
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(522, 353);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.TabIndex = 12;
+			this.button3.Text = "Refresh";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// groupBox12
 			// 
@@ -1375,61 +1430,6 @@
 			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
 			this.postUpgradesState.Text = "◆";
 			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(522, 353);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 12;
-			this.button3.Text = "Refresh";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
-			// 
-			// fireImmediatelyCheck
-			// 
-			this.fireImmediatelyCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.fireImmediatelyCheck.AutoSize = true;
-			this.fireImmediatelyCheck.Location = new System.Drawing.Point(504, 330);
-			this.fireImmediatelyCheck.Name = "fireImmediatelyCheck";
-			this.fireImmediatelyCheck.Size = new System.Drawing.Size(93, 17);
-			this.fireImmediatelyCheck.TabIndex = 13;
-			this.fireImmediatelyCheck.Text = "Trigger Happy";
-			this.fireImmediatelyCheck.UseVisualStyleBackColor = true;
-			this.fireImmediatelyCheck.CheckedChanged += new System.EventHandler(this.fireImmediatelyCheck_CheckedChanged);
-			// 
-			// elementSwitcherBox
-			// 
-			this.elementSwitcherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.elementSwitcherBox.Controls.Add(this.elementText);
-			this.elementSwitcherBox.Controls.Add(this.elementSwitcherCheck);
-			this.elementSwitcherBox.Location = new System.Drawing.Point(481, 106);
-			this.elementSwitcherBox.Name = "elementSwitcherBox";
-			this.elementSwitcherBox.Size = new System.Drawing.Size(116, 58);
-			this.elementSwitcherBox.TabIndex = 5;
-			this.elementSwitcherBox.TabStop = false;
-			this.elementSwitcherBox.Text = "Element Switcher";
-			// 
-			// elementSwitcherCheck
-			// 
-			this.elementSwitcherCheck.AutoSize = true;
-			this.elementSwitcherCheck.Location = new System.Drawing.Point(14, 19);
-			this.elementSwitcherCheck.Name = "elementSwitcherCheck";
-			this.elementSwitcherCheck.Size = new System.Drawing.Size(66, 17);
-			this.elementSwitcherCheck.TabIndex = 2;
-			this.elementSwitcherCheck.Text = "Running";
-			this.elementSwitcherCheck.UseVisualStyleBackColor = true;
-			this.elementSwitcherCheck.CheckedChanged += new System.EventHandler(this.elementSwitcherCheck_CheckedChanged);
-			// 
-			// elementText
-			// 
-			this.elementText.AutoSize = true;
-			this.elementText.Location = new System.Drawing.Point(11, 39);
-			this.elementText.Name = "elementText";
-			this.elementText.Size = new System.Drawing.Size(0, 13);
-			this.elementText.TabIndex = 5;
-			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1454,6 +1454,8 @@
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
+			this.elementSwitcherBox.ResumeLayout(false);
+			this.elementSwitcherBox.PerformLayout();
 			this.groupBox12.ResumeLayout(false);
 			this.groupBox12.PerformLayout();
 			this.groupBox11.ResumeLayout(false);
@@ -1479,8 +1481,6 @@
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			this.elementSwitcherBox.ResumeLayout(false);
-			this.elementSwitcherBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
