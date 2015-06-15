@@ -369,6 +369,7 @@ namespace MonsterGUI
 				}
 			}
 
+			--waitForNewPlayerData;
 			printPlayerData();
 		}
 

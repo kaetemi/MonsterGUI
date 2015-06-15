@@ -12,6 +12,7 @@ namespace MonsterGUI
 	public partial class MainWindow
 	{
 		volatile bool refreshUpgrades = false;
+		volatile int waitForNewPlayerData = 0;
 
 		private void postUpgradesInit()
 		{
@@ -62,13 +63,16 @@ namespace MonsterGUI
 					bool upgrades = false;
 					string upgrades_json = "{\"gameid\":\"" + room + "\",\"upgrades\":[";
 
-					// Upgrade prices can be found under techTree
-					// Example how to add an upgrade
-					/*
-						if (upgrades) upgrades_json += ",";
-						upgrades_json += "4";
-						upgrades = true;
-					*/
+					if (waitForNewPlayerData <= 0)
+					{
+						// Upgrade prices can be found under techTree
+						// Example how to add an upgrade
+						/*
+							if (upgrades) upgrades_json += ",";
+							upgrades_json += "4";
+							upgrades = true;
+						*/
+					}
 
 					// Send the upgrade packet
 					if (upgrades)
@@ -94,6 +98,7 @@ namespace MonsterGUI
 						if (!exiting) Invoke(resultPostUpgradesDelegate, json);
 						notSentCount = 0;
 						refreshUpgrades = false;
+						waitForNewPlayerData = 3; // Wait for three new player data packages to be sure we have the latest gold
 					}
 					else if ((notSentCount >= notSentCountLimit || refreshUpgrades) && !string.IsNullOrEmpty(steamId))
 					{
