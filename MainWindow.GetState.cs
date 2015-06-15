@@ -129,6 +129,21 @@ namespace MonsterGUI
 		Nb = 26
 	}
 
+	enum UpgradeType
+	{
+		HitPoints = 0,
+		DPS = 1,
+		ClickDamage = 2,
+		DamageMultiplier_Fire = 3,
+		DamageMultiplier_Water = 4,
+		DamageMultiplier_Air = 5,
+		DamageMultiplier_Earth = 6,
+		DamageMultiplier_Crit = 7,
+		PurchaseAbility = 8,
+		BossLootDropPercentage = 9,
+		Nb = 10
+	}
+
 	struct PlayerData
 	{
 		public decimal Hp;
