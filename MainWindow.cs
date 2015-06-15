@@ -238,5 +238,11 @@ namespace MonsterGUI
 		{
 			elementSwitcherOn = elementSwitcherCheck.Checked;
 		}
+
+		bool showResponsesOn = true;
+		private void checkBox1_CheckedChanged(object sender, EventArgs e)
+		{
+			showResponsesOn = checkBox1.Checked;
+		}
 	}
 }

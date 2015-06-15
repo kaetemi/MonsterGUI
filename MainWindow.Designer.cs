@@ -129,6 +129,8 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.groupBox14 = new System.Windows.Forms.GroupBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
 			this.presetEverythingON = new System.Windows.Forms.Button();
 			this.presetEverythingOff = new System.Windows.Forms.Button();
@@ -160,6 +162,7 @@
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).BeginInit();
 			this.groupBox3.SuspendLayout();
+			this.groupBox14.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -370,6 +373,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.groupBox14);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox8);
 			this.splitContainer1.Panel2.Controls.Add(this.playerGroup);
 			this.splitContainer1.Size = new System.Drawing.Size(760, 448);
@@ -1293,6 +1297,31 @@
 			this.label6.Text = "Hp:";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
+			// groupBox14
+			// 
+			this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox14.Controls.Add(this.checkBox1);
+			this.groupBox14.Location = new System.Drawing.Point(3, 403);
+			this.groupBox14.Name = "groupBox14";
+			this.groupBox14.Size = new System.Drawing.Size(150, 45);
+			this.groupBox14.TabIndex = 2;
+			this.groupBox14.TabStop = false;
+			this.groupBox14.Text = "Console";
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Checked = true;
+			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox1.Location = new System.Drawing.Point(6, 19);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(109, 17);
+			this.checkBox1.TabIndex = 3;
+			this.checkBox1.Text = "Show Responses";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
 			// groupBox8
 			// 
 			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1339,7 +1368,7 @@
 			this.playerGroup.Controls.Add(this.playerList);
 			this.playerGroup.Location = new System.Drawing.Point(3, 86);
 			this.playerGroup.Name = "playerGroup";
-			this.playerGroup.Size = new System.Drawing.Size(150, 359);
+			this.playerGroup.Size = new System.Drawing.Size(150, 311);
 			this.playerGroup.TabIndex = 0;
 			this.playerGroup.TabStop = false;
 			this.playerGroup.Text = "Players";
@@ -1347,7 +1376,7 @@
 			// playerListRefresh
 			// 
 			this.playerListRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.playerListRefresh.Location = new System.Drawing.Point(69, 330);
+			this.playerListRefresh.Location = new System.Drawing.Point(69, 282);
 			this.playerListRefresh.Name = "playerListRefresh";
 			this.playerListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.playerListRefresh.TabIndex = 1;
@@ -1364,7 +1393,7 @@
 			this.playerList.IntegralHeight = false;
 			this.playerList.Location = new System.Drawing.Point(6, 19);
 			this.playerList.Name = "playerList";
-			this.playerList.Size = new System.Drawing.Size(138, 305);
+			this.playerList.Size = new System.Drawing.Size(138, 257);
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
@@ -1448,6 +1477,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).EndInit();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.groupBox14.ResumeLayout(false);
+			this.groupBox14.PerformLayout();
 			this.groupBox8.ResumeLayout(false);
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
@@ -1570,6 +1601,8 @@
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.Label requestedTargetText;
 		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.GroupBox groupBox14;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }
 

@@ -93,7 +93,7 @@ namespace MonsterGUI
 						if (!exiting) Invoke(enableDelegate, postUpgradesState, true);
 						Console.WriteLine(upgrades_json);
 						string res = wc.UploadString(url.ToString(), query.ToString());
-						Console.WriteLine(res);
+						if (showResponsesOn) Console.WriteLine(res);
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultPostUpgradesDelegate, json);
 						notSentCount = 0;

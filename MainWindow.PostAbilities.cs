@@ -708,7 +708,7 @@ namespace MonsterGUI
 						if (!exiting) Invoke(enableDelegate, postAbilitiesState, true);
 						Console.WriteLine(abilties_json);
 						string res = wc.UploadString(url.ToString(), query.ToString());
-						Console.WriteLine(res);
+						if (showResponsesOn) Console.WriteLine(res);
 						JSONNode json = JSON.Parse(res);
 						if (!exiting) Invoke(resultPostAbilitiesDelegate, json);
 					}
