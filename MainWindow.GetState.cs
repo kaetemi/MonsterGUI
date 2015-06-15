@@ -98,7 +98,7 @@ namespace MonsterGUI
 	}
 
 	// g_TuningData
-	enum UpgradeType
+	enum UpgradeItem
 	{
 		LightArmor = 0,
 		AutoFireCannon = 1,
@@ -170,7 +170,7 @@ namespace MonsterGUI
 
 		public Enemy[] Enemies;
 		public decimal ActivePlayerAbilityGoldPerClick;
-		public UpgradeType Element;
+		public UpgradeItem Element;
 	}
 
 	struct GameData
@@ -229,7 +229,7 @@ namespace MonsterGUI
 		public void Init()
 		{
 			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
-			Upgrades = new Upgrade[(int)UpgradeType.Nb];
+			Upgrades = new Upgrade[(int)UpgradeItem.Nb];
 			AbilityItems = new int[(int)Abilities.Nb - (int)Abilities.StartItem];
 		}
 
@@ -411,16 +411,16 @@ namespace MonsterGUI
 			string res = "";
 			for (int i = 0; i < gameData.Lanes.Length; ++i)
 			{
-				if (gameData.Lanes[i].Element >= UpgradeType.ElementalFire && gameData.Lanes[i].Element <= UpgradeType.ElementalEarth)
+				if (gameData.Lanes[i].Element >= UpgradeItem.ElementalFire && gameData.Lanes[i].Element <= UpgradeItem.ElementalEarth)
 				{
 					int laneEleLevel = techTree.Upgrades[(int)gameData.Lanes[i].Element].Level;
 					if (laneEleLevel >= bestElement)
 					{
-						res += "【" + elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeType.ElementalFire] + "】 ";
+						res += "【" + elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeItem.ElementalFire] + "】 ";
 					}
 					else
 					{
-						res += elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeType.ElementalFire] + " ";
+						res += elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeItem.ElementalFire] + " ";
 					}
 				}
 			}
@@ -631,7 +631,7 @@ namespace MonsterGUI
 						JSONNode element = lane["element"];
 
 						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Convert.ToDecimal(activePlayerAbilityGoldPerClick.Value, CultureInfo.InvariantCulture);
-						if (element != null) this.gameData.Lanes[i].Element = (UpgradeType)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeType.ElementalFire);
+						if (element != null) this.gameData.Lanes[i].Element = (UpgradeItem)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeItem.ElementalFire);
 
 						if (enemies != null)
 						{

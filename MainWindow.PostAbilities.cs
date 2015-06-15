@@ -247,13 +247,13 @@ namespace MonsterGUI
 
 		private int bestElementLevel()
 		{
-			int bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalAir].Level;
-			if (techTree.Upgrades[(int)UpgradeType.ElementalEarth].Level > bestLevel)
-				bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalEarth].Level;
-			if (techTree.Upgrades[(int)UpgradeType.ElementalFire].Level > bestLevel)
-				bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalFire].Level;
-			if (techTree.Upgrades[(int)UpgradeType.ElementalWater].Level > bestLevel)
-				bestLevel = techTree.Upgrades[(int)UpgradeType.ElementalWater].Level;
+			int bestLevel = techTree.Upgrades[(int)UpgradeItem.ElementalAir].Level;
+			if (techTree.Upgrades[(int)UpgradeItem.ElementalEarth].Level > bestLevel)
+				bestLevel = techTree.Upgrades[(int)UpgradeItem.ElementalEarth].Level;
+			if (techTree.Upgrades[(int)UpgradeItem.ElementalFire].Level > bestLevel)
+				bestLevel = techTree.Upgrades[(int)UpgradeItem.ElementalFire].Level;
+			if (techTree.Upgrades[(int)UpgradeItem.ElementalWater].Level > bestLevel)
+				bestLevel = techTree.Upgrades[(int)UpgradeItem.ElementalWater].Level;
 			return bestLevel;
 		}
 
