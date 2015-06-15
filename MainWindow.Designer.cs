@@ -39,7 +39,6 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.autoClickerCheck = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
 			this.minText = new System.Windows.Forms.NumericUpDown();
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -248,12 +247,11 @@
 			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.autoClickerCheck);
 			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.minText);
 			this.groupBox2.Controls.Add(this.maxText);
 			this.groupBox2.Location = new System.Drawing.Point(209, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(388, 71);
+			this.groupBox2.Size = new System.Drawing.Size(388, 45);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Auto Clicker";
@@ -262,7 +260,7 @@
 			// 
 			this.clicksText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.clicksText.Location = new System.Drawing.Point(236, 47);
+			this.clicksText.Location = new System.Drawing.Point(308, 21);
 			this.clicksText.Name = "clicksText";
 			this.clicksText.Size = new System.Drawing.Size(65, 13);
 			this.clicksText.TabIndex = 6;
@@ -271,7 +269,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(192, 47);
+			this.label5.Location = new System.Drawing.Point(264, 21);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(38, 13);
 			this.label5.TabIndex = 5;
@@ -295,20 +293,11 @@
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(51, 13);
 			this.label4.TabIndex = 3;
-			this.label4.Text = "Minimum:";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(6, 47);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(54, 13);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "Maximum:";
+			this.label4.Text = "Min/max:";
 			// 
 			// minText
 			// 
-			this.minText.Location = new System.Drawing.Point(66, 19);
+			this.minText.Location = new System.Drawing.Point(62, 19);
 			this.minText.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -320,7 +309,7 @@
             0,
             0});
 			this.minText.Name = "minText";
-			this.minText.Size = new System.Drawing.Size(120, 20);
+			this.minText.Size = new System.Drawing.Size(60, 20);
 			this.minText.TabIndex = 1;
 			this.minText.Value = new decimal(new int[] {
             16,
@@ -331,7 +320,7 @@
 			// 
 			// maxText
 			// 
-			this.maxText.Location = new System.Drawing.Point(66, 45);
+			this.maxText.Location = new System.Drawing.Point(128, 19);
 			this.maxText.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -343,7 +332,7 @@
             0,
             0});
 			this.maxText.Name = "maxText";
-			this.maxText.Size = new System.Drawing.Size(120, 20);
+			this.maxText.Size = new System.Drawing.Size(58, 20);
 			this.maxText.TabIndex = 0;
 			this.maxText.Value = new decimal(new int[] {
             20,
@@ -395,7 +384,7 @@
 			this.groupBox13.Controls.Add(this.label21);
 			this.groupBox13.Controls.Add(this.requestedTargetText);
 			this.groupBox13.Controls.Add(this.label12);
-			this.groupBox13.Location = new System.Drawing.Point(477, 202);
+			this.groupBox13.Location = new System.Drawing.Point(477, 176);
 			this.groupBox13.Name = "groupBox13";
 			this.groupBox13.Size = new System.Drawing.Size(120, 45);
 			this.groupBox13.TabIndex = 14;
@@ -444,7 +433,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.elementSwitcherBox.Controls.Add(this.elementText);
 			this.elementSwitcherBox.Controls.Add(this.elementSwitcherCheck);
-			this.elementSwitcherBox.Location = new System.Drawing.Point(477, 80);
+			this.elementSwitcherBox.Location = new System.Drawing.Point(477, 54);
 			this.elementSwitcherBox.Name = "elementSwitcherBox";
 			this.elementSwitcherBox.Size = new System.Drawing.Size(120, 55);
 			this.elementSwitcherBox.TabIndex = 5;
@@ -475,7 +464,7 @@
 			// 
 			this.fireImmediatelyCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.fireImmediatelyCheck.AutoSize = true;
-			this.fireImmediatelyCheck.Location = new System.Drawing.Point(504, 330);
+			this.fireImmediatelyCheck.Location = new System.Drawing.Point(504, 285);
 			this.fireImmediatelyCheck.Name = "fireImmediatelyCheck";
 			this.fireImmediatelyCheck.Size = new System.Drawing.Size(93, 17);
 			this.fireImmediatelyCheck.TabIndex = 13;
@@ -486,7 +475,7 @@
 			// button3
 			// 
 			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(522, 353);
+			this.button3.Location = new System.Drawing.Point(522, 308);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(75, 23);
 			this.button3.TabIndex = 12;
@@ -523,7 +512,7 @@
 			this.groupBox12.Controls.Add(this.crppleMonstIntf);
 			this.groupBox12.Controls.Add(this.crippleSpawnIntf);
 			this.groupBox12.Controls.Add(this.resurrIntf);
-			this.groupBox12.Location = new System.Drawing.Point(3, 376);
+			this.groupBox12.Location = new System.Drawing.Point(3, 337);
 			this.groupBox12.Name = "groupBox12";
 			this.groupBox12.Size = new System.Drawing.Size(594, 69);
 			this.groupBox12.TabIndex = 11;
@@ -776,7 +765,7 @@
 			this.groupBox11.Controls.Add(this.napalmIntf);
 			this.groupBox11.Controls.Add(this.clusterBombIntf);
 			this.groupBox11.Controls.Add(this.tacticalNukeIntf);
-			this.groupBox11.Location = new System.Drawing.Point(209, 327);
+			this.groupBox11.Location = new System.Drawing.Point(209, 282);
 			this.groupBox11.Name = "groupBox11";
 			this.groupBox11.Size = new System.Drawing.Size(262, 49);
 			this.groupBox11.TabIndex = 10;
@@ -827,7 +816,7 @@
 			// groupBox10
 			// 
 			this.groupBox10.Controls.Add(this.targetSpawnerCheck);
-			this.groupBox10.Location = new System.Drawing.Point(388, 195);
+			this.groupBox10.Location = new System.Drawing.Point(388, 176);
 			this.groupBox10.Name = "groupBox10";
 			this.groupBox10.Size = new System.Drawing.Size(83, 45);
 			this.groupBox10.TabIndex = 4;
@@ -851,7 +840,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.bossLaneText);
 			this.groupBox5.Controls.Add(this.bossLaneCheck);
-			this.groupBox5.Location = new System.Drawing.Point(477, 141);
+			this.groupBox5.Location = new System.Drawing.Point(477, 115);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(120, 55);
 			this.groupBox5.TabIndex = 5;
@@ -888,7 +877,7 @@
 			this.groupBox9.Controls.Add(this.medicsIntf);
 			this.groupBox9.Controls.Add(this.goodLuckCharmIntf);
 			this.groupBox9.Controls.Add(this.moraleBoosterIntf);
-			this.groupBox9.Location = new System.Drawing.Point(209, 272);
+			this.groupBox9.Location = new System.Drawing.Point(209, 227);
 			this.groupBox9.Name = "groupBox9";
 			this.groupBox9.Size = new System.Drawing.Size(388, 49);
 			this.groupBox9.TabIndex = 9;
@@ -1055,9 +1044,9 @@
 			this.groupBox7.Controls.Add(this.lane1Gold);
 			this.groupBox7.Controls.Add(this.label11);
 			this.groupBox7.Controls.Add(this.goldLaneCheck);
-			this.groupBox7.Location = new System.Drawing.Point(209, 131);
+			this.groupBox7.Location = new System.Drawing.Point(209, 105);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(262, 58);
+			this.groupBox7.Size = new System.Drawing.Size(262, 65);
 			this.groupBox7.TabIndex = 4;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Gold Lane Switcher";
@@ -1138,7 +1127,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.respawnerGroup.Controls.Add(this.deadAliveText);
 			this.respawnerGroup.Controls.Add(this.respawnerCheck);
-			this.respawnerGroup.Location = new System.Drawing.Point(209, 195);
+			this.respawnerGroup.Location = new System.Drawing.Point(209, 176);
 			this.respawnerGroup.Name = "respawnerGroup";
 			this.respawnerGroup.Size = new System.Drawing.Size(173, 45);
 			this.respawnerGroup.TabIndex = 4;
@@ -1170,7 +1159,7 @@
 			this.groupBox4.Controls.Add(this.laneSwitcherCheck);
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.laneSwitcherTimer);
-			this.groupBox4.Location = new System.Drawing.Point(209, 80);
+			this.groupBox4.Location = new System.Drawing.Point(209, 54);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(262, 45);
 			this.groupBox4.TabIndex = 3;
@@ -1482,7 +1471,6 @@
 		private System.Windows.Forms.ListBox playerList;
 		private System.Windows.Forms.Button playerListRefresh;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown minText;
 		private System.Windows.Forms.NumericUpDown maxText;
 		private System.Windows.Forms.StatusStrip statusStrip1;
