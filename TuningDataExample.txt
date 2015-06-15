@@ -1,5 +1,5 @@
 {
-	"version": 1434297503,
+	"version": 1434388755,
 	"player": {
 		"respawn_time": 60,
 		"min_dead_time": 5,
@@ -334,7 +334,8 @@
 			"badge_points_cost": 200,
 			"instant": 1,
 			"duration": 10,
-			"cooldown": 1800
+			"cooldown": 1800,
+			"start_of_game_cooldown": 600
 		}
 ,
 		"26": {
@@ -346,7 +347,8 @@
 			"badge_points_cost": 100,
 			"instant": 1,
 			"duration": 10,
-			"cooldown": 60
+			"cooldown": 60,
+			"start_of_game_cooldown": 600
 		}
 ,
 		"27": {
@@ -356,7 +358,8 @@
 			"multiplier": 1,
 			"badge_points_cost": 100,
 			"duration": 5,
-			"cooldown": 1
+			"cooldown": 1,
+			"start_of_game_cooldown": 600
 		}
 
 	}
@@ -653,6 +656,42 @@
 			"cost": 1000000,
 			"cost_exponential_base": "2.2",
 			"required_upgrade": 22,
+			"required_upgrade_level": 10
+		}
+,
+		"26": {
+			"name": "HP upgrade 5",
+			"name_token": "#TowerAttack_Upgrade_HP5",
+			"desc_token": "#TowerAttack_Upgrade_HP5_Desc",
+			"multiplier": 10000,
+			"type": 0,
+			"cost": 10000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 23,
+			"required_upgrade_level": 10
+		}
+,
+		"27": {
+			"name": "generic DPS upgrade 5",
+			"name_token": "#TowerAttack_Upgrade_DPS5",
+			"desc_token": "#TowerAttack_Upgrade_DPS5_Desc",
+			"multiplier": 10000,
+			"type": 1,
+			"cost": 10000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 24,
+			"required_upgrade_level": 10
+		}
+,
+		"28": {
+			"name": "generic click damage 5",
+			"name_token": "#TowerAttack_Upgrade_Click5",
+			"desc_token": "#TowerAttack_Upgrade_Click5_Desc",
+			"multiplier": 10000,
+			"type": 2,
+			"cost": 10000000,
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 25,
 			"required_upgrade_level": 10
 		}
 
