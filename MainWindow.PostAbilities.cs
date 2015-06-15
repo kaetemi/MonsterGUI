@@ -21,6 +21,10 @@ namespace MonsterGUI
 		volatile bool offensiveAbilitiesOn = false;
 		volatile bool itemAbilitiesOn = false;
 
+		// Strategy control
+		int speedThreshold = 5000;
+		int rainingRounds = 250;
+
 		// Auto clicker runtime info
 		long clickCount = 0;
 		long addClicks = 0;
@@ -188,14 +192,14 @@ namespace MonsterGUI
 
 		private bool farmingGoldOnLane(int i)
 		{
-			return ((gameData.Level < 1000 || ((gameData.Level % 200) == 0)) && bossMonsterOnLane(i));
+			return ((gameData.Level < speedThreshold || ((gameData.Level % rainingRounds) == 0)) && bossMonsterOnLane(i));
 		}
 
 		private bool nukeOnLane(int i)
 		{
-			if (gameData.Level > 1000)
+			if (gameData.Level > speedThreshold)
 			{
-				return ((gameData.Level % 200) != 0) && bossMonsterOnLane(laneRequested);
+				return ((gameData.Level % rainingRounds) != 0) && bossMonsterOnLane(laneRequested);
 			}
 			else
 			{
@@ -535,7 +539,7 @@ namespace MonsterGUI
 								{
 									// When no player money or under same circumstances as Metal Detector
 									if ((playerData.Gold < 100000.0m)
-										|| (farmingGold && highestHpFactorOnLane(laneRequested) > 0.75m))
+										|| (farmingGold && highestHpFactorOnLane(laneRequested) > 0.25m))
 									{
 										if (abilities) abilties_json += ",";
 										abilties_json += "{\"ability\":" + (int)Abilities.GiveGold + "}";
@@ -594,7 +598,7 @@ namespace MonsterGUI
 
 								if (!farmingGold)
 								{
-									if (gameData.Level > 1000)
+									if (gameData.Level > speedThreshold)
 									{
 										if (hasPurchasedAbility(Abilities.CrippleMonster) && !isAbilityCoolingDown(Abilities.CrippleMonster)) // Cripple Monster
 										{
