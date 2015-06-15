@@ -141,6 +141,35 @@
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
+			this.groupBox15 = new System.Windows.Forms.GroupBox();
+			this.upgrMaxHP = new System.Windows.Forms.NumericUpDown();
+			this.label3 = new System.Windows.Forms.Label();
+			this.upgrMaxDPS = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxDmg = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxCrit = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxFire = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxWater = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxAir = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxEarth = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxLoot = new System.Windows.Forms.NumericUpDown();
+			this.upgrStatFire = new System.Windows.Forms.Label();
+			this.upgrStatWater = new System.Windows.Forms.Label();
+			this.upgrStatEarth = new System.Windows.Forms.Label();
+			this.upgrStatAir = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.label26 = new System.Windows.Forms.Label();
+			this.label27 = new System.Windows.Forms.Label();
+			this.label28 = new System.Windows.Forms.Label();
+			this.label29 = new System.Windows.Forms.Label();
+			this.label30 = new System.Windows.Forms.Label();
+			this.label31 = new System.Windows.Forms.Label();
+			this.label32 = new System.Windows.Forms.Label();
+			this.label33 = new System.Windows.Forms.Label();
+			this.upgrStatDmg = new System.Windows.Forms.Label();
+			this.upgrStatCrit = new System.Windows.Forms.Label();
+			this.upgrStatLoot = new System.Windows.Forms.Label();
+			this.upgrStatDPS = new System.Windows.Forms.Label();
+			this.upgrStatHP = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -166,6 +195,16 @@
 			this.groupBox8.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
+			this.groupBox15.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxHP)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxDPS)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxDmg)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxCrit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxFire)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxWater)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxAir)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxEarth)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxLoot)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -252,9 +291,9 @@
 			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.minText);
 			this.groupBox2.Controls.Add(this.maxText);
-			this.groupBox2.Location = new System.Drawing.Point(209, 3);
+			this.groupBox2.Location = new System.Drawing.Point(207, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(388, 45);
+			this.groupBox2.Size = new System.Drawing.Size(390, 45);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Auto Clicker";
@@ -265,7 +304,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.clicksText.Location = new System.Drawing.Point(308, 21);
 			this.clicksText.Name = "clicksText";
-			this.clicksText.Size = new System.Drawing.Size(65, 13);
+			this.clicksText.Size = new System.Drawing.Size(67, 13);
 			this.clicksText.TabIndex = 6;
 			this.clicksText.Text = "0";
 			// 
@@ -355,6 +394,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.groupBox15);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox13);
 			this.splitContainer1.Panel1.Controls.Add(this.elementSwitcherBox);
 			this.splitContainer1.Panel1.Controls.Add(this.fireImmediatelyCheck);
@@ -376,7 +416,7 @@
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox14);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox8);
 			this.splitContainer1.Panel2.Controls.Add(this.playerGroup);
-			this.splitContainer1.Size = new System.Drawing.Size(760, 448);
+			this.splitContainer1.Size = new System.Drawing.Size(760, 451);
 			this.splitContainer1.SplitterDistance = 600;
 			this.splitContainer1.TabIndex = 2;
 			// 
@@ -388,9 +428,9 @@
 			this.groupBox13.Controls.Add(this.label21);
 			this.groupBox13.Controls.Add(this.requestedTargetText);
 			this.groupBox13.Controls.Add(this.label12);
-			this.groupBox13.Location = new System.Drawing.Point(477, 176);
+			this.groupBox13.Location = new System.Drawing.Point(479, 176);
 			this.groupBox13.Name = "groupBox13";
-			this.groupBox13.Size = new System.Drawing.Size(120, 45);
+			this.groupBox13.Size = new System.Drawing.Size(118, 45);
 			this.groupBox13.TabIndex = 14;
 			this.groupBox13.TabStop = false;
 			this.groupBox13.Text = "Requested";
@@ -437,9 +477,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.elementSwitcherBox.Controls.Add(this.elementText);
 			this.elementSwitcherBox.Controls.Add(this.elementSwitcherCheck);
-			this.elementSwitcherBox.Location = new System.Drawing.Point(477, 54);
+			this.elementSwitcherBox.Location = new System.Drawing.Point(479, 54);
 			this.elementSwitcherBox.Name = "elementSwitcherBox";
-			this.elementSwitcherBox.Size = new System.Drawing.Size(120, 55);
+			this.elementSwitcherBox.Size = new System.Drawing.Size(118, 55);
 			this.elementSwitcherBox.TabIndex = 5;
 			this.elementSwitcherBox.TabStop = false;
 			this.elementSwitcherBox.Text = "Element Switcher";
@@ -516,7 +556,7 @@
 			this.groupBox12.Controls.Add(this.crppleMonstIntf);
 			this.groupBox12.Controls.Add(this.crippleSpawnIntf);
 			this.groupBox12.Controls.Add(this.resurrIntf);
-			this.groupBox12.Location = new System.Drawing.Point(3, 337);
+			this.groupBox12.Location = new System.Drawing.Point(3, 382);
 			this.groupBox12.Name = "groupBox12";
 			this.groupBox12.Size = new System.Drawing.Size(594, 69);
 			this.groupBox12.TabIndex = 11;
@@ -769,9 +809,9 @@
 			this.groupBox11.Controls.Add(this.napalmIntf);
 			this.groupBox11.Controls.Add(this.clusterBombIntf);
 			this.groupBox11.Controls.Add(this.tacticalNukeIntf);
-			this.groupBox11.Location = new System.Drawing.Point(209, 282);
+			this.groupBox11.Location = new System.Drawing.Point(207, 282);
 			this.groupBox11.Name = "groupBox11";
-			this.groupBox11.Size = new System.Drawing.Size(262, 49);
+			this.groupBox11.Size = new System.Drawing.Size(266, 49);
 			this.groupBox11.TabIndex = 10;
 			this.groupBox11.TabStop = false;
 			this.groupBox11.Text = "Offensive Abilities";
@@ -820,9 +860,9 @@
 			// groupBox10
 			// 
 			this.groupBox10.Controls.Add(this.targetSpawnerCheck);
-			this.groupBox10.Location = new System.Drawing.Point(388, 176);
+			this.groupBox10.Location = new System.Drawing.Point(386, 176);
 			this.groupBox10.Name = "groupBox10";
-			this.groupBox10.Size = new System.Drawing.Size(83, 45);
+			this.groupBox10.Size = new System.Drawing.Size(87, 45);
 			this.groupBox10.TabIndex = 4;
 			this.groupBox10.TabStop = false;
 			this.groupBox10.Text = "Auto Target";
@@ -844,9 +884,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.bossLaneText);
 			this.groupBox5.Controls.Add(this.bossLaneCheck);
-			this.groupBox5.Location = new System.Drawing.Point(477, 115);
+			this.groupBox5.Location = new System.Drawing.Point(479, 115);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(120, 55);
+			this.groupBox5.Size = new System.Drawing.Size(118, 55);
 			this.groupBox5.TabIndex = 5;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Boss Lane Switcher";
@@ -881,9 +921,9 @@
 			this.groupBox9.Controls.Add(this.medicsIntf);
 			this.groupBox9.Controls.Add(this.goodLuckCharmIntf);
 			this.groupBox9.Controls.Add(this.moraleBoosterIntf);
-			this.groupBox9.Location = new System.Drawing.Point(209, 227);
+			this.groupBox9.Location = new System.Drawing.Point(207, 227);
 			this.groupBox9.Name = "groupBox9";
-			this.groupBox9.Size = new System.Drawing.Size(388, 49);
+			this.groupBox9.Size = new System.Drawing.Size(390, 49);
 			this.groupBox9.TabIndex = 9;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "Support Abilities";
@@ -961,7 +1001,7 @@
 			this.groupBox6.Controls.Add(this.label19);
 			this.groupBox6.Location = new System.Drawing.Point(3, 80);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(200, 71);
+			this.groupBox6.Size = new System.Drawing.Size(198, 71);
 			this.groupBox6.TabIndex = 8;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Game Data";
@@ -971,8 +1011,9 @@
 			this.cpsText.AutoSize = true;
 			this.cpsText.Location = new System.Drawing.Point(83, 55);
 			this.cpsText.Name = "cpsText";
-			this.cpsText.Size = new System.Drawing.Size(0, 13);
+			this.cpsText.Size = new System.Drawing.Size(16, 13);
 			this.cpsText.TabIndex = 10;
+			this.cpsText.Text = "...";
 			// 
 			// label20
 			// 
@@ -989,8 +1030,9 @@
 			this.clicksNumText.AutoSize = true;
 			this.clicksNumText.Location = new System.Drawing.Point(83, 42);
 			this.clicksNumText.Name = "clicksNumText";
-			this.clicksNumText.Size = new System.Drawing.Size(0, 13);
+			this.clicksNumText.Size = new System.Drawing.Size(16, 13);
 			this.clicksNumText.TabIndex = 8;
+			this.clicksNumText.Text = "...";
 			// 
 			// label14
 			// 
@@ -1007,16 +1049,18 @@
 			this.levelText.AutoSize = true;
 			this.levelText.Location = new System.Drawing.Point(83, 16);
 			this.levelText.Name = "levelText";
-			this.levelText.Size = new System.Drawing.Size(0, 13);
+			this.levelText.Size = new System.Drawing.Size(16, 13);
 			this.levelText.TabIndex = 6;
+			this.levelText.Text = "...";
 			// 
 			// activePlayersText
 			// 
 			this.activePlayersText.AutoSize = true;
 			this.activePlayersText.Location = new System.Drawing.Point(83, 29);
 			this.activePlayersText.Name = "activePlayersText";
-			this.activePlayersText.Size = new System.Drawing.Size(0, 13);
+			this.activePlayersText.Size = new System.Drawing.Size(16, 13);
 			this.activePlayersText.TabIndex = 5;
+			this.activePlayersText.Text = "...";
 			// 
 			// label18
 			// 
@@ -1048,9 +1092,9 @@
 			this.groupBox7.Controls.Add(this.lane1Gold);
 			this.groupBox7.Controls.Add(this.label11);
 			this.groupBox7.Controls.Add(this.goldLaneCheck);
-			this.groupBox7.Location = new System.Drawing.Point(209, 105);
+			this.groupBox7.Location = new System.Drawing.Point(207, 105);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(262, 65);
+			this.groupBox7.Size = new System.Drawing.Size(266, 65);
 			this.groupBox7.TabIndex = 4;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Gold Lane Switcher";
@@ -1131,7 +1175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.respawnerGroup.Controls.Add(this.deadAliveText);
 			this.respawnerGroup.Controls.Add(this.respawnerCheck);
-			this.respawnerGroup.Location = new System.Drawing.Point(209, 176);
+			this.respawnerGroup.Location = new System.Drawing.Point(207, 176);
 			this.respawnerGroup.Name = "respawnerGroup";
 			this.respawnerGroup.Size = new System.Drawing.Size(173, 45);
 			this.respawnerGroup.TabIndex = 4;
@@ -1163,9 +1207,9 @@
 			this.groupBox4.Controls.Add(this.laneSwitcherCheck);
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.laneSwitcherTimer);
-			this.groupBox4.Location = new System.Drawing.Point(209, 54);
+			this.groupBox4.Location = new System.Drawing.Point(207, 54);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(262, 45);
+			this.groupBox4.Size = new System.Drawing.Size(266, 45);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Timed Lane Switcher";
@@ -1220,7 +1264,7 @@
 			this.groupBox3.Controls.Add(this.label6);
 			this.groupBox3.Location = new System.Drawing.Point(3, 3);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(200, 71);
+			this.groupBox3.Size = new System.Drawing.Size(198, 71);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Player Data";
@@ -1230,32 +1274,36 @@
 			this.targetLabel.AutoSize = true;
 			this.targetLabel.Location = new System.Drawing.Point(83, 55);
 			this.targetLabel.Name = "targetLabel";
-			this.targetLabel.Size = new System.Drawing.Size(0, 13);
+			this.targetLabel.Size = new System.Drawing.Size(16, 13);
 			this.targetLabel.TabIndex = 7;
+			this.targetLabel.Text = "...";
 			// 
 			// hpLabel
 			// 
 			this.hpLabel.AutoSize = true;
 			this.hpLabel.Location = new System.Drawing.Point(83, 16);
 			this.hpLabel.Name = "hpLabel";
-			this.hpLabel.Size = new System.Drawing.Size(0, 13);
+			this.hpLabel.Size = new System.Drawing.Size(16, 13);
 			this.hpLabel.TabIndex = 6;
+			this.hpLabel.Text = "...";
 			// 
 			// goldLabel
 			// 
 			this.goldLabel.AutoSize = true;
 			this.goldLabel.Location = new System.Drawing.Point(83, 29);
 			this.goldLabel.Name = "goldLabel";
-			this.goldLabel.Size = new System.Drawing.Size(0, 13);
+			this.goldLabel.Size = new System.Drawing.Size(16, 13);
 			this.goldLabel.TabIndex = 5;
+			this.goldLabel.Text = "...";
 			// 
 			// currentLaneLabel
 			// 
 			this.currentLaneLabel.AutoSize = true;
 			this.currentLaneLabel.Location = new System.Drawing.Point(83, 42);
 			this.currentLaneLabel.Name = "currentLaneLabel";
-			this.currentLaneLabel.Size = new System.Drawing.Size(0, 13);
+			this.currentLaneLabel.Size = new System.Drawing.Size(16, 13);
 			this.currentLaneLabel.TabIndex = 4;
+			this.currentLaneLabel.Text = "...";
 			// 
 			// label9
 			// 
@@ -1302,7 +1350,7 @@
 			this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox14.Controls.Add(this.checkBox1);
-			this.groupBox14.Location = new System.Drawing.Point(3, 403);
+			this.groupBox14.Location = new System.Drawing.Point(3, 406);
 			this.groupBox14.Name = "groupBox14";
 			this.groupBox14.Size = new System.Drawing.Size(150, 45);
 			this.groupBox14.TabIndex = 2;
@@ -1368,7 +1416,7 @@
 			this.playerGroup.Controls.Add(this.playerList);
 			this.playerGroup.Location = new System.Drawing.Point(3, 86);
 			this.playerGroup.Name = "playerGroup";
-			this.playerGroup.Size = new System.Drawing.Size(150, 311);
+			this.playerGroup.Size = new System.Drawing.Size(150, 314);
 			this.playerGroup.TabIndex = 0;
 			this.playerGroup.TabStop = false;
 			this.playerGroup.Text = "Players";
@@ -1376,7 +1424,7 @@
 			// playerListRefresh
 			// 
 			this.playerListRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.playerListRefresh.Location = new System.Drawing.Point(69, 282);
+			this.playerListRefresh.Location = new System.Drawing.Point(69, 285);
 			this.playerListRefresh.Name = "playerListRefresh";
 			this.playerListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.playerListRefresh.TabIndex = 1;
@@ -1393,7 +1441,7 @@
 			this.playerList.IntegralHeight = false;
 			this.playerList.Location = new System.Drawing.Point(6, 19);
 			this.playerList.Name = "playerList";
-			this.playerList.Size = new System.Drawing.Size(138, 257);
+			this.playerList.Size = new System.Drawing.Size(138, 260);
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
@@ -1403,7 +1451,7 @@
             this.getStateStatus,
             this.postAbilitiesState,
             this.postUpgradesState});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 543);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(784, 22);
 			this.statusStrip1.TabIndex = 3;
@@ -1430,11 +1478,302 @@
 			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
 			this.postUpgradesState.Text = "◆";
 			// 
+			// groupBox15
+			// 
+			this.groupBox15.Controls.Add(this.upgrStatHP);
+			this.groupBox15.Controls.Add(this.upgrStatDPS);
+			this.groupBox15.Controls.Add(this.upgrStatLoot);
+			this.groupBox15.Controls.Add(this.upgrStatCrit);
+			this.groupBox15.Controls.Add(this.upgrStatDmg);
+			this.groupBox15.Controls.Add(this.label33);
+			this.groupBox15.Controls.Add(this.label32);
+			this.groupBox15.Controls.Add(this.label31);
+			this.groupBox15.Controls.Add(this.label30);
+			this.groupBox15.Controls.Add(this.label29);
+			this.groupBox15.Controls.Add(this.label28);
+			this.groupBox15.Controls.Add(this.label27);
+			this.groupBox15.Controls.Add(this.label26);
+			this.groupBox15.Controls.Add(this.label25);
+			this.groupBox15.Controls.Add(this.upgrStatAir);
+			this.groupBox15.Controls.Add(this.upgrStatEarth);
+			this.groupBox15.Controls.Add(this.upgrStatWater);
+			this.groupBox15.Controls.Add(this.upgrStatFire);
+			this.groupBox15.Controls.Add(this.upgrMaxLoot);
+			this.groupBox15.Controls.Add(this.upgrMaxEarth);
+			this.groupBox15.Controls.Add(this.upgrMaxAir);
+			this.groupBox15.Controls.Add(this.upgrMaxWater);
+			this.groupBox15.Controls.Add(this.upgrMaxFire);
+			this.groupBox15.Controls.Add(this.upgrMaxCrit);
+			this.groupBox15.Controls.Add(this.upgrMaxDmg);
+			this.groupBox15.Controls.Add(this.upgrMaxDPS);
+			this.groupBox15.Controls.Add(this.label3);
+			this.groupBox15.Controls.Add(this.upgrMaxHP);
+			this.groupBox15.Enabled = false;
+			this.groupBox15.Location = new System.Drawing.Point(3, 157);
+			this.groupBox15.Name = "groupBox15";
+			this.groupBox15.Size = new System.Drawing.Size(198, 219);
+			this.groupBox15.TabIndex = 11;
+			this.groupBox15.TabStop = false;
+			this.groupBox15.Text = "Upgrades";
+			// 
+			// upgrMaxHP
+			// 
+			this.upgrMaxHP.Location = new System.Drawing.Point(134, 32);
+			this.upgrMaxHP.Name = "upgrMaxHP";
+			this.upgrMaxHP.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxHP.TabIndex = 0;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(131, 16);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(30, 13);
+			this.label3.TabIndex = 1;
+			this.label3.Text = "Max:";
+			// 
+			// upgrMaxDPS
+			// 
+			this.upgrMaxDPS.Location = new System.Drawing.Point(134, 58);
+			this.upgrMaxDPS.Name = "upgrMaxDPS";
+			this.upgrMaxDPS.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxDPS.TabIndex = 2;
+			// 
+			// upgrMaxDmg
+			// 
+			this.upgrMaxDmg.Location = new System.Drawing.Point(134, 84);
+			this.upgrMaxDmg.Name = "upgrMaxDmg";
+			this.upgrMaxDmg.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxDmg.TabIndex = 3;
+			// 
+			// upgrMaxCrit
+			// 
+			this.upgrMaxCrit.Location = new System.Drawing.Point(134, 110);
+			this.upgrMaxCrit.Name = "upgrMaxCrit";
+			this.upgrMaxCrit.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxCrit.TabIndex = 4;
+			// 
+			// upgrMaxFire
+			// 
+			this.upgrMaxFire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxFire.Location = new System.Drawing.Point(6, 193);
+			this.upgrMaxFire.Name = "upgrMaxFire";
+			this.upgrMaxFire.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxFire.TabIndex = 5;
+			// 
+			// upgrMaxWater
+			// 
+			this.upgrMaxWater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxWater.Location = new System.Drawing.Point(54, 193);
+			this.upgrMaxWater.Name = "upgrMaxWater";
+			this.upgrMaxWater.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxWater.TabIndex = 6;
+			// 
+			// upgrMaxAir
+			// 
+			this.upgrMaxAir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxAir.Location = new System.Drawing.Point(150, 193);
+			this.upgrMaxAir.Name = "upgrMaxAir";
+			this.upgrMaxAir.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxAir.TabIndex = 7;
+			this.upgrMaxAir.Tag = "0";
+			// 
+			// upgrMaxEarth
+			// 
+			this.upgrMaxEarth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxEarth.Location = new System.Drawing.Point(102, 193);
+			this.upgrMaxEarth.Name = "upgrMaxEarth";
+			this.upgrMaxEarth.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxEarth.TabIndex = 8;
+			// 
+			// upgrMaxLoot
+			// 
+			this.upgrMaxLoot.Location = new System.Drawing.Point(134, 136);
+			this.upgrMaxLoot.Name = "upgrMaxLoot";
+			this.upgrMaxLoot.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxLoot.TabIndex = 9;
+			// 
+			// upgrStatFire
+			// 
+			this.upgrStatFire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrStatFire.AutoSize = true;
+			this.upgrStatFire.Location = new System.Drawing.Point(6, 177);
+			this.upgrStatFire.Name = "upgrStatFire";
+			this.upgrStatFire.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatFire.TabIndex = 11;
+			this.upgrStatFire.Text = "...";
+			// 
+			// upgrStatWater
+			// 
+			this.upgrStatWater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrStatWater.AutoSize = true;
+			this.upgrStatWater.Location = new System.Drawing.Point(56, 177);
+			this.upgrStatWater.Name = "upgrStatWater";
+			this.upgrStatWater.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatWater.TabIndex = 12;
+			this.upgrStatWater.Text = "...";
+			// 
+			// upgrStatEarth
+			// 
+			this.upgrStatEarth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrStatEarth.AutoSize = true;
+			this.upgrStatEarth.Location = new System.Drawing.Point(102, 177);
+			this.upgrStatEarth.Name = "upgrStatEarth";
+			this.upgrStatEarth.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatEarth.TabIndex = 13;
+			this.upgrStatEarth.Text = "...";
+			// 
+			// upgrStatAir
+			// 
+			this.upgrStatAir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrStatAir.AutoSize = true;
+			this.upgrStatAir.Location = new System.Drawing.Point(150, 177);
+			this.upgrStatAir.Name = "upgrStatAir";
+			this.upgrStatAir.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatAir.TabIndex = 14;
+			this.upgrStatAir.Text = "...";
+			// 
+			// label25
+			// 
+			this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label25.AutoSize = true;
+			this.label25.Location = new System.Drawing.Point(6, 164);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(24, 13);
+			this.label25.TabIndex = 15;
+			this.label25.Text = "Fire";
+			this.label25.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label26
+			// 
+			this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label26.AutoSize = true;
+			this.label26.Location = new System.Drawing.Point(56, 164);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(36, 13);
+			this.label26.TabIndex = 16;
+			this.label26.Text = "Water";
+			// 
+			// label27
+			// 
+			this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label27.AutoSize = true;
+			this.label27.Location = new System.Drawing.Point(102, 164);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(32, 13);
+			this.label27.TabIndex = 17;
+			this.label27.Text = "Earth";
+			// 
+			// label28
+			// 
+			this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label28.AutoSize = true;
+			this.label28.Location = new System.Drawing.Point(150, 164);
+			this.label28.Name = "label28";
+			this.label28.Size = new System.Drawing.Size(19, 13);
+			this.label28.TabIndex = 18;
+			this.label28.Text = "Air";
+			// 
+			// label29
+			// 
+			this.label29.AutoSize = true;
+			this.label29.Location = new System.Drawing.Point(13, 35);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(25, 13);
+			this.label29.TabIndex = 19;
+			this.label29.Text = "HP:";
+			this.label29.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Location = new System.Drawing.Point(6, 60);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(32, 13);
+			this.label30.TabIndex = 20;
+			this.label30.Text = "DPS:";
+			this.label30.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label31
+			// 
+			this.label31.AutoSize = true;
+			this.label31.Location = new System.Drawing.Point(6, 86);
+			this.label31.Name = "label31";
+			this.label31.Size = new System.Drawing.Size(32, 13);
+			this.label31.TabIndex = 21;
+			this.label31.Text = "Dmg:";
+			this.label31.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label32
+			// 
+			this.label32.AutoSize = true;
+			this.label32.Location = new System.Drawing.Point(13, 112);
+			this.label32.Name = "label32";
+			this.label32.Size = new System.Drawing.Size(25, 13);
+			this.label32.TabIndex = 22;
+			this.label32.Text = "Crit:";
+			this.label32.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label33
+			// 
+			this.label33.AutoSize = true;
+			this.label33.Location = new System.Drawing.Point(7, 138);
+			this.label33.Name = "label33";
+			this.label33.Size = new System.Drawing.Size(31, 13);
+			this.label33.TabIndex = 23;
+			this.label33.Text = "Loot:";
+			this.label33.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// upgrStatDmg
+			// 
+			this.upgrStatDmg.AutoSize = true;
+			this.upgrStatDmg.Location = new System.Drawing.Point(44, 86);
+			this.upgrStatDmg.Name = "upgrStatDmg";
+			this.upgrStatDmg.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatDmg.TabIndex = 24;
+			this.upgrStatDmg.Text = "...";
+			// 
+			// upgrStatCrit
+			// 
+			this.upgrStatCrit.AutoSize = true;
+			this.upgrStatCrit.Location = new System.Drawing.Point(44, 112);
+			this.upgrStatCrit.Name = "upgrStatCrit";
+			this.upgrStatCrit.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatCrit.TabIndex = 25;
+			this.upgrStatCrit.Text = "...";
+			// 
+			// upgrStatLoot
+			// 
+			this.upgrStatLoot.AutoSize = true;
+			this.upgrStatLoot.Location = new System.Drawing.Point(44, 138);
+			this.upgrStatLoot.Name = "upgrStatLoot";
+			this.upgrStatLoot.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatLoot.TabIndex = 26;
+			this.upgrStatLoot.Text = "...";
+			// 
+			// upgrStatDPS
+			// 
+			this.upgrStatDPS.AutoSize = true;
+			this.upgrStatDPS.Location = new System.Drawing.Point(44, 60);
+			this.upgrStatDPS.Name = "upgrStatDPS";
+			this.upgrStatDPS.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatDPS.TabIndex = 27;
+			this.upgrStatDPS.Text = "...";
+			// 
+			// upgrStatHP
+			// 
+			this.upgrStatHP.AutoSize = true;
+			this.upgrStatHP.Location = new System.Drawing.Point(44, 35);
+			this.upgrStatHP.Name = "upgrStatHP";
+			this.upgrStatHP.Size = new System.Drawing.Size(16, 13);
+			this.upgrStatHP.TabIndex = 28;
+			this.upgrStatHP.Text = "...";
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 562);
+			this.ClientSize = new System.Drawing.Size(784, 565);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.groupBox1);
@@ -1483,6 +1822,17 @@
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			this.groupBox15.ResumeLayout(false);
+			this.groupBox15.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxHP)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxDPS)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxDmg)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxCrit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxFire)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxWater)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxAir)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxEarth)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.upgrMaxLoot)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1603,6 +1953,35 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.GroupBox groupBox14;
 		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.GroupBox groupBox15;
+		private System.Windows.Forms.NumericUpDown upgrMaxEarth;
+		private System.Windows.Forms.NumericUpDown upgrMaxAir;
+		private System.Windows.Forms.NumericUpDown upgrMaxWater;
+		private System.Windows.Forms.NumericUpDown upgrMaxFire;
+		private System.Windows.Forms.NumericUpDown upgrMaxCrit;
+		private System.Windows.Forms.NumericUpDown upgrMaxDmg;
+		private System.Windows.Forms.NumericUpDown upgrMaxDPS;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.NumericUpDown upgrMaxHP;
+		private System.Windows.Forms.Label label33;
+		private System.Windows.Forms.Label label32;
+		private System.Windows.Forms.Label label31;
+		private System.Windows.Forms.Label label30;
+		private System.Windows.Forms.Label label29;
+		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.Label upgrStatAir;
+		private System.Windows.Forms.Label upgrStatEarth;
+		private System.Windows.Forms.Label upgrStatWater;
+		private System.Windows.Forms.Label upgrStatFire;
+		private System.Windows.Forms.NumericUpDown upgrMaxLoot;
+		private System.Windows.Forms.Label upgrStatHP;
+		private System.Windows.Forms.Label upgrStatDPS;
+		private System.Windows.Forms.Label upgrStatLoot;
+		private System.Windows.Forms.Label upgrStatCrit;
+		private System.Windows.Forms.Label upgrStatDmg;
 	}
 }
 
