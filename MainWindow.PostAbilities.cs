@@ -22,8 +22,10 @@ namespace MonsterGUI
 		volatile bool itemAbilitiesOn = false;
 
 		// Strategy control
-		int speedThreshold = 5000;
-		int rainingRounds = 250;
+		int speedThreshold_wchill = 5000;
+		int rainingRounds_wchill = 250;
+		int speedThreshold_steamdb = 1000;
+		int rainingRounds_steamdb = 200;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -214,14 +216,20 @@ namespace MonsterGUI
 
 		private bool farmingGoldOnLane(int i)
 		{
-			return ((gameData.Level < speedThreshold || ((gameData.Level % rainingRounds) == 0)) && bossMonsterOnLane(i));
+			return (
+				(gameData.Level < Math.Min(speedThreshold_wchill, speedThreshold_steamdb)
+				|| ((gameData.Level % rainingRounds_wchill) == 0)
+				|| ((gameData.Level % rainingRounds_steamdb) == 0)
+				) 
+				
+				&& bossMonsterOnLane(i));
 		}
 
 		private bool nukeOnLane(int i)
 		{
-			if (gameData.Level > speedThreshold)
+			if (gameData.Level > Math.Max(speedThreshold_wchill, speedThreshold_steamdb))
 			{
-				return ((gameData.Level % rainingRounds) != 0) && bossMonsterOnLane(laneRequested);
+				return ((gameData.Level % rainingRounds_wchill) != 0) && ((gameData.Level % rainingRounds_steamdb) != 0) && bossMonsterOnLane(laneRequested);
 			}
 			else
 			{
@@ -627,7 +635,7 @@ namespace MonsterGUI
 
 								if (!farmingGold)
 								{
-									if (gameData.Level > speedThreshold)
+									if (gameData.Level > Math.Max(speedThreshold_wchill, speedThreshold_steamdb))
 									{
 										if (hasPurchasedAbility(Abilities.CrippleMonster) && !isAbilityCoolingDown(Abilities.CrippleMonster)) // Cripple Monster
 										{
