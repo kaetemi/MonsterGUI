@@ -617,7 +617,7 @@ namespace MonsterGUI
 				}
 			}
 			playerGroup.Text = "Players (" + playerList.Items.Count + ")";
-			this.Text = "MonsterGUI.exe - " + personaName;
+			this.Text = "MonsterGUI.exe" + (string.IsNullOrEmpty(personaName) ? "" : (" - " + personaName));
 		}
 
 		private JsonCallback resultGameDataDelegate;
