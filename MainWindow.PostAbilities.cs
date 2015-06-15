@@ -274,40 +274,31 @@ namespace MonsterGUI
 							laneRequested += random.Next(1, 3); // incl min, excl max
 							laneRequested %= 3;
 						}
-
-						for (int i = 0; i < 3; ++i)
-						{
-							if (!enemiesAliveInLane(laneRequested))
-							{
-								++laneRequested;
-								laneRequested %= 3;
-							}
-							else
-							{
-								break;
-							}
-						}
-					}
-
-					if (elementSwitcherOn)
-					{
-						int bestElement = bestElementLevel();
-						for (int i = 0; i < 3; ++i)
-						{
-							// Cycle until an appropriate lane found
-							if (techTree.Upgrades[(int)gameData.Lanes[laneRequested].Element].Level < bestElement || !enemiesAliveInLane(laneRequested))
-							{
-								++laneRequested;
-								laneRequested %= 3;
-							}
-							else
-							{
-								break;
-							}
-						}
 					}
 
 					bool smartLane = false;
+					if (elementSwitcherOn)
+					{
+						int bestElement = bestElementLevel();
+						int originalRes = laneRequested;
+						for (int i = 0; i < 3; ++i)
+						{
+							// Cycle until an appropriate lane found
+							if (techTree.Upgrades[(int)gameData.Lanes[laneRequested].Element].Level < bestElement
+								|| !enemiesAliveInLane(laneRequested))
+							{
+								++laneRequested;
+								laneRequested %= 3;
+							}
+							else
+							{
+								break;
+							}
+						}
+						if (originalRes != laneRequested)
+							smartLane = true;
+					}
+
 					if (goldLaneSwitcherOn)
 					{
 						int bestLane = -1;
@@ -350,7 +341,27 @@ namespace MonsterGUI
 						}
 					}
 
-					if (laneSwitcherOn || elementSwitcherOn || smartLane) // If any lane switching algorithm is enabled
+					bool monsterLaneOn = laneSwitcherOn || elementSwitcherOn || goldLaneSwitcherOn || bossLaneOn;
+					if (monsterLaneOn && !smartLane) // Already handled by smart lane switches
+					{
+						int originalRes = laneRequested;
+						for (int i = 0; i < 3; ++i)
+						{
+							if (!enemiesAliveInLane(laneRequested))
+							{
+								++laneRequested;
+								laneRequested %= 3;
+							}
+							else
+							{
+								break;
+							}
+						}
+						if (originalRes != laneRequested)
+							smartLane = true;
+					}
+
+					if (laneSwitcherOn || smartLane) // If any lane switching algorithm is enabled
 					{
 						if (laneRequested != playerData.CurrentLane)
 						{
