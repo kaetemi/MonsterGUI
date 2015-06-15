@@ -37,6 +37,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -89,6 +92,7 @@
   <ItemGroup>
     <Content Include="GameDataExample.txt" />
     <Content Include="PlayerDataExample.txt" />
+    <None Include="Resources\Icon.ico" />
     <Content Include="TechTreeExample.txt" />
     <Content Include="TuningDataExample.txt" />
   </ItemGroup>

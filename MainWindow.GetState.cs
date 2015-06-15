@@ -65,7 +65,7 @@ namespace MonsterGUI
 	}
 
 	// g_TuningData
-	enum UpgradeItem
+	enum UpgradeOption
 	{
 		LightArmor = 0,
 		AutoFireCannon = 1,
@@ -154,7 +154,7 @@ namespace MonsterGUI
 
 		public Enemy[] Enemies;
 		public decimal ActivePlayerAbilityGoldPerClick;
-		public UpgradeItem Element;
+		public UpgradeOption Element;
 	}
 
 	struct GameData
@@ -199,12 +199,6 @@ namespace MonsterGUI
 			"time_saving": 28.79324529773146*/
 	}
 
-	struct Upgrade
-	{
-		public int Level;
-		public decimal CostForNextLevel;
-	}
-
 	/// <summary>
 	/// See TechTreeExample.txt
 	/// </summary>
@@ -213,8 +207,14 @@ namespace MonsterGUI
 		public void Init()
 		{
 			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
-			Upgrades = new Upgrade[(int)UpgradeItem.Max];
+			Upgrades = new Upgrade[(int)UpgradeOption.Max];
 			AbilityItems = new int[(int)Abilities.Max];
+		}
+
+		public struct Upgrade
+		{
+			public int Level;
+			public decimal CostForNextLevel;
 		}
 
 		public Upgrade[] Upgrades;
@@ -225,6 +225,23 @@ namespace MonsterGUI
 
 	}
 
+	struct TuningData
+	{
+		public void Init()
+		{
+			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
+			Upgrades = new Upgrade[(int)UpgradeOption.Max];
+		}
+
+		public struct Upgrade
+		{
+			decimal Multiplier;
+			UpgradeType Type;
+		};
+
+		public Upgrade[] Upgrades;
+	}
+
 	public partial class MainWindow
 	{
 		// Game state data
@@ -232,12 +249,14 @@ namespace MonsterGUI
 		GameData gameData = new GameData();
 		Stats stats = new Stats();
 		TechTree techTree = new TechTree();
+		TuningData tuningData = new TuningData();
 
 		volatile bool getPlayerNames = false;
 		bool getSteamId = false;
 		bool getTuningData = false;
 
 		string steamId = "";
+		string personaName = "";
 
 		/// <summary>
 		/// App init
@@ -250,6 +269,7 @@ namespace MonsterGUI
 			resultTuningDataDelegate = new JsonCallback(resultTuningData);
 			gameData.Init();
 			techTree.Init();
+			tuningData.Init();
 		}
 
 		/// <summary>
@@ -311,8 +331,10 @@ namespace MonsterGUI
 			gameData = new GameData();
 			gameData.Init();
 			stats = new Stats();
-			TechTree techTree = new TechTree();
+			techTree = new TechTree();
 			techTree.Init();
+			tuningData = new TuningData();
+			tuningData.Init();
 			printPlayerData();
 			printGameData();
 			printTechTree();
@@ -401,16 +423,16 @@ namespace MonsterGUI
 			string res = "";
 			for (int i = 0; i < gameData.Lanes.Length; ++i)
 			{
-				if (gameData.Lanes[i].Element >= UpgradeItem.ElementalFire && gameData.Lanes[i].Element <= UpgradeItem.ElementalEarth)
+				if (gameData.Lanes[i].Element >= UpgradeOption.ElementalFire && gameData.Lanes[i].Element <= UpgradeOption.ElementalEarth)
 				{
 					int laneEleLevel = techTree.Upgrades[(int)gameData.Lanes[i].Element].Level;
 					if (laneEleLevel >= bestElement)
 					{
-						res += "【" + elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeItem.ElementalFire] + "】 ";
+						res += "【" + elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeOption.ElementalFire] + "】 ";
 					}
 					else
 					{
-						res += elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeItem.ElementalFire] + " ";
+						res += elementIcons[(int)gameData.Lanes[i].Element - (int)UpgradeOption.ElementalFire] + " ";
 					}
 				}
 			}
@@ -552,15 +574,18 @@ namespace MonsterGUI
 		private void resultTokenDetails(JSONNode json)
 		{
 			JSONNode steamid = json["steamid"];
+			JSONNode personaName = json["persona_name"];
+
 			if (steamid != null) steamId = steamid.Value;
+			if (personaName != null) this.personaName = personaName.Value;
 
 			Console.WriteLine("steamid: " + steamId);
 		}
 
 		private JsonCallback resultTuningDataDelegate;
-		private void resultTuningData(JSONNode jsonNotReally)
+		private void resultTuningData(JSONNode json)
 		{
-			JSONNode response = jsonNotReally["response"];
+			JSONNode response = json["response"];
 			if (response == null)
 				return;
 			JSONNode jsonNode = response["json"];
@@ -568,8 +593,8 @@ namespace MonsterGUI
 				return;
 			// Console.WriteLine(jsonNode.Value);
 			// System.IO.File.WriteAllText("TuningDataExample.txt", jsonNode.Value);
-			JSONNode json = JSON.Parse(jsonNode.Value);
-
+			JSONNode tuningData = JSON.Parse(jsonNode.Value);
+			// tuningData
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;
@@ -592,6 +617,7 @@ namespace MonsterGUI
 				}
 			}
 			playerGroup.Text = "Players (" + playerList.Items.Count + ")";
+			this.Text = "MonsterGUI.exe - " + personaName;
 		}
 
 		private JsonCallback resultGameDataDelegate;
@@ -626,7 +652,7 @@ namespace MonsterGUI
 						JSONNode element = lane["element"];
 
 						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Convert.ToDecimal(activePlayerAbilityGoldPerClick.Value, CultureInfo.InvariantCulture);
-						if (element != null) this.gameData.Lanes[i].Element = (UpgradeItem)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeItem.ElementalFire);
+						if (element != null) this.gameData.Lanes[i].Element = (UpgradeOption)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeOption.ElementalFire);
 
 						if (enemies != null)
 						{

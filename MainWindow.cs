@@ -32,6 +32,7 @@ namespace MonsterGUI
 		public MainWindow()
 		{
 			InitializeComponent();
+			Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 			endedThreadDelegate = new EmptyCallback(endedThread);
 			enableDelegate = new EnableCallback(enable);
 			getStateInit();

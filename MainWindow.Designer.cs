@@ -1846,7 +1846,7 @@
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "MainWindow";
-			this.Text = "Monster Game";
+			this.Text = "MonsterGUI.exe";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
 			this.Load += new System.EventHandler(this.MainWindow_Load);
 			this.groupBox1.ResumeLayout(false);
