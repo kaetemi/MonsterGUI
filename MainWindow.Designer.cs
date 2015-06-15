@@ -617,7 +617,7 @@
 			this.throwGoldIntf.Name = "throwGoldIntf";
 			this.throwGoldIntf.Size = new System.Drawing.Size(40, 30);
 			this.throwGoldIntf.TabIndex = 19;
-			this.throwGoldIntf.Text = "Throw Gold";
+			this.throwGoldIntf.Text = "Waste Gold";
 			this.throwGoldIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// treasureCount

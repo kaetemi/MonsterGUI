@@ -50,41 +50,8 @@ namespace MonsterGUI
 		Wormhole = 26,
 		LikeNew = 27,
 
-		Nb = 28
-	}
-
-	/// <summary>
-	/// Bitfield format for abilities
-	/// </summary>
-	enum AbilitiesBitfield
-	{
-		Attack = 1 << Abilities.Attack,
-		ChangeLane = 1 << Abilities.ChangeLane,
-		Respawn = 1 << Abilities.Respawn,
-		ChangeTarget = 1 << Abilities.ChangeTarget,
-		MoraleBooster = 1 << Abilities.MoraleBooster,
-		GoodLuckCharm = 1 << Abilities.GoodLuckCharm,
-		Medics = 1 << Abilities.Medics,
-		MetalDetector = 1 << Abilities.MetalDetector,
-		Cooldown = 1 << Abilities.Cooldown,
-		Nuke = 1 << Abilities.Nuke,
-		ClusterBomb = 1 << Abilities.ClusterBomb,
-		Napalm = 1 << Abilities.Napalm,
-		Revive = 1 << Abilities.Revive,
-		CrippleSpawner = 1 << Abilities.CrippleSpawner,
-		CrippleMonster = 1 << Abilities.CrippleMonster,
-		MaximizeElement = 1 << Abilities.MaximizeElement,
-		GoldRain = 1 << Abilities.GoldRain,
-		IncreaseCritPercentagePermanently = 1 << Abilities.IncreaseCritPercentagePermanently,
-		GoldForDamage = 1 << Abilities.GoldForDamage,
-		IncreaseHPPermanently = 1 << Abilities.IncreaseHPPermanently,
-		GodMode = 1 << Abilities.GodMode,
-		GiveGold = 1 << Abilities.GiveGold,
-		StealHealth = 1 << Abilities.StealHealth,
-		ReflectDamage = 1 << Abilities.ReflectDamage,
-		FeelingLucky = 1 << Abilities.FeelingLucky,
-		Wormhole = 1 << Abilities.Wormhole,
-		LikeNew = 1 << Abilities.LikeNew
+		Nb = 28,
+		Max = 64
 	}
 
 	enum EnemyType
@@ -126,7 +93,9 @@ namespace MonsterGUI
 		PersonalTraining = 23,
 		AFKEquipment = 24,
 		NewMouseButton = 25,
-		Nb = 26
+
+		Nb = 26,
+		Max = 64
 	}
 
 	enum UpgradeType
@@ -154,7 +123,7 @@ namespace MonsterGUI
 
 		public int TimeDied;
 
-		public AbilitiesBitfield ActiveAbilitiesBitfield;
+		public ulong ActiveAbilitiesBitfield;
 	}
 
 	struct Enemy
@@ -244,13 +213,13 @@ namespace MonsterGUI
 		public void Init()
 		{
 			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
-			Upgrades = new Upgrade[(int)UpgradeItem.Nb];
-			AbilityItems = new int[(int)Abilities.Nb - (int)Abilities.StartItem];
+			Upgrades = new Upgrade[(int)UpgradeItem.Max];
+			AbilityItems = new int[(int)Abilities.Max];
 		}
 
 		public Upgrade[] Upgrades;
 
-		public AbilitiesBitfield UnlockedAbilitiesBitfield;
+		public ulong UnlockedAbilitiesBitfield;
 
 		public int[] AbilityItems;
 
@@ -367,7 +336,7 @@ namespace MonsterGUI
 			if (gold != null) playerData.Gold = Convert.ToDecimal(gold.Value, CultureInfo.InvariantCulture);
 			if (currentLane != null) playerData.CurrentLane = Convert.ToInt32(currentLane.Value, CultureInfo.InvariantCulture);
 			if (target != null) playerData.Target = Convert.ToInt32(target.Value, CultureInfo.InvariantCulture);
-			if (activeAbilitiesBitfield != null) playerData.ActiveAbilitiesBitfield = (AbilitiesBitfield)Convert.ToInt32(activeAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
+			if (activeAbilitiesBitfield != null) playerData.ActiveAbilitiesBitfield = Convert.ToUInt64(activeAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
 			if (timeDied != null) playerData.TimeDied = Convert.ToInt32(timeDied.Value, CultureInfo.InvariantCulture);
 
 			if (loot != null)
@@ -450,7 +419,7 @@ namespace MonsterGUI
 
 			// "level": 20,
 			// "cost_for_next_level": 9094947010
-			int hasUpgrade = 0;
+			ulong hasUpgrade = 0;
 			if (upgrades != null)
 			{
 				foreach (JSONNode upgrade in upgrades.Childs)
@@ -465,22 +434,22 @@ namespace MonsterGUI
 						{
 							techTree.Upgrades[upgradeI].Level = Convert.ToInt32(level.Value, CultureInfo.InvariantCulture);
 							techTree.Upgrades[upgradeI].CostForNextLevel = Convert.ToDecimal(costForNextLevel.Value, CultureInfo.InvariantCulture);
-							hasUpgrade |= (1 << upgradeI);
+							hasUpgrade |= (1UL << upgradeI);
 						}
 					}
 				}
 			}
 			for (int i = 0; i < techTree.Upgrades.Length; ++i)
 			{
-				if ((hasUpgrade & (1 << i)) == 0)
+				if ((hasUpgrade & (1UL << i)) == 0)
 				{
 					techTree.Upgrades[i].Level = 0;
 					techTree.Upgrades[i].CostForNextLevel = 0;
 				}
 			}
 
-			if (unlockedAbilitiesBitfield != null) techTree.UnlockedAbilitiesBitfield = (AbilitiesBitfield)Convert.ToInt32(unlockedAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
-			int hasAbilityItem = 0;
+			if (unlockedAbilitiesBitfield != null) techTree.UnlockedAbilitiesBitfield = Convert.ToUInt64(unlockedAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
+			ulong hasAbilityItem = 0;
 			if (abilityItems != null)
 			{
 				foreach (JSONNode abilityItem in abilityItems.Childs)
@@ -489,19 +458,19 @@ namespace MonsterGUI
 					JSONNode quantity = abilityItem["quantity"];
 					if (ability != null && quantity != null)
 					{
-						int abilityI = Convert.ToInt32(ability.Value, CultureInfo.InvariantCulture) - (int)Abilities.StartItem;
+						int abilityI = Convert.ToInt32(ability.Value, CultureInfo.InvariantCulture);
 						int quantityI = Convert.ToInt32(quantity.Value, CultureInfo.InvariantCulture);
 						if (abilityI < techTree.AbilityItems.Length)
 						{
 							techTree.AbilityItems[abilityI] = quantityI;
-							hasAbilityItem |= (1 << abilityI);
+							hasAbilityItem |= (1UL << abilityI);
 						}
 					}
 				}
 			}
 			for (int i = 0; i < techTree.AbilityItems.Length; ++i)
 			{
-				if ((hasAbilityItem & (1 << i)) == 0)
+				if ((hasAbilityItem & (1UL << i)) == 0)
 					techTree.AbilityItems[i] = 0;
 			}
 
@@ -519,27 +488,25 @@ namespace MonsterGUI
 
 		int itemCount(Abilities ability)
 		{
-			int abilityI = (int)ability - (int)Abilities.StartItem;
-			return techTree.AbilityItems[abilityI];
+			return techTree.AbilityItems[(int)ability];
 		}
 
 		bool hasPurchasedAbility(Abilities ability)
 		{
 			if (ability >= Abilities.StartItem)
 			{
-				int abilityI = (int)ability - (int)Abilities.StartItem;
-				return techTree.AbilityItems[abilityI] > 0;
+				return techTree.AbilityItems[(int)ability] > 0;
 			}
 			else
 			{
-				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << (int)ability);
+				ulong abbit = 1UL << (int)ability;
 				return (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
 			}
 		}
 
 		bool isAbilityCoolingDown(Abilities ability)
 		{
-			AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << (int)ability);
+			ulong abbit = 1UL << (int)ability;
 			return (playerData.ActiveAbilitiesBitfield & abbit) == abbit;
 		}
 
@@ -552,19 +519,19 @@ namespace MonsterGUI
 			for (int i = 0; i < abilitiesIntfs.Length; ++i)
 			{
 				int ab = i + (int)Abilities.StartAbility;
-				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << ab);
+				ulong abbit = (1UL << ab);
 				abilitiesIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
 				abilitiesIntfs[i].Visible = (techTree.UnlockedAbilitiesBitfield & abbit) == abbit;
 			}
 			for (int i = 0; i < itemsIntfs.Length; ++i)
 			{
 				int ab = i + (int)Abilities.StartItem;
-				AbilitiesBitfield abbit = (AbilitiesBitfield)(1 << ab);
+				ulong abbit = (1UL << ab);
 				itemsIntfs[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
-				itemsIntfs[i].Visible = (techTree.AbilityItems[i] > 0);
-				itemsCounts[i].Text = techTree.AbilityItems[i].ToString();
+				itemsIntfs[i].Visible = (techTree.AbilityItems[ab] > 0);
+				itemsCounts[i].Text = techTree.AbilityItems[ab].ToString();
 				itemsCounts[i].Enabled = (playerData.ActiveAbilitiesBitfield & abbit) != abbit;
-				itemsCounts[i].Visible = (techTree.AbilityItems[i] > 0);
+				itemsCounts[i].Visible = (techTree.AbilityItems[ab] > 0);
 			}
 		}
 
