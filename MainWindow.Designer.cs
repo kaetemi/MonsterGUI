@@ -898,9 +898,9 @@
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(131, 46);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(41, 13);
+			this.label3.Size = new System.Drawing.Size(61, 13);
 			this.label3.TabIndex = 1;
-			this.label3.Text = "Target:";
+			this.label3.Text = "Target (..x):";
 			// 
 			// upgrMaxHP
 			// 
@@ -988,7 +988,7 @@
 			this.elementSwitcherBox.Size = new System.Drawing.Size(118, 55);
 			this.elementSwitcherBox.TabIndex = 5;
 			this.elementSwitcherBox.TabStop = false;
-			this.elementSwitcherBox.Text = "Element Switcher";
+			this.elementSwitcherBox.Text = "Ele. Lane Switcher";
 			// 
 			// elementText
 			// 

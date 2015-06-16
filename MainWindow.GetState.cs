@@ -237,7 +237,13 @@ namespace MonsterGUI
 
 		public struct PlayerStruct
 		{
+			public decimal Hp;
+			public decimal Dps;
 			public decimal DamagePerClick;
+			public decimal DamageMultiplierFire;
+			public decimal DamageMultiplierCrit;
+			public decimal CritPercentage;
+			public decimal LootChance;
 		}
 
 		public struct Upgrade
@@ -524,6 +530,16 @@ namespace MonsterGUI
 			printTechTree();
 		}
 
+		string[] printTechTreeBases = new string[(int)UpgradeType.Nb];
+		void printTuningData()
+		{
+			printTechTreeBases[(int)UpgradeType.HitPoints] = (tuningData.Player.Hp / 1000m).ToString() + "k";
+			printTechTreeBases[(int)UpgradeType.DPS] = tuningData.Player.DamagePerClick.ToString();
+			printTechTreeBases[(int)UpgradeType.ClickDamage] = tuningData.Player.DamagePerClick.ToString();
+			printTechTreeBases[(int)UpgradeType.DamageMultiplier_Crit] = tuningData.Player.DamageMultiplierCrit.ToString() + "x";
+			printTechTreeBases[(int)UpgradeType.BossLootDropPercentage] = tuningData.Player.LootChance.ToString() + "x";
+		}
+
 		System.Windows.Forms.Label[] upgradeIntf = new System.Windows.Forms.Label[(int)UpgradeType.Nb];
 		decimal[] printTechTreeMultipliers = new decimal[(int)UpgradeType.Nb];
 		string[] printTechTreeLevels = new string[(int)UpgradeType.Nb];
@@ -532,11 +548,15 @@ namespace MonsterGUI
 		/// </summary>
 		void printTechTree()
 		{
+			if (printTechTreeBases[(int)UpgradeType.ClickDamage] == null)
+				return;
+
 			for (int i = 0; i < (int)UpgradeType.Nb; ++i)
 			{
 				printTechTreeMultipliers[i] = 1.0m;
 				printTechTreeLevels[i] = "";
 			}
+			printTechTreeMultipliers[(int)UpgradeType.DPS] = 0.0m;
 			for (int i = 0; i < tuningData.Upgrades.Length; ++i) if (tuningData.Upgrades[i].Type < UpgradeType.Nb)
 			{
 				decimal totalMultiplier = (decimal)techTree.Upgrades[i].Level * tuningData.Upgrades[i].Multiplier;
@@ -546,7 +566,7 @@ namespace MonsterGUI
 			for (int i = 0; i < upgradeIntf.Length; ++i) if (upgradeIntf[i] != null && !string.IsNullOrEmpty(printTechTreeLevels[i]))
 			{
 				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
-					+ "x (" + printTechTreeLevels[i].Substring(1) + ")";
+					+ "x" + printTechTreeBases[i] + " (" + printTechTreeLevels[i].Substring(1) + ")";
 			}
 			decimal dmgBase = tuningData.Player.DamagePerClick;
 			decimal mulBase = printTechTreeMultipliers[(int)UpgradeType.ClickDamage];
@@ -650,9 +670,21 @@ namespace MonsterGUI
 			JSONNode player = tuningData["player"];
 			if (player != null)
 			{
+				JSONNode hp = player["hp"].Value;
+				JSONNode dps = player["dps"].Value;
 				JSONNode damagePerClick = player["damage_per_click"].Value;
+				JSONNode damageMultiplierFire = player["damage_multiplier_fire"].Value;
+				JSONNode damageMultiplierCrit = player["damage_multiplier_crit"].Value;
+				JSONNode critPercentage = player["crit_percentage"].Value;
+				JSONNode lootChance = player["loot_chance"].Value;
 
+				if (hp != null) this.tuningData.Player.Hp = Decimal.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (dps != null) this.tuningData.Player.Dps = Decimal.Parse(dps.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 				if (damagePerClick != null) this.tuningData.Player.DamagePerClick = Decimal.Parse(damagePerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (damageMultiplierFire != null) this.tuningData.Player.DamageMultiplierFire = Decimal.Parse(damageMultiplierFire.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (damageMultiplierCrit != null) this.tuningData.Player.DamageMultiplierCrit = Decimal.Parse(damageMultiplierCrit.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (critPercentage != null) this.tuningData.Player.CritPercentage = Decimal.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (lootChance != null) this.tuningData.Player.LootChance = Decimal.Parse(lootChance.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 			}
 
 			JSONNode upgrades = tuningData["upgrades"];
@@ -671,6 +703,8 @@ namespace MonsterGUI
 					}
 				}
 			}
+
+			printTuningData();
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;
