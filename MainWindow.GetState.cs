@@ -528,7 +528,7 @@ namespace MonsterGUI
 		{
 			for (int i = 0; i < (int)UpgradeType.Nb; ++i)
 			{
-				printTechTreeMultipliers[i] = 0.0m;
+				printTechTreeMultipliers[i] = 1.0m;
 				printTechTreeLevels[i] = "";
 			}
 			for (int i = 0; i < tuningData.Upgrades.Length; ++i) if (tuningData.Upgrades[i].Type < UpgradeType.Nb)
@@ -539,7 +539,8 @@ namespace MonsterGUI
 			}
 			for (int i = 0; i < upgradeIntf.Length; ++i) if (upgradeIntf[i] != null && !string.IsNullOrEmpty(printTechTreeLevels[i]))
 			{
-				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], 1).ToString(CultureInfo.InvariantCulture) + "x (" + printTechTreeLevels[i].Substring(1) + ")";
+				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
+					+ "x (" + printTechTreeLevels[i].Substring(1) + ")";
 			}
 
 			printPlayerTech();

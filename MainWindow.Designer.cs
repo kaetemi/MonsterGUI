@@ -429,6 +429,15 @@
 			// 
 			// groupBox15
 			// 
+			this.groupBox15.Controls.Add(this.upgrMaxLoot);
+			this.groupBox15.Controls.Add(this.upgrMaxEarth);
+			this.groupBox15.Controls.Add(this.upgrMaxAir);
+			this.groupBox15.Controls.Add(this.upgrMaxWater);
+			this.groupBox15.Controls.Add(this.upgrMaxFire);
+			this.groupBox15.Controls.Add(this.upgrMaxCrit);
+			this.groupBox15.Controls.Add(this.upgrMaxDmg);
+			this.groupBox15.Controls.Add(this.upgrMaxDPS);
+			this.groupBox15.Controls.Add(this.upgrMaxHP);
 			this.groupBox15.Controls.Add(this.checkBox2);
 			this.groupBox15.Controls.Add(this.upgrStatHP);
 			this.groupBox15.Controls.Add(this.upgrStatDPS);
@@ -448,16 +457,7 @@
 			this.groupBox15.Controls.Add(this.upgrStatEarth);
 			this.groupBox15.Controls.Add(this.upgrStatWater);
 			this.groupBox15.Controls.Add(this.upgrStatFire);
-			this.groupBox15.Controls.Add(this.upgrMaxLoot);
-			this.groupBox15.Controls.Add(this.upgrMaxEarth);
-			this.groupBox15.Controls.Add(this.upgrMaxAir);
-			this.groupBox15.Controls.Add(this.upgrMaxWater);
-			this.groupBox15.Controls.Add(this.upgrMaxFire);
-			this.groupBox15.Controls.Add(this.upgrMaxCrit);
-			this.groupBox15.Controls.Add(this.upgrMaxDmg);
-			this.groupBox15.Controls.Add(this.upgrMaxDPS);
 			this.groupBox15.Controls.Add(this.label3);
-			this.groupBox15.Controls.Add(this.upgrMaxHP);
 			this.groupBox15.Enabled = false;
 			this.groupBox15.Location = new System.Drawing.Point(3, 157);
 			this.groupBox15.Name = "groupBox15";
@@ -665,67 +665,220 @@
 			// upgrMaxLoot
 			// 
 			this.upgrMaxLoot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxLoot.DecimalPlaces = 2;
+			this.upgrMaxLoot.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
 			this.upgrMaxLoot.Location = new System.Drawing.Point(134, 166);
+			this.upgrMaxLoot.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxLoot.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxLoot.Name = "upgrMaxLoot";
 			this.upgrMaxLoot.Size = new System.Drawing.Size(60, 20);
 			this.upgrMaxLoot.TabIndex = 9;
+			this.upgrMaxLoot.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxEarth
 			// 
 			this.upgrMaxEarth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxEarth.DecimalPlaces = 1;
+			this.upgrMaxEarth.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
 			this.upgrMaxEarth.Location = new System.Drawing.Point(102, 223);
+			this.upgrMaxEarth.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxEarth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxEarth.Name = "upgrMaxEarth";
 			this.upgrMaxEarth.Size = new System.Drawing.Size(42, 20);
 			this.upgrMaxEarth.TabIndex = 8;
+			this.upgrMaxEarth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxAir
 			// 
 			this.upgrMaxAir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxAir.DecimalPlaces = 1;
+			this.upgrMaxAir.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
 			this.upgrMaxAir.Location = new System.Drawing.Point(150, 223);
+			this.upgrMaxAir.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxAir.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxAir.Name = "upgrMaxAir";
 			this.upgrMaxAir.Size = new System.Drawing.Size(42, 20);
 			this.upgrMaxAir.TabIndex = 7;
 			this.upgrMaxAir.Tag = "0";
+			this.upgrMaxAir.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxWater
 			// 
 			this.upgrMaxWater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxWater.DecimalPlaces = 1;
+			this.upgrMaxWater.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
 			this.upgrMaxWater.Location = new System.Drawing.Point(54, 223);
+			this.upgrMaxWater.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxWater.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxWater.Name = "upgrMaxWater";
 			this.upgrMaxWater.Size = new System.Drawing.Size(42, 20);
 			this.upgrMaxWater.TabIndex = 6;
+			this.upgrMaxWater.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxFire
 			// 
 			this.upgrMaxFire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxFire.DecimalPlaces = 1;
+			this.upgrMaxFire.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
 			this.upgrMaxFire.Location = new System.Drawing.Point(6, 223);
+			this.upgrMaxFire.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxFire.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxFire.Name = "upgrMaxFire";
 			this.upgrMaxFire.Size = new System.Drawing.Size(42, 20);
 			this.upgrMaxFire.TabIndex = 5;
+			this.upgrMaxFire.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxCrit
 			// 
 			this.upgrMaxCrit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxCrit.DecimalPlaces = 1;
 			this.upgrMaxCrit.Location = new System.Drawing.Point(134, 140);
+			this.upgrMaxCrit.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxCrit.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxCrit.Name = "upgrMaxCrit";
 			this.upgrMaxCrit.Size = new System.Drawing.Size(60, 20);
 			this.upgrMaxCrit.TabIndex = 4;
+			this.upgrMaxCrit.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxDmg
 			// 
 			this.upgrMaxDmg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxDmg.DecimalPlaces = 1;
 			this.upgrMaxDmg.Location = new System.Drawing.Point(134, 114);
+			this.upgrMaxDmg.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxDmg.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxDmg.Name = "upgrMaxDmg";
 			this.upgrMaxDmg.Size = new System.Drawing.Size(60, 20);
 			this.upgrMaxDmg.TabIndex = 3;
+			this.upgrMaxDmg.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// upgrMaxDPS
 			// 
 			this.upgrMaxDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxDPS.DecimalPlaces = 1;
 			this.upgrMaxDPS.Location = new System.Drawing.Point(134, 88);
+			this.upgrMaxDPS.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxDPS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxDPS.Name = "upgrMaxDPS";
 			this.upgrMaxDPS.Size = new System.Drawing.Size(60, 20);
 			this.upgrMaxDPS.TabIndex = 2;
+			this.upgrMaxDPS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// label3
 			// 
@@ -740,10 +893,26 @@
 			// upgrMaxHP
 			// 
 			this.upgrMaxHP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxHP.DecimalPlaces = 1;
 			this.upgrMaxHP.Location = new System.Drawing.Point(134, 62);
+			this.upgrMaxHP.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxHP.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.upgrMaxHP.Name = "upgrMaxHP";
 			this.upgrMaxHP.Size = new System.Drawing.Size(60, 20);
 			this.upgrMaxHP.TabIndex = 0;
+			this.upgrMaxHP.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// groupBox13
 			// 
