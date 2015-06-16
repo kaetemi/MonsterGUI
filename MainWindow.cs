@@ -257,6 +257,7 @@ namespace MonsterGUI
 			targetSpawnerCheck.Checked = status;
 			ovenzifCheck.Checked = status;
 			itemsCheck.Checked = status;
+			autoUpgradesCheck.Checked = status;
 		}
 
 		private void presetEverythingOff_Click(object sender, EventArgs e)
@@ -308,6 +309,58 @@ namespace MonsterGUI
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
 		{
 			showResponsesOn = checkBox1.Checked;
+		}
+
+		UpgradeType printDamageUpgrade = UpgradeType.Nb;
+
+		private void upgrMaxHP_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxHP = upgrMaxHP.Value;
+		}
+
+		private void upgrMaxDPS_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxDPS = upgrMaxDPS.Value;
+		}
+
+		private void upgrMaxDmg_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxDamage = upgrMaxDmg.Value;
+		}
+
+		private void upgrMaxCrit_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxCrit = upgrMaxCrit.Value;
+		}
+
+		private void upgrMaxLoot_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxLoot = upgrMaxLoot.Value;
+		}
+
+		private void upgrMaxFire_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxFire = upgrMaxFire.Value;
+		}
+
+		private void upgrMaxWater_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxWater = upgrMaxWater.Value;
+		}
+
+		private void upgrMaxEarth_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxEarth = upgrMaxEarth.Value;
+		}
+
+		private void upgrMaxAir_ValueChanged(object sender, EventArgs e)
+		{
+			upgradeMaxAir = upgrMaxAir.Value;
+		}
+
+		private void autoUpgradesCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			autoUpgradesOn = autoUpgradesCheck.Checked;
 		}
 	}
 }

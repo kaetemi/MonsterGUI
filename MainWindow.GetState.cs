@@ -93,8 +93,11 @@ namespace MonsterGUI
 		PersonalTraining = 23,
 		AFKEquipment = 24,
 		NewMouseButton = 25,
+		HPUpgrade5 = 26,
+		DPSUpgrade5 = 27,
+		ClickUpgrade5 = 28,
 
-		Nb = 26,
+		Nb = 29,
 		Max = 64
 	}
 
@@ -223,6 +226,8 @@ namespace MonsterGUI
 
 		public int[] AbilityItems;
 
+		public decimal CritPercentage;
+
 	}
 
 	struct TuningData
@@ -250,6 +255,8 @@ namespace MonsterGUI
 		{
 			public decimal Multiplier;
 			public UpgradeType Type;
+			public int RequiredUpgrade;
+			public int RequiredUpgradeLevel;
 		};
 
 		public PlayerStruct Player;
@@ -363,6 +370,7 @@ namespace MonsterGUI
 			printPlayerData();
 			printGameData();
 			printTechTree();
+			processTechTree(); // Copy some data from print over for use
 		}
 
 		private void critDamage(long value)
@@ -422,7 +430,7 @@ namespace MonsterGUI
 			"① ② ❸ ④",
 			"① ② ③ ❹",
 		};
-
+		
 		/// <summary>
 		/// Display all player specific data to screen (stuff in playerData changed)
 		/// </summary>
@@ -469,7 +477,10 @@ namespace MonsterGUI
 			JSONNode unlockedAbilitiesBitfield = json["unlocked_abilities_bitfield"];
 			JSONNode abilityItems = json["ability_items"];
 			JSONNode upgrades = json["upgrades"];
+			JSONNode critPercentage = json["crit_percentage"];
 
+			if (critPercentage != null) this.techTree.CritPercentage = Decimal.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+			
 			// "level": 20,
 			// "cost_for_next_level": 9094947010
 			ulong hasUpgrade = 0;
@@ -497,7 +508,7 @@ namespace MonsterGUI
 				if ((hasUpgrade & (1UL << i)) == 0)
 				{
 					techTree.Upgrades[i].Level = 0;
-					techTree.Upgrades[i].CostForNextLevel = 0;
+					techTree.Upgrades[i].CostForNextLevel = decimal.MaxValue;
 				}
 			}
 
@@ -528,6 +539,7 @@ namespace MonsterGUI
 			}
 
 			printTechTree();
+			processTechTree(); // Copy some data from print over for use
 		}
 
 		string[] printTechTreeBases = new string[(int)UpgradeType.Nb];
@@ -540,11 +552,26 @@ namespace MonsterGUI
 			printTechTreeBases[(int)UpgradeType.BossLootDropPercentage] = tuningData.Player.LootChance.ToString() + "x";
 		}
 
+		decimal[] techTreeUpgradeMultipliers = new decimal[(int)UpgradeType.Nb];
+		void processTechTree()
+		{
+			if (printTechTreeBases[(int)UpgradeType.ClickDamage] == null)
+				return;
+
+			// Just copy so they can be used in thread
+			for (int i = 0; i < printTechTreeMultipliers.Length; ++i)
+			{
+				techTreeUpgradeMultipliers[i] = printTechTreeMultipliers[i];
+			}
+
+			waitForUpgradeData = false;
+		}
+
 		System.Windows.Forms.Label[] upgradeIntf = new System.Windows.Forms.Label[(int)UpgradeType.Nb];
 		decimal[] printTechTreeMultipliers = new decimal[(int)UpgradeType.Nb];
 		string[] printTechTreeLevels = new string[(int)UpgradeType.Nb];
 		/// <summary>
-		/// Display all tech tree data on screen (stuff in techTree changed)
+		/// Display all tech tree data on screen (stuff in techTree changed) (must call processTechTree after)
 		/// </summary>
 		void printTechTree()
 		{
@@ -567,6 +594,9 @@ namespace MonsterGUI
 			{
 				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
 					+ "x" + printTechTreeBases[i] + " (" + printTechTreeLevels[i].Substring(1) + ")";
+				bool makeBold = ((int)printDamageUpgrade == i);
+				if (makeBold != upgradeIntf[i].Font.Bold)
+					upgradeIntf[i].Font = new System.Drawing.Font(upgradeIntf[i].Font, makeBold ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular);
 			}
 			decimal dmgBase = tuningData.Player.DamagePerClick;
 			decimal mulBase = printTechTreeMultipliers[(int)UpgradeType.ClickDamage];
@@ -697,14 +727,19 @@ namespace MonsterGUI
 					{
 						JSONNode multiplier = upgrade.Value["multiplier"];
 						JSONNode type = upgrade.Value["type"];
+						JSONNode requiredUpgrade = upgrade.Value["required_upgrade"];
+						JSONNode requiredUpgradeLevel = upgrade.Value["required_upgrade_level"];
 
 						if (multiplier != null) this.tuningData.Upgrades[id].Multiplier = Decimal.Parse(multiplier.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 						if (type != null) this.tuningData.Upgrades[id].Type = (UpgradeType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
+						if (requiredUpgrade != null) this.tuningData.Upgrades[id].RequiredUpgrade = Convert.ToInt32(requiredUpgrade.Value, CultureInfo.InvariantCulture);
+						if (requiredUpgradeLevel != null) this.tuningData.Upgrades[id].RequiredUpgradeLevel = Convert.ToInt32(requiredUpgradeLevel.Value, CultureInfo.InvariantCulture);
 					}
 				}
 			}
 
 			printTuningData();
+			waitForTuningData = false;
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;

@@ -43,7 +43,22 @@
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox15 = new System.Windows.Forms.GroupBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.dpcCritDisp = new System.Windows.Forms.Label();
+			this.label35 = new System.Windows.Forms.Label();
+			this.dpcEleDisp = new System.Windows.Forms.Label();
+			this.dpcDisp = new System.Windows.Forms.Label();
+			this.label22 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this.upgrMaxLoot = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxEarth = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxAir = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxWater = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxFire = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxCrit = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxDmg = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxDPS = new System.Windows.Forms.NumericUpDown();
+			this.upgrMaxHP = new System.Windows.Forms.NumericUpDown();
+			this.autoUpgradesCheck = new System.Windows.Forms.CheckBox();
 			this.upgrStatHP = new System.Windows.Forms.Label();
 			this.upgrStatDPS = new System.Windows.Forms.Label();
 			this.upgrStatLoot = new System.Windows.Forms.Label();
@@ -62,16 +77,7 @@
 			this.upgrStatEarth = new System.Windows.Forms.Label();
 			this.upgrStatWater = new System.Windows.Forms.Label();
 			this.upgrStatFire = new System.Windows.Forms.Label();
-			this.upgrMaxLoot = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxEarth = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxAir = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxWater = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxFire = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxCrit = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxDmg = new System.Windows.Forms.NumericUpDown();
-			this.upgrMaxDPS = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
-			this.upgrMaxHP = new System.Windows.Forms.NumericUpDown();
 			this.groupBox13 = new System.Windows.Forms.GroupBox();
 			this.requestedLaneText = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
@@ -177,12 +183,6 @@
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
-			this.label13 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.dpcDisp = new System.Windows.Forms.Label();
-			this.dpcEleDisp = new System.Windows.Forms.Label();
-			this.dpcCritDisp = new System.Windows.Forms.Label();
-			this.label35 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -450,7 +450,7 @@
 			this.groupBox15.Controls.Add(this.upgrMaxDmg);
 			this.groupBox15.Controls.Add(this.upgrMaxDPS);
 			this.groupBox15.Controls.Add(this.upgrMaxHP);
-			this.groupBox15.Controls.Add(this.checkBox2);
+			this.groupBox15.Controls.Add(this.autoUpgradesCheck);
 			this.groupBox15.Controls.Add(this.upgrStatHP);
 			this.groupBox15.Controls.Add(this.upgrStatDPS);
 			this.groupBox15.Controls.Add(this.upgrStatLoot);
@@ -470,7 +470,6 @@
 			this.groupBox15.Controls.Add(this.upgrStatWater);
 			this.groupBox15.Controls.Add(this.upgrStatFire);
 			this.groupBox15.Controls.Add(this.label3);
-			this.groupBox15.Enabled = false;
 			this.groupBox15.Location = new System.Drawing.Point(3, 157);
 			this.groupBox15.Name = "groupBox15";
 			this.groupBox15.Size = new System.Drawing.Size(198, 249);
@@ -478,15 +477,327 @@
 			this.groupBox15.TabStop = false;
 			this.groupBox15.Text = "Upgrades";
 			// 
-			// checkBox2
+			// dpcCritDisp
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(126, 19);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(66, 17);
-			this.checkBox2.TabIndex = 29;
-			this.checkBox2.Text = "Running";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.dpcCritDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dpcCritDisp.AutoSize = true;
+			this.dpcCritDisp.Location = new System.Drawing.Point(56, 42);
+			this.dpcCritDisp.Name = "dpcCritDisp";
+			this.dpcCritDisp.Size = new System.Drawing.Size(16, 13);
+			this.dpcCritDisp.TabIndex = 34;
+			this.dpcCritDisp.Text = "...";
+			// 
+			// label35
+			// 
+			this.label35.AutoSize = true;
+			this.label35.Location = new System.Drawing.Point(6, 42);
+			this.label35.Name = "label35";
+			this.label35.Size = new System.Drawing.Size(50, 13);
+			this.label35.TabIndex = 33;
+			this.label35.Text = "DPC Crit:";
+			this.label35.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// dpcEleDisp
+			// 
+			this.dpcEleDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dpcEleDisp.AutoSize = true;
+			this.dpcEleDisp.Location = new System.Drawing.Point(56, 29);
+			this.dpcEleDisp.Name = "dpcEleDisp";
+			this.dpcEleDisp.Size = new System.Drawing.Size(16, 13);
+			this.dpcEleDisp.TabIndex = 32;
+			this.dpcEleDisp.Text = "...";
+			// 
+			// dpcDisp
+			// 
+			this.dpcDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dpcDisp.AutoSize = true;
+			this.dpcDisp.Location = new System.Drawing.Point(56, 16);
+			this.dpcDisp.Name = "dpcDisp";
+			this.dpcDisp.Size = new System.Drawing.Size(16, 13);
+			this.dpcDisp.TabIndex = 31;
+			this.dpcDisp.Text = "...";
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Location = new System.Drawing.Point(24, 16);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(32, 13);
+			this.label22.TabIndex = 30;
+			this.label22.Text = "DPC:";
+			this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(7, 29);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(50, 13);
+			this.label13.TabIndex = 11;
+			this.label13.Text = "DPC Ele:";
+			this.label13.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// upgrMaxLoot
+			// 
+			this.upgrMaxLoot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxLoot.DecimalPlaces = 2;
+			this.upgrMaxLoot.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+			this.upgrMaxLoot.Location = new System.Drawing.Point(134, 166);
+			this.upgrMaxLoot.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxLoot.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxLoot.Name = "upgrMaxLoot";
+			this.upgrMaxLoot.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxLoot.TabIndex = 9;
+			this.upgrMaxLoot.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxLoot.ValueChanged += new System.EventHandler(this.upgrMaxLoot_ValueChanged);
+			// 
+			// upgrMaxEarth
+			// 
+			this.upgrMaxEarth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxEarth.DecimalPlaces = 1;
+			this.upgrMaxEarth.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+			this.upgrMaxEarth.Location = new System.Drawing.Point(102, 223);
+			this.upgrMaxEarth.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxEarth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxEarth.Name = "upgrMaxEarth";
+			this.upgrMaxEarth.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxEarth.TabIndex = 8;
+			this.upgrMaxEarth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxEarth.ValueChanged += new System.EventHandler(this.upgrMaxEarth_ValueChanged);
+			// 
+			// upgrMaxAir
+			// 
+			this.upgrMaxAir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxAir.DecimalPlaces = 1;
+			this.upgrMaxAir.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+			this.upgrMaxAir.Location = new System.Drawing.Point(150, 223);
+			this.upgrMaxAir.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxAir.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxAir.Name = "upgrMaxAir";
+			this.upgrMaxAir.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxAir.TabIndex = 7;
+			this.upgrMaxAir.Tag = "0";
+			this.upgrMaxAir.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxAir.ValueChanged += new System.EventHandler(this.upgrMaxAir_ValueChanged);
+			// 
+			// upgrMaxWater
+			// 
+			this.upgrMaxWater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxWater.DecimalPlaces = 1;
+			this.upgrMaxWater.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+			this.upgrMaxWater.Location = new System.Drawing.Point(54, 223);
+			this.upgrMaxWater.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxWater.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxWater.Name = "upgrMaxWater";
+			this.upgrMaxWater.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxWater.TabIndex = 6;
+			this.upgrMaxWater.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxWater.ValueChanged += new System.EventHandler(this.upgrMaxWater_ValueChanged);
+			// 
+			// upgrMaxFire
+			// 
+			this.upgrMaxFire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxFire.DecimalPlaces = 1;
+			this.upgrMaxFire.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+			this.upgrMaxFire.Location = new System.Drawing.Point(6, 223);
+			this.upgrMaxFire.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxFire.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxFire.Name = "upgrMaxFire";
+			this.upgrMaxFire.Size = new System.Drawing.Size(42, 20);
+			this.upgrMaxFire.TabIndex = 5;
+			this.upgrMaxFire.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxFire.ValueChanged += new System.EventHandler(this.upgrMaxFire_ValueChanged);
+			// 
+			// upgrMaxCrit
+			// 
+			this.upgrMaxCrit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxCrit.DecimalPlaces = 1;
+			this.upgrMaxCrit.Location = new System.Drawing.Point(134, 140);
+			this.upgrMaxCrit.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxCrit.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxCrit.Name = "upgrMaxCrit";
+			this.upgrMaxCrit.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxCrit.TabIndex = 4;
+			this.upgrMaxCrit.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxCrit.ValueChanged += new System.EventHandler(this.upgrMaxCrit_ValueChanged);
+			// 
+			// upgrMaxDmg
+			// 
+			this.upgrMaxDmg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxDmg.DecimalPlaces = 1;
+			this.upgrMaxDmg.Location = new System.Drawing.Point(134, 114);
+			this.upgrMaxDmg.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxDmg.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxDmg.Name = "upgrMaxDmg";
+			this.upgrMaxDmg.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxDmg.TabIndex = 3;
+			this.upgrMaxDmg.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxDmg.ValueChanged += new System.EventHandler(this.upgrMaxDmg_ValueChanged);
+			// 
+			// upgrMaxDPS
+			// 
+			this.upgrMaxDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxDPS.DecimalPlaces = 1;
+			this.upgrMaxDPS.Location = new System.Drawing.Point(134, 88);
+			this.upgrMaxDPS.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxDPS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxDPS.Name = "upgrMaxDPS";
+			this.upgrMaxDPS.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxDPS.TabIndex = 2;
+			this.upgrMaxDPS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxDPS.ValueChanged += new System.EventHandler(this.upgrMaxDPS_ValueChanged);
+			// 
+			// upgrMaxHP
+			// 
+			this.upgrMaxHP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.upgrMaxHP.DecimalPlaces = 1;
+			this.upgrMaxHP.Location = new System.Drawing.Point(134, 62);
+			this.upgrMaxHP.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+			this.upgrMaxHP.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxHP.Name = "upgrMaxHP";
+			this.upgrMaxHP.Size = new System.Drawing.Size(60, 20);
+			this.upgrMaxHP.TabIndex = 0;
+			this.upgrMaxHP.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.upgrMaxHP.ValueChanged += new System.EventHandler(this.upgrMaxHP_ValueChanged);
+			// 
+			// autoUpgradesCheck
+			// 
+			this.autoUpgradesCheck.AutoSize = true;
+			this.autoUpgradesCheck.Location = new System.Drawing.Point(126, 19);
+			this.autoUpgradesCheck.Name = "autoUpgradesCheck";
+			this.autoUpgradesCheck.Size = new System.Drawing.Size(66, 17);
+			this.autoUpgradesCheck.TabIndex = 29;
+			this.autoUpgradesCheck.Text = "Running";
+			this.autoUpgradesCheck.UseVisualStyleBackColor = true;
+			this.autoUpgradesCheck.CheckedChanged += new System.EventHandler(this.autoUpgradesCheck_CheckedChanged);
 			// 
 			// upgrStatHP
 			// 
@@ -674,224 +985,6 @@
 			this.upgrStatFire.TabIndex = 11;
 			this.upgrStatFire.Text = "...";
 			// 
-			// upgrMaxLoot
-			// 
-			this.upgrMaxLoot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxLoot.DecimalPlaces = 2;
-			this.upgrMaxLoot.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-			this.upgrMaxLoot.Location = new System.Drawing.Point(134, 166);
-			this.upgrMaxLoot.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxLoot.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxLoot.Name = "upgrMaxLoot";
-			this.upgrMaxLoot.Size = new System.Drawing.Size(60, 20);
-			this.upgrMaxLoot.TabIndex = 9;
-			this.upgrMaxLoot.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxEarth
-			// 
-			this.upgrMaxEarth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxEarth.DecimalPlaces = 1;
-			this.upgrMaxEarth.Increment = new decimal(new int[] {
-            15,
-            0,
-            0,
-            65536});
-			this.upgrMaxEarth.Location = new System.Drawing.Point(102, 223);
-			this.upgrMaxEarth.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxEarth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxEarth.Name = "upgrMaxEarth";
-			this.upgrMaxEarth.Size = new System.Drawing.Size(42, 20);
-			this.upgrMaxEarth.TabIndex = 8;
-			this.upgrMaxEarth.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxAir
-			// 
-			this.upgrMaxAir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxAir.DecimalPlaces = 1;
-			this.upgrMaxAir.Increment = new decimal(new int[] {
-            15,
-            0,
-            0,
-            65536});
-			this.upgrMaxAir.Location = new System.Drawing.Point(150, 223);
-			this.upgrMaxAir.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxAir.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxAir.Name = "upgrMaxAir";
-			this.upgrMaxAir.Size = new System.Drawing.Size(42, 20);
-			this.upgrMaxAir.TabIndex = 7;
-			this.upgrMaxAir.Tag = "0";
-			this.upgrMaxAir.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxWater
-			// 
-			this.upgrMaxWater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxWater.DecimalPlaces = 1;
-			this.upgrMaxWater.Increment = new decimal(new int[] {
-            15,
-            0,
-            0,
-            65536});
-			this.upgrMaxWater.Location = new System.Drawing.Point(54, 223);
-			this.upgrMaxWater.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxWater.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxWater.Name = "upgrMaxWater";
-			this.upgrMaxWater.Size = new System.Drawing.Size(42, 20);
-			this.upgrMaxWater.TabIndex = 6;
-			this.upgrMaxWater.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxFire
-			// 
-			this.upgrMaxFire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxFire.DecimalPlaces = 1;
-			this.upgrMaxFire.Increment = new decimal(new int[] {
-            15,
-            0,
-            0,
-            65536});
-			this.upgrMaxFire.Location = new System.Drawing.Point(6, 223);
-			this.upgrMaxFire.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxFire.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxFire.Name = "upgrMaxFire";
-			this.upgrMaxFire.Size = new System.Drawing.Size(42, 20);
-			this.upgrMaxFire.TabIndex = 5;
-			this.upgrMaxFire.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxCrit
-			// 
-			this.upgrMaxCrit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxCrit.DecimalPlaces = 1;
-			this.upgrMaxCrit.Location = new System.Drawing.Point(134, 140);
-			this.upgrMaxCrit.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxCrit.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxCrit.Name = "upgrMaxCrit";
-			this.upgrMaxCrit.Size = new System.Drawing.Size(60, 20);
-			this.upgrMaxCrit.TabIndex = 4;
-			this.upgrMaxCrit.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxDmg
-			// 
-			this.upgrMaxDmg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxDmg.DecimalPlaces = 1;
-			this.upgrMaxDmg.Location = new System.Drawing.Point(134, 114);
-			this.upgrMaxDmg.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxDmg.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxDmg.Name = "upgrMaxDmg";
-			this.upgrMaxDmg.Size = new System.Drawing.Size(60, 20);
-			this.upgrMaxDmg.TabIndex = 3;
-			this.upgrMaxDmg.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
-			// upgrMaxDPS
-			// 
-			this.upgrMaxDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxDPS.DecimalPlaces = 1;
-			this.upgrMaxDPS.Location = new System.Drawing.Point(134, 88);
-			this.upgrMaxDPS.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxDPS.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxDPS.Name = "upgrMaxDPS";
-			this.upgrMaxDPS.Size = new System.Drawing.Size(60, 20);
-			this.upgrMaxDPS.TabIndex = 2;
-			this.upgrMaxDPS.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
 			// label3
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -901,30 +994,6 @@
 			this.label3.Size = new System.Drawing.Size(61, 13);
 			this.label3.TabIndex = 1;
 			this.label3.Text = "Target (..x):";
-			// 
-			// upgrMaxHP
-			// 
-			this.upgrMaxHP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.upgrMaxHP.DecimalPlaces = 1;
-			this.upgrMaxHP.Location = new System.Drawing.Point(134, 62);
-			this.upgrMaxHP.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-			this.upgrMaxHP.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.upgrMaxHP.Name = "upgrMaxHP";
-			this.upgrMaxHP.Size = new System.Drawing.Size(60, 20);
-			this.upgrMaxHP.TabIndex = 0;
-			this.upgrMaxHP.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
 			// 
 			// groupBox13
 			// 
@@ -2046,66 +2115,6 @@
 			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
 			this.postUpgradesState.Text = "◆";
 			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(7, 29);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(50, 13);
-			this.label13.TabIndex = 11;
-			this.label13.Text = "DPC Ele:";
-			this.label13.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(24, 16);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(32, 13);
-			this.label22.TabIndex = 30;
-			this.label22.Text = "DPC:";
-			this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// dpcDisp
-			// 
-			this.dpcDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dpcDisp.AutoSize = true;
-			this.dpcDisp.Location = new System.Drawing.Point(56, 16);
-			this.dpcDisp.Name = "dpcDisp";
-			this.dpcDisp.Size = new System.Drawing.Size(16, 13);
-			this.dpcDisp.TabIndex = 31;
-			this.dpcDisp.Text = "...";
-			// 
-			// dpcEleDisp
-			// 
-			this.dpcEleDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dpcEleDisp.AutoSize = true;
-			this.dpcEleDisp.Location = new System.Drawing.Point(56, 29);
-			this.dpcEleDisp.Name = "dpcEleDisp";
-			this.dpcEleDisp.Size = new System.Drawing.Size(16, 13);
-			this.dpcEleDisp.TabIndex = 32;
-			this.dpcEleDisp.Text = "...";
-			// 
-			// dpcCritDisp
-			// 
-			this.dpcCritDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dpcCritDisp.AutoSize = true;
-			this.dpcCritDisp.Location = new System.Drawing.Point(56, 42);
-			this.dpcCritDisp.Name = "dpcCritDisp";
-			this.dpcCritDisp.Size = new System.Drawing.Size(16, 13);
-			this.dpcCritDisp.TabIndex = 34;
-			this.dpcCritDisp.Text = "...";
-			// 
-			// label35
-			// 
-			this.label35.AutoSize = true;
-			this.label35.Location = new System.Drawing.Point(6, 42);
-			this.label35.Name = "label35";
-			this.label35.Size = new System.Drawing.Size(50, 13);
-			this.label35.TabIndex = 33;
-			this.label35.Text = "DPC Crit:";
-			this.label35.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2326,7 +2335,7 @@
 		private System.Windows.Forms.Label skipLevelIntf;
 		private System.Windows.Forms.Label clearCoolCount;
 		private System.Windows.Forms.Label clearCoolIntf;
-		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.CheckBox autoUpgradesCheck;
 		private System.Windows.Forms.Label dpcCritDisp;
 		private System.Windows.Forms.Label label35;
 		private System.Windows.Forms.Label dpcEleDisp;
