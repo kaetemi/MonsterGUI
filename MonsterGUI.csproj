@@ -94,7 +94,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\OpenSansEmoji.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GameDataExample.txt" />

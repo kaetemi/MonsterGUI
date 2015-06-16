@@ -69,15 +69,5 @@ namespace MonsterGUI.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] OpenSansEmoji {
-            get {
-                object obj = ResourceManager.GetObject("OpenSansEmoji", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
