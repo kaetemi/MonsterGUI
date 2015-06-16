@@ -32,6 +32,8 @@ namespace MonsterGUI
 		int room;
 
 		PrivateFontCollection pfc;
+		System.Net.WebClient pfcWc;
+		string pfcFile;
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -44,12 +46,63 @@ namespace MonsterGUI
 			postUpgradesInit();
 			// splitContainer1.Enabled = false;
 
-			string openSansEmoji = Path.GetTempFileName();
-			File.WriteAllBytes(openSansEmoji, Properties.Resources.OpenSansEmoji);
-			pfc = new PrivateFontCollection();
-			pfc.AddFontFile(openSansEmoji);
-			if (pfc.Families.Length > 0)
-				elementText.Font = new Font(pfc.Families[0], elementText.Font.Size);
+			loadFontDelegate = new EmptyCallback(loadFont);
+			new Thread(new ThreadStart(downloadFontAsync)).Start();
+		}
+
+		void downloadFontAsync()
+		{
+			try
+			{
+				string source = "https://github.com/MorbZ/OpenSansEmoji/raw/master/OpenSansEmoji.ttf";
+				pfcFile = Path.GetFullPath(Path.GetTempPath() + "/OpenSansEmoji.ttf");
+				if (!File.Exists(pfcFile))
+				{
+					pfcWc = new System.Net.WebClient();
+					Console.WriteLine("Downloading {0} to {1}", source, pfcFile);
+					pfcWc.DownloadFileCompleted += wc_DownloadFileCompleted;
+					pfcWc.DownloadFileAsync(new Uri(source), pfcFile);
+				}
+				else
+				{
+					loadFont();
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+		}
+
+		void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+		{
+			Invoke(loadFontDelegate);
+			try
+			{
+				pfcWc.Dispose();
+				pfcWc = null;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+		}
+
+		EmptyCallback loadFontDelegate;
+		void loadFont()
+		{
+			try
+			{
+				Console.WriteLine("Using font {0}", pfcFile);
+				pfc = new PrivateFontCollection();
+				pfc.AddFontFile(pfcFile);
+				if (pfc.Families.Length > 0)
+					elementText.Font = new Font(pfc.Families[0], elementText.Font.Size);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
 		}
 
 		EnableCallback enableDelegate;

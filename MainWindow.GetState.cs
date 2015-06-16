@@ -329,6 +329,17 @@ namespace MonsterGUI
 			itemsCounts[(int)(int)Abilities.Wormhole - (int)Abilities.StartItem] = skipLevelCount;
 			itemsCounts[(int)(int)Abilities.ClearCool - (int)Abilities.StartItem] = clearCoolCount;
 
+			upgradeIntf[(int)UpgradeType.HitPoints] = upgrStatHP;
+			upgradeIntf[(int)UpgradeType.DPS] = upgrStatDPS;
+			upgradeIntf[(int)UpgradeType.ClickDamage] = upgrStatDmg;
+			upgradeIntf[(int)UpgradeType.DamageMultiplier_Fire] = upgrStatFire;
+			upgradeIntf[(int)UpgradeType.DamageMultiplier_Water] = upgrStatWater;
+			upgradeIntf[(int)UpgradeType.DamageMultiplier_Air] = upgrStatAir;
+			upgradeIntf[(int)UpgradeType.DamageMultiplier_Earth] = upgrStatEarth;
+			upgradeIntf[(int)UpgradeType.DamageMultiplier_Crit] = upgrStatCrit;
+			upgradeIntf[(int)UpgradeType.BossLootDropPercentage] = upgrStatLoot;
+			upgradeIntf[(int)UpgradeType.HitPoints] = upgrStatHP;
+
 			playerData = new PlayerData();
 			gameData = new GameData();
 			gameData.Init();
@@ -507,11 +518,30 @@ namespace MonsterGUI
 			printTechTree();
 		}
 
+		System.Windows.Forms.Label[] upgradeIntf = new System.Windows.Forms.Label[(int)UpgradeType.Nb];
+		decimal[] printTechTreeMultipliers = new decimal[(int)UpgradeType.Nb];
+		string[] printTechTreeLevels = new string[(int)UpgradeType.Nb];
 		/// <summary>
 		/// Display all tech tree data on screen (stuff in techTree changed)
 		/// </summary>
 		void printTechTree()
 		{
+			for (int i = 0; i < (int)UpgradeType.Nb; ++i)
+			{
+				printTechTreeMultipliers[i] = 0.0m;
+				printTechTreeLevels[i] = "";
+			}
+			for (int i = 0; i < tuningData.Upgrades.Length; ++i) if (tuningData.Upgrades[i].Type < UpgradeType.Nb)
+			{
+				decimal totalMultiplier = (decimal)techTree.Upgrades[i].Level * tuningData.Upgrades[i].Multiplier;
+				printTechTreeMultipliers[(int)tuningData.Upgrades[i].Type] += totalMultiplier;
+				printTechTreeLevels[(int)tuningData.Upgrades[i].Type] += " " + techTree.Upgrades[i].Level.ToString();
+			}
+			for (int i = 0; i < upgradeIntf.Length; ++i) if (upgradeIntf[i] != null && !string.IsNullOrEmpty(printTechTreeLevels[i]))
+			{
+				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], 1).ToString(CultureInfo.InvariantCulture) + "x (" + printTechTreeLevels[i].Substring(1) + ")";
+			}
+
 			printPlayerTech();
 			printGameTree();
 		}
