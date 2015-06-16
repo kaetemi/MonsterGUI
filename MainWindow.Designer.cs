@@ -177,6 +177,12 @@
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label22 = new System.Windows.Forms.Label();
+			this.dpcDisp = new System.Windows.Forms.Label();
+			this.dpcEleDisp = new System.Windows.Forms.Label();
+			this.dpcCritDisp = new System.Windows.Forms.Label();
+			this.label35 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -429,6 +435,12 @@
 			// 
 			// groupBox15
 			// 
+			this.groupBox15.Controls.Add(this.dpcCritDisp);
+			this.groupBox15.Controls.Add(this.label35);
+			this.groupBox15.Controls.Add(this.dpcEleDisp);
+			this.groupBox15.Controls.Add(this.dpcDisp);
+			this.groupBox15.Controls.Add(this.label22);
+			this.groupBox15.Controls.Add(this.label13);
 			this.groupBox15.Controls.Add(this.upgrMaxLoot);
 			this.groupBox15.Controls.Add(this.upgrMaxEarth);
 			this.groupBox15.Controls.Add(this.upgrMaxAir);
@@ -2034,6 +2046,66 @@
 			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
 			this.postUpgradesState.Text = "◆";
 			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(7, 29);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(50, 13);
+			this.label13.TabIndex = 11;
+			this.label13.Text = "DPC Ele:";
+			this.label13.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Location = new System.Drawing.Point(24, 16);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(32, 13);
+			this.label22.TabIndex = 30;
+			this.label22.Text = "DPC:";
+			this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// dpcDisp
+			// 
+			this.dpcDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dpcDisp.AutoSize = true;
+			this.dpcDisp.Location = new System.Drawing.Point(56, 16);
+			this.dpcDisp.Name = "dpcDisp";
+			this.dpcDisp.Size = new System.Drawing.Size(16, 13);
+			this.dpcDisp.TabIndex = 31;
+			this.dpcDisp.Text = "...";
+			// 
+			// dpcEleDisp
+			// 
+			this.dpcEleDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dpcEleDisp.AutoSize = true;
+			this.dpcEleDisp.Location = new System.Drawing.Point(56, 29);
+			this.dpcEleDisp.Name = "dpcEleDisp";
+			this.dpcEleDisp.Size = new System.Drawing.Size(16, 13);
+			this.dpcEleDisp.TabIndex = 32;
+			this.dpcEleDisp.Text = "...";
+			// 
+			// dpcCritDisp
+			// 
+			this.dpcCritDisp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.dpcCritDisp.AutoSize = true;
+			this.dpcCritDisp.Location = new System.Drawing.Point(56, 42);
+			this.dpcCritDisp.Name = "dpcCritDisp";
+			this.dpcCritDisp.Size = new System.Drawing.Size(16, 13);
+			this.dpcCritDisp.TabIndex = 34;
+			this.dpcCritDisp.Text = "...";
+			// 
+			// label35
+			// 
+			this.label35.AutoSize = true;
+			this.label35.Location = new System.Drawing.Point(6, 42);
+			this.label35.Name = "label35";
+			this.label35.Size = new System.Drawing.Size(50, 13);
+			this.label35.TabIndex = 33;
+			this.label35.Text = "DPC Crit:";
+			this.label35.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2255,6 +2327,12 @@
 		private System.Windows.Forms.Label clearCoolCount;
 		private System.Windows.Forms.Label clearCoolIntf;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.Label dpcCritDisp;
+		private System.Windows.Forms.Label label35;
+		private System.Windows.Forms.Label dpcEleDisp;
+		private System.Windows.Forms.Label dpcDisp;
+		private System.Windows.Forms.Label label22;
+		private System.Windows.Forms.Label label13;
 	}
 }
 

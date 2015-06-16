@@ -235,12 +235,18 @@ namespace MonsterGUI
 				Upgrades[i].Type = UpgradeType.Nb;
 		}
 
+		public struct PlayerStruct
+		{
+			public decimal DamagePerClick;
+		}
+
 		public struct Upgrade
 		{
 			public decimal Multiplier;
 			public UpgradeType Type;
 		};
 
+		public PlayerStruct Player;
 		public Upgrade[] Upgrades;
 	}
 
@@ -542,6 +548,19 @@ namespace MonsterGUI
 				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
 					+ "x (" + printTechTreeLevels[i].Substring(1) + ")";
 			}
+			decimal dmgBase = tuningData.Player.DamagePerClick;
+			decimal mulBase = printTechTreeMultipliers[(int)UpgradeType.ClickDamage];
+			decimal mulEle = Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Air],
+				Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Earth],
+				Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Fire],
+				printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Water])));
+			decimal mulCrit = printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Crit];
+			decimal dpc = dmgBase * mulBase;
+			decimal dpcEle = dpc * mulEle;
+			decimal dpcCrit = dpc * mulCrit;
+			dpcDisp.Text = decimal.Round(dpc).ToString();
+			dpcEleDisp.Text = decimal.Round(dpcEle).ToString();
+			dpcCritDisp.Text = decimal.Round(dpcCrit).ToString();
 
 			printPlayerTech();
 			printGameTree();
@@ -627,6 +646,14 @@ namespace MonsterGUI
 			// Console.WriteLine(jsonNode.Value);
 			// System.IO.File.WriteAllText("TuningDataExample.txt", jsonNode.Value);
 			JSONNode tuningData = JSON.Parse(jsonNode.Value);
+
+			JSONNode player = tuningData["player"];
+			if (player != null)
+			{
+				JSONNode damagePerClick = player["damage_per_click"].Value;
+
+				if (damagePerClick != null) this.tuningData.Player.DamagePerClick = Decimal.Parse(damagePerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+			}
 
 			JSONNode upgrades = tuningData["upgrades"];
 			if (upgrades != null)
