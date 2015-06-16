@@ -231,12 +231,14 @@ namespace MonsterGUI
 		{
 			// NOTE: Fixed array sizes as we are accessing from multiple threads without locking
 			Upgrades = new Upgrade[(int)UpgradeOption.Max];
+			for (int i = 0; i < Upgrades.Length; ++i)
+				Upgrades[i].Type = UpgradeType.Nb;
 		}
 
 		public struct Upgrade
 		{
-			decimal Multiplier;
-			UpgradeType Type;
+			public decimal Multiplier;
+			public UpgradeType Type;
 		};
 
 		public Upgrade[] Upgrades;
@@ -594,7 +596,23 @@ namespace MonsterGUI
 			// Console.WriteLine(jsonNode.Value);
 			// System.IO.File.WriteAllText("TuningDataExample.txt", jsonNode.Value);
 			JSONNode tuningData = JSON.Parse(jsonNode.Value);
-			// tuningData
+
+			JSONNode upgrades = tuningData["upgrades"];
+			if (upgrades != null)
+			{
+				foreach (KeyValuePair<string, JSONNode> upgrade in (upgrades as JSONClass))
+				{
+					int id = Convert.ToInt32(upgrade.Key, CultureInfo.InvariantCulture);
+					if (id < this.tuningData.Upgrades.Length)
+					{
+						JSONNode multiplier = upgrade.Value["multiplier"];
+						JSONNode type = upgrade.Value["type"];
+
+						if (multiplier != null) this.tuningData.Upgrades[id].Multiplier = Decimal.Parse(multiplier.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+						if (type != null) this.tuningData.Upgrades[id].Type = (UpgradeType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
+					}
+				}
+			}
 		}
 
 		private JsonCallback resultPlayerNamesDelegate;
