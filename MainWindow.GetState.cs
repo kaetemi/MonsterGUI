@@ -360,8 +360,8 @@ namespace MonsterGUI
 			JSONNode activeAbilities = json["active_abilities"];
 			JSONNode loot = json["loot"];
 
-			if (hp != null) playerData.Hp = Convert.ToDecimal(hp.Value, CultureInfo.InvariantCulture);
-			if (gold != null) playerData.Gold = Convert.ToDecimal(gold.Value, CultureInfo.InvariantCulture);
+			if (hp != null) playerData.Hp = Decimal.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+			if (gold != null) playerData.Gold = Decimal.Parse(gold.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 			if (currentLane != null) playerData.CurrentLane = Convert.ToInt32(currentLane.Value, CultureInfo.InvariantCulture);
 			if (target != null) playerData.Target = Convert.ToInt32(target.Value, CultureInfo.InvariantCulture);
 			if (activeAbilitiesBitfield != null) playerData.ActiveAbilitiesBitfield = Convert.ToUInt64(activeAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
@@ -412,10 +412,10 @@ namespace MonsterGUI
 		}
 
 		static string[] elementIcons = new string[] {
-			"◇", // Fire
-			"◎", // "🌊", // Water
-			"☴", // Air
-			"▽", // "🌴", // Earth
+			"🔥", // Fire
+			"🌊", // Water
+			"💨", // Air
+			"🌴", // Earth
 		};
 		private void printGameTree()
 		{
@@ -461,7 +461,7 @@ namespace MonsterGUI
 						if (upgradeI < techTree.Upgrades.Length)
 						{
 							techTree.Upgrades[upgradeI].Level = Convert.ToInt32(level.Value, CultureInfo.InvariantCulture);
-							techTree.Upgrades[upgradeI].CostForNextLevel = Convert.ToDecimal(costForNextLevel.Value, CultureInfo.InvariantCulture);
+							techTree.Upgrades[upgradeI].CostForNextLevel = Decimal.Parse(costForNextLevel.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 							hasUpgrade |= (1UL << upgradeI);
 						}
 					}
@@ -651,7 +651,7 @@ namespace MonsterGUI
 						JSONNode enemies = lane["enemies"];
 						JSONNode element = lane["element"];
 
-						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Convert.ToDecimal(activePlayerAbilityGoldPerClick.Value, CultureInfo.InvariantCulture);
+						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Decimal.Parse(activePlayerAbilityGoldPerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 						if (element != null) this.gameData.Lanes[i].Element = (UpgradeOption)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeOption.ElementalFire);
 
 						if (enemies != null)
@@ -663,8 +663,8 @@ namespace MonsterGUI
 								JSONNode maxHp = enemy["max_hp"];
 								JSONNode type = enemy["type"];
 
-								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = Convert.ToDecimal(hp.Value, CultureInfo.InvariantCulture);
-								if (maxHp != null) this.gameData.Lanes[i].Enemies[j].MaxHp = Convert.ToDecimal(maxHp.Value, CultureInfo.InvariantCulture);
+								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = Decimal.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+								if (maxHp != null) this.gameData.Lanes[i].Enemies[j].MaxHp = Decimal.Parse(maxHp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 								if (type != null) this.gameData.Lanes[i].Enemies[j].Type = (EnemyType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
 
 								++j;
@@ -759,7 +759,7 @@ namespace MonsterGUI
 				int startTick = System.Environment.TickCount;
 				try
 				{
-					if (getSteamId)
+					if (getSteamId && !string.IsNullOrEmpty(accessToken))
 					{
 						StringBuilder url = new StringBuilder();
 						url.Append("https://steamapi-a.akamaihd.net/ISteamUserOAuth/GetTokenDetails/v1/?access_token=");
@@ -770,7 +770,7 @@ namespace MonsterGUI
 						if (!exiting) Invoke(resultTokenDetailsDelegate, json);
 						getSteamId = false;
 					}
-					else if (getTuningData)
+					else if (getTuningData && !string.IsNullOrEmpty(accessToken))
 					{
 						// https://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetTuningData/v0001/?game_type=1&gameid=41671&access_token=***
 						StringBuilder url = new StringBuilder();

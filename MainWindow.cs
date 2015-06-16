@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Globalization;
+using System.Drawing.Text;
+using System.IO;
 using SimpleJSON;
 
 namespace MonsterGUI
@@ -29,16 +31,25 @@ namespace MonsterGUI
 		string accessToken;
 		int room;
 
+		PrivateFontCollection pfc;
 		public MainWindow()
 		{
 			InitializeComponent();
 			Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+
 			endedThreadDelegate = new EmptyCallback(endedThread);
 			enableDelegate = new EnableCallback(enable);
 			getStateInit();
 			postAbilitiesInit();
 			postUpgradesInit();
 			// splitContainer1.Enabled = false;
+
+			string openSansEmoji = Path.GetTempFileName();
+			File.WriteAllBytes(openSansEmoji, Properties.Resources.OpenSansEmoji);
+			pfc = new PrivateFontCollection();
+			pfc.AddFontFile(openSansEmoji);
+			if (pfc.Families.Length > 0)
+				elementText.Font = new Font(pfc.Families[0], elementText.Font.Size);
 		}
 
 		EnableCallback enableDelegate;
