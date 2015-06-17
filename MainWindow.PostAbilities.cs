@@ -29,6 +29,7 @@ namespace MonsterGUI
 		int rainingRounds_steamdb = 250;
 		int wormHoleRounds = 500;
 		int fastWormHoleRounds = 100;
+		int fastWormHoleDamageSafety = 5;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -240,7 +241,8 @@ namespace MonsterGUI
 
 		private bool avoidExtraDamageOnLane(int i)
 		{
-			return farmingGoldOnLane(i) || useWormHoleOnLane(i);
+			return farmingGoldOnLane(i) || useWormHoleOnLane(i)
+				|| (fasterWormholeOn && ((gameData.Level % fastWormHoleRounds) >= (fastWormHoleRounds - fastWormHoleDamageSafety)));
 		}
 		
 		private bool useWormHoleOnLane(int i)
@@ -262,8 +264,7 @@ namespace MonsterGUI
 			if (gameData.Level > Math.Max(speedThreshold_wchill, speedThreshold_steamdb))
 			{
 				return ((gameData.Level % rainingRounds_wchill) != 0) && ((gameData.Level % rainingRounds_steamdb) != 0) && bossMonsterOnLane(laneRequested)
-					&& !avoidExtraDamageOnLane(i)
-					&& ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
+					&& !avoidExtraDamageOnLane(i);
 			}
 			else
 			{
