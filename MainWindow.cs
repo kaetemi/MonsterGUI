@@ -376,5 +376,14 @@ namespace MonsterGUI
 		{
 			fasterWormholeOn = fasterWormhole.Checked;
 		}
+
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			everythingEnable(true);
+			fasterWormhole.Checked = true;
+			autoClickerCheck.Checked = false;
+			upgrMaxDPS.Value = 1m;
+			fireImmediatelyCheck.Checked = true;
+		}
 	}
 }

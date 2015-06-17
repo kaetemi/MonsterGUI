@@ -186,6 +186,7 @@
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.fasterWormhole = new System.Windows.Forms.CheckBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -2027,11 +2028,12 @@
 			// 
 			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox8.Controls.Add(this.button1);
 			this.groupBox8.Controls.Add(this.presetEverythingON);
 			this.groupBox8.Controls.Add(this.presetEverythingOff);
 			this.groupBox8.Location = new System.Drawing.Point(3, 3);
 			this.groupBox8.Name = "groupBox8";
-			this.groupBox8.Size = new System.Drawing.Size(150, 77);
+			this.groupBox8.Size = new System.Drawing.Size(150, 106);
 			this.groupBox8.TabIndex = 1;
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "Presets";
@@ -2067,9 +2069,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.playerGroup.Controls.Add(this.playerListRefresh);
 			this.playerGroup.Controls.Add(this.playerList);
-			this.playerGroup.Location = new System.Drawing.Point(3, 86);
+			this.playerGroup.Location = new System.Drawing.Point(3, 115);
 			this.playerGroup.Name = "playerGroup";
-			this.playerGroup.Size = new System.Drawing.Size(150, 269);
+			this.playerGroup.Size = new System.Drawing.Size(150, 240);
 			this.playerGroup.TabIndex = 0;
 			this.playerGroup.TabStop = false;
 			this.playerGroup.Text = "Players";
@@ -2077,7 +2079,7 @@
 			// playerListRefresh
 			// 
 			this.playerListRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.playerListRefresh.Location = new System.Drawing.Point(69, 240);
+			this.playerListRefresh.Location = new System.Drawing.Point(69, 211);
 			this.playerListRefresh.Name = "playerListRefresh";
 			this.playerListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.playerListRefresh.TabIndex = 1;
@@ -2094,7 +2096,7 @@
 			this.playerList.IntegralHeight = false;
 			this.playerList.Location = new System.Drawing.Point(6, 19);
 			this.playerList.Name = "playerList";
-			this.playerList.Size = new System.Drawing.Size(138, 215);
+			this.playerList.Size = new System.Drawing.Size(138, 186);
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
@@ -2150,6 +2152,18 @@
 			this.fasterWormhole.Text = "Wormhole %100";
 			this.fasterWormhole.UseVisualStyleBackColor = true;
 			this.fasterWormhole.CheckedChanged += new System.EventHandler(this.fasterWormhole_CheckedChanged);
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(6, 77);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(138, 23);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "Wormhole %100";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
 			// 
 			// MainWindow
 			// 
@@ -2381,6 +2395,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.CheckBox badgesCheck;
 		private System.Windows.Forms.CheckBox fasterWormhole;
+		private System.Windows.Forms.Button button1;
 	}
 }
 
