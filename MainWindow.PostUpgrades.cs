@@ -12,6 +12,7 @@ namespace MonsterGUI
 	public partial class MainWindow
 	{
 		volatile bool autoUpgradesOn = false;
+		volatile bool autoBadgesOn = false;
 
 		volatile bool refreshUpgrades = false;
 		volatile int waitForNewPlayerData = 3;
@@ -41,6 +42,7 @@ namespace MonsterGUI
 			upgrMaxEarth.Value = upgradeMaxEarth;
 			upgrMaxAir.Value = upgradeMaxAir;
 			autoUpgradesCheck.Checked = autoUpgradesOn;
+			badgesCheck.Checked = autoBadgesOn;
 		}
 
 		/// <summary>

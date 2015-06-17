@@ -258,6 +258,7 @@ namespace MonsterGUI
 			ovenzifCheck.Checked = status;
 			itemsCheck.Checked = status;
 			autoUpgradesCheck.Checked = status;
+			badgesCheck.Checked = status;
 		}
 
 		private void presetEverythingOff_Click(object sender, EventArgs e)
@@ -361,6 +362,11 @@ namespace MonsterGUI
 		private void autoUpgradesCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			autoUpgradesOn = autoUpgradesCheck.Checked;
+		}
+
+		private void badgesCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			autoBadgesOn = badgesCheck.Checked;
 		}
 	}
 }

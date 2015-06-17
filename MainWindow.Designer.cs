@@ -183,6 +183,8 @@
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.badgesCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -435,6 +437,7 @@
 			// 
 			// groupBox15
 			// 
+			this.groupBox15.Controls.Add(this.badgesCheck);
 			this.groupBox15.Controls.Add(this.dpcCritDisp);
 			this.groupBox15.Controls.Add(this.label35);
 			this.groupBox15.Controls.Add(this.dpcEleDisp);
@@ -791,11 +794,11 @@
 			// autoUpgradesCheck
 			// 
 			this.autoUpgradesCheck.AutoSize = true;
-			this.autoUpgradesCheck.Location = new System.Drawing.Point(126, 19);
+			this.autoUpgradesCheck.Location = new System.Drawing.Point(120, 28);
 			this.autoUpgradesCheck.Name = "autoUpgradesCheck";
-			this.autoUpgradesCheck.Size = new System.Drawing.Size(66, 17);
+			this.autoUpgradesCheck.Size = new System.Drawing.Size(72, 17);
 			this.autoUpgradesCheck.TabIndex = 29;
-			this.autoUpgradesCheck.Text = "Running";
+			this.autoUpgradesCheck.Text = "Upgrades";
 			this.autoUpgradesCheck.UseVisualStyleBackColor = true;
 			this.autoUpgradesCheck.CheckedChanged += new System.EventHandler(this.autoUpgradesCheck_CheckedChanged);
 			// 
@@ -2087,7 +2090,8 @@
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.getStateStatus,
             this.postAbilitiesState,
-            this.postUpgradesState});
+            this.postUpgradesState,
+            this.toolStripStatusLabel1});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 498);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(784, 22);
@@ -2114,6 +2118,25 @@
 			this.postUpgradesState.Name = "postUpgradesState";
 			this.postUpgradesState.Size = new System.Drawing.Size(19, 17);
 			this.postUpgradesState.Text = "◆";
+			// 
+			// toolStripStatusLabel1
+			// 
+			this.toolStripStatusLabel1.IsLink = true;
+			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(271, 17);
+			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
+			// 
+			// badgesCheck
+			// 
+			this.badgesCheck.AutoSize = true;
+			this.badgesCheck.Enabled = false;
+			this.badgesCheck.Location = new System.Drawing.Point(120, 12);
+			this.badgesCheck.Name = "badgesCheck";
+			this.badgesCheck.Size = new System.Drawing.Size(62, 17);
+			this.badgesCheck.TabIndex = 35;
+			this.badgesCheck.Text = "Badges";
+			this.badgesCheck.UseVisualStyleBackColor = true;
+			this.badgesCheck.CheckedChanged += new System.EventHandler(this.badgesCheck_CheckedChanged);
 			// 
 			// MainWindow
 			// 
@@ -2342,6 +2365,8 @@
 		private System.Windows.Forms.Label dpcDisp;
 		private System.Windows.Forms.Label label22;
 		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+		private System.Windows.Forms.CheckBox badgesCheck;
 	}
 }
 
