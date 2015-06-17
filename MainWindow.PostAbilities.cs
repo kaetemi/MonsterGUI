@@ -33,7 +33,8 @@ namespace MonsterGUI
 		int superWormHoleDamageSafety = 5;
 		int likeNewTimerMin = 400;
 		int likeNewTimerMax = 4000;
-		int likeNewChance = 20; // likeNewChance / NB Wormholes remaining
+		int likeNewChance = 20; // likeNewChance / (NB Wormholes remaining + base)
+		int likeNewChanceBase = 400;
 		int multiWormholeCount = 10;
 
 		// Auto clicker runtime info
@@ -600,14 +601,13 @@ namespace MonsterGUI
 								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) > 0.5m;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
-									// Permanent upgrades, always spam them as soon as possible
-									int nb = doMultiWormhole ? multiWormholeCount : 1;
+									/*int nb = doMultiWormhole ? multiWormholeCount : 1;
 									for (int i = 0; i < nb; ++i)
-									{ 
+									{ */
 										if (abilities) abilties_json += ",";
 										abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
 										abilities = true;
-									}
+									/*}*/
 									lastWormholeLevel = gameData.Level;
 									requestTreeRefresh = true;
 									rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
@@ -616,10 +616,10 @@ namespace MonsterGUI
 								{
 									if (hasPurchasedAbility(Abilities.ClearCool) && !isAbilityCoolingDown(Abilities.ClearCool))
 									{
-										if (random.Next(itemCount(Abilities.Wormhole)) < likeNewChance)
+										if (random.Next(itemCount(Abilities.Wormhole) + likeNewChanceBase) < likeNewChance)
 										{
 											if (abilities) abilties_json += ",";
-											abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
+											abilties_json += "{\"ability\":" + (int)Abilities.ClearCool + "}";
 											abilities = true;
 											requestTreeRefresh = true;
 											rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
