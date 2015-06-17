@@ -29,6 +29,45 @@ namespace MonsterGUI
 		decimal upgradeMaxEarth = 1m;
 		decimal upgradeMaxAir = 1m;
 
+		int[] upgradeAccelerateToLevel = new int[(int)UpgradeOption.Max] {
+			20, // LightArmor = 0,
+			20, // AutoFireCannon = 1,
+			20, // ArmorPiercingRound = 2,
+			0, // ElementalFire = 3,
+			0, // ElementalWater = 4,
+			0, // ElementalAir = 5,
+			0, // ElementalEarth = 6,
+			0, // LuckyShot = 7,
+			10,// HeavyArmor = 8,
+			10,// AdvancedTargeting = 9,
+			10,// ExplosiveRounds = 10,
+			0, // Medics = 11,
+			0, // MoraleBooster = 12,
+			0, // GoodLuckCharms = 13,
+			0, // MetalDetector = 14,
+			0, // DecreaseCooldowns = 15,
+			0, // TacticalNuke = 16,
+			0, // ClusterBomb = 17,
+			0, // Napalm = 18,
+			0, // BossLoot = 19,
+			10, // EnergyShields = 20,
+			10, // FarmingEquipment = 21,
+			10, // Railgun = 22,
+			0, // PersonalTraining = 23,
+			0, // AFKEquipment = 24,
+			0, // NewMouseButton = 25,
+			0, // HPUpgrade5 = 26,
+			0, // DPSUpgrade5 = 27,
+			0, // ClickUpgrade5 = 28,
+			0, // 29
+			0, // 30
+			0, // 31
+			0, 0, 0, 0, 0, 0, 0, 0, // 39
+			0, 0, 0, 0, 0, 0, 0, 0, // 47
+			0, 0, 0, 0, 0, 0, 0, 0, 
+			0, 0, 0, 0, 0, 0, 0, 0, 
+		};
+
 		private void postUpgradesInit()
 		{
 			resultPostUpgradesDelegate = new JsonCallback(resultPostUpgrades);
@@ -116,6 +155,19 @@ namespace MonsterGUI
 						*/
 
 						decimal goldRemaining = playerData.Gold;
+						
+						Action<UpgradeOption> upgradeOption = upgrade =>
+						{
+							int ldif = upgradeAccelerateToLevel[(int)upgrade] - techTree.Upgrades[(int)upgrade].Level;
+							int repeat = ldif > 0 ? ldif : 1;
+							goldRemaining -= techTree.Upgrades[(int)upgrade].CostForNextLevel * (decimal)repeat; // Not accurate but whatever.
+							for (int i = 0; i < repeat; ++i)
+							{
+								if (upgrades) upgrades_json += ",";
+								upgrades_json += Convert.ToString((int)upgrade, System.Globalization.CultureInfo.InvariantCulture);
+							}
+							upgrades = true;
+						};
 
 						int maxNumClick = 20;
 						decimal cps = ((decimal)Math.Min(minClicks, maxClicks) + (decimal)Math.Min(maxClicks, maxNumClick)) * 0.5m;
@@ -277,19 +329,13 @@ namespace MonsterGUI
 							decimal cheapestDamagePrice = techTree.Upgrades[(int)cheapestDamageUpgrade].CostForNextLevel;
 							if (cheapestDamagePrice < goldRemaining)
 							{
-								if (upgrades) upgrades_json += ",";
-								upgrades_json += (int)cheapestDamageUpgrade;
-								upgrades = true;
-								goldRemaining -= cheapestDamagePrice;
+								upgradeOption(cheapestDamageUpgrade);
 							}
 							else if (techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].Level < 20)
 							{
 								if (techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].CostForNextLevel < goldRemaining)
 								{
-									if (upgrades) upgrades_json += ",";
-									upgrades_json += (int)UpgradeOption.AutoFireCannon;
-									upgrades = true;
-									goldRemaining -= techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].CostForNextLevel;
+									upgradeOption(UpgradeOption.AutoFireCannon);
 								}
 							}
 						}
@@ -299,10 +345,7 @@ namespace MonsterGUI
 						if (techTree.Upgrades[(int)cheapestHp].CostForNextLevel < goldRemaining
 							&& techTreeUpgradeMultipliers[(int)UpgradeType.HitPoints] < upgradeMaxHP)
 						{
-							if (upgrades) upgrades_json += ",";
-							upgrades_json += (int)cheapestHp;
-							upgrades = true;
-							goldRemaining -= techTree.Upgrades[(int)cheapestHp].CostForNextLevel;
+							upgradeOption(cheapestHp);
 						}
 
 						if (upgradeUnlocked(UpgradeOption.BossLoot))
@@ -310,10 +353,7 @@ namespace MonsterGUI
 							if (techTree.Upgrades[(int)UpgradeOption.BossLoot].CostForNextLevel < goldRemaining
 								&& techTreeUpgradeMultipliers[(int)UpgradeType.BossLootDropPercentage] < upgradeMaxLoot)
 							{
-								if (upgrades) upgrades_json += ",";
-								upgrades_json += (int)UpgradeOption.BossLoot;
-								upgrades = true;
-								goldRemaining -= techTree.Upgrades[(int)UpgradeOption.BossLoot].CostForNextLevel;
+								upgradeOption(UpgradeOption.BossLoot);
 							}
 						}
 
@@ -322,10 +362,7 @@ namespace MonsterGUI
 							if (techTree.Upgrades[(int)UpgradeOption.LuckyShot].CostForNextLevel < goldRemaining
 								&& techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Crit] < upgradeMaxCrit)
 							{
-								if (upgrades) upgrades_json += ",";
-								upgrades_json += (int)UpgradeOption.LuckyShot;
-								upgrades = true;
-								goldRemaining -= techTree.Upgrades[(int)UpgradeOption.LuckyShot].CostForNextLevel;
+								upgradeOption(UpgradeOption.LuckyShot);
 							}
 						}
 
@@ -339,10 +376,7 @@ namespace MonsterGUI
 									{
 										if (techTree.Upgrades[i].CostForNextLevel < goldRemaining)
 										{
-											if (upgrades) upgrades_json += ",";
-											upgrades_json += i;
-											upgrades = true;
-											goldRemaining -= techTree.Upgrades[i].CostForNextLevel;
+											upgradeOption((UpgradeOption)i);
 										}
 									}
 								}

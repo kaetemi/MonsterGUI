@@ -373,7 +373,7 @@ namespace MonsterGUI
 			processTechTree(); // Copy some data from print over for use
 		}
 
-		private void critDamage(long value)
+		private void critDamage(decimal value)
 		{
 			// It seems this is sent to the client to increment a global counter which is then
 			// decremented every time the user clicks to do a critic using the calculated crit 
@@ -407,7 +407,7 @@ namespace MonsterGUI
 
 			if (critDamage != null)
 			{
-				long v = Convert.ToInt64(critDamage.Value, CultureInfo.InvariantCulture);
+				decimal v = Decimal.Parse(critDamage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 				if (v != 0)
 				{
 					this.critDamage(v);
