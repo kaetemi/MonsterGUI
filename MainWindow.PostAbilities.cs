@@ -60,6 +60,7 @@ namespace MonsterGUI
 		long lastGoldRainLevel = 0;
 		long lastBombLevel = 0;
 		int rearmLikeNewAt = 0;
+		long lastWormholeLevel = 0;
 
 		/// <summary>
 		/// App init
@@ -596,7 +597,7 @@ namespace MonsterGUI
 							}
 							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
 							{
-								bool doMultiWormhole = multiWormholeOn && highestHpFactorOnLane(laneRequested) > 0.5m;
+								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) > 0.5m;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
 									// Permanent upgrades, always spam them as soon as possible
@@ -607,6 +608,7 @@ namespace MonsterGUI
 										abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
 										abilities = true;
 									}
+									lastWormholeLevel = gameData.Level;
 									requestTreeRefresh = true;
 									rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
 								}
