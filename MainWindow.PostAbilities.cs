@@ -261,11 +261,13 @@ namespace MonsterGUI
 		{
 			if (gameData.Level > Math.Max(speedThreshold_wchill, speedThreshold_steamdb))
 			{
-				return ((gameData.Level % rainingRounds_wchill) != 0) && ((gameData.Level % rainingRounds_steamdb) != 0) && bossMonsterOnLane(laneRequested);
+				return ((gameData.Level % rainingRounds_wchill) != 0) && ((gameData.Level % rainingRounds_steamdb) != 0) && bossMonsterOnLane(laneRequested)
+					&& !avoidExtraDamageOnLane(i)
+					&& ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
 			}
 			else
 			{
-				return (findSpawnerOnLane(i) >= 0) && ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
+				return (findSpawnerOnLane(i) >= 0) && ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8) && !avoidExtraDamageOnLane(i);
 			}
 		}
 
@@ -274,7 +276,8 @@ namespace MonsterGUI
 			return !bossMonsterOnLane(laneRequested)
 				&& (findSpawnerOnLane(i) >= 0)
 				&& (countLiveMonstersOnLane(i) >= 3)
-				&& ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8);
+				&& ((gameData.Level % 10) > 0) && ((gameData.Level % 10) < 8)
+				&& !avoidExtraDamageOnLane(i);
 		}
 
 		private int bestElementLevel()
