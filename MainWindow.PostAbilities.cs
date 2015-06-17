@@ -26,6 +26,7 @@ namespace MonsterGUI
 		int rainingRounds_wchill = 250;
 		int speedThreshold_steamdb = 1000;
 		int rainingRounds_steamdb = 200;
+		int wormHoleRounds = 500;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -220,9 +221,22 @@ namespace MonsterGUI
 				(gameData.Level < Math.Min(speedThreshold_wchill, speedThreshold_steamdb)
 				|| ((gameData.Level % rainingRounds_wchill) == 0)
 				|| ((gameData.Level % rainingRounds_steamdb) == 0)
-				) 
+				)
+
+				&& !useWormHoleOnLane(i)
 				
 				&& bossMonsterOnLane(i));
+		}
+
+		private bool avoidExtraDamageOnLane(int i)
+		{
+			return farmingGoldOnLane(i) || useWormHoleOnLane(i);
+		}
+		
+		private bool useWormHoleOnLane(int i)
+		{
+			return ((gameData.Level % wormHoleRounds) == 0)
+				&& bossMonsterOnLane(i);
 		}
 
 		private bool nukeOnLane(int i)
@@ -451,7 +465,7 @@ namespace MonsterGUI
 							}
 							if (triggerHappy || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
-								if (!farmingGoldOnLane(laneRequested)) // Don't do extra damage when farming gold
+								if (!avoidExtraDamageOnLane(laneRequested)) // Don't do extra damage when farming gold
 								{
 									if (hasPurchasedAbility(Abilities.MoraleBooster) && !isAbilityCoolingDown(Abilities.MoraleBooster))
 									{
@@ -550,9 +564,21 @@ namespace MonsterGUI
 								abilities = true;
 								requestTreeRefresh = true;
 							}
+							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
+							{
+								if (hasPurchasedAbility(Abilities.Wormhole) && !isAbilityCoolingDown(Abilities.Wormhole))
+								{
+									// Permanent upgrades, always spam them as soon as possible
+									if (abilities) abilties_json += ",";
+									abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
+									abilities = true;
+									requestTreeRefresh = true;
+								}
+							}
 							if (triggerHappy || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
 								bool farmingGold = farmingGoldOnLane(laneRequested);
+								bool avoidDamageOnLane = avoidExtraDamageOnLane(laneRequested);
 
 								if (farmingGold)
 								{
@@ -576,7 +602,7 @@ namespace MonsterGUI
 								{
 									// When no player money or under same circumstances as Metal Detector
 									if ((playerData.Gold < 100000.0m)
-										|| (farmingGold && highestHpFactorOnLane(laneRequested) > 0.25m))
+										|| (avoidDamageOnLane && highestHpFactorOnLane(laneRequested) > 0.25m))
 									{
 										if (abilities) abilties_json += ",";
 										abilties_json += "{\"ability\":" + (int)Abilities.GiveGold + "}";
@@ -585,7 +611,7 @@ namespace MonsterGUI
 									}
 								}
 
-								if ((gameData.Level % 10) == 0 && !farmingGold) // Use this on boss levels, but not when farming gold
+								if ((gameData.Level % 10) == 0 && !avoidDamageOnLane) // Use this on boss levels, but not when farming gold
 								{
 									if (bossMonsterOnLane(laneRequested) || countLiveMonstersOnLane(laneRequested) >= 2) // Either in boss lane or in a lane with enough live monsters
 									{
@@ -608,7 +634,7 @@ namespace MonsterGUI
 								}
 								
 								// Use this on lanes with enough live monsters
-								if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && farmingGold) || (((gameData.Level % 10) == 0) && countLiveMonstersOnLane(laneRequested) >= 2))
+								if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && avoidDamageOnLane) || (((gameData.Level % 10) == 0) && countLiveMonstersOnLane(laneRequested) >= 2))
 								{
 									if (highestHpFactorOnLane(laneRequested) > (((gameData.Level % 10) == 0) ? 0.35m : 0.75m))
 									{
@@ -633,7 +659,7 @@ namespace MonsterGUI
 									}
 								}
 
-								if (!farmingGold)
+								if (!avoidDamageOnLane)
 								{
 									if (gameData.Level > Math.Max(speedThreshold_wchill, speedThreshold_steamdb))
 									{
