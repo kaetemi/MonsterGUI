@@ -21,6 +21,7 @@ namespace MonsterGUI
 		volatile bool offensiveAbilitiesOn = false;
 		volatile bool itemAbilitiesOn = false;
 		volatile bool superWormholeOn = false;
+		volatile bool multiWormholeOn = false;
 
 		// Strategy control
 		int speedThreshold_wchill = 2000;
@@ -30,9 +31,10 @@ namespace MonsterGUI
 		int wormHoleRounds = 500;
 		int superWormholeRounds = 100;
 		int superWormHoleDamageSafety = 5;
-		int likeNewTimerMin = 1000;
-		int likeNewTimerMax = 5000;
-		int likeNewChance = 10; // likeNewChance / NB Wormholes remaining
+		int likeNewTimerMin = 400;
+		int likeNewTimerMax = 4000;
+		int likeNewChance = 20; // likeNewChance / NB Wormholes remaining
+		int multiWormholeCount = 10;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -78,6 +80,7 @@ namespace MonsterGUI
 			itemsCheck.Checked = itemAbilitiesOn;
 			fireImmediatelyCheck.Checked = triggerHappy;
 			fasterWormhole.Checked = superWormholeOn;
+			multiWhCheck.Checked = multiWormholeOn;
 		}
 
 		/// <summary>
@@ -593,12 +596,17 @@ namespace MonsterGUI
 							}
 							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
 							{
-								if (hasPurchasedAbility(Abilities.Wormhole) && !isAbilityCoolingDown(Abilities.Wormhole))
+								bool doMultiWormhole = multiWormholeOn && highestHpFactorOnLane(laneRequested) > 0.5m;
+								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
 									// Permanent upgrades, always spam them as soon as possible
-									if (abilities) abilties_json += ",";
-									abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
-									abilities = true;
+									int nb = doMultiWormhole ? multiWormholeCount : 1;
+									for (int i = 0; i < nb; ++i)
+									{ 
+										if (abilities) abilties_json += ",";
+										abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
+										abilities = true;
+									}
 									requestTreeRefresh = true;
 									rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
 								}

@@ -386,6 +386,12 @@ namespace MonsterGUI
 			upgrMaxDPS.Value = 1m;
 			upgrMaxHP.Value = 1000000000000m;
 			fireImmediatelyCheck.Checked = true;
+			multiWhCheck.Checked = true;
+		}
+
+		private void multiWhCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			multiWormholeOn = multiWhCheck.Checked;
 		}
 	}
 }

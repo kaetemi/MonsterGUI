@@ -187,6 +187,7 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.multiWhCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -1122,6 +1123,7 @@
 			// 
 			this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox12.Controls.Add(this.multiWhCheck);
 			this.groupBox12.Controls.Add(this.fasterWormhole);
 			this.groupBox12.Controls.Add(this.itemsCheck);
 			this.groupBox12.Controls.Add(this.clearCoolCount);
@@ -1163,6 +1165,7 @@
 			// 
 			// fasterWormhole
 			// 
+			this.fasterWormhole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.fasterWormhole.AutoSize = true;
 			this.fasterWormhole.Location = new System.Drawing.Point(286, 30);
 			this.fasterWormhole.Name = "fasterWormhole";
@@ -1174,6 +1177,7 @@
 			// 
 			// itemsCheck
 			// 
+			this.itemsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.itemsCheck.AutoSize = true;
 			this.itemsCheck.Location = new System.Drawing.Point(286, 14);
 			this.itemsCheck.Name = "itemsCheck";
@@ -2165,6 +2169,18 @@
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
 			this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
 			// 
+			// multiWhCheck
+			// 
+			this.multiWhCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.multiWhCheck.AutoSize = true;
+			this.multiWhCheck.Location = new System.Drawing.Point(286, 46);
+			this.multiWhCheck.Name = "multiWhCheck";
+			this.multiWhCheck.Size = new System.Drawing.Size(97, 17);
+			this.multiWhCheck.TabIndex = 32;
+			this.multiWhCheck.Text = "Fast Wormhole";
+			this.multiWhCheck.UseVisualStyleBackColor = true;
+			this.multiWhCheck.CheckedChanged += new System.EventHandler(this.multiWhCheck_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2396,6 +2412,7 @@
 		private System.Windows.Forms.CheckBox badgesCheck;
 		private System.Windows.Forms.CheckBox fasterWormhole;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.CheckBox multiWhCheck;
 	}
 }
 
