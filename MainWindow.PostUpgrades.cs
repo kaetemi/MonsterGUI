@@ -98,7 +98,7 @@ namespace MonsterGUI
 		/// </summary>
 		private void postUpgradesGo()
 		{
-			waitForNewPlayerData = 3;
+			waitForNewPlayerData = 2;
 			waitForTuningData = true;
 			waitForUpgradeData = true;
 		}
@@ -165,6 +165,7 @@ namespace MonsterGUI
 						}
 						if (hasBadgePoints && autoBadgesOn)
 						{
+							int countLimit = 500;
 							int remainingBadgePoints = this.techTree.BadgePoints;
 							Action<Abilities, int, int> buyWithPoints = (ability, repeat, price) =>
 							{
@@ -175,6 +176,9 @@ namespace MonsterGUI
 									upgrades = true;
 									remainingBadgePoints -= price;
 									if (remainingBadgePoints < price)
+										break;
+									--countLimit;
+									if (countLimit <= 0)
 										break;
 								}
 							};

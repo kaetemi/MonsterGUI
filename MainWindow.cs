@@ -383,6 +383,7 @@ namespace MonsterGUI
 			fasterWormhole.Checked = true;
 			autoClickerCheck.Checked = false;
 			upgrMaxDPS.Value = 1m;
+			upgrMaxHP.Value = 1000000000000m;
 			fireImmediatelyCheck.Checked = true;
 		}
 	}

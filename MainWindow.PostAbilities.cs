@@ -740,7 +740,7 @@ namespace MonsterGUI
 					}
 					addClicks = ac;
 
-					if (abilities)
+					if (abilities && (this.techTree.BadgePoints <= 0))
 					{
 						// Send the UseAbilities POST request
 						abilties_json += "]}";
