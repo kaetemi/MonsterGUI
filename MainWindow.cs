@@ -312,8 +312,6 @@ namespace MonsterGUI
 			showResponsesOn = checkBox1.Checked;
 		}
 
-		UpgradeType printDamageUpgrade = UpgradeType.Nb;
-
 		private void upgrMaxHP_ValueChanged(object sender, EventArgs e)
 		{
 			upgradeMaxHP = upgrMaxHP.Value;

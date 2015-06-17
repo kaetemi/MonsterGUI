@@ -19,10 +19,10 @@ namespace MonsterGUI
 		volatile bool waitForTuningData = true;
 		bool waitForUpgradeData = true;
 
-		decimal upgradeMaxHP = 1000m;
-		decimal upgradeMaxDPS = 1000000000m;
-		decimal upgradeMaxDamage = 1000000000m;
-		decimal upgradeMaxCrit = 1m;
+		decimal upgradeMaxHP = 10000m;
+		decimal upgradeMaxDPS = 1000000000000m;
+		decimal upgradeMaxDamage = 1000000000000m;
+		decimal upgradeMaxCrit = 1000000000000m;
 		decimal upgradeMaxLoot = 1.25m;
 		decimal upgradeMaxFire = 1m;
 		decimal upgradeMaxWater = 1m;
@@ -74,6 +74,8 @@ namespace MonsterGUI
 			0, 0, 0, 0, 0, 0, 0, 0, 
 			0, 0, 0, 0, 0, 0, 0, 0, 
 		};
+
+		bool[] printUpgradingType = new bool[(int)UpgradeType.Nb];
 
 		private void postUpgradesInit()
 		{
@@ -157,6 +159,10 @@ namespace MonsterGUI
 
 					if (waitForNewPlayerData <= 0 && !waitForUpgradeData && !waitForTuningData)
 					{
+						for (int i = 0; i < printUpgradingType.Length; ++i)
+						{
+							printUpgradingType[i] = false;
+						}
 						if (hasBadgePoints && autoBadgesOn)
 						{
 							int remainingBadgePoints = this.techTree.BadgePoints;
@@ -201,6 +207,7 @@ namespace MonsterGUI
 									if (upgrades) upgrades_json += ",";
 									upgrades_json += Convert.ToString((int)upgrade, System.Globalization.CultureInfo.InvariantCulture);
 									upgrades = true;
+									printUpgradingType[(int)tuningData.Upgrades[(int)upgrade].Type] = true;
 								}
 							};
 
@@ -316,33 +323,47 @@ namespace MonsterGUI
 							Console.WriteLine("upgrElementalAirDPG: " + upgrElementalAirDPG);
 							Console.WriteLine("upgrCritDPG: " + upgrCritDPG);*/
 
-							UpgradeOption cheapestDamageUpgrade = UpgradeOption.Nb;
-							decimal cheapestDPG = decimal.MaxValue;
-							if (techTreeUpgradeMultipliers[(int)UpgradeType.ClickDamage] < upgradeMaxDamage)
+							if (techTree.Upgrades[(int)cheapestClickDamage].CostForNextLevel < goldRemaining
+								&& techTreeUpgradeMultipliers[(int)UpgradeType.ClickDamage] < upgradeMaxDamage)
 							{
-								cheapestDamageUpgrade = cheapestClickDamage;
-								cheapestDPG = upgrClickDamageDPG;
+								upgradeOption(cheapestClickDamage);
 							}
-							if (techTreeUpgradeMultipliers[(int)UpgradeType.DPS] < upgradeMaxDPS && upgrAutoClickDPG > cheapestDPG)
+
+							if (upgrAutoClickDPG >= upgrClickDamageDPG)
 							{
-								cheapestDamageUpgrade = cheapestAutoClick;
-								cheapestDPG = upgrAutoClickDPG;
+								if (techTree.Upgrades[(int)cheapestAutoClick].CostForNextLevel < goldRemaining
+									&& techTreeUpgradeMultipliers[(int)UpgradeType.DPS] < upgradeMaxDPS)
+								{
+									upgradeOption(cheapestAutoClick);
+								}
 							}
-							if (techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Crit] < upgradeMaxCrit && upgrCritDPG > cheapestDPG)
+							else if (techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].Level < 20) // Special rule
 							{
-								cheapestDamageUpgrade = UpgradeOption.LuckyShot;
-								cheapestDPG = upgrCritDPG;
+								if (techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].CostForNextLevel < goldRemaining)
+								{
+									upgradeOption(UpgradeOption.AutoFireCannon);
+								}
 							}
-							if (upgrEleDPG > cheapestDPG)
+
+							if (upgrCritDPG >= upgrClickDamageDPG)
+							{
+								if (techTree.Upgrades[(int)UpgradeOption.LuckyShot].CostForNextLevel < goldRemaining
+									&& techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Crit] < upgradeMaxCrit)
+								{
+									upgradeOption(UpgradeOption.LuckyShot);
+								}
+							}
+
+							if (upgrEleDPG >= upgrClickDamageDPG)
 							{
 								UpgradeOption lowestEle = UpgradeOption.Nb;
 								decimal lowestElem = decimal.MaxValue;
 								decimal[] upgrMaxEle = new decimal[4] {
-								upgradeMaxFire,
-								upgradeMaxWater,
-								upgradeMaxAir,
-								upgradeMaxEarth
-							};
+									upgradeMaxFire,
+									upgradeMaxWater,
+									upgradeMaxAir,
+									upgradeMaxEarth
+								};
 								for (int i = (int)UpgradeType.DamageMultiplier_Fire; i <= (int)UpgradeType.DamageMultiplier_Earth; ++i)
 								{
 									if (techTreeUpgradeMultipliers[i] < upgrMaxEle[i - (int)UpgradeType.DamageMultiplier_Fire]
@@ -354,28 +375,13 @@ namespace MonsterGUI
 								}
 								if (lowestEle != UpgradeOption.Nb)
 								{
-									cheapestDamageUpgrade = lowestEle;
-									cheapestDPG = upgrEleDPG;
-								}
-							}
-
-							if (cheapestDamageUpgrade != UpgradeOption.Nb)
-							{
-								decimal cheapestDamagePrice = techTree.Upgrades[(int)cheapestDamageUpgrade].CostForNextLevel;
-								if (cheapestDamagePrice < goldRemaining)
-								{
-									upgradeOption(cheapestDamageUpgrade);
-								}
-								else if (techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].Level < 20)
-								{
-									if (techTree.Upgrades[(int)UpgradeOption.AutoFireCannon].CostForNextLevel < goldRemaining)
+									if (techTree.Upgrades[(int)lowestEle].CostForNextLevel < goldRemaining
+										&& lowestElem < upgrMaxEle[(int)lowestEle - (int)UpgradeType.DamageMultiplier_Fire])
 									{
-										upgradeOption(UpgradeOption.AutoFireCannon);
+										upgradeOption(lowestEle);
 									}
 								}
 							}
-
-							printDamageUpgrade = tuningData.Upgrades[(int)cheapestDamageUpgrade].Type;
 
 							if (techTree.Upgrades[(int)cheapestHp].CostForNextLevel < goldRemaining
 								&& techTreeUpgradeMultipliers[(int)UpgradeType.HitPoints] < upgradeMaxHP)

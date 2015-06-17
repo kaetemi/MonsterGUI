@@ -597,7 +597,7 @@ namespace MonsterGUI
 			{
 				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
 					+ "x" + printTechTreeBases[i] + " (" + printTechTreeLevels[i].Substring(1) + ")";
-				bool makeBold = ((int)printDamageUpgrade == i);
+				bool makeBold = printUpgradingType[i];
 				if (makeBold != upgradeIntf[i].Font.Bold)
 					upgradeIntf[i].Font = new System.Drawing.Font(upgradeIntf[i].Font, makeBold ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular);
 			}
