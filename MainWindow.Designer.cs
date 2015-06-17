@@ -254,7 +254,7 @@
 			this.roomText.Size = new System.Drawing.Size(579, 20);
 			this.roomText.TabIndex = 5;
 			this.roomText.Value = new decimal(new int[] {
-            41671,
+            44888,
             0,
             0,
             0});

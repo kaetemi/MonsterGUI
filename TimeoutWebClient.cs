@@ -10,8 +10,10 @@ class TimeoutWebClient : WebClient
 
 	protected override WebRequest GetWebRequest(Uri uri)
 	{
-		WebRequest w = base.GetWebRequest(uri);
+		HttpWebRequest w = base.GetWebRequest(uri) as HttpWebRequest;
 		w.Timeout = 5000;
+		w.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+		w.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 		return w;
 	}
 }
