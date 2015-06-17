@@ -43,6 +43,7 @@
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox15 = new System.Windows.Forms.GroupBox();
+			this.badgesCheck = new System.Windows.Forms.CheckBox();
 			this.dpcCritDisp = new System.Windows.Forms.Label();
 			this.label35 = new System.Windows.Forms.Label();
 			this.dpcEleDisp = new System.Windows.Forms.Label();
@@ -184,7 +185,6 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.badgesCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -479,6 +479,17 @@
 			this.groupBox15.TabIndex = 11;
 			this.groupBox15.TabStop = false;
 			this.groupBox15.Text = "Upgrades";
+			// 
+			// badgesCheck
+			// 
+			this.badgesCheck.AutoSize = true;
+			this.badgesCheck.Location = new System.Drawing.Point(120, 12);
+			this.badgesCheck.Name = "badgesCheck";
+			this.badgesCheck.Size = new System.Drawing.Size(62, 17);
+			this.badgesCheck.TabIndex = 35;
+			this.badgesCheck.Text = "Badges";
+			this.badgesCheck.UseVisualStyleBackColor = true;
+			this.badgesCheck.CheckedChanged += new System.EventHandler(this.badgesCheck_CheckedChanged);
 			// 
 			// dpcCritDisp
 			// 
@@ -2125,18 +2136,6 @@
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(271, 17);
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
-			// 
-			// badgesCheck
-			// 
-			this.badgesCheck.AutoSize = true;
-			this.badgesCheck.Enabled = false;
-			this.badgesCheck.Location = new System.Drawing.Point(120, 12);
-			this.badgesCheck.Name = "badgesCheck";
-			this.badgesCheck.Size = new System.Drawing.Size(62, 17);
-			this.badgesCheck.TabIndex = 35;
-			this.badgesCheck.Text = "Badges";
-			this.badgesCheck.UseVisualStyleBackColor = true;
-			this.badgesCheck.CheckedChanged += new System.EventHandler(this.badgesCheck_CheckedChanged);
 			// 
 			// MainWindow
 			// 

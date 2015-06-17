@@ -227,6 +227,7 @@ namespace MonsterGUI
 		public int[] AbilityItems;
 
 		public decimal CritPercentage;
+		public int BadgePoints;
 
 	}
 
@@ -478,9 +479,11 @@ namespace MonsterGUI
 			JSONNode abilityItems = json["ability_items"];
 			JSONNode upgrades = json["upgrades"];
 			JSONNode critPercentage = json["crit_percentage"];
+			JSONNode badgePoints = json["badge_points"];
 
 			if (critPercentage != null) this.techTree.CritPercentage = Decimal.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-			
+			if (badgePoints != null) this.techTree.BadgePoints = Convert.ToInt32(badgePoints.Value, CultureInfo.InvariantCulture);
+
 			// "level": 20,
 			// "cost_for_next_level": 9094947010
 			ulong hasUpgrade = 0;
