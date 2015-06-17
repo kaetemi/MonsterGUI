@@ -21,7 +21,7 @@ namespace MonsterGUI
 		decimal upgradeMaxHP = 1000m;
 		decimal upgradeMaxDPS = 1000000000m;
 		decimal upgradeMaxDamage = 1000000000m;
-		decimal upgradeMaxCrit = 1000000000m;
+		decimal upgradeMaxCrit = 1m;
 		decimal upgradeMaxLoot = 1.25m;
 		decimal upgradeMaxFire = 1m;
 		decimal upgradeMaxWater = 1m;
