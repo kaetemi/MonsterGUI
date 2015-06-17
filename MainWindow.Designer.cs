@@ -90,6 +90,7 @@
 			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.fasterWormhole = new System.Windows.Forms.CheckBox();
 			this.itemsCheck = new System.Windows.Forms.CheckBox();
 			this.clearCoolCount = new System.Windows.Forms.Label();
 			this.clearCoolIntf = new System.Windows.Forms.Label();
@@ -175,6 +176,7 @@
 			this.groupBox14 = new System.Windows.Forms.GroupBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.button1 = new System.Windows.Forms.Button();
 			this.presetEverythingON = new System.Windows.Forms.Button();
 			this.presetEverythingOff = new System.Windows.Forms.Button();
 			this.playerGroup = new System.Windows.Forms.GroupBox();
@@ -185,8 +187,6 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.fasterWormhole = new System.Windows.Forms.CheckBox();
-			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -1161,6 +1161,17 @@
 			this.groupBox12.TabStop = false;
 			this.groupBox12.Text = "Items";
 			// 
+			// fasterWormhole
+			// 
+			this.fasterWormhole.AutoSize = true;
+			this.fasterWormhole.Location = new System.Drawing.Point(286, 30);
+			this.fasterWormhole.Name = "fasterWormhole";
+			this.fasterWormhole.Size = new System.Drawing.Size(103, 17);
+			this.fasterWormhole.TabIndex = 31;
+			this.fasterWormhole.Text = "Wormhole %100";
+			this.fasterWormhole.UseVisualStyleBackColor = true;
+			this.fasterWormhole.CheckedChanged += new System.EventHandler(this.fasterWormhole_CheckedChanged);
+			// 
 			// itemsCheck
 			// 
 			this.itemsCheck.AutoSize = true;
@@ -1188,7 +1199,7 @@
 			this.clearCoolIntf.Name = "clearCoolIntf";
 			this.clearCoolIntf.Size = new System.Drawing.Size(40, 30);
 			this.clearCoolIntf.TabIndex = 29;
-			this.clearCoolIntf.Text = "Clear Cool";
+			this.clearCoolIntf.Text = "Like New";
 			this.clearCoolIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// skipLevelCount
@@ -2038,6 +2049,18 @@
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "Presets";
 			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(6, 77);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(138, 23);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "Wormhole %100";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			// 
 			// presetEverythingON
 			// 
 			this.presetEverythingON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -2141,29 +2164,6 @@
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(271, 17);
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
 			this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
-			// 
-			// fasterWormhole
-			// 
-			this.fasterWormhole.AutoSize = true;
-			this.fasterWormhole.Location = new System.Drawing.Point(286, 30);
-			this.fasterWormhole.Name = "fasterWormhole";
-			this.fasterWormhole.Size = new System.Drawing.Size(103, 17);
-			this.fasterWormhole.TabIndex = 31;
-			this.fasterWormhole.Text = "Wormhole %100";
-			this.fasterWormhole.UseVisualStyleBackColor = true;
-			this.fasterWormhole.CheckedChanged += new System.EventHandler(this.fasterWormhole_CheckedChanged);
-			// 
-			// button1
-			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(6, 77);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(138, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Wormhole %100";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click_1);
 			// 
 			// MainWindow
 			// 

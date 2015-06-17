@@ -33,8 +33,10 @@ namespace MonsterGUI
 		const int badgeBuyCritPrice = 10;
 		const int badgeBuyRain = 30;
 		const int badgeBuyRainPrice = 10;
-		// infinite wormholes
+		const int badgeBuyWormholePerTick = 350;
 		const int badgeBuyWormholePrice = 100;
+		const int badgeBuyLikeNewPerTick = 10;
+		const int badgeBuyLikeNewPrice = 100;
 
 		int[] upgradeAccelerateToLevel = new int[(int)UpgradeOption.Max] {
 			20, // LightArmor = 0,
@@ -171,23 +173,25 @@ namespace MonsterGUI
 							{
 								for (int i = 0; i < repeat; ++i)
 								{
+									if (countLimit <= 0)
+										break;
+									if (remainingBadgePoints < price)
+										break;
 									if (upgrades) upgrades_json += ",";
 									upgrades_json += Convert.ToString((int)ability, System.Globalization.CultureInfo.InvariantCulture);
 									upgrades = true;
 									remainingBadgePoints -= price;
-									if (remainingBadgePoints < price)
-										break;
 									--countLimit;
-									if (countLimit <= 0)
-										break;
 								}
 							};
 							int remainingCrit = Math.Max(0, badgeBuyCrit - itemCount(Abilities.IncreaseCritPercentagePermanently));
 							int remainingRain = Math.Max(0, badgeBuyRain - itemCount(Abilities.GoldRain));
 							buyWithPoints(Abilities.IncreaseCritPercentagePermanently, remainingCrit, badgeBuyCritPrice);
 							buyWithPoints(Abilities.GoldRain, remainingRain, badgeBuyRainPrice);
-							buyWithPoints(Abilities.Wormhole, remainingBadgePoints / badgeBuyWormholePrice, badgeBuyWormholePrice);
-							buyWithPoints(Abilities.IncreaseHPPermanently, remainingBadgePoints, 1);
+							buyWithPoints(Abilities.Wormhole, badgeBuyWormholePerTick, badgeBuyWormholePrice);
+							buyWithPoints(Abilities.ClearCool, badgeBuyLikeNewPerTick, badgeBuyWormholePrice);
+							if (remainingBadgePoints < badgeBuyWormholePrice)
+								buyWithPoints(Abilities.IncreaseHPPermanently, remainingBadgePoints, 1);
 						}
 						else if (autoUpgradesOn && !hasBadgePoints)
 						{

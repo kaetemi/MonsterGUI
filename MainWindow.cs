@@ -381,7 +381,8 @@ namespace MonsterGUI
 		{
 			everythingEnable(true);
 			fasterWormhole.Checked = true;
-			autoClickerCheck.Checked = false;
+			minText.Value = 20;
+			maxText.Value = 20;
 			upgrMaxDPS.Value = 1m;
 			upgrMaxHP.Value = 1000000000000m;
 			fireImmediatelyCheck.Checked = true;

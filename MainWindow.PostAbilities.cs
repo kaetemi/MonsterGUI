@@ -29,7 +29,10 @@ namespace MonsterGUI
 		int rainingRounds_steamdb = 250;
 		int wormHoleRounds = 500;
 		int superWormholeRounds = 100;
-		int fastWormHoleDamageSafety = 5;
+		int superWormHoleDamageSafety = 5;
+		int likeNewTimerMin = 1000;
+		int likeNewTimerMax = 5000;
+		int likeNewChance = 10; // likeNewChance / NB Wormholes remaining
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -54,6 +57,7 @@ namespace MonsterGUI
 		volatile bool triggerHappy = false;
 		int lastGoldRainLevel = 0;
 		int lastBombLevel = 0;
+		int rearmLikeNewAt = 0;
 
 		/// <summary>
 		/// App init
@@ -84,6 +88,7 @@ namespace MonsterGUI
 			clickCount = 0;
 			clicksText.Text = "0";
 			lastGoldRainLevel = 0;
+			rearmLikeNewAt = 0;
 		}
 
 		EmptyCallback printRequestedLaneTargetDelegate;
@@ -242,7 +247,7 @@ namespace MonsterGUI
 		private bool avoidExtraDamageOnLane(int i)
 		{
 			return farmingGoldOnLane(i) || useWormHoleOnLane(i)
-				|| (superWormholeOn && ((gameData.Level % superWormholeRounds) >= (superWormholeRounds - fastWormHoleDamageSafety)));
+				|| (superWormholeOn && ((gameData.Level % superWormholeRounds) >= (superWormholeRounds - superWormHoleDamageSafety)));
 		}
 		
 		private bool useWormHoleOnLane(int i)
@@ -595,6 +600,21 @@ namespace MonsterGUI
 									abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
 									abilities = true;
 									requestTreeRefresh = true;
+									rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
+								}
+								else if (rearmLikeNewAt < System.Environment.TickCount) // Launch Like new in the follow tick if ok
+								{
+									if (hasPurchasedAbility(Abilities.ClearCool) && !isAbilityCoolingDown(Abilities.ClearCool))
+									{
+										if (random.Next(itemCount(Abilities.Wormhole)) < likeNewChance)
+										{
+											if (abilities) abilties_json += ",";
+											abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
+											abilities = true;
+											requestTreeRefresh = true;
+											rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
+										}
+									}
 								}
 							}
 							if (triggerHappy || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
