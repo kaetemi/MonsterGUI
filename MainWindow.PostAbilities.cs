@@ -706,7 +706,9 @@ namespace MonsterGUI
 					{
 						for (int i = 0; i < clickBoost; ++i) // Send clicks ability multiple times
 						{
-							int nb = minClicks + random.Next(maxClicks - minClicks); // Random clicks number
+							int nb = useWormHoleOnLane(laneRequested) ? 1 : // Less clicking on wormhole boss
+								minClicks + random.Next(maxClicks - minClicks); // Random clicks number
+
 							ac += (long)nb;
 							if (abilities) abilties_json += ",";
 							abilties_json += "{\"ability\":1,\"num_clicks\":" + nb + "}";
