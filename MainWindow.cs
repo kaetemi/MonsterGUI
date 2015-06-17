@@ -374,7 +374,7 @@ namespace MonsterGUI
 
 		private void fasterWormhole_CheckedChanged(object sender, EventArgs e)
 		{
-			fasterWormholeOn = fasterWormhole.Checked;
+			superWormholeOn = fasterWormhole.Checked;
 		}
 
 		private void button1_Click_1(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace MonsterGUI
 		volatile bool supportAbilitiesOn = false;
 		volatile bool offensiveAbilitiesOn = false;
 		volatile bool itemAbilitiesOn = false;
-		volatile bool fasterWormholeOn = false;
+		volatile bool superWormholeOn = false;
 
 		// Strategy control
 		int speedThreshold_wchill = 2000;
@@ -28,7 +28,7 @@ namespace MonsterGUI
 		int speedThreshold_steamdb = 1000;
 		int rainingRounds_steamdb = 250;
 		int wormHoleRounds = 500;
-		int fastWormHoleRounds = 100;
+		int superWormholeRounds = 100;
 		int fastWormHoleDamageSafety = 5;
 
 		// Auto clicker runtime info
@@ -73,7 +73,7 @@ namespace MonsterGUI
 			ovenzifCheck.Checked = offensiveAbilitiesOn;
 			itemsCheck.Checked = itemAbilitiesOn;
 			fireImmediatelyCheck.Checked = triggerHappy;
-			fasterWormhole.Checked = fasterWormholeOn;
+			fasterWormhole.Checked = superWormholeOn;
 		}
 
 		/// <summary>
@@ -221,7 +221,7 @@ namespace MonsterGUI
 
 		private bool farmingGoldOnLane(int i)
 		{
-			if (fasterWormholeOn)
+			if (superWormholeOn)
 			{
 				return bossMonsterOnLane(i) && !useWormHoleOnLane(i);
 			}
@@ -242,14 +242,14 @@ namespace MonsterGUI
 		private bool avoidExtraDamageOnLane(int i)
 		{
 			return farmingGoldOnLane(i) || useWormHoleOnLane(i)
-				|| (fasterWormholeOn && ((gameData.Level % fastWormHoleRounds) >= (fastWormHoleRounds - fastWormHoleDamageSafety)));
+				|| (superWormholeOn && ((gameData.Level % superWormholeRounds) >= (superWormholeRounds - fastWormHoleDamageSafety)));
 		}
 		
 		private bool useWormHoleOnLane(int i)
 		{
-			if (fasterWormholeOn)
+			if (superWormholeOn)
 			{
-				return ((gameData.Level % fastWormHoleRounds) == 0)
+				return ((gameData.Level % superWormholeRounds) == 0)
 					&& bossMonsterOnLane(i);
 			}
 			else
@@ -724,7 +724,8 @@ namespace MonsterGUI
 					}
 
 					long ac = 0;
-					if (autoClickerOn && maxClicks >= minClicks)
+					if (autoClickerOn && maxClicks >= minClicks
+						&& (!superWormholeOn || ((gameData.Level % superWormholeRounds) != 0)))
 					{
 						for (int i = 0; i < clickBoost; ++i) // Send clicks ability multiple times
 						{
