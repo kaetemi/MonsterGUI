@@ -2136,6 +2136,7 @@
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(271, 17);
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
+			this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
 			// 
 			// MainWindow
 			// 

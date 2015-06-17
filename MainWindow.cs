@@ -368,5 +368,10 @@ namespace MonsterGUI
 		{
 			autoBadgesOn = badgesCheck.Checked;
 		}
+
+		private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("http://steamcommunity.com/groups/monstergui");
+		}
 	}
 }
