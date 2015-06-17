@@ -44,6 +44,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.groupBox15 = new System.Windows.Forms.GroupBox();
 			this.badgesCheck = new System.Windows.Forms.CheckBox();
+			this.autoUpgradesCheck = new System.Windows.Forms.CheckBox();
 			this.dpcCritDisp = new System.Windows.Forms.Label();
 			this.label35 = new System.Windows.Forms.Label();
 			this.dpcEleDisp = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
 			this.upgrMaxDmg = new System.Windows.Forms.NumericUpDown();
 			this.upgrMaxDPS = new System.Windows.Forms.NumericUpDown();
 			this.upgrMaxHP = new System.Windows.Forms.NumericUpDown();
-			this.autoUpgradesCheck = new System.Windows.Forms.CheckBox();
 			this.upgrStatHP = new System.Windows.Forms.Label();
 			this.upgrStatDPS = new System.Windows.Forms.Label();
 			this.upgrStatLoot = new System.Windows.Forms.Label();
@@ -185,6 +185,7 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.fasterWormhole = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -490,6 +491,17 @@
 			this.badgesCheck.Text = "Badges";
 			this.badgesCheck.UseVisualStyleBackColor = true;
 			this.badgesCheck.CheckedChanged += new System.EventHandler(this.badgesCheck_CheckedChanged);
+			// 
+			// autoUpgradesCheck
+			// 
+			this.autoUpgradesCheck.AutoSize = true;
+			this.autoUpgradesCheck.Location = new System.Drawing.Point(120, 28);
+			this.autoUpgradesCheck.Name = "autoUpgradesCheck";
+			this.autoUpgradesCheck.Size = new System.Drawing.Size(72, 17);
+			this.autoUpgradesCheck.TabIndex = 29;
+			this.autoUpgradesCheck.Text = "Upgrades";
+			this.autoUpgradesCheck.UseVisualStyleBackColor = true;
+			this.autoUpgradesCheck.CheckedChanged += new System.EventHandler(this.autoUpgradesCheck_CheckedChanged);
 			// 
 			// dpcCritDisp
 			// 
@@ -802,17 +814,6 @@
             0});
 			this.upgrMaxHP.ValueChanged += new System.EventHandler(this.upgrMaxHP_ValueChanged);
 			// 
-			// autoUpgradesCheck
-			// 
-			this.autoUpgradesCheck.AutoSize = true;
-			this.autoUpgradesCheck.Location = new System.Drawing.Point(120, 28);
-			this.autoUpgradesCheck.Name = "autoUpgradesCheck";
-			this.autoUpgradesCheck.Size = new System.Drawing.Size(72, 17);
-			this.autoUpgradesCheck.TabIndex = 29;
-			this.autoUpgradesCheck.Text = "Upgrades";
-			this.autoUpgradesCheck.UseVisualStyleBackColor = true;
-			this.autoUpgradesCheck.CheckedChanged += new System.EventHandler(this.autoUpgradesCheck_CheckedChanged);
-			// 
 			// upgrStatHP
 			// 
 			this.upgrStatHP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1120,6 +1121,7 @@
 			// 
 			this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox12.Controls.Add(this.fasterWormhole);
 			this.groupBox12.Controls.Add(this.itemsCheck);
 			this.groupBox12.Controls.Add(this.clearCoolCount);
 			this.groupBox12.Controls.Add(this.clearCoolIntf);
@@ -2138,6 +2140,17 @@
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
 			this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
 			// 
+			// fasterWormhole
+			// 
+			this.fasterWormhole.AutoSize = true;
+			this.fasterWormhole.Location = new System.Drawing.Point(286, 30);
+			this.fasterWormhole.Name = "fasterWormhole";
+			this.fasterWormhole.Size = new System.Drawing.Size(103, 17);
+			this.fasterWormhole.TabIndex = 31;
+			this.fasterWormhole.Text = "Wormhole %100";
+			this.fasterWormhole.UseVisualStyleBackColor = true;
+			this.fasterWormhole.CheckedChanged += new System.EventHandler(this.fasterWormhole_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2367,6 +2380,7 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.CheckBox badgesCheck;
+		private System.Windows.Forms.CheckBox fasterWormhole;
 	}
 }
 

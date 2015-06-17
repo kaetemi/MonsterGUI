@@ -20,13 +20,15 @@ namespace MonsterGUI
 		volatile bool supportAbilitiesOn = false;
 		volatile bool offensiveAbilitiesOn = false;
 		volatile bool itemAbilitiesOn = false;
+		volatile bool fasterWormholeOn = false;
 
 		// Strategy control
-		int speedThreshold_wchill = 5000;
-		int rainingRounds_wchill = 250;
+		int speedThreshold_wchill = 2000;
+		int rainingRounds_wchill = 100;
 		int speedThreshold_steamdb = 1000;
-		int rainingRounds_steamdb = 200;
+		int rainingRounds_steamdb = 250;
 		int wormHoleRounds = 500;
+		int fastWormHoleRounds = 100;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -70,6 +72,7 @@ namespace MonsterGUI
 			ovenzifCheck.Checked = offensiveAbilitiesOn;
 			itemsCheck.Checked = itemAbilitiesOn;
 			fireImmediatelyCheck.Checked = triggerHappy;
+			fasterWormhole.Checked = fasterWormholeOn;
 		}
 
 		/// <summary>
@@ -217,15 +220,22 @@ namespace MonsterGUI
 
 		private bool farmingGoldOnLane(int i)
 		{
-			return (
-				(gameData.Level < Math.Min(speedThreshold_wchill, speedThreshold_steamdb)
-				|| ((gameData.Level % rainingRounds_wchill) == 0)
-				|| ((gameData.Level % rainingRounds_steamdb) == 0)
-				)
+			if (fasterWormholeOn)
+			{
+				return bossMonsterOnLane(i) && !useWormHoleOnLane(i);
+			}
+			else
+			{
+				return (
+					(gameData.Level < Math.Min(speedThreshold_wchill, speedThreshold_steamdb)
+					|| ((gameData.Level % rainingRounds_wchill) == 0)
+					|| ((gameData.Level % rainingRounds_steamdb) == 0)
+					)
 
-				&& !useWormHoleOnLane(i)
-				
-				&& bossMonsterOnLane(i));
+					&& !useWormHoleOnLane(i)
+
+					&& bossMonsterOnLane(i));
+			}
 		}
 
 		private bool avoidExtraDamageOnLane(int i)
@@ -235,8 +245,16 @@ namespace MonsterGUI
 		
 		private bool useWormHoleOnLane(int i)
 		{
-			return ((gameData.Level % wormHoleRounds) == 0)
-				&& bossMonsterOnLane(i);
+			if (fasterWormholeOn)
+			{
+				return ((gameData.Level % fastWormHoleRounds) == 0)
+					&& bossMonsterOnLane(i);
+			}
+			else
+			{
+				return ((gameData.Level % wormHoleRounds) == 0)
+					&& bossMonsterOnLane(i);
+			}
 		}
 
 		private bool nukeOnLane(int i)

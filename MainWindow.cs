@@ -371,5 +371,10 @@ namespace MonsterGUI
 		{
 			System.Diagnostics.Process.Start("http://steamcommunity.com/groups/monstergui");
 		}
+
+		private void fasterWormhole_CheckedChanged(object sender, EventArgs e)
+		{
+			fasterWormholeOn = fasterWormhole.Checked;
+		}
 	}
 }
