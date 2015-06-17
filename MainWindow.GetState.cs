@@ -170,7 +170,7 @@ namespace MonsterGUI
 				Lanes[i].Init();
 		}
 
-		public int Level;
+		public long Level;
 
 		public Lane[] Lanes;
 
@@ -227,7 +227,7 @@ namespace MonsterGUI
 		public int[] AbilityItems;
 
 		public decimal CritPercentage;
-		public int BadgePoints;
+		public long BadgePoints;
 
 	}
 
@@ -482,7 +482,7 @@ namespace MonsterGUI
 			JSONNode badgePoints = json["badge_points"];
 
 			if (critPercentage != null) this.techTree.CritPercentage = Decimal.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-			if (badgePoints != null) this.techTree.BadgePoints = Convert.ToInt32(badgePoints.Value, CultureInfo.InvariantCulture);
+			if (badgePoints != null) this.techTree.BadgePoints = Convert.ToInt64(badgePoints.Value, CultureInfo.InvariantCulture);
 
 			// "level": 20,
 			// "cost_for_next_level": 9094947010
@@ -786,7 +786,7 @@ namespace MonsterGUI
 				JSONNode timestampLevelStart = gameData["timestamp_level_start"];
 				JSONNode lanes = gameData["lanes"];
 
-				if (level != null) this.gameData.Level = Convert.ToInt32(level.Value, CultureInfo.InvariantCulture) + 1;
+				if (level != null) this.gameData.Level = Convert.ToInt64(level.Value, CultureInfo.InvariantCulture) + 1;
 				if (timestamp != null) this.gameData.Timestamp = Convert.ToInt64(timestamp.Value, CultureInfo.InvariantCulture);
 				if (timestampLevelStart != null) this.gameData.TimestampLevelStart = Convert.ToInt64(timestampLevelStart.Value, CultureInfo.InvariantCulture);
 				

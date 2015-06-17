@@ -55,8 +55,8 @@ namespace MonsterGUI
 
 		// Abilities info
 		volatile bool triggerHappy = false;
-		int lastGoldRainLevel = 0;
-		int lastBombLevel = 0;
+		long lastGoldRainLevel = 0;
+		long lastBombLevel = 0;
 		int rearmLikeNewAt = 0;
 
 		/// <summary>

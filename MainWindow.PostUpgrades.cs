@@ -168,19 +168,19 @@ namespace MonsterGUI
 						if (hasBadgePoints && autoBadgesOn)
 						{
 							int countLimit = 500;
-							int remainingBadgePoints = this.techTree.BadgePoints;
+							long remainingBadgePoints = this.techTree.BadgePoints;
 							Action<Abilities, int, int> buyWithPoints = (ability, repeat, price) =>
 							{
 								for (int i = 0; i < repeat; ++i)
 								{
 									if (countLimit <= 0)
 										break;
-									if (remainingBadgePoints < price)
+									if (remainingBadgePoints < (long)price)
 										break;
 									if (upgrades) upgrades_json += ",";
 									upgrades_json += Convert.ToString((int)ability, System.Globalization.CultureInfo.InvariantCulture);
 									upgrades = true;
-									remainingBadgePoints -= price;
+									remainingBadgePoints -= (long)price;
 									--countLimit;
 								}
 							};
@@ -191,7 +191,7 @@ namespace MonsterGUI
 							buyWithPoints(Abilities.Wormhole, badgeBuyWormholePerTick, badgeBuyWormholePrice);
 							buyWithPoints(Abilities.ClearCool, badgeBuyLikeNewPerTick, badgeBuyWormholePrice);
 							if (remainingBadgePoints < badgeBuyWormholePrice)
-								buyWithPoints(Abilities.IncreaseHPPermanently, remainingBadgePoints, 1);
+								buyWithPoints(Abilities.IncreaseHPPermanently, (int)remainingBadgePoints, 1);
 						}
 						else if (autoUpgradesOn && !hasBadgePoints)
 						{
