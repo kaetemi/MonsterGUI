@@ -313,7 +313,10 @@ namespace MonsterGUI
 					for (int i = 0; i < warp.Length; ++i)
 					{
 						if (!keepWarping)
+						{
+							doingWarp9 = false;
 							return;
+						}
 
 						// warp[i].Pos
 						if (!warp[i].IsBusy)
@@ -341,6 +344,7 @@ namespace MonsterGUI
 							}
 							else
 							{
+								doingWarp9 = false;
 								return;
 							}
 						}
