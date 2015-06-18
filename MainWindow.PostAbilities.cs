@@ -252,7 +252,8 @@ namespace MonsterGUI
 		private bool avoidExtraDamageOnLane(int i)
 		{
 			return farmingGoldOnLane(i) || useWormHoleOnLane(i)
-				|| (superWormholeOn && ((gameData.Level % superWormholeRounds) >= (superWormholeRounds - superWormHoleDamageSafety)));
+				|| (superWormholeOn && ((gameData.Level % superWormholeRounds) >= (superWormholeRounds - superWormHoleDamageSafety)))
+				|| ((gameData.Level % superWormholeRounds) == 0);
 		}
 		
 		private bool useWormHoleOnLane(int i)
