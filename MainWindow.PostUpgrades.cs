@@ -19,15 +19,15 @@ namespace MonsterGUI
 		volatile bool waitForTuningData = true;
 		bool waitForUpgradeData = true;
 
-		decimal upgradeMaxHP = 10000m;
-		decimal upgradeMaxDPS = 1000000000000000m;
-		decimal upgradeMaxDamage = 1000000000000000m;
-		decimal upgradeMaxCrit = 1000000000000000m;
-		decimal upgradeMaxLoot = 1.25m;
-		decimal upgradeMaxFire = 1m;
-		decimal upgradeMaxWater = 1m;
-		decimal upgradeMaxEarth = 1m;
-		decimal upgradeMaxAir = 1m;
+		double upgradeMaxHP = 10000.0;
+		double upgradeMaxDPS = 1000000000000000.0;
+		double upgradeMaxDamage = 1000000000000000.0;
+		double upgradeMaxCrit = 1000000000000000.0;
+		double upgradeMaxLoot = 1.25;
+		double upgradeMaxFire = 1.0;
+		double upgradeMaxWater = 1.0;
+		double upgradeMaxEarth = 1.0;
+		double upgradeMaxAir = 1.0;
 
 		const int badgeBuyCrit = 30;
 		const int badgeBuyCritPrice = 10;
@@ -82,15 +82,15 @@ namespace MonsterGUI
 		private void postUpgradesInit()
 		{
 			resultPostUpgradesDelegate = new JsonCallback(resultPostUpgrades);
-			upgrMaxHP.Value = upgradeMaxHP;
-			upgrMaxDPS.Value = upgradeMaxDPS;
-			upgrMaxDmg.Value = upgradeMaxDamage;
-			upgrMaxCrit.Value = upgradeMaxCrit;
-			upgrMaxLoot.Value = upgradeMaxLoot;
-			upgrMaxFire.Value = upgradeMaxFire;
-			upgrMaxWater.Value = upgradeMaxWater;
-			upgrMaxEarth.Value = upgradeMaxEarth;
-			upgrMaxAir.Value = upgradeMaxAir;
+			upgrMaxHP.Value = (decimal)upgradeMaxHP;
+			upgrMaxDPS.Value = (decimal)upgradeMaxDPS;
+			upgrMaxDmg.Value = (decimal)upgradeMaxDamage;
+			upgrMaxCrit.Value = (decimal)upgradeMaxCrit;
+			upgrMaxLoot.Value = (decimal)upgradeMaxLoot;
+			upgrMaxFire.Value = (decimal)upgradeMaxFire;
+			upgrMaxWater.Value = (decimal)upgradeMaxWater;
+			upgrMaxEarth.Value = (decimal)upgradeMaxEarth;
+			upgrMaxAir.Value = (decimal)upgradeMaxAir;
 			autoUpgradesCheck.Checked = autoUpgradesOn;
 			badgesCheck.Checked = autoBadgesOn;
 		}
@@ -123,10 +123,10 @@ namespace MonsterGUI
 				>= tuningData.Upgrades[(int)upgrade].RequiredUpgradeLevel;
 		}
 
-		/*static decimal getDamage(decimal dmgBase, decimal baseMultiplier, decimal critPercentage, decimal critMultiplier, decimal eleMultiplier)
+		/*static decimal getDamage(double dmgBase, double baseMultiplier, double critPercentage, double critMultiplier, double eleMultiplier)
 		{
-			decimal critPercentageCapped = Math.Min(critPercentage, 1m);
-			decimal critPercentageInv = 1m - critPercentageCapped;
+			double critPercentageCapped = Math.Min(critPercentage, 1m);
+			double critPercentageInv = 1m - critPercentageCapped;
 			return ((dmgBase * baseMultiplier * eleMultiplier) * critPercentageInv)
 				+ ((dmgBase * critMultiplier) * critPercentageCapped);
 		}*/ // TODO
@@ -203,13 +203,13 @@ namespace MonsterGUI
 								upgrades = true;
 							*/
 
-							decimal goldRemaining = playerData.Gold;
+							double goldRemaining = playerData.Gold;
 
 							Action<UpgradeOption> upgradeOption = upgrade =>
 							{
 								int ldif = upgradeAccelerateToLevel[(int)upgrade] - techTree.Upgrades[(int)upgrade].Level;
 								int repeat = ldif > 0 ? ldif : 1;
-								goldRemaining -= techTree.Upgrades[(int)upgrade].CostForNextLevel * (decimal)repeat; // Not accurate but whatever.
+								goldRemaining -= techTree.Upgrades[(int)upgrade].CostForNextLevel * (double)repeat; // Not accurate but whatever.
 								for (int i = 0; i < repeat; ++i)
 								{
 									if (upgrades) upgrades_json += ",";
@@ -220,27 +220,27 @@ namespace MonsterGUI
 							};
 
 							int maxNumClick = 20;
-							decimal cps = ((decimal)Math.Min(minClicks, maxClicks) + (decimal)Math.Min(maxClicks, maxNumClick)) * 0.5m;
+							double cps = ((double)Math.Min(minClicks, maxClicks) + (double)Math.Min(maxClicks, maxNumClick)) * 0.5;
 
-							decimal dmgBase = tuningData.Player.DamagePerClick;
-							decimal mulBase = techTreeUpgradeMultipliers[(int)UpgradeType.ClickDamage];
-							decimal mulCrit = techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Crit];
-							decimal dpc = dmgBase * mulBase;
-							decimal autoDpsMul = techTreeUpgradeMultipliers[(int)UpgradeType.DPS];
-							decimal dpcCrit = dpc * mulCrit;
-							decimal mulEle = Math.Max(techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Air],
+							double dmgBase = tuningData.Player.DamagePerClick;
+							double mulBase = techTreeUpgradeMultipliers[(int)UpgradeType.ClickDamage];
+							double mulCrit = techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Crit];
+							double dpc = dmgBase * mulBase;
+							double autoDpsMul = techTreeUpgradeMultipliers[(int)UpgradeType.DPS];
+							double dpcCrit = dpc * mulCrit;
+							double mulEle = Math.Max(techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Air],
 								Math.Max(techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Earth],
 								Math.Max(techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Fire],
 								techTreeUpgradeMultipliers[(int)UpgradeType.DamageMultiplier_Water])));
 
-							decimal critPercentage = techTree.CritPercentage;
-							critPercentage = Math.Min(critPercentage, 1m);
-							decimal invCritPercentage = 1m - critPercentage;
+							double critPercentage = techTree.CritPercentage;
+							critPercentage = Math.Min(critPercentage, 1.0);
+							double invCritPercentage = 1.0 - critPercentage;
 
 							// decimal upgrClickPU = dmgBase;
-							decimal cheapestClickDamagePPU = decimal.MaxValue;
-							decimal cheapestAutoClickPPU = decimal.MaxValue;
-							decimal cheapestHpPPU = decimal.MaxValue;
+							double cheapestClickDamagePPU = double.MaxValue;
+							double cheapestAutoClickPPU = double.MaxValue;
+							double cheapestHpPPU = double.MaxValue;
 							UpgradeOption cheapestClickDamage = UpgradeOption.ArmorPiercingRound;
 							UpgradeOption cheapestAutoClick = UpgradeOption.AutoFireCannon;
 							UpgradeOption cheapestHp = UpgradeOption.LightArmor;
@@ -249,9 +249,9 @@ namespace MonsterGUI
 							{
 								if (upgradeUnlocked((UpgradeOption)i))
 								{
-									if (tuningData.Upgrades[i].Multiplier > 0m)
+									if (tuningData.Upgrades[i].Multiplier > 0.0)
 									{
-										decimal ppu = techTree.Upgrades[i].CostForNextLevel / tuningData.Upgrades[i].Multiplier;
+										double ppu = techTree.Upgrades[i].CostForNextLevel / tuningData.Upgrades[i].Multiplier;
 										switch (tuningData.Upgrades[i].Type)
 										{
 											case UpgradeType.ClickDamage:
@@ -289,39 +289,39 @@ namespace MonsterGUI
 							decimal upgrElementalDpsPU = clickDpsEstimate * tuningData.Upgrades[(int)UpgradeOption.ElementalFire].Multiplier;
 							decimal upgrCritDmgDpsPU = dpc * cps * critChanceFactor * tuningData.Upgrades[(int)UpgradeOption.LuckyShot].Multiplier;*/
 
-							decimal unitAutoDpsEstimate = dmgBase; // (dmgBase * invCritPercentage) + (dmgBase * mulCrit * critPercentage); // TODO: Does crit effect auto dps?
-							decimal unitClickDpsEstimate = unitAutoDpsEstimate * cps;
+							double unitAutoDpsEstimate = dmgBase; // (dmgBase * invCritPercentage) + (dmgBase * mulCrit * critPercentage); // TODO: Does crit effect auto dps?
+							double unitClickDpsEstimate = unitAutoDpsEstimate * cps;
 
 							// Damage Per Gold
-							decimal upgrClickDamage = (unitClickDpsEstimate * mulEle)
+							double upgrClickDamage = (unitClickDpsEstimate * mulEle)
 								* tuningData.Upgrades[(int)cheapestClickDamage].Multiplier;
-							decimal upgrClickDamageDPG = upgrClickDamage
+							double upgrClickDamageDPG = upgrClickDamage
 								/ techTree.Upgrades[(int)cheapestClickDamage].CostForNextLevel;
-							decimal upgrAutoClick = (unitAutoDpsEstimate * mulEle)
+							double upgrAutoClick = (unitAutoDpsEstimate * mulEle)
 								* tuningData.Upgrades[(int)cheapestAutoClick].Multiplier;
-							decimal upgrAutoClickDPG = upgrAutoClick
+							double upgrAutoClickDPG = upgrAutoClick
 								/ techTree.Upgrades[(int)cheapestAutoClick].CostForNextLevel;
-							decimal upgrElementalFire = (unitClickDpsEstimate * mulBase)
+							double upgrElementalFire = (unitClickDpsEstimate * mulBase)
 								* tuningData.Upgrades[(int)UpgradeOption.ElementalFire].Multiplier;
-							decimal upgrElementalFireDPG = upgrElementalFire
+							double upgrElementalFireDPG = upgrElementalFire
 								/ techTree.Upgrades[(int)UpgradeOption.ElementalFire].CostForNextLevel;
-							decimal upgrElementalWater = (unitClickDpsEstimate * mulBase)
+							double upgrElementalWater = (unitClickDpsEstimate * mulBase)
 								* tuningData.Upgrades[(int)UpgradeOption.ElementalWater].Multiplier;
-							decimal upgrElementalWaterDPG = upgrElementalWater
+							double upgrElementalWaterDPG = upgrElementalWater
 								/ techTree.Upgrades[(int)UpgradeOption.ElementalWater].CostForNextLevel;
-							decimal upgrElementalEarth = (unitClickDpsEstimate * mulBase)
+							double upgrElementalEarth = (unitClickDpsEstimate * mulBase)
 								* tuningData.Upgrades[(int)UpgradeOption.ElementalEarth].Multiplier;
-							decimal upgrElementalEarthDPG = upgrElementalEarth
+							double upgrElementalEarthDPG = upgrElementalEarth
 								/ techTree.Upgrades[(int)UpgradeOption.ElementalEarth].CostForNextLevel;
-							decimal upgrElementalAir = (unitClickDpsEstimate * mulBase)
+							double upgrElementalAir = (unitClickDpsEstimate * mulBase)
 								* tuningData.Upgrades[(int)UpgradeOption.ElementalAir].Multiplier;
-							decimal upgrElementalAirDPG = upgrElementalAir
+							double upgrElementalAirDPG = upgrElementalAir
 								/ techTree.Upgrades[(int)UpgradeOption.ElementalAir].CostForNextLevel;
-							decimal upgrCrit = (dpc * critPercentage * cps * mulEle)
+							double upgrCrit = (dpc * critPercentage * cps * mulEle)
 								* tuningData.Upgrades[(int)UpgradeOption.LuckyShot].Multiplier;
-							decimal upgrCritDPG = upgrCrit
+							double upgrCritDPG = upgrCrit
 								/ techTree.Upgrades[(int)UpgradeOption.LuckyShot].CostForNextLevel;
-							decimal upgrEleDPG = Math.Max(upgrElementalFireDPG, Math.Max(upgrElementalWaterDPG, Math.Max(upgrElementalEarthDPG, upgrElementalAirDPG))); // Should be all the same really
+							double upgrEleDPG = Math.Max(upgrElementalFireDPG, Math.Max(upgrElementalWaterDPG, Math.Max(upgrElementalEarthDPG, upgrElementalAirDPG))); // Should be all the same really
 
 							/*Console.WriteLine("upgrClickDamageDPG: " + upgrClickDamageDPG);
 							Console.WriteLine("upgrAutoClickDPG: " + upgrAutoClickDPG);
@@ -365,8 +365,8 @@ namespace MonsterGUI
 							if (upgrEleDPG >= upgrClickDamageDPG)
 							{
 								UpgradeOption lowestEle = UpgradeOption.Nb;
-								decimal lowestElem = decimal.MaxValue;
-								decimal[] upgrMaxEle = new decimal[4] {
+								double lowestElem = double.MaxValue;
+								double[] upgrMaxEle = new double[4] {
 									upgradeMaxFire,
 									upgradeMaxWater,
 									upgradeMaxAir,

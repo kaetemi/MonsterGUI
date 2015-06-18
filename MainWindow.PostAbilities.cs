@@ -139,9 +139,9 @@ namespace MonsterGUI
 			return false;
 		}
 
-		private decimal highestMonsterOnLane(int i)
+		private double highestMonsterOnLane(int i)
 		{
-			decimal highest = 0;
+			double highest = 0;
 			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
 			{
 				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].Hp > highest)
@@ -212,9 +212,9 @@ namespace MonsterGUI
 			return count;
 		}
 
-		private decimal highestHpFactorOnLane(int i)
+		private double highestHpFactorOnLane(int i)
 		{
-			decimal highest = 0;
+			double highest = 0;
 			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
 			{
 				if (gameData.Lanes[i].Enemies[j].Type != EnemyType.None && gameData.Lanes[i].Enemies[j].MaxHp != 0 && (gameData.Lanes[i].Enemies[j].Hp / gameData.Lanes[i].Enemies[j].MaxHp) > highest)
@@ -377,7 +377,7 @@ namespace MonsterGUI
 					if (goldLaneSwitcherOn)
 					{
 						int bestLane = -1;
-						decimal bestGold = 0.0m;
+						double bestGold = 0.0;
 						for (int i = 0; i < gameData.Lanes.Length; ++i)
 						{
 							if (gameData.Lanes[i].ActivePlayerAbilityGoldPerClick > bestGold
@@ -514,7 +514,7 @@ namespace MonsterGUI
 								{
 									if (hasPurchasedAbility(Abilities.MetalDetector) && !isAbilityCoolingDown(Abilities.MetalDetector))
 									{
-										if (highestHpFactorOnLane(laneRequested) > 0.75m)
+										if (highestHpFactorOnLane(laneRequested) > 0.75)
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.MetalDetector + "}"; // Increase Gold Drops
@@ -534,7 +534,7 @@ namespace MonsterGUI
 								{
 									if (nukeOnLane(laneRequested))
 									{
-										if (highestHpFactorOnLane(laneRequested) > 0.65m)
+										if (highestHpFactorOnLane(laneRequested) > 0.65)
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.Nuke + "}"; // Nuke
@@ -593,7 +593,7 @@ namespace MonsterGUI
 							}
 							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
 							{
-								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.1m;
+								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.1;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
 									if (abilities) abilties_json += ",";
@@ -635,7 +635,7 @@ namespace MonsterGUI
 										&& hasPurchasedAbility(Abilities.GoldRain) && !isAbilityCoolingDown(Abilities.GoldRain))
 									{
 										// When already done gold rain on this level, allow for a lower HP, as this means the boss is going down slowly
-										if (highestHpFactorOnLane(laneRequested) >= ((lastGoldRainLevel != gameData.Level) ? 0.75m : 0.25m))
+										if (highestHpFactorOnLane(laneRequested) >= ((lastGoldRainLevel != gameData.Level) ? 0.75 : 0.25))
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.GoldRain + "}";
@@ -649,8 +649,8 @@ namespace MonsterGUI
 								if (hasPurchasedAbility(Abilities.GiveGold) && !isAbilityCoolingDown(Abilities.GiveGold)) // Treasure
 								{
 									// When no player money or under same circumstances as Metal Detector
-									if ((playerData.Gold < 100000.0m)
-										|| (avoidDamageOnLane && highestHpFactorOnLane(laneRequested) > 0.25m))
+									if ((playerData.Gold < 100000.0)
+										|| (avoidDamageOnLane && highestHpFactorOnLane(laneRequested) > 0.25))
 									{
 										if (abilities) abilties_json += ",";
 										abilties_json += "{\"ability\":" + (int)Abilities.GiveGold + "}";
@@ -684,7 +684,7 @@ namespace MonsterGUI
 								// Use this on lanes with enough live monsters
 								if (countLiveMonstersOnLane(laneRequested) >= 3 || (bossMonsterOnLane(laneRequested) && avoidDamageOnLane) || (((gameData.Level % 10) == 0) && countLiveMonstersOnLane(laneRequested) >= 2))
 								{
-									if (highestHpFactorOnLane(laneRequested) > (((gameData.Level % 10) == 0) ? 0.35m : 0.75m))
+									if (highestHpFactorOnLane(laneRequested) > (((gameData.Level % 10) == 0) ? 0.35 : 0.75))
 									{
 										if (hasPurchasedAbility(Abilities.StealHealth) && !isAbilityCoolingDown(Abilities.StealHealth))
 										{
@@ -715,7 +715,7 @@ namespace MonsterGUI
 										{
 											if (bossMonsterOnLane(laneRequested)) // Cripple bosses
 											{
-												if (highestHpFactorOnLane(laneRequested) >= 0.5m)
+												if (highestHpFactorOnLane(laneRequested) >= 0.5)
 												{
 													if (abilities) abilties_json += ",";
 													abilties_json += "{\"ability\":" + (int)Abilities.CrippleMonster + "}";
@@ -733,8 +733,8 @@ namespace MonsterGUI
 										{
 											if (gameData.Lanes[laneRequested].Enemies[spawner].MaxHp != 0)
 											{
-												decimal ratio = gameData.Lanes[laneRequested].Enemies[spawner].Hp / gameData.Lanes[laneRequested].Enemies[spawner].MaxHp;
-												if (ratio > 0.95m)
+												double ratio = gameData.Lanes[laneRequested].Enemies[spawner].Hp / gameData.Lanes[laneRequested].Enemies[spawner].MaxHp;
+												if (ratio > 0.95)
 												{
 													if (abilities) abilties_json += ",";
 													abilties_json += "{\"ability\":" + (int)Abilities.CrippleSpawner + "}";

@@ -314,47 +314,47 @@ namespace MonsterGUI
 
 		private void upgrMaxHP_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxHP = upgrMaxHP.Value;
+			upgradeMaxHP = (double)upgrMaxHP.Value;
 		}
 
 		private void upgrMaxDPS_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxDPS = upgrMaxDPS.Value;
+			upgradeMaxDPS = (double)upgrMaxDPS.Value;
 		}
 
 		private void upgrMaxDmg_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxDamage = upgrMaxDmg.Value;
+			upgradeMaxDamage = (double)upgrMaxDmg.Value;
 		}
 
 		private void upgrMaxCrit_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxCrit = upgrMaxCrit.Value;
+			upgradeMaxCrit = (double)upgrMaxCrit.Value;
 		}
 
 		private void upgrMaxLoot_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxLoot = upgrMaxLoot.Value;
+			upgradeMaxLoot = (double)upgrMaxLoot.Value;
 		}
 
 		private void upgrMaxFire_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxFire = upgrMaxFire.Value;
+			upgradeMaxFire = (double)upgrMaxFire.Value;
 		}
 
 		private void upgrMaxWater_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxWater = upgrMaxWater.Value;
+			upgradeMaxWater = (double)upgrMaxWater.Value;
 		}
 
 		private void upgrMaxEarth_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxEarth = upgrMaxEarth.Value;
+			upgradeMaxEarth = (double)upgrMaxEarth.Value;
 		}
 
 		private void upgrMaxAir_ValueChanged(object sender, EventArgs e)
 		{
-			upgradeMaxAir = upgrMaxAir.Value;
+			upgradeMaxAir = (double)upgrMaxAir.Value;
 		}
 
 		private void autoUpgradesCheck_CheckedChanged(object sender, EventArgs e)

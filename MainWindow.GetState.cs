@@ -118,8 +118,8 @@ namespace MonsterGUI
 
 	struct PlayerData
 	{
-		public decimal Hp;
-		public decimal Gold;
+		public double Hp;
+		public double Gold;
 
 		public int CurrentLane;
 		public int Target;
@@ -131,8 +131,8 @@ namespace MonsterGUI
 
 	struct Enemy
 	{
-		public decimal Hp;
-		public decimal MaxHp;
+		public double Hp;
+		public double MaxHp;
 
 		public EnemyType Type;
 
@@ -156,7 +156,7 @@ namespace MonsterGUI
 		}
 
 		public Enemy[] Enemies;
-		public decimal ActivePlayerAbilityGoldPerClick;
+		public double ActivePlayerAbilityGoldPerClick;
 		public UpgradeOption Element;
 	}
 
@@ -217,7 +217,7 @@ namespace MonsterGUI
 		public struct Upgrade
 		{
 			public int Level;
-			public decimal CostForNextLevel;
+			public double CostForNextLevel;
 		}
 
 		public Upgrade[] Upgrades;
@@ -226,7 +226,7 @@ namespace MonsterGUI
 
 		public int[] AbilityItems;
 
-		public decimal CritPercentage;
+		public double CritPercentage;
 		public long BadgePoints;
 
 	}
@@ -243,18 +243,18 @@ namespace MonsterGUI
 
 		public struct PlayerStruct
 		{
-			public decimal Hp;
-			public decimal Dps;
-			public decimal DamagePerClick;
-			public decimal DamageMultiplierFire;
-			public decimal DamageMultiplierCrit;
-			public decimal CritPercentage;
-			public decimal LootChance;
+			public double Hp;
+			public double Dps;
+			public double DamagePerClick;
+			public double DamageMultiplierFire;
+			public double DamageMultiplierCrit;
+			public double CritPercentage;
+			public double LootChance;
 		}
 
 		public struct Upgrade
 		{
-			public decimal Multiplier;
+			public double Multiplier;
 			public UpgradeType Type;
 			public int RequiredUpgrade;
 			public int RequiredUpgradeLevel;
@@ -374,7 +374,7 @@ namespace MonsterGUI
 			processTechTree(); // Copy some data from print over for use
 		}
 
-		private void critDamage(decimal value)
+		private void critDamage(double value)
 		{
 			// It seems this is sent to the client to increment a global counter which is then
 			// decremented every time the user clicks to do a critic using the calculated crit 
@@ -394,8 +394,8 @@ namespace MonsterGUI
 			JSONNode activeAbilities = json["active_abilities"];
 			JSONNode loot = json["loot"];
 
-			if (hp != null) playerData.Hp = Decimal.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-			if (gold != null) playerData.Gold = Decimal.Parse(gold.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+			if (hp != null) playerData.Hp = double.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+			if (gold != null) playerData.Gold = double.Parse(gold.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 			if (currentLane != null) playerData.CurrentLane = Convert.ToInt32(currentLane.Value, CultureInfo.InvariantCulture);
 			if (target != null) playerData.Target = Convert.ToInt32(target.Value, CultureInfo.InvariantCulture);
 			if (activeAbilitiesBitfield != null) playerData.ActiveAbilitiesBitfield = Convert.ToUInt64(activeAbilitiesBitfield.Value, CultureInfo.InvariantCulture);
@@ -408,7 +408,7 @@ namespace MonsterGUI
 
 			if (critDamage != null)
 			{
-				decimal v = Decimal.Parse(critDamage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				double v = double.Parse(critDamage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 				if (v != 0)
 				{
 					this.critDamage(v);
@@ -481,7 +481,7 @@ namespace MonsterGUI
 			JSONNode critPercentage = json["crit_percentage"];
 			JSONNode badgePoints = json["badge_points"];
 
-			if (critPercentage != null) this.techTree.CritPercentage = Decimal.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+			if (critPercentage != null) this.techTree.CritPercentage = double.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 			if (badgePoints != null) this.techTree.BadgePoints = Convert.ToInt64(badgePoints.Value, CultureInfo.InvariantCulture);
 
 			// "level": 20,
@@ -500,7 +500,7 @@ namespace MonsterGUI
 						if (upgradeI < techTree.Upgrades.Length)
 						{
 							techTree.Upgrades[upgradeI].Level = Convert.ToInt32(level.Value, CultureInfo.InvariantCulture);
-							techTree.Upgrades[upgradeI].CostForNextLevel = Decimal.Parse(costForNextLevel.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+							techTree.Upgrades[upgradeI].CostForNextLevel = double.Parse(costForNextLevel.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 							hasUpgrade |= (1UL << upgradeI);
 						}
 					}
@@ -511,7 +511,7 @@ namespace MonsterGUI
 				if ((hasUpgrade & (1UL << i)) == 0)
 				{
 					techTree.Upgrades[i].Level = 0;
-					techTree.Upgrades[i].CostForNextLevel = decimal.MaxValue;
+					techTree.Upgrades[i].CostForNextLevel = double.MaxValue;
 				}
 			}
 
@@ -548,14 +548,14 @@ namespace MonsterGUI
 		string[] printTechTreeBases = new string[(int)UpgradeType.Nb];
 		void printTuningData()
 		{
-			printTechTreeBases[(int)UpgradeType.HitPoints] = (tuningData.Player.Hp / 1000m).ToString() + "k";
+			printTechTreeBases[(int)UpgradeType.HitPoints] = (tuningData.Player.Hp / 1000.0).ToString() + "k";
 			printTechTreeBases[(int)UpgradeType.DPS] = tuningData.Player.DamagePerClick.ToString();
 			printTechTreeBases[(int)UpgradeType.ClickDamage] = tuningData.Player.DamagePerClick.ToString();
 			printTechTreeBases[(int)UpgradeType.DamageMultiplier_Crit] = tuningData.Player.DamageMultiplierCrit.ToString() + "x";
 			printTechTreeBases[(int)UpgradeType.BossLootDropPercentage] = tuningData.Player.LootChance.ToString() + "x";
 		}
 
-		decimal[] techTreeUpgradeMultipliers = new decimal[(int)UpgradeType.Nb];
+		double[] techTreeUpgradeMultipliers = new double[(int)UpgradeType.Nb];
 		void processTechTree()
 		{
 			if (printTechTreeBases[(int)UpgradeType.ClickDamage] == null)
@@ -571,7 +571,7 @@ namespace MonsterGUI
 		}
 
 		System.Windows.Forms.Label[] upgradeIntf = new System.Windows.Forms.Label[(int)UpgradeType.Nb];
-		decimal[] printTechTreeMultipliers = new decimal[(int)UpgradeType.Nb];
+		double[] printTechTreeMultipliers = new double[(int)UpgradeType.Nb];
 		string[] printTechTreeLevels = new string[(int)UpgradeType.Nb];
 		/// <summary>
 		/// Display all tech tree data on screen (stuff in techTree changed) (must call processTechTree after)
@@ -583,37 +583,37 @@ namespace MonsterGUI
 
 			for (int i = 0; i < (int)UpgradeType.Nb; ++i)
 			{
-				printTechTreeMultipliers[i] = 1.0m;
+				printTechTreeMultipliers[i] = 1.0;
 				printTechTreeLevels[i] = "";
 			}
-			printTechTreeMultipliers[(int)UpgradeType.DPS] = 0.0m;
+			printTechTreeMultipliers[(int)UpgradeType.DPS] = 0.0;
 			for (int i = 0; i < tuningData.Upgrades.Length; ++i) if (tuningData.Upgrades[i].Type < UpgradeType.Nb)
 			{
-				decimal totalMultiplier = (decimal)techTree.Upgrades[i].Level * tuningData.Upgrades[i].Multiplier;
+				double totalMultiplier = (double)techTree.Upgrades[i].Level * tuningData.Upgrades[i].Multiplier;
 				printTechTreeMultipliers[(int)tuningData.Upgrades[i].Type] += totalMultiplier;
 				printTechTreeLevels[(int)tuningData.Upgrades[i].Type] += " " + techTree.Upgrades[i].Level.ToString();
 			}
 			for (int i = 0; i < upgradeIntf.Length; ++i) if (upgradeIntf[i] != null && !string.IsNullOrEmpty(printTechTreeLevels[i]))
 			{
-				upgradeIntf[i].Text = decimal.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
+				upgradeIntf[i].Text = Math.Round(printTechTreeMultipliers[i], i == (int)UpgradeType.BossLootDropPercentage ? 2 : 1).ToString(CultureInfo.InvariantCulture) 
 					+ "x" + printTechTreeBases[i] + " (" + printTechTreeLevels[i].Substring(1) + ")";
 				bool makeBold = printUpgradingType[i];
 				if (makeBold != upgradeIntf[i].Font.Bold)
 					upgradeIntf[i].Font = new System.Drawing.Font(upgradeIntf[i].Font, makeBold ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular);
 			}
-			decimal dmgBase = tuningData.Player.DamagePerClick;
-			decimal mulBase = printTechTreeMultipliers[(int)UpgradeType.ClickDamage];
-			decimal mulEle = Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Air],
+			double dmgBase = tuningData.Player.DamagePerClick;
+			double mulBase = printTechTreeMultipliers[(int)UpgradeType.ClickDamage];
+			double mulEle = Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Air],
 				Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Earth],
 				Math.Max(printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Fire],
 				printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Water])));
-			decimal mulCrit = printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Crit];
-			decimal dpc = dmgBase * mulBase;
-			decimal dpcEle = dpc * mulEle;
-			decimal dpcCrit = dpc * mulCrit;
-			dpcDisp.Text = decimal.Round(dpc).ToString();
-			dpcEleDisp.Text = decimal.Round(dpcEle).ToString();
-			dpcCritDisp.Text = decimal.Round(dpcCrit).ToString();
+			double mulCrit = printTechTreeMultipliers[(int)UpgradeType.DamageMultiplier_Crit];
+			double dpc = dmgBase * mulBase;
+			double dpcEle = dpc * mulEle;
+			double dpcCrit = dpc * mulCrit;
+			dpcDisp.Text = Math.Round(dpc).ToString();
+			dpcEleDisp.Text = Math.Round(dpcEle).ToString();
+			dpcCritDisp.Text = Math.Round(dpcCrit).ToString();
 
 			printPlayerTech();
 			printGameTree();
@@ -711,13 +711,13 @@ namespace MonsterGUI
 				JSONNode critPercentage = player["crit_percentage"].Value;
 				JSONNode lootChance = player["loot_chance"].Value;
 
-				if (hp != null) this.tuningData.Player.Hp = Decimal.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-				if (dps != null) this.tuningData.Player.Dps = Decimal.Parse(dps.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-				if (damagePerClick != null) this.tuningData.Player.DamagePerClick = Decimal.Parse(damagePerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-				if (damageMultiplierFire != null) this.tuningData.Player.DamageMultiplierFire = Decimal.Parse(damageMultiplierFire.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-				if (damageMultiplierCrit != null) this.tuningData.Player.DamageMultiplierCrit = Decimal.Parse(damageMultiplierCrit.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-				if (critPercentage != null) this.tuningData.Player.CritPercentage = Decimal.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-				if (lootChance != null) this.tuningData.Player.LootChance = Decimal.Parse(lootChance.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (hp != null) this.tuningData.Player.Hp = double.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (dps != null) this.tuningData.Player.Dps = double.Parse(dps.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (damagePerClick != null) this.tuningData.Player.DamagePerClick = double.Parse(damagePerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (damageMultiplierFire != null) this.tuningData.Player.DamageMultiplierFire = double.Parse(damageMultiplierFire.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (damageMultiplierCrit != null) this.tuningData.Player.DamageMultiplierCrit = double.Parse(damageMultiplierCrit.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (critPercentage != null) this.tuningData.Player.CritPercentage = double.Parse(critPercentage.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+				if (lootChance != null) this.tuningData.Player.LootChance = double.Parse(lootChance.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 			}
 
 			JSONNode upgrades = tuningData["upgrades"];
@@ -733,7 +733,7 @@ namespace MonsterGUI
 						JSONNode requiredUpgrade = upgrade.Value["required_upgrade"];
 						JSONNode requiredUpgradeLevel = upgrade.Value["required_upgrade_level"];
 
-						if (multiplier != null) this.tuningData.Upgrades[id].Multiplier = Decimal.Parse(multiplier.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+						if (multiplier != null) this.tuningData.Upgrades[id].Multiplier = double.Parse(multiplier.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 						if (type != null) this.tuningData.Upgrades[id].Type = (UpgradeType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
 						if (requiredUpgrade != null) this.tuningData.Upgrades[id].RequiredUpgrade = Convert.ToInt32(requiredUpgrade.Value, CultureInfo.InvariantCulture);
 						if (requiredUpgradeLevel != null) this.tuningData.Upgrades[id].RequiredUpgradeLevel = Convert.ToInt32(requiredUpgradeLevel.Value, CultureInfo.InvariantCulture);
@@ -799,7 +799,7 @@ namespace MonsterGUI
 						JSONNode enemies = lane["enemies"];
 						JSONNode element = lane["element"];
 
-						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = Decimal.Parse(activePlayerAbilityGoldPerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+						if (activePlayerAbilityGoldPerClick != null) this.gameData.Lanes[i].ActivePlayerAbilityGoldPerClick = double.Parse(activePlayerAbilityGoldPerClick.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 						if (element != null) this.gameData.Lanes[i].Element = (UpgradeOption)(Convert.ToInt32(element.Value, CultureInfo.InvariantCulture) - 1 + (int)UpgradeOption.ElementalFire);
 
 						if (enemies != null)
@@ -811,8 +811,8 @@ namespace MonsterGUI
 								JSONNode maxHp = enemy["max_hp"];
 								JSONNode type = enemy["type"];
 
-								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = Decimal.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
-								if (maxHp != null) this.gameData.Lanes[i].Enemies[j].MaxHp = Decimal.Parse(maxHp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+								if (hp != null) this.gameData.Lanes[i].Enemies[j].Hp = double.Parse(hp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
+								if (maxHp != null) this.gameData.Lanes[i].Enemies[j].MaxHp = double.Parse(maxHp.Value.ToUpperInvariant(), System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
 								if (type != null) this.gameData.Lanes[i].Enemies[j].Type = (EnemyType)Convert.ToInt32(type.Value, CultureInfo.InvariantCulture);
 
 								++j;
@@ -851,9 +851,9 @@ namespace MonsterGUI
 		{
 			levelText.Text = gameData.Level.ToString() + " (" + (gameData.Timestamp - gameData.TimestampLevelStart).ToString() + "s)";
 			activePlayersText.Text = stats.NumActivePlayers.ToString();
-			lane1Gold.Text = decimal.Round(gameData.Lanes[0].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(0) ? "" : " (no enemies)");
-			lane2Gold.Text = decimal.Round(gameData.Lanes[1].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(1) ? "" : " (no enemies)");
-			lane3Gold.Text = decimal.Round(gameData.Lanes[2].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(2) ? "" : " (no enemies)");
+			lane1Gold.Text = Math.Round(gameData.Lanes[0].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(0) ? "" : " (no enemies)");
+			lane2Gold.Text = Math.Round(gameData.Lanes[1].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(1) ? "" : " (no enemies)");
+			lane3Gold.Text = Math.Round(gameData.Lanes[2].ActivePlayerAbilityGoldPerClick, 4).ToString() + (enemiesAliveInLane(2) ? "" : " (no enemies)");
 			clicksNumText.Text = stats.NumClicks.ToString();
 			long timestampDiff = gameData.Timestamp - lastTimestamp;
 			if (timestampDiff > 0)
@@ -869,7 +869,7 @@ namespace MonsterGUI
 			{
 				if (bossMonsterOnLane(i))
 				{
-					try { bossLaneText.Text = laneNumbers[i] + " (" + decimal.Round(gameData.Lanes[i].Enemies[0].Hp * 100.0m / gameData.Lanes[i].Enemies[0].MaxHp) + " %)"; }
+					try { bossLaneText.Text = laneNumbers[i] + " (" + Math.Round(gameData.Lanes[i].Enemies[0].Hp * 100.0 / gameData.Lanes[i].Enemies[0].MaxHp) + " %)"; }
 					catch { bossLaneText.Text = laneNumbers[i]; }
 					bossMonster = true;
 					break;
