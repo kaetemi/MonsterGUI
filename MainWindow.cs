@@ -47,11 +47,15 @@ namespace MonsterGUI
 			postAbilitiesInit();
 			postUpgradesInit();
 			// splitContainer1.Enabled = false;
-
 			loadFontDelegate = new EmptyCallback(loadFont);
-			new Thread(new ThreadStart(downloadFontAsync)).Start();
 
 			multiThreadWarp = File.Exists("MonsterGUI.exe.config");
+			w9check.Enabled = multiThreadWarp;
+		}
+
+		private void MainWindow_Load(object sender, EventArgs e)
+		{
+			new Thread(new ThreadStart(downloadFontAsync)).Start();
 		}
 
 		void downloadFontAsync()
@@ -159,17 +163,22 @@ namespace MonsterGUI
 				go.Text = "Go";
 				accessTokenText.Enabled = true;
 				roomText.Enabled = true;
-				if (exiting)
+				/*if (exiting)
 				{
 					exiting = false;
 					Close();
-				}
+				}*/
 			}
 		}
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (exiting)
+			if (running || go.Enabled == false)
+			{
+				System.Diagnostics.Process.GetCurrentProcess().Kill();
+			}
+
+			/*if (exiting)
 			{
 				e.Cancel = true;
 			}
@@ -182,12 +191,7 @@ namespace MonsterGUI
 					this.Enabled = false;
 					e.Cancel = true;
 				}
-			}
-		}
-
-		private void MainWindow_Load(object sender, EventArgs e)
-		{
-
+			}*/
 		}
 
 		private void postAbilitiesRunCheck_CheckedChanged(object sender, EventArgs e)
@@ -445,29 +449,24 @@ namespace MonsterGUI
 			upgrMaxDPS.Value = 1m;
 			upgrMaxHP.Value = 1000000000000000m;
 			fireImmediatelyCheck.Checked = true;
-			if (multiWhCheck.Checked)
+			if (w9check.Checked)
 				warp9();
+			if (multiThreadWarp)
+				w9check.Checked = true;
 			multiWhCheck.Checked = true;
 			ovenzifCheck.Checked = false;
+
+			if (!multiThreadWarp)
+				MessageBox.Show("Missing MonsterGUI.exe.config, unable to use multi-threaded worm holes");
 		}
 
 		private void multiWhCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			multiWormholeOn = multiWhCheck.Checked;
-			if (multiWhCheck.Checked)
-			{
-				warp9();
-			}
-			else
-			{
-				warpBox.Visible = false;
-			}
 		}
 		
 		void warp9()
 		{
-			if (!multiThreadWarp)
-				MessageBox.Show("Missing MonsterGUI.exe.config, unable to use multi-threaded worm holes");
 			if (!warpBox.Visible)
 				new Thread(new ThreadStart(downloadPicardAsync)).Start();
 		}
@@ -501,6 +500,20 @@ namespace MonsterGUI
 		private void warpBox_Click(object sender, EventArgs e)
 		{
 			warpBox.Visible = false;
+		}
+
+		bool w9on = false;
+		private void w9check_CheckedChanged(object sender, EventArgs e)
+		{
+			w9on = w9check.Checked;
+			if (w9check.Checked)
+			{
+				warp9();
+			}
+			else
+			{
+				warpBox.Visible = false;
+			}
 		}
 	}
 }

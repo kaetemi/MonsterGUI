@@ -298,6 +298,54 @@ namespace MonsterGUI
 			return bestLevel;
 		}
 
+		WebClient[] warp = new WebClient[9];
+		volatile bool doingWarp9 = false;
+		volatile bool queueWarp9 = false;
+		void doWarp9()
+		{
+			doingWarp9 = true;
+			lock (warp)
+			{
+				do
+				{
+					queueWarp9 = false;
+					for (int i = 0; i < warp.Length; ++i)
+					{
+						// warp[i].Pos
+						if (!warp[i].IsBusy)
+						{
+							System.Threading.Thread.Sleep(100); // Evenly spread!
+							if (useWormHoleOnLane(laneRequested) && highestHpFactorOnLane(laneRequested) >= 0.15)
+							{
+								string warp_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":["
+									+ "{\"ability\":" + (int)Abilities.Wormhole + "}"
+									+ "]}";
+								StringBuilder url = new StringBuilder();
+								url.Append("https://");
+								url.Append(host);
+								url.Append("UseAbilities/v0001/");
+								StringBuilder query = new StringBuilder();
+								query.Append("input_json=");
+								query.Append(WebUtilities.UrlEncode(warp_json));
+								query.Append("&access_token=");
+								query.Append(accessToken);
+								query.Append("&format=json");
+								warp[i].Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
+								warp[i].Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+								Console.WriteLine("[Warp " + (i + 1) + "] " + warp_json);
+								warp[i].UploadStringAsync(new Uri(url.ToString()), query.ToString());
+							}
+							else
+							{
+								return;
+							}
+						}
+					}
+				} while (queueWarp9);
+			}
+			doingWarp9 = false;
+		}
+
 		/// <summary>
 		/// Thread which posts abilities
 		/// </summary>
@@ -311,11 +359,13 @@ namespace MonsterGUI
 
 			Random random = new Random();
 			WebClient wc = new TimeoutWebClient();
-			WebClient[] warp = new WebClient[9];
-			for (int i = 0; i < warp.Length; ++i)
+			lock (warp)
 			{
-				warp[i] = new TimeoutWebClient();
-				warp[i].UploadStringCompleted += MainWindow_UploadStringCompleted;
+				for (int i = 0; i < warp.Length; ++i)
+				{
+					warp[i] = new TimeoutWebClientFast();
+					warp[i].UploadStringCompleted += MainWindow_UploadStringCompleted;
+				}
 			}
 			while (running)
 			{
@@ -612,32 +662,10 @@ namespace MonsterGUI
 										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
 									}
 									--rearmLikeNewAfter;
-									if (doMultiWormhole && multiThreadWarp)
+									if (doMultiWormhole && multiThreadWarp && w9on)
 									{
-										for (int i = 0; i < warp.Length; ++i)
-										{
-											// warp[i].Pos
-											if (!warp[i].IsBusy)
-											{
-												string warp_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":["
-													+ "{\"ability\":" + (int)Abilities.Wormhole + "}"
-													+ "]}";
-												StringBuilder url = new StringBuilder();
-												url.Append("https://");
-												url.Append(host);
-												url.Append("UseAbilities/v0001/");
-												StringBuilder query = new StringBuilder();
-												query.Append("input_json=");
-												query.Append(WebUtilities.UrlEncode(warp_json));
-												query.Append("&access_token=");
-												query.Append(accessToken);
-												query.Append("&format=json");
-												warp[i].Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
-												warp[i].Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-												Console.WriteLine("[Warp " + (i + 1) + "] " + warp_json);
-												warp[i].UploadStringAsync(new Uri(url.ToString()), query.ToString());
-											}
-										}
+										if (doingWarp9) queueWarp9 = true;
+										else new System.Threading.Thread(new System.Threading.ThreadStart(doWarp9)).Start();
 									}
 								}
 								else if (!hasPurchasedAbility(Abilities.Wormhole))
@@ -852,6 +880,14 @@ namespace MonsterGUI
 			}
 			wc.Dispose();
 			Invoke(endedThreadDelegate);
+			lock (warp)
+			{
+				for (int i = 0; i < warp.Length; ++i)
+				{
+					warp[i].Dispose();
+					warp[i] = null;
+				}
+			}
 		}
 
 		void MainWindow_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)

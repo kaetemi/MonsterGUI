@@ -13,7 +13,9 @@ namespace MonsterGUI
 		static void Main()
 		{
 			System.Net.ServicePointManager.EnableDnsRoundRobin = true;
-			System.Net.ServicePointManager.DefaultConnectionLimit = 65000;
+			System.Net.ServicePointManager.UseNagleAlgorithm = false;
+			System.Net.ServicePointManager.DefaultConnectionLimit = int.MaxValue;
+			System.Net.ServicePointManager.MaxServicePoints = int.MaxValue;
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainWindow());
