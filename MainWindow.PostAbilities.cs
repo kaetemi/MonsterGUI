@@ -363,7 +363,7 @@ namespace MonsterGUI
 			{
 				for (int i = 0; i < warp.Length; ++i)
 				{
-					warp[i] = new TimeoutWebClientFast();
+					warp[i] = new TimeoutWebClient();
 					warp[i].UploadStringCompleted += MainWindow_UploadStringCompleted;
 				}
 			}

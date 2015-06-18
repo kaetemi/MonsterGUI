@@ -17,13 +17,3 @@ class TimeoutWebClient : WebClient
 		return w;
 	}
 }
-
-class TimeoutWebClientFast : TimeoutWebClient
-{
-	protected override WebRequest GetWebRequest(Uri uri)
-	{
-		HttpWebRequest w = base.GetWebRequest(uri) as HttpWebRequest;
-		w.Timeout = 100;
-		return w;
-	}
-}
