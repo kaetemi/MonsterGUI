@@ -31,10 +31,11 @@ namespace MonsterGUI
 		int wormHoleRounds = 500;
 		int superWormholeRounds = 100;
 		int superWormHoleDamageSafety = 5;
-		int likeNewTimerMin = 400;
-		int likeNewTimerMax = 4000;
-		int likeNewChance = 20; // likeNewChance / (NB Wormholes remaining + base)
-		int likeNewChanceBase = 400;
+		int likeNewTimerMin = 0;
+		int likeNewTimerMax = 1000;
+		int likeNewChance = 20; // likeNewChance / min(NB Wormholes remaining + base, top)
+		int likeNewChanceBase = 100;
+		int likeNewChanceTop = 1000;
 		int multiWormholeCount = 10;
 
 		// Auto clicker runtime info
@@ -617,7 +618,7 @@ namespace MonsterGUI
 								{
 									if (hasPurchasedAbility(Abilities.ClearCool) && !isAbilityCoolingDown(Abilities.ClearCool))
 									{
-										if (random.Next(itemCount(Abilities.Wormhole) + likeNewChanceBase) < likeNewChance)
+										if (random.Next(Math.Min(likeNewChanceTop, itemCount(Abilities.Wormhole) + likeNewChanceBase)) < likeNewChance)
 										{
 											if (abilities) abilties_json += ",";
 											abilties_json += "{\"ability\":" + (int)Abilities.ClearCool + "}";
