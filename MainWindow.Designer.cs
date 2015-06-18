@@ -576,8 +576,8 @@
             131072});
 			this.upgrMaxLoot.Location = new System.Drawing.Point(134, 166);
 			this.upgrMaxLoot.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxLoot.Minimum = new decimal(new int[] {
@@ -606,8 +606,8 @@
             65536});
 			this.upgrMaxEarth.Location = new System.Drawing.Point(102, 223);
 			this.upgrMaxEarth.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxEarth.Minimum = new decimal(new int[] {
@@ -636,8 +636,8 @@
             65536});
 			this.upgrMaxAir.Location = new System.Drawing.Point(150, 223);
 			this.upgrMaxAir.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxAir.Minimum = new decimal(new int[] {
@@ -667,8 +667,8 @@
             65536});
 			this.upgrMaxWater.Location = new System.Drawing.Point(54, 223);
 			this.upgrMaxWater.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxWater.Minimum = new decimal(new int[] {
@@ -697,8 +697,8 @@
             65536});
 			this.upgrMaxFire.Location = new System.Drawing.Point(6, 223);
 			this.upgrMaxFire.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxFire.Minimum = new decimal(new int[] {
@@ -722,8 +722,8 @@
 			this.upgrMaxCrit.DecimalPlaces = 1;
 			this.upgrMaxCrit.Location = new System.Drawing.Point(134, 140);
 			this.upgrMaxCrit.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxCrit.Minimum = new decimal(new int[] {
@@ -747,8 +747,8 @@
 			this.upgrMaxDmg.DecimalPlaces = 1;
 			this.upgrMaxDmg.Location = new System.Drawing.Point(134, 114);
 			this.upgrMaxDmg.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxDmg.Minimum = new decimal(new int[] {
@@ -772,8 +772,8 @@
 			this.upgrMaxDPS.DecimalPlaces = 1;
 			this.upgrMaxDPS.Location = new System.Drawing.Point(134, 88);
 			this.upgrMaxDPS.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxDPS.Minimum = new decimal(new int[] {
@@ -797,8 +797,8 @@
 			this.upgrMaxHP.DecimalPlaces = 1;
 			this.upgrMaxHP.Location = new System.Drawing.Point(134, 62);
 			this.upgrMaxHP.Maximum = new decimal(new int[] {
-            -727379968,
-            232,
+            -1530494976,
+            232830,
             0,
             0});
 			this.upgrMaxHP.Minimum = new decimal(new int[] {

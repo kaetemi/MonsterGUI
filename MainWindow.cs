@@ -384,7 +384,7 @@ namespace MonsterGUI
 			minText.Value = 20;
 			maxText.Value = 20;
 			upgrMaxDPS.Value = 1m;
-			upgrMaxHP.Value = 1000000000000m;
+			upgrMaxHP.Value = 1000000000000000m;
 			fireImmediatelyCheck.Checked = true;
 			multiWhCheck.Checked = true;
 		}

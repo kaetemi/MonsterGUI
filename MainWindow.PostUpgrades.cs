@@ -20,9 +20,9 @@ namespace MonsterGUI
 		bool waitForUpgradeData = true;
 
 		decimal upgradeMaxHP = 10000m;
-		decimal upgradeMaxDPS = 1000000000000m;
-		decimal upgradeMaxDamage = 1000000000000m;
-		decimal upgradeMaxCrit = 1000000000000m;
+		decimal upgradeMaxDPS = 1000000000000000m;
+		decimal upgradeMaxDamage = 1000000000000000m;
+		decimal upgradeMaxCrit = 1000000000000000m;
 		decimal upgradeMaxLoot = 1.25m;
 		decimal upgradeMaxFire = 1m;
 		decimal upgradeMaxWater = 1m;

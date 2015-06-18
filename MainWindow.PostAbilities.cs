@@ -31,7 +31,6 @@ namespace MonsterGUI
 		int wormHoleRounds = 500;
 		int superWormholeRounds = 100;
 		int superWormHoleDamageSafety = 5;
-		int multiWormholeCount = 10;
 
 		// Auto clicker runtime info
 		long clickCount = 0;
@@ -594,7 +593,7 @@ namespace MonsterGUI
 							}
 							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
 							{
-								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) > 0.5m;
+								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.1m;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
 									if (abilities) abilties_json += ",";
