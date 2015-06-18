@@ -31,6 +31,8 @@ namespace MonsterGUI
 		string accessToken;
 		int room;
 
+		bool multiThreadWarp = false;
+
 		PrivateFontCollection pfc;
 		System.Net.WebClient pfcWc;
 		string pfcFile;
@@ -48,6 +50,8 @@ namespace MonsterGUI
 
 			loadFontDelegate = new EmptyCallback(loadFont);
 			new Thread(new ThreadStart(downloadFontAsync)).Start();
+
+			multiThreadWarp = File.Exists("MonsterGUI.exe.config");
 		}
 
 		void downloadFontAsync()
@@ -65,7 +69,7 @@ namespace MonsterGUI
 				}
 				else
 				{
-					loadFont();
+					Invoke(loadFontDelegate);
 				}
 			}
 			catch (Exception ex)
@@ -377,6 +381,61 @@ namespace MonsterGUI
 			superWormholeOn = fasterWormhole.Checked;
 		}
 
+		string warpFile;
+		System.Net.WebClient warpWc;
+		void downloadPicardAsync()
+		{
+			try
+			{
+				string source = "http://cdn.meme.am/instances/250x250/61211811.jpg";
+				warpFile = Path.GetFullPath(Path.GetTempPath() + "/250x250Warp9.jpg");
+				if (!File.Exists(warpFile))
+				{
+					warpWc = new System.Net.WebClient();
+					Console.WriteLine("Downloading {0} to {1}", source, warpFile);
+					warpWc.DownloadFileCompleted += wc_DownloadFileCompletedWarp;
+					warpWc.DownloadFileAsync(new Uri(source), warpFile);
+				}
+				else
+				{
+					Invoke(new EmptyCallback(loadWarp));
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+		}
+
+		void wc_DownloadFileCompletedWarp(object sender, AsyncCompletedEventArgs e)
+		{
+			Invoke(new EmptyCallback(loadWarp));
+			try
+			{
+				warpWc.Dispose();
+				warpWc = null;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+		}
+
+		void loadWarp()
+		{
+			try
+			{
+				Console.WriteLine("Using image {0}", warpFile);
+				Image warp = Image.FromFile(warpFile);
+				warpBox.Image = warp;
+				warpBox.Visible = true;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+			}
+		}
+
 		private void button1_Click_1(object sender, EventArgs e)
 		{
 			everythingEnable(true);
@@ -386,12 +445,31 @@ namespace MonsterGUI
 			upgrMaxDPS.Value = 1m;
 			upgrMaxHP.Value = 1000000000000000m;
 			fireImmediatelyCheck.Checked = true;
+			if (multiWhCheck.Checked)
+				warp9();
 			multiWhCheck.Checked = true;
+			ovenzifCheck.Checked = false;
 		}
 
 		private void multiWhCheck_CheckedChanged(object sender, EventArgs e)
 		{
 			multiWormholeOn = multiWhCheck.Checked;
+			if (multiWhCheck.Checked)
+			{
+				warp9();
+			}
+			else
+			{
+				warpBox.Visible = false;
+			}
+		}
+		
+		void warp9()
+		{
+			if (!multiThreadWarp)
+				MessageBox.Show("Missing MonsterGUI.exe.config, unable to use multi-threaded worm holes");
+			if (!warpBox.Visible)
+				new Thread(new ThreadStart(downloadPicardAsync)).Start();
 		}
 
 		private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -404,7 +482,6 @@ namespace MonsterGUI
 				{
 					System.Net.WebClient wc = new System.Net.WebClient();
 					Console.WriteLine("Downloading {0} to {1}", source, file);
-					wc.DownloadFileCompleted += wc_DownloadFileCompleted;
 					wc.DownloadFile(new Uri(source), file);
 				}
 				Image i = Image.FromFile(file);
@@ -419,6 +496,11 @@ namespace MonsterGUI
 				BackgroundImage = null;
 				
 			}
+		}
+
+		private void warpBox_Click(object sender, EventArgs e)
+		{
+			warpBox.Visible = false;
 		}
 	}
 }

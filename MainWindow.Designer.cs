@@ -42,7 +42,16 @@
 			this.minText = new System.Windows.Forms.NumericUpDown();
 			this.maxText = new System.Windows.Forms.NumericUpDown();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.groupBox15 = new System.Windows.Forms.GroupBox();
+			this.gdBox = new System.Windows.Forms.GroupBox();
+			this.cpsText = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.clicksNumText = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.levelText = new System.Windows.Forms.Label();
+			this.activePlayersText = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
+			this.upBox = new System.Windows.Forms.GroupBox();
 			this.badgesCheck = new System.Windows.Forms.CheckBox();
 			this.autoUpgradesCheck = new System.Windows.Forms.CheckBox();
 			this.dpcCritDisp = new System.Windows.Forms.Label();
@@ -90,6 +99,7 @@
 			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.multiWhCheck = new System.Windows.Forms.CheckBox();
 			this.fasterWormhole = new System.Windows.Forms.CheckBox();
 			this.itemsCheck = new System.Windows.Forms.CheckBox();
 			this.clearCoolCount = new System.Windows.Forms.Label();
@@ -139,15 +149,6 @@
 			this.medicsIntf = new System.Windows.Forms.Label();
 			this.goodLuckCharmIntf = new System.Windows.Forms.Label();
 			this.moraleBoosterIntf = new System.Windows.Forms.Label();
-			this.groupBox6 = new System.Windows.Forms.GroupBox();
-			this.cpsText = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.clicksNumText = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
-			this.levelText = new System.Windows.Forms.Label();
-			this.activePlayersText = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
@@ -164,7 +165,7 @@
 			this.laneSwitcherCheck = new System.Windows.Forms.CheckBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.laneSwitcherTimer = new System.Windows.Forms.NumericUpDown();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.plBox = new System.Windows.Forms.GroupBox();
 			this.targetLabel = new System.Windows.Forms.Label();
 			this.hpLabel = new System.Windows.Forms.Label();
 			this.goldLabel = new System.Windows.Forms.Label();
@@ -173,6 +174,8 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.groupBox16 = new System.Windows.Forms.GroupBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.groupBox14 = new System.Windows.Forms.GroupBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -182,14 +185,12 @@
 			this.playerGroup = new System.Windows.Forms.GroupBox();
 			this.playerListRefresh = new System.Windows.Forms.Button();
 			this.playerList = new System.Windows.Forms.ListBox();
+			this.warpBox = new System.Windows.Forms.PictureBox();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.getStateStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.multiWhCheck = new System.Windows.Forms.CheckBox();
-			this.groupBox16 = new System.Windows.Forms.GroupBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -198,7 +199,8 @@
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			this.groupBox15.SuspendLayout();
+			this.gdBox.SuspendLayout();
+			this.upBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxLoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxEarth)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxAir)).BeginInit();
@@ -215,17 +217,17 @@
 			this.groupBox10.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox9.SuspendLayout();
-			this.groupBox6.SuspendLayout();
 			this.groupBox7.SuspendLayout();
 			this.respawnerGroup.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).BeginInit();
-			this.groupBox3.SuspendLayout();
+			this.plBox.SuspendLayout();
+			this.groupBox16.SuspendLayout();
 			this.groupBox14.SuspendLayout();
 			this.groupBox8.SuspendLayout();
 			this.playerGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.warpBox)).BeginInit();
 			this.statusStrip1.SuspendLayout();
-			this.groupBox16.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -415,7 +417,6 @@
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.groupBox15);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox13);
 			this.splitContainer1.Panel1.Controls.Add(this.elementSwitcherBox);
 			this.splitContainer1.Panel1.Controls.Add(this.fireImmediatelyCheck);
@@ -425,12 +426,14 @@
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox10);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox9);
-			this.splitContainer1.Panel1.Controls.Add(this.groupBox6);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox7);
 			this.splitContainer1.Panel1.Controls.Add(this.respawnerGroup);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
-			this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
 			this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
+			this.splitContainer1.Panel1.Controls.Add(this.warpBox);
+			this.splitContainer1.Panel1.Controls.Add(this.gdBox);
+			this.splitContainer1.Panel1.Controls.Add(this.plBox);
+			this.splitContainer1.Panel1.Controls.Add(this.upBox);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -442,50 +445,145 @@
 			this.splitContainer1.SplitterDistance = 600;
 			this.splitContainer1.TabIndex = 2;
 			// 
-			// groupBox15
+			// gdBox
 			// 
-			this.groupBox15.Controls.Add(this.badgesCheck);
-			this.groupBox15.Controls.Add(this.autoUpgradesCheck);
-			this.groupBox15.Controls.Add(this.dpcCritDisp);
-			this.groupBox15.Controls.Add(this.label35);
-			this.groupBox15.Controls.Add(this.dpcEleDisp);
-			this.groupBox15.Controls.Add(this.dpcDisp);
-			this.groupBox15.Controls.Add(this.label22);
-			this.groupBox15.Controls.Add(this.label13);
-			this.groupBox15.Controls.Add(this.upgrMaxLoot);
-			this.groupBox15.Controls.Add(this.upgrMaxEarth);
-			this.groupBox15.Controls.Add(this.upgrMaxAir);
-			this.groupBox15.Controls.Add(this.upgrMaxWater);
-			this.groupBox15.Controls.Add(this.upgrMaxFire);
-			this.groupBox15.Controls.Add(this.upgrMaxCrit);
-			this.groupBox15.Controls.Add(this.upgrMaxDmg);
-			this.groupBox15.Controls.Add(this.upgrMaxDPS);
-			this.groupBox15.Controls.Add(this.upgrMaxHP);
-			this.groupBox15.Controls.Add(this.upgrStatHP);
-			this.groupBox15.Controls.Add(this.upgrStatDPS);
-			this.groupBox15.Controls.Add(this.upgrStatLoot);
-			this.groupBox15.Controls.Add(this.upgrStatCrit);
-			this.groupBox15.Controls.Add(this.upgrStatDmg);
-			this.groupBox15.Controls.Add(this.label33);
-			this.groupBox15.Controls.Add(this.label32);
-			this.groupBox15.Controls.Add(this.label31);
-			this.groupBox15.Controls.Add(this.label30);
-			this.groupBox15.Controls.Add(this.label29);
-			this.groupBox15.Controls.Add(this.label28);
-			this.groupBox15.Controls.Add(this.label27);
-			this.groupBox15.Controls.Add(this.label26);
-			this.groupBox15.Controls.Add(this.label25);
-			this.groupBox15.Controls.Add(this.upgrStatAir);
-			this.groupBox15.Controls.Add(this.upgrStatEarth);
-			this.groupBox15.Controls.Add(this.upgrStatWater);
-			this.groupBox15.Controls.Add(this.upgrStatFire);
-			this.groupBox15.Controls.Add(this.label3);
-			this.groupBox15.Location = new System.Drawing.Point(3, 157);
-			this.groupBox15.Name = "groupBox15";
-			this.groupBox15.Size = new System.Drawing.Size(198, 249);
-			this.groupBox15.TabIndex = 11;
-			this.groupBox15.TabStop = false;
-			this.groupBox15.Text = "Upgrades";
+			this.gdBox.BackColor = System.Drawing.Color.Transparent;
+			this.gdBox.Controls.Add(this.cpsText);
+			this.gdBox.Controls.Add(this.label20);
+			this.gdBox.Controls.Add(this.clicksNumText);
+			this.gdBox.Controls.Add(this.label14);
+			this.gdBox.Controls.Add(this.levelText);
+			this.gdBox.Controls.Add(this.activePlayersText);
+			this.gdBox.Controls.Add(this.label18);
+			this.gdBox.Controls.Add(this.label19);
+			this.gdBox.Location = new System.Drawing.Point(3, 80);
+			this.gdBox.Name = "gdBox";
+			this.gdBox.Size = new System.Drawing.Size(198, 71);
+			this.gdBox.TabIndex = 8;
+			this.gdBox.TabStop = false;
+			this.gdBox.Text = "Game Data";
+			// 
+			// cpsText
+			// 
+			this.cpsText.AutoSize = true;
+			this.cpsText.Location = new System.Drawing.Point(83, 55);
+			this.cpsText.Name = "cpsText";
+			this.cpsText.Size = new System.Drawing.Size(16, 13);
+			this.cpsText.TabIndex = 10;
+			this.cpsText.Text = "...";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(46, 55);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(31, 13);
+			this.label20.TabIndex = 9;
+			this.label20.Text = "CPS:";
+			this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// clicksNumText
+			// 
+			this.clicksNumText.AutoSize = true;
+			this.clicksNumText.Location = new System.Drawing.Point(83, 42);
+			this.clicksNumText.Name = "clicksNumText";
+			this.clicksNumText.Size = new System.Drawing.Size(16, 13);
+			this.clicksNumText.TabIndex = 8;
+			this.clicksNumText.Text = "...";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(39, 42);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(38, 13);
+			this.label14.TabIndex = 7;
+			this.label14.Text = "Clicks:";
+			this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// levelText
+			// 
+			this.levelText.AutoSize = true;
+			this.levelText.Location = new System.Drawing.Point(83, 16);
+			this.levelText.Name = "levelText";
+			this.levelText.Size = new System.Drawing.Size(16, 13);
+			this.levelText.TabIndex = 6;
+			this.levelText.Text = "...";
+			// 
+			// activePlayersText
+			// 
+			this.activePlayersText.AutoSize = true;
+			this.activePlayersText.Location = new System.Drawing.Point(83, 29);
+			this.activePlayersText.Name = "activePlayersText";
+			this.activePlayersText.Size = new System.Drawing.Size(16, 13);
+			this.activePlayersText.TabIndex = 5;
+			this.activePlayersText.Text = "...";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(37, 29);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(40, 13);
+			this.label18.TabIndex = 1;
+			this.label18.Text = "Active:";
+			this.label18.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(41, 16);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(36, 13);
+			this.label19.TabIndex = 0;
+			this.label19.Text = "Level:";
+			this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// upBox
+			// 
+			this.upBox.BackColor = System.Drawing.Color.Transparent;
+			this.upBox.Controls.Add(this.badgesCheck);
+			this.upBox.Controls.Add(this.autoUpgradesCheck);
+			this.upBox.Controls.Add(this.dpcCritDisp);
+			this.upBox.Controls.Add(this.label35);
+			this.upBox.Controls.Add(this.dpcEleDisp);
+			this.upBox.Controls.Add(this.dpcDisp);
+			this.upBox.Controls.Add(this.label22);
+			this.upBox.Controls.Add(this.label13);
+			this.upBox.Controls.Add(this.upgrMaxLoot);
+			this.upBox.Controls.Add(this.upgrMaxEarth);
+			this.upBox.Controls.Add(this.upgrMaxAir);
+			this.upBox.Controls.Add(this.upgrMaxWater);
+			this.upBox.Controls.Add(this.upgrMaxFire);
+			this.upBox.Controls.Add(this.upgrMaxCrit);
+			this.upBox.Controls.Add(this.upgrMaxDmg);
+			this.upBox.Controls.Add(this.upgrMaxDPS);
+			this.upBox.Controls.Add(this.upgrMaxHP);
+			this.upBox.Controls.Add(this.upgrStatHP);
+			this.upBox.Controls.Add(this.upgrStatDPS);
+			this.upBox.Controls.Add(this.upgrStatLoot);
+			this.upBox.Controls.Add(this.upgrStatCrit);
+			this.upBox.Controls.Add(this.upgrStatDmg);
+			this.upBox.Controls.Add(this.label33);
+			this.upBox.Controls.Add(this.label32);
+			this.upBox.Controls.Add(this.label31);
+			this.upBox.Controls.Add(this.label30);
+			this.upBox.Controls.Add(this.label29);
+			this.upBox.Controls.Add(this.label28);
+			this.upBox.Controls.Add(this.label27);
+			this.upBox.Controls.Add(this.label26);
+			this.upBox.Controls.Add(this.label25);
+			this.upBox.Controls.Add(this.upgrStatAir);
+			this.upBox.Controls.Add(this.upgrStatEarth);
+			this.upBox.Controls.Add(this.upgrStatWater);
+			this.upBox.Controls.Add(this.upgrStatFire);
+			this.upBox.Controls.Add(this.label3);
+			this.upBox.Location = new System.Drawing.Point(3, 157);
+			this.upBox.Name = "upBox";
+			this.upBox.Size = new System.Drawing.Size(198, 249);
+			this.upBox.TabIndex = 11;
+			this.upBox.TabStop = false;
+			this.upBox.Text = "Upgrades";
 			// 
 			// badgesCheck
 			// 
@@ -1167,6 +1265,18 @@
 			this.groupBox12.TabStop = false;
 			this.groupBox12.Text = "Items";
 			// 
+			// multiWhCheck
+			// 
+			this.multiWhCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.multiWhCheck.AutoSize = true;
+			this.multiWhCheck.Location = new System.Drawing.Point(286, 46);
+			this.multiWhCheck.Name = "multiWhCheck";
+			this.multiWhCheck.Size = new System.Drawing.Size(61, 17);
+			this.multiWhCheck.TabIndex = 32;
+			this.multiWhCheck.Text = "Warp 9";
+			this.multiWhCheck.UseVisualStyleBackColor = true;
+			this.multiWhCheck.CheckedChanged += new System.EventHandler(this.multiWhCheck_CheckedChanged);
+			// 
 			// fasterWormhole
 			// 
 			this.fasterWormhole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1662,99 +1772,6 @@
 			this.moraleBoosterIntf.Text = "Morale Booster";
 			this.moraleBoosterIntf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// groupBox6
-			// 
-			this.groupBox6.Controls.Add(this.cpsText);
-			this.groupBox6.Controls.Add(this.label20);
-			this.groupBox6.Controls.Add(this.clicksNumText);
-			this.groupBox6.Controls.Add(this.label14);
-			this.groupBox6.Controls.Add(this.levelText);
-			this.groupBox6.Controls.Add(this.activePlayersText);
-			this.groupBox6.Controls.Add(this.label18);
-			this.groupBox6.Controls.Add(this.label19);
-			this.groupBox6.Location = new System.Drawing.Point(3, 80);
-			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(198, 71);
-			this.groupBox6.TabIndex = 8;
-			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "Game Data";
-			// 
-			// cpsText
-			// 
-			this.cpsText.AutoSize = true;
-			this.cpsText.Location = new System.Drawing.Point(83, 55);
-			this.cpsText.Name = "cpsText";
-			this.cpsText.Size = new System.Drawing.Size(16, 13);
-			this.cpsText.TabIndex = 10;
-			this.cpsText.Text = "...";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(46, 55);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(31, 13);
-			this.label20.TabIndex = 9;
-			this.label20.Text = "CPS:";
-			this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// clicksNumText
-			// 
-			this.clicksNumText.AutoSize = true;
-			this.clicksNumText.Location = new System.Drawing.Point(83, 42);
-			this.clicksNumText.Name = "clicksNumText";
-			this.clicksNumText.Size = new System.Drawing.Size(16, 13);
-			this.clicksNumText.TabIndex = 8;
-			this.clicksNumText.Text = "...";
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(39, 42);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(38, 13);
-			this.label14.TabIndex = 7;
-			this.label14.Text = "Clicks:";
-			this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// levelText
-			// 
-			this.levelText.AutoSize = true;
-			this.levelText.Location = new System.Drawing.Point(83, 16);
-			this.levelText.Name = "levelText";
-			this.levelText.Size = new System.Drawing.Size(16, 13);
-			this.levelText.TabIndex = 6;
-			this.levelText.Text = "...";
-			// 
-			// activePlayersText
-			// 
-			this.activePlayersText.AutoSize = true;
-			this.activePlayersText.Location = new System.Drawing.Point(83, 29);
-			this.activePlayersText.Name = "activePlayersText";
-			this.activePlayersText.Size = new System.Drawing.Size(16, 13);
-			this.activePlayersText.TabIndex = 5;
-			this.activePlayersText.Text = "...";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(37, 29);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(40, 13);
-			this.label18.TabIndex = 1;
-			this.label18.Text = "Active:";
-			this.label18.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Location = new System.Drawing.Point(41, 16);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(36, 13);
-			this.label19.TabIndex = 0;
-			this.label19.Text = "Level:";
-			this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
 			// groupBox7
 			// 
 			this.groupBox7.Controls.Add(this.label17);
@@ -1925,22 +1942,23 @@
             0});
 			this.laneSwitcherTimer.ValueChanged += new System.EventHandler(this.laneSwitcherTimer_ValueChanged);
 			// 
-			// groupBox3
+			// plBox
 			// 
-			this.groupBox3.Controls.Add(this.targetLabel);
-			this.groupBox3.Controls.Add(this.hpLabel);
-			this.groupBox3.Controls.Add(this.goldLabel);
-			this.groupBox3.Controls.Add(this.currentLaneLabel);
-			this.groupBox3.Controls.Add(this.label9);
-			this.groupBox3.Controls.Add(this.label8);
-			this.groupBox3.Controls.Add(this.label7);
-			this.groupBox3.Controls.Add(this.label6);
-			this.groupBox3.Location = new System.Drawing.Point(3, 3);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(198, 71);
-			this.groupBox3.TabIndex = 2;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Player Data";
+			this.plBox.BackColor = System.Drawing.Color.Transparent;
+			this.plBox.Controls.Add(this.targetLabel);
+			this.plBox.Controls.Add(this.hpLabel);
+			this.plBox.Controls.Add(this.goldLabel);
+			this.plBox.Controls.Add(this.currentLaneLabel);
+			this.plBox.Controls.Add(this.label9);
+			this.plBox.Controls.Add(this.label8);
+			this.plBox.Controls.Add(this.label7);
+			this.plBox.Controls.Add(this.label6);
+			this.plBox.Location = new System.Drawing.Point(3, 3);
+			this.plBox.Name = "plBox";
+			this.plBox.Size = new System.Drawing.Size(198, 71);
+			this.plBox.TabIndex = 2;
+			this.plBox.TabStop = false;
+			this.plBox.Text = "Player Data";
 			// 
 			// targetLabel
 			// 
@@ -2017,6 +2035,29 @@
 			this.label6.TabIndex = 0;
 			this.label6.Text = "Hp:";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// groupBox16
+			// 
+			this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox16.Controls.Add(this.checkBox2);
+			this.groupBox16.Location = new System.Drawing.Point(3, 310);
+			this.groupBox16.Name = "groupBox16";
+			this.groupBox16.Size = new System.Drawing.Size(150, 45);
+			this.groupBox16.TabIndex = 4;
+			this.groupBox16.TabStop = false;
+			this.groupBox16.Text = "Display";
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(6, 19);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(107, 17);
+			this.checkBox2.TabIndex = 3;
+			this.checkBox2.Text = "Praise Gold Helm";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// groupBox14
 			// 
@@ -2131,6 +2172,17 @@
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
+			// warpBox
+			// 
+			this.warpBox.Location = new System.Drawing.Point(3, 3);
+			this.warpBox.Name = "warpBox";
+			this.warpBox.Size = new System.Drawing.Size(198, 198);
+			this.warpBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.warpBox.TabIndex = 15;
+			this.warpBox.TabStop = false;
+			this.warpBox.Visible = false;
+			this.warpBox.Click += new System.EventHandler(this.warpBox_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2173,41 +2225,6 @@
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
 			this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
 			// 
-			// multiWhCheck
-			// 
-			this.multiWhCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.multiWhCheck.AutoSize = true;
-			this.multiWhCheck.Location = new System.Drawing.Point(286, 46);
-			this.multiWhCheck.Name = "multiWhCheck";
-			this.multiWhCheck.Size = new System.Drawing.Size(97, 17);
-			this.multiWhCheck.TabIndex = 32;
-			this.multiWhCheck.Text = "Fast Wormhole";
-			this.multiWhCheck.UseVisualStyleBackColor = true;
-			this.multiWhCheck.CheckedChanged += new System.EventHandler(this.multiWhCheck_CheckedChanged);
-			// 
-			// groupBox16
-			// 
-			this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox16.Controls.Add(this.checkBox2);
-			this.groupBox16.Location = new System.Drawing.Point(3, 310);
-			this.groupBox16.Name = "groupBox16";
-			this.groupBox16.Size = new System.Drawing.Size(150, 45);
-			this.groupBox16.TabIndex = 4;
-			this.groupBox16.TabStop = false;
-			this.groupBox16.Text = "Display";
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(6, 19);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(107, 17);
-			this.checkBox2.TabIndex = 3;
-			this.checkBox2.Text = "Praise Gold Helm";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2232,8 +2249,10 @@
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
-			this.groupBox15.ResumeLayout(false);
-			this.groupBox15.PerformLayout();
+			this.gdBox.ResumeLayout(false);
+			this.gdBox.PerformLayout();
+			this.upBox.ResumeLayout(false);
+			this.upBox.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxLoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxEarth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxAir)).EndInit();
@@ -2257,8 +2276,6 @@
 			this.groupBox5.PerformLayout();
 			this.groupBox9.ResumeLayout(false);
 			this.groupBox9.PerformLayout();
-			this.groupBox6.ResumeLayout(false);
-			this.groupBox6.PerformLayout();
 			this.groupBox7.ResumeLayout(false);
 			this.groupBox7.PerformLayout();
 			this.respawnerGroup.ResumeLayout(false);
@@ -2266,16 +2283,17 @@
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).EndInit();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
+			this.plBox.ResumeLayout(false);
+			this.plBox.PerformLayout();
+			this.groupBox16.ResumeLayout(false);
+			this.groupBox16.PerformLayout();
 			this.groupBox14.ResumeLayout(false);
 			this.groupBox14.PerformLayout();
 			this.groupBox8.ResumeLayout(false);
 			this.playerGroup.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.warpBox)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			this.groupBox16.ResumeLayout(false);
-			this.groupBox16.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2303,7 +2321,7 @@
 		private System.Windows.Forms.Label clicksText;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox autoClickerCheck;
-		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.GroupBox plBox;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label7;
@@ -2319,7 +2337,7 @@
 		private System.Windows.Forms.GroupBox respawnerGroup;
 		private System.Windows.Forms.CheckBox respawnerCheck;
 		private System.Windows.Forms.Label deadAliveText;
-		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.GroupBox gdBox;
 		private System.Windows.Forms.Label levelText;
 		private System.Windows.Forms.Label activePlayersText;
 		private System.Windows.Forms.Label label18;
@@ -2396,7 +2414,7 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.GroupBox groupBox14;
 		private System.Windows.Forms.CheckBox checkBox1;
-		private System.Windows.Forms.GroupBox groupBox15;
+		private System.Windows.Forms.GroupBox upBox;
 		private System.Windows.Forms.NumericUpDown upgrMaxEarth;
 		private System.Windows.Forms.NumericUpDown upgrMaxAir;
 		private System.Windows.Forms.NumericUpDown upgrMaxWater;
@@ -2445,6 +2463,7 @@
 		private System.Windows.Forms.CheckBox multiWhCheck;
 		private System.Windows.Forms.GroupBox groupBox16;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.PictureBox warpBox;
 	}
 }
 

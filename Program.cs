@@ -12,7 +12,8 @@ namespace MonsterGUI
 		[STAThread]
 		static void Main()
 		{
-			System.Net.ServicePointManager.DefaultConnectionLimit = 128;
+			System.Net.ServicePointManager.EnableDnsRoundRobin = true;
+			System.Net.ServicePointManager.DefaultConnectionLimit = 65000;
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainWindow());

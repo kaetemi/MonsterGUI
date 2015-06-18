@@ -33,10 +33,11 @@ namespace MonsterGUI
 		const int badgeBuyCritPrice = 10;
 		const int badgeBuyRain = 30;
 		const int badgeBuyRainPrice = 10;
-		const int badgeBuyWormholePerTick = 350;
-		const int badgeBuyWormholePrice = 100;
-		const int badgeBuyLikeNewPerTick = 10;
+		const int badgeBuyWormholePerTick = 1400;
+		const int badgeBuyWormholePrice = 200;
+		const int badgeBuyLikeNewPerTick = 20;
 		const int badgeBuyLikeNewPrice = 100;
+		const int badgeBuyMax = 2000;
 
 		int[] upgradeAccelerateToLevel = new int[(int)UpgradeOption.Max] {
 			20, // LightArmor = 0,
@@ -167,7 +168,7 @@ namespace MonsterGUI
 						}
 						if (hasBadgePoints && autoBadgesOn)
 						{
-							int countLimit = 500;
+							int countLimit = badgeBuyMax;
 							long remainingBadgePoints = this.techTree.BadgePoints;
 							Action<Abilities, int, int> buyWithPoints = (ability, repeat, price) =>
 							{

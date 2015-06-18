@@ -311,6 +311,12 @@ namespace MonsterGUI
 
 			Random random = new Random();
 			WebClient wc = new TimeoutWebClient();
+			WebClient[] warp = new WebClient[9];
+			for (int i = 0; i < warp.Length; ++i)
+			{
+				warp[i] = new TimeoutWebClient();
+				warp[i].UploadStringCompleted += MainWindow_UploadStringCompleted;
+			}
 			while (running)
 			{
 				int startTick = System.Environment.TickCount;
@@ -593,7 +599,7 @@ namespace MonsterGUI
 							}
 							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
 							{
-								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.1;
+								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.25;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
 									if (abilities) abilties_json += ",";
@@ -606,6 +612,33 @@ namespace MonsterGUI
 										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
 									}
 									--rearmLikeNewAfter;
+									if (doMultiWormhole && multiThreadWarp)
+									{
+										for (int i = 0; i < warp.Length; ++i)
+										{
+											// warp[i].Pos
+											if (!warp[i].IsBusy)
+											{
+												string warp_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":["
+													+ "{\"ability\":" + (int)Abilities.Wormhole + "}"
+													+ "]}";
+												StringBuilder url = new StringBuilder();
+												url.Append("https://");
+												url.Append(host);
+												url.Append("UseAbilities/v0001/");
+												StringBuilder query = new StringBuilder();
+												query.Append("input_json=");
+												query.Append(WebUtilities.UrlEncode(warp_json));
+												query.Append("&access_token=");
+												query.Append(accessToken);
+												query.Append("&format=json");
+												warp[i].Headers[HttpRequestHeader.AcceptCharset] = "utf-8";
+												warp[i].Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+												Console.WriteLine("[Warp " + (i + 1) + "] " + warp_json);
+												warp[i].UploadStringAsync(new Uri(url.ToString()), query.ToString());
+											}
+										}
+									}
 								}
 								else if (!hasPurchasedAbility(Abilities.Wormhole))
 								{
@@ -819,6 +852,11 @@ namespace MonsterGUI
 			}
 			wc.Dispose();
 			Invoke(endedThreadDelegate);
+		}
+
+		void MainWindow_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
+		{
+			Console.WriteLine("[Warp OK]");
 		}
 	}
 }
