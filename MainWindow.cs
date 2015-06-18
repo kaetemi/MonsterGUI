@@ -393,5 +393,32 @@ namespace MonsterGUI
 		{
 			multiWormholeOn = multiWhCheck.Checked;
 		}
+
+		private void checkBox2_CheckedChanged(object sender, EventArgs e)
+		{
+			if (checkBox2.Checked)
+			{
+				string source = "http://i.imgur.com/9R0436k.gif";
+				string file = Path.GetFullPath(Path.GetTempPath() + "/PraiseGoldHelmSwag.gif");
+				if (!File.Exists(file))
+				{
+					System.Net.WebClient wc = new System.Net.WebClient();
+					Console.WriteLine("Downloading {0} to {1}", source, file);
+					wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+					wc.DownloadFile(new Uri(source), file);
+				}
+				Image i = Image.FromFile(file);
+				BackgroundImage = i;
+				foreach (Control c in Controls)
+				{
+					c.BackColor = Color.Transparent;
+				}
+			}
+			else
+			{
+				BackgroundImage = null;
+				
+			}
+		}
 	}
 }

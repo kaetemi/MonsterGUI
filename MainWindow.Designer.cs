@@ -188,6 +188,8 @@
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.multiWhCheck = new System.Windows.Forms.CheckBox();
+			this.groupBox16 = new System.Windows.Forms.GroupBox();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -223,6 +225,7 @@
 			this.groupBox8.SuspendLayout();
 			this.playerGroup.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
+			this.groupBox16.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -431,6 +434,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.groupBox16);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox14);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBox8);
 			this.splitContainer1.Panel2.Controls.Add(this.playerGroup);
@@ -2098,7 +2102,7 @@
 			this.playerGroup.Controls.Add(this.playerList);
 			this.playerGroup.Location = new System.Drawing.Point(3, 115);
 			this.playerGroup.Name = "playerGroup";
-			this.playerGroup.Size = new System.Drawing.Size(150, 240);
+			this.playerGroup.Size = new System.Drawing.Size(150, 189);
 			this.playerGroup.TabIndex = 0;
 			this.playerGroup.TabStop = false;
 			this.playerGroup.Text = "Players";
@@ -2106,7 +2110,7 @@
 			// playerListRefresh
 			// 
 			this.playerListRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.playerListRefresh.Location = new System.Drawing.Point(69, 211);
+			this.playerListRefresh.Location = new System.Drawing.Point(69, 160);
 			this.playerListRefresh.Name = "playerListRefresh";
 			this.playerListRefresh.Size = new System.Drawing.Size(75, 23);
 			this.playerListRefresh.TabIndex = 1;
@@ -2123,7 +2127,7 @@
 			this.playerList.IntegralHeight = false;
 			this.playerList.Location = new System.Drawing.Point(6, 19);
 			this.playerList.Name = "playerList";
-			this.playerList.Size = new System.Drawing.Size(138, 186);
+			this.playerList.Size = new System.Drawing.Size(138, 135);
 			this.playerList.Sorted = true;
 			this.playerList.TabIndex = 0;
 			// 
@@ -2181,10 +2185,34 @@
 			this.multiWhCheck.UseVisualStyleBackColor = true;
 			this.multiWhCheck.CheckedChanged += new System.EventHandler(this.multiWhCheck_CheckedChanged);
 			// 
+			// groupBox16
+			// 
+			this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox16.Controls.Add(this.checkBox2);
+			this.groupBox16.Location = new System.Drawing.Point(3, 310);
+			this.groupBox16.Name = "groupBox16";
+			this.groupBox16.Size = new System.Drawing.Size(150, 45);
+			this.groupBox16.TabIndex = 4;
+			this.groupBox16.TabStop = false;
+			this.groupBox16.Text = "Display";
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(6, 19);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(107, 17);
+			this.checkBox2.TabIndex = 3;
+			this.checkBox2.Text = "Praise Gold Helm";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(784, 520);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.splitContainer1);
@@ -2246,6 +2274,8 @@
 			this.playerGroup.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			this.groupBox16.ResumeLayout(false);
+			this.groupBox16.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -2413,6 +2443,8 @@
 		private System.Windows.Forms.CheckBox fasterWormhole;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.CheckBox multiWhCheck;
+		private System.Windows.Forms.GroupBox groupBox16;
+		private System.Windows.Forms.CheckBox checkBox2;
 	}
 }
 
