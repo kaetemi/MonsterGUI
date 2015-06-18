@@ -31,11 +31,6 @@ namespace MonsterGUI
 		int wormHoleRounds = 500;
 		int superWormholeRounds = 100;
 		int superWormHoleDamageSafety = 5;
-		int likeNewTimerMin = 0;
-		int likeNewTimerMax = 1000;
-		int likeNewChance = 20; // likeNewChance / min(NB Wormholes remaining + base, top)
-		int likeNewChanceBase = 100;
-		int likeNewChanceTop = 1000;
 		int multiWormholeCount = 10;
 
 		// Auto clicker runtime info
@@ -61,8 +56,8 @@ namespace MonsterGUI
 		volatile bool triggerHappy = false;
 		long lastGoldRainLevel = 0;
 		long lastBombLevel = 0;
-		int rearmLikeNewAt = 0;
 		long lastWormholeLevel = 0;
+		int rearmLikeNewAfter = -1;
 
 		/// <summary>
 		/// App init
@@ -94,7 +89,6 @@ namespace MonsterGUI
 			clickCount = 0;
 			clicksText.Text = "0";
 			lastGoldRainLevel = 0;
-			rearmLikeNewAt = 0;
 		}
 
 		EmptyCallback printRequestedLaneTargetDelegate;
@@ -603,29 +597,30 @@ namespace MonsterGUI
 								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) > 0.5m;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
-									/*int nb = doMultiWormhole ? multiWormholeCount : 1;
-									for (int i = 0; i < nb; ++i)
-									{ */
-										if (abilities) abilties_json += ",";
-										abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
-										abilities = true;
-									/*}*/
-									lastWormholeLevel = gameData.Level;
+									if (abilities) abilties_json += ",";
+									abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
+									abilities = true;
 									requestTreeRefresh = true;
-									rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
+									if (lastWormholeLevel != gameData.Level)
+									{
+										lastWormholeLevel = gameData.Level;
+										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
+									}
+									--rearmLikeNewAfter;
 								}
-								else if (rearmLikeNewAt < System.Environment.TickCount) // Launch Like new in the follow tick if ok
+								else if (!hasPurchasedAbility(Abilities.Wormhole))
+								{
+									rearmLikeNewAfter = random.Next(10);
+								}
+								if (lastWormholeLevel == gameData.Level && rearmLikeNewAfter <= 0)
 								{
 									if (hasPurchasedAbility(Abilities.ClearCool) && !isAbilityCoolingDown(Abilities.ClearCool))
 									{
-										if (random.Next(Math.Min(likeNewChanceTop, itemCount(Abilities.Wormhole) + likeNewChanceBase)) < likeNewChance)
-										{
-											if (abilities) abilties_json += ",";
-											abilties_json += "{\"ability\":" + (int)Abilities.ClearCool + "}";
-											abilities = true;
-											requestTreeRefresh = true;
-											rearmLikeNewAt = System.Environment.TickCount + likeNewTimerMin + random.Next(likeNewTimerMax - likeNewTimerMin);
-										}
+										if (abilities) abilties_json += ",";
+										abilties_json += "{\"ability\":" + (int)Abilities.ClearCool + "}";
+										abilities = true;
+										requestTreeRefresh = true;
+										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
 									}
 								}
 							}
