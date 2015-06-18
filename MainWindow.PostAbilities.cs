@@ -298,7 +298,8 @@ namespace MonsterGUI
 			return bestLevel;
 		}
 
-		WebClient[] warp = new WebClient[9];
+		WebClient[] warp = new WebClient[9 * 4];
+		volatile bool keepWarping = false;
 		volatile bool doingWarp9 = false;
 		volatile bool queueWarp9 = false;
 		void doWarp9()
@@ -311,6 +312,9 @@ namespace MonsterGUI
 					queueWarp9 = false;
 					for (int i = 0; i < warp.Length; ++i)
 					{
+						if (!keepWarping)
+							return;
+
 						// warp[i].Pos
 						if (!warp[i].IsBusy)
 						{
@@ -664,6 +668,7 @@ namespace MonsterGUI
 									--rearmLikeNewAfter;
 									if (doMultiWormhole && multiThreadWarp && w9on)
 									{
+										keepWarping = true;
 										if (doingWarp9) queueWarp9 = true;
 										else new System.Threading.Thread(new System.Threading.ThreadStart(doWarp9)).Start();
 									}
@@ -877,6 +882,7 @@ namespace MonsterGUI
 				int endTick = System.Environment.TickCount;
 				int toSleep = 1000 - (endTick - startTick);
 				if (toSleep > 0) System.Threading.Thread.Sleep(toSleep);
+				keepWarping = false;
 			}
 			wc.Dispose();
 			Invoke(endedThreadDelegate);
