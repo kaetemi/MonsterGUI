@@ -1,5 +1,6 @@
 {
-	"version": 1434388755,
+	"universe_level": 100000000,
+	"version": 1434690223,
 	"player": {
 		"respawn_time": 60,
 		"min_dead_time": 5,
@@ -36,7 +37,7 @@
 		"hp_multiplier": "1.2",
 		"hp_exponent": "1.5",
 		"dps_multiplier": 1,
-		"dps_exponent": 1,
+		"dps_exponent": "1.2",
 		"gold_multiplier": "1.6",
 		"gold_exponent": "1.1"
 	}
@@ -49,7 +50,7 @@
 		"hp_multiplier_variance": "0.2",
 		"hp_exponent": "1.5",
 		"dps_multiplier": 1,
-		"dps_exponent": 1,
+		"dps_exponent": "1.2",
 		"gold_multiplier": "1.2",
 		"gold_exponent": "1.02"
 	}
@@ -62,7 +63,7 @@
 		"hp_multiplier": "1.2",
 		"hp_exponent": "1.5",
 		"dps_multiplier": 1,
-		"dps_exponent": 1,
+		"dps_exponent": "1.2",
 		"gold_multiplier": "1.7",
 		"gold_exponent": "1.1"
 	}
@@ -74,7 +75,7 @@
 		"hp_multiplier": "1.5",
 		"hp_exponent": 3,
 		"dps_multiplier": 1,
-		"dps_exponent": 1,
+		"dps_exponent": "1.2",
 		"gold_multiplier": "1.9",
 		"gold_exponent": "1.25"
 	}
@@ -85,7 +86,7 @@
 		"gold": 200,
 		"hp_multiplier": "1.2",
 		"hp_exponent": "1.5",
-		"dps_exponent": 1,
+		"dps_exponent": "1.2",
 		"lifetime": 10,
 		"chance": "0.01",
 		"gold_multiplier": "1.7",
@@ -335,7 +336,7 @@
 			"instant": 1,
 			"duration": 10,
 			"cooldown": 1800,
-			"start_of_game_cooldown": 600
+			"start_of_game_cooldown": 0
 		}
 ,
 		"26": {
@@ -348,7 +349,7 @@
 			"instant": 1,
 			"duration": 10,
 			"cooldown": 60,
-			"start_of_game_cooldown": 600
+			"start_of_game_cooldown": 0
 		}
 ,
 		"27": {
@@ -359,7 +360,7 @@
 			"badge_points_cost": 100,
 			"duration": 5,
 			"cooldown": 1,
-			"start_of_game_cooldown": 600
+			"start_of_game_cooldown": 0
 		}
 
 	}
@@ -665,7 +666,7 @@
 			"desc_token": "#TowerAttack_Upgrade_HP5_Desc",
 			"multiplier": 10000,
 			"type": 0,
-			"cost": 10000000,
+			"cost": "10000000.0",
 			"cost_exponential_base": "2.2",
 			"required_upgrade": 23,
 			"required_upgrade_level": 10
@@ -677,7 +678,7 @@
 			"desc_token": "#TowerAttack_Upgrade_DPS5_Desc",
 			"multiplier": 10000,
 			"type": 1,
-			"cost": 10000000,
+			"cost": "10000000.0",
 			"cost_exponential_base": "2.2",
 			"required_upgrade": 24,
 			"required_upgrade_level": 10
@@ -689,9 +690,189 @@
 			"desc_token": "#TowerAttack_Upgrade_Click5_Desc",
 			"multiplier": 10000,
 			"type": 2,
-			"cost": 10000000,
+			"cost": "10000000.0",
 			"cost_exponential_base": "2.2",
 			"required_upgrade": 25,
+			"required_upgrade_level": 10
+		}
+,
+		"29": {
+			"name": "HP upgrade 6",
+			"name_token": "#TowerAttack_Upgrade_HP6",
+			"desc_token": "#TowerAttack_Upgrade_HP6_Desc",
+			"multiplier": 100000,
+			"type": 0,
+			"cost": "100000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 26,
+			"required_upgrade_level": 10
+		}
+,
+		"30": {
+			"name": "generic DPS upgrade 6",
+			"name_token": "#TowerAttack_Upgrade_DPS6",
+			"desc_token": "#TowerAttack_Upgrade_DPS6_Desc",
+			"multiplier": 100000,
+			"type": 1,
+			"cost": "100000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 27,
+			"required_upgrade_level": 10
+		}
+,
+		"31": {
+			"name": "generic click damage 6",
+			"name_token": "#TowerAttack_Upgrade_Click6",
+			"desc_token": "#TowerAttack_Upgrade_Click6_Desc",
+			"multiplier": 100000,
+			"type": 2,
+			"cost": "100000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 28,
+			"required_upgrade_level": 10
+		}
+,
+		"32": {
+			"name": "HP upgrade 7",
+			"name_token": "#TowerAttack_Upgrade_HP7",
+			"desc_token": "#TowerAttack_Upgrade_HP7_Desc",
+			"multiplier": 1000000,
+			"type": 0,
+			"cost": "1000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 29,
+			"required_upgrade_level": 10
+		}
+,
+		"33": {
+			"name": "generic DPS upgrade 7",
+			"name_token": "#TowerAttack_Upgrade_DPS7",
+			"desc_token": "#TowerAttack_Upgrade_DPS7_Desc",
+			"multiplier": 1000000,
+			"type": 1,
+			"cost": "1000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 30,
+			"required_upgrade_level": 10
+		}
+,
+		"34": {
+			"name": "generic click damage 7",
+			"name_token": "#TowerAttack_Upgrade_Click7",
+			"desc_token": "#TowerAttack_Upgrade_Click7_Desc",
+			"multiplier": 1000000,
+			"type": 2,
+			"cost": "1000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 31,
+			"required_upgrade_level": 10
+		}
+,
+		"35": {
+			"name": "HP upgrade 8",
+			"name_token": "#TowerAttack_Upgrade_HP8",
+			"desc_token": "#TowerAttack_Upgrade_HP8_Desc",
+			"multiplier": 10000000,
+			"type": 0,
+			"cost": "10000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 32,
+			"required_upgrade_level": 10
+		}
+,
+		"36": {
+			"name": "generic DPS upgrade 8",
+			"name_token": "#TowerAttack_Upgrade_DPS8",
+			"desc_token": "#TowerAttack_Upgrade_DPS8_Desc",
+			"multiplier": 10000000,
+			"type": 1,
+			"cost": "10000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 33,
+			"required_upgrade_level": 10
+		}
+,
+		"37": {
+			"name": "generic click damage 8",
+			"name_token": "#TowerAttack_Upgrade_Click8",
+			"desc_token": "#TowerAttack_Upgrade_Click8_Desc",
+			"multiplier": 10000000,
+			"type": 2,
+			"cost": "10000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 34,
+			"required_upgrade_level": 10
+		}
+,
+		"38": {
+			"name": "HP upgrade 9",
+			"name_token": "#TowerAttack_Upgrade_HP9",
+			"desc_token": "#TowerAttack_Upgrade_HP9_Desc",
+			"multiplier": 100000000,
+			"type": 0,
+			"cost": "100000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 35,
+			"required_upgrade_level": 10
+		}
+,
+		"39": {
+			"name": "generic DPS upgrade 9",
+			"name_token": "#TowerAttack_Upgrade_DPS9",
+			"desc_token": "#TowerAttack_Upgrade_DPS9_Desc",
+			"multiplier": 100000000,
+			"type": 1,
+			"cost": "100000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 36,
+			"required_upgrade_level": 10
+		}
+,
+		"40": {
+			"name": "generic click damage 9",
+			"name_token": "#TowerAttack_Upgrade_Click9",
+			"desc_token": "#TowerAttack_Upgrade_Click9_Desc",
+			"multiplier": 100000000,
+			"type": 2,
+			"cost": "100000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 37,
+			"required_upgrade_level": 10
+		}
+,
+		"41": {
+			"name": "HP upgrade 10",
+			"name_token": "#TowerAttack_Upgrade_HP10",
+			"desc_token": "#TowerAttack_Upgrade_HP10_Desc",
+			"multiplier": 1000000000,
+			"type": 0,
+			"cost": "1000000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 38,
+			"required_upgrade_level": 10
+		}
+,
+		"42": {
+			"name": "generic DPS upgrade 10",
+			"name_token": "#TowerAttack_Upgrade_DPS10",
+			"desc_token": "#TowerAttack_Upgrade_DPS10_Desc",
+			"multiplier": 1000000000,
+			"type": 1,
+			"cost": "1000000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 39,
+			"required_upgrade_level": 10
+		}
+,
+		"43": {
+			"name": "generic click damage 10",
+			"name_token": "#TowerAttack_Upgrade_Click10",
+			"desc_token": "#TowerAttack_Upgrade_Click10_Desc",
+			"multiplier": 1000000000,
+			"type": 2,
+			"cost": "1000000000000.0",
+			"cost_exponential_base": "2.2",
+			"required_upgrade": 40,
 			"required_upgrade_level": 10
 		}
 
