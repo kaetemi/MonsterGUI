@@ -171,6 +171,13 @@ namespace MonsterGUI
 			return false;
 		}
 
+		private bool bossMonsterOnLevel()
+		{
+			return bossMonsterOnLane(0)
+				|| bossMonsterOnLane(1)
+				|| bossMonsterOnLane(2);
+		}
+
 		private bool treasureMonsterOnLane(int i)
 		{
 			for (int j = 0; j < gameData.Lanes[i].Enemies.Length; ++j)
@@ -255,12 +262,12 @@ namespace MonsterGUI
 			if (superWormholeOn)
 			{
 				return ((gameData.Level % superWormholeRounds) == 0)
-					&& bossMonsterOnLane(i);
+					&& (yowhOn ? bossMonsterOnLevel() : bossMonsterOnLane(i));
 			}
 			else
 			{
 				return ((gameData.Level % wormHoleRounds) == 0)
-					&& bossMonsterOnLane(i);
+					&& (yowhOn ? bossMonsterOnLevel() : bossMonsterOnLane(i));
 			}
 		}
 
@@ -458,29 +465,46 @@ namespace MonsterGUI
 						}
 					}
 
+					bool yowhWormholeRound = yowhOn && ((gameData.Level % superWormholeRounds) == 0);
+
 					if (bossLaneOn)
 					{
-						for (int i = 0; i < gameData.Lanes.Length; ++i)
+						if (yowhWormholeRound)
 						{
-							if (treasureMonsterOnLane(i))
+							for (int i = 0; i < gameData.Lanes.Length; ++i)
 							{
-								laneRequested = i;
-								smartLane = true;
-								break;
+								if (!bossMonsterOnLane(i)) // Join the first lane with no boss monster
+								{
+									laneRequested = i;
+									smartLane = true;
+									break;
+								}
 							}
 						}
-						for (int i = 0; i < gameData.Lanes.Length; ++i)
+						else
 						{
-							if (bossMonsterOnLane(i))
+							for (int i = 0; i < gameData.Lanes.Length; ++i)
 							{
-								laneRequested = i;
-								smartLane = true;
-								break;
+								if (treasureMonsterOnLane(i))
+								{
+									laneRequested = i;
+									smartLane = true;
+									break;
+								}
+							}
+							for (int i = 0; i < gameData.Lanes.Length; ++i)
+							{
+								if (bossMonsterOnLane(i))
+								{
+									laneRequested = i;
+									smartLane = true;
+									break;
+								}
 							}
 						}
 					}
 
-					bool monsterLaneOn = laneSwitcherOn || elementSwitcherOn || goldLaneSwitcherOn || bossLaneOn;
+					bool monsterLaneOn = (laneSwitcherOn || elementSwitcherOn || goldLaneSwitcherOn || bossLaneOn) && !yowhWormholeRound;
 					if (monsterLaneOn && !smartLane) // Already handled by smart lane switches
 					{
 						int originalRes = laneRequested;
@@ -655,7 +679,8 @@ namespace MonsterGUI
 								abilities = true;
 								requestTreeRefresh = true;
 							}
-							if (useWormHoleOnLane(playerData.CurrentLane)) // TODO: Or endgame
+							// Never trigger happy on LNs
+							if (laneRequested == playerData.CurrentLane && useWormHoleOnLane(laneRequested)) // TODO: Or endgame
 							{
 								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.25;
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))

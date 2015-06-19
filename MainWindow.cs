@@ -515,5 +515,17 @@ namespace MonsterGUI
 				warpBox.Visible = false;
 			}
 		}
+
+		bool yowhOn = false;
+		private void yowhCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			yowhOn = yowhCheck.Checked;
+		}
+
+		private void button2_Click_1(object sender, EventArgs e)
+		{
+			button1_Click_1(sender, e);
+			yowhCheck.Checked = true;
+		}
 	}
 }
