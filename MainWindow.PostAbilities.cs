@@ -329,7 +329,7 @@ namespace MonsterGUI
 						if (!warp[i].IsBusy)
 						{
 							System.Threading.Thread.Sleep(100); // Evenly spread!
-							if (useWormHoleOnLane(laneRequested) && highestHpFactorOnLane(laneRequested) >= 0.15)
+							if (useWormHoleOnLane(laneRequested) && (highestHpFactorOnLane(laneRequested) >= 0.15 || yowhOn))
 							{
 								string warp_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":["
 									+ "{\"ability\":" + (int)Abilities.Wormhole + "}"
@@ -682,7 +682,7 @@ namespace MonsterGUI
 							// Never trigger happy on LNs
 							if (laneRequested == playerData.CurrentLane && useWormHoleOnLane(laneRequested)) // TODO: Or endgame
 							{
-								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && highestHpFactorOnLane(laneRequested) >= 0.25;
+								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && ((highestHpFactorOnLane(laneRequested) >= 0.25) || yowhOn);
 								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
 								{
 									if (abilities) abilties_json += ",";
