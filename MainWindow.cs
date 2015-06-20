@@ -527,5 +527,11 @@ namespace MonsterGUI
 			button1_Click_1(sender, e);
 			yowhCheck.Checked = true;
 		}
+
+		bool lnOn = false;
+		private void lCheck_CheckedChanged(object sender, EventArgs e)
+		{
+			lnOn = lCheck.Checked;
+		}
 	}
 }

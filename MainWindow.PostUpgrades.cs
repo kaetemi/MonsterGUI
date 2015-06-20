@@ -34,7 +34,7 @@ namespace MonsterGUI
 		const int badgeBuyRain = 30;
 		const int badgeBuyRainPrice = 10;
 		const int badgeBuyWormholePerTick = 1400;
-		const int badgeBuyWormholePrice = 200;
+		const int badgeBuyWormholePrice = 100;
 		const int badgeBuyLikeNewPerTick = 140;
 		const int badgeBuyLikeNewPrice = 100;
 		const int badgeBuyMax = 2000;
@@ -189,8 +189,8 @@ namespace MonsterGUI
 							int remainingRain = Math.Max(0, badgeBuyRain - itemCount(Abilities.GoldRain));
 							buyWithPoints(Abilities.IncreaseCritPercentagePermanently, remainingCrit, badgeBuyCritPrice);
 							buyWithPoints(Abilities.GoldRain, remainingRain, badgeBuyRainPrice);
-							buyWithPoints(Abilities.Wormhole, badgeBuyWormholePerTick, badgeBuyWormholePrice);
-							buyWithPoints(Abilities.ClearCool, badgeBuyLikeNewPerTick, badgeBuyWormholePrice);
+							buyWithPoints(Abilities.Wormhole, lnOn ? badgeBuyWormholePerTick / 2 : badgeBuyWormholePerTick, badgeBuyWormholePrice);
+							buyWithPoints(Abilities.ClearCool, lnOn ? badgeBuyWormholePerTick / 2 : badgeBuyLikeNewPerTick, badgeBuyWormholePrice);
 							if (remainingBadgePoints < badgeBuyWormholePrice && countLimit == badgeBuyMax)
 							{
 								buyWithPoints(Abilities.GoldRain, (int)remainingBadgePoints / badgeBuyRainPrice, badgeBuyRainPrice);

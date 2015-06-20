@@ -333,6 +333,7 @@ namespace MonsterGUI
 							{
 								string warp_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":["
 									+ "{\"ability\":" + (int)Abilities.Wormhole + "}"
+									+ (lnOn ? ",{\"ability\":" + (int)Abilities.ClearCool + "}" : "")
 									+ "]}";
 								StringBuilder url = new StringBuilder();
 								url.Append("https://");

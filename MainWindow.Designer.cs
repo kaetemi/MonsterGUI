@@ -194,6 +194,7 @@
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.yowhCheck = new System.Windows.Forms.CheckBox();
 			this.button2 = new System.Windows.Forms.Button();
+			this.lCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -558,6 +559,7 @@
 			// 
 			this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox12.Controls.Add(this.lCheck);
 			this.groupBox12.Controls.Add(this.w9check);
 			this.groupBox12.Controls.Add(this.multiWhCheck);
 			this.groupBox12.Controls.Add(this.fasterWormhole);
@@ -2266,6 +2268,17 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click_1);
 			// 
+			// lCheck
+			// 
+			this.lCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lCheck.Location = new System.Drawing.Point(358, 14);
+			this.lCheck.Name = "lCheck";
+			this.lCheck.Size = new System.Drawing.Size(26, 17);
+			this.lCheck.TabIndex = 4;
+			this.lCheck.Text = "L";
+			this.lCheck.UseVisualStyleBackColor = true;
+			this.lCheck.CheckedChanged += new System.EventHandler(this.lCheck_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2508,6 +2521,7 @@
 		private System.Windows.Forms.CheckBox w9check;
 		private System.Windows.Forms.CheckBox yowhCheck;
 		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.CheckBox lCheck;
 	}
 }
 
