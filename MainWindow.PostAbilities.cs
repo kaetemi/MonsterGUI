@@ -262,12 +262,12 @@ namespace MonsterGUI
 			if (superWormholeOn)
 			{
 				return ((gameData.Level % superWormholeRounds) == 0)
-					&& (yowhOn ? bossMonsterOnLevel() : bossMonsterOnLane(i));
+					&& (yowhOn || bossMonsterOnLane(i));
 			}
 			else
 			{
 				return ((gameData.Level % wormHoleRounds) == 0)
-					&& (yowhOn ? bossMonsterOnLevel() : bossMonsterOnLane(i));
+					&& (yowhOn || bossMonsterOnLane(i));
 			}
 		}
 
@@ -679,45 +679,7 @@ namespace MonsterGUI
 								abilities = true;
 								requestTreeRefresh = true;
 							}
-							// Never trigger happy on LNs
-							if (laneRequested == playerData.CurrentLane && useWormHoleOnLane(laneRequested)) // TODO: Or endgame
-							{
-								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && ((highestHpFactorOnLane(laneRequested) >= 0.25) || yowhOn);
-								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
-								{
-									if (abilities) abilties_json += ",";
-									abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
-									abilities = true;
-									requestTreeRefresh = true;
-									if (lastWormholeLevel != gameData.Level)
-									{
-										lastWormholeLevel = gameData.Level;
-										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
-									}
-									--rearmLikeNewAfter;
-									if (doMultiWormhole && multiThreadWarp && w9on)
-									{
-										keepWarping = true;
-										if (doingWarp9) queueWarp9 = true;
-										else new System.Threading.Thread(new System.Threading.ThreadStart(doWarp9)).Start();
-									}
-								}
-								else if (!hasPurchasedAbility(Abilities.Wormhole))
-								{
-									rearmLikeNewAfter = random.Next(10);
-								}
-								if (lastWormholeLevel == gameData.Level && rearmLikeNewAfter <= 0)
-								{
-									if (hasPurchasedAbility(Abilities.ClearCool) && !isAbilityCoolingDown(Abilities.ClearCool))
-									{
-										if (abilities) abilties_json += ",";
-										abilties_json += "{\"ability\":" + (int)Abilities.ClearCool + "}";
-										abilities = true;
-										requestTreeRefresh = true;
-										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
-									}
-								}
-							}
+						
 							if (triggerHappy || laneRequested == playerData.CurrentLane) // Really sure to work on the current lane
 							{
 								bool farmingGold = farmingGoldOnLane(laneRequested);
@@ -838,6 +800,52 @@ namespace MonsterGUI
 												}
 											}
 										}
+									}
+								}
+							}
+						}
+					}
+
+					if (yowhOn || (enemiesAliveInLane(laneRequested) && (triggerHappy || enemiesAliveInLane(playerData.CurrentLane))))
+					{
+						if (itemAbilitiesOn)
+						{
+							// Never trigger happy on LNs
+							if (laneRequested == playerData.CurrentLane && useWormHoleOnLane(laneRequested)) // TODO: Or endgame
+							{
+								bool doMultiWormhole = multiWormholeOn && lastWormholeLevel == gameData.Level && ((highestHpFactorOnLane(laneRequested) >= 0.25) || yowhOn);
+								if (hasPurchasedAbility(Abilities.Wormhole) && (!isAbilityCoolingDown(Abilities.Wormhole) || doMultiWormhole))
+								{
+									if (abilities) abilties_json += ",";
+									abilties_json += "{\"ability\":" + (int)Abilities.Wormhole + "}";
+									abilities = true;
+									requestTreeRefresh = true;
+									if (lastWormholeLevel != gameData.Level)
+									{
+										lastWormholeLevel = gameData.Level;
+										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
+									}
+									--rearmLikeNewAfter;
+									if (doMultiWormhole && multiThreadWarp && w9on)
+									{
+										keepWarping = true;
+										if (doingWarp9) queueWarp9 = true;
+										else new System.Threading.Thread(new System.Threading.ThreadStart(doWarp9)).Start();
+									}
+								}
+								else if (!hasPurchasedAbility(Abilities.Wormhole))
+								{
+									rearmLikeNewAfter = random.Next(10);
+								}
+								if (lastWormholeLevel == gameData.Level && rearmLikeNewAfter <= 0)
+								{
+									if (hasPurchasedAbility(Abilities.ClearCool) && !isAbilityCoolingDown(Abilities.ClearCool))
+									{
+										if (abilities) abilties_json += ",";
+										abilties_json += "{\"ability\":" + (int)Abilities.ClearCool + "}";
+										abilities = true;
+										requestTreeRefresh = true;
+										rearmLikeNewAfter = random.Next(itemCount(Abilities.Wormhole) * 2 / itemCount(Abilities.ClearCool));
 									}
 								}
 							}
