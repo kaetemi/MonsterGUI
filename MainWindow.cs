@@ -19,7 +19,9 @@ namespace MonsterGUI
 
 	public partial class MainWindow : Form
 	{
-		string host = "steamapi-a.akamaihd.net/ITowerAttackMiniGameService/";
+		string https = "http://";
+		string http = "http://";
+		string host = "steamdb.party/api/ITowerAttackMiniGameService/";
 
 		Thread getState;
 		Thread postAbilities;
@@ -119,6 +121,8 @@ namespace MonsterGUI
 			control.Enabled = enabled;
 		}
 
+		string phpSessId = "";
+
 		private void go_Click(object sender, EventArgs e)
 		{
 			if (running)
@@ -134,6 +138,8 @@ namespace MonsterGUI
 				running = true;
 
 				accessToken = accessTokenText.Text;
+				steamId = accessToken;
+				phpSessId = textBox1.Text;
 				room = (int)roomText.Value; // Convert.ToInt32(roomText.Text, CultureInfo.InvariantCulture);
 				accessTokenText.Enabled = false;
 				roomText.Enabled = false;
@@ -221,7 +227,7 @@ namespace MonsterGUI
 
 		private void playerListRefresh_Click(object sender, EventArgs e)
 		{
-			getPlayerNames = true;
+			getPlayerNames = false; // GetPlayerNames
 		}
 
 		private void respawnerCheck_CheckedChanged(object sender, EventArgs e)

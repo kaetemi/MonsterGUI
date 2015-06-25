@@ -331,16 +331,18 @@ namespace MonsterGUI
 							System.Threading.Thread.Sleep(100); // Evenly spread!
 							if (useWormHoleOnLane(laneRequested) && (highestHpFactorOnLane(laneRequested) >= 0.15 || yowhOn))
 							{
-								string warp_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":["
+								string warp_json = "["
 									+ "{\"ability\":" + (int)Abilities.Wormhole + "}"
 									+ (lnOn ? ",{\"ability\":" + (int)Abilities.ClearCool + "}" : "")
-									+ "]}";
+									+ "]";
 								StringBuilder url = new StringBuilder();
-								url.Append("https://");
+								url.Append(https);
 								url.Append(host);
 								url.Append("UseAbilities/v0001/");
 								StringBuilder query = new StringBuilder();
-								query.Append("input_json=");
+								query.Append("gameid=");
+								query.Append(room);
+								query.Append("&requested_abilities=");
 								query.Append(WebUtilities.UrlEncode(warp_json));
 								query.Append("&access_token=");
 								query.Append(accessToken);
@@ -374,12 +376,15 @@ namespace MonsterGUI
 			// 4: Switch Target [new_target] (NOTE: Server automatically switches targets as well)
 
 			Random random = new Random();
-			WebClient wc = new TimeoutWebClient();
+			TimeoutWebClient wc = new TimeoutWebClient();
+			wc.Cookie = "PHPSESSID=" + phpSessId;
 			lock (warp)
 			{
 				for (int i = 0; i < warp.Length; ++i)
 				{
-					warp[i] = new TimeoutWebClient();
+					TimeoutWebClient twc = new TimeoutWebClient();
+					twc.Cookie = "PHPSESSID=" + phpSessId;
+					warp[i] = twc;
 					warp[i].UploadStringCompleted += MainWindow_UploadStringCompleted;
 				}
 			}
@@ -395,7 +400,7 @@ namespace MonsterGUI
 					}
 
 					bool abilities = false;
-					string abilties_json = "{\"gameid\":\"" + room + "\",\"requested_abilities\":[";
+					string abilties_json = "[";
 
 					if (respawnerOn)
 					{
@@ -873,13 +878,15 @@ namespace MonsterGUI
 					if (abilities && (this.techTree.BadgePoints <= 0))
 					{
 						// Send the UseAbilities POST request
-						abilties_json += "]}";
+						abilties_json += "]";
 						StringBuilder url = new StringBuilder();
-						url.Append("https://");
+						url.Append(https);
 						url.Append(host);
 						url.Append("UseAbilities/v0001/");
 						StringBuilder query = new StringBuilder();
-						query.Append("input_json=");
+						query.Append("gameid=");
+						query.Append(room);
+						query.Append("&requested_abilities=");
 						query.Append(WebUtilities.UrlEncode(abilties_json));
 						query.Append("&access_token=");
 						query.Append(accessToken);
@@ -896,7 +903,7 @@ namespace MonsterGUI
 					else if (!string.IsNullOrEmpty(steamId))
 					{
 						StringBuilder url = new StringBuilder();
-						url.Append("http://");
+						url.Append(http);
 						url.Append(host);
 						url.Append("GetPlayerData/v0001/?gameid=");
 						url.Append(room);

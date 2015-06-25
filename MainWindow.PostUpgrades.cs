@@ -139,7 +139,8 @@ namespace MonsterGUI
 		{
 			// ChooseUpgrade: {"gameid":"6059","upgrades":[4,4,5,6]}
 
-			WebClient wc = new TimeoutWebClient();
+			TimeoutWebClient wc = new TimeoutWebClient();
+			wc.Cookie = "PHPSESSID=" + phpSessId;
 			const int notSentCountLimit = 60; // Send a blank upgrade request every 60 ticks to force update the player state
 			int notSentCount = notSentCountLimit;
 			while (running)
@@ -156,9 +157,10 @@ namespace MonsterGUI
 					bool hasBadgePoints = this.techTree.BadgePoints > 0;
 
 					bool upgrades = false;
-					string upgrades_json = hasBadgePoints
+					/*string upgrades_json = hasBadgePoints
 						? "{\"gameid\":\"" + room + "\",\"ability_items\":["
-						: "{\"gameid\":\"" + room + "\",\"upgrades\":[";
+						: "{\"gameid\":\"" + room + "\",\"upgrades\":[";*/
+					string upgrades_json = "[";
 
 					if (waitForNewPlayerData <= 0 && !waitForUpgradeData && !waitForTuningData)
 					{
@@ -441,14 +443,17 @@ namespace MonsterGUI
 					// Send the upgrade packet
 					if (upgrades)
 					{
-						upgrades_json += "]}";
+						upgrades_json += "]";
 						StringBuilder url = new StringBuilder();
-						url.Append("https://");
+						url.Append(https);
 						url.Append(host);
 						if (hasBadgePoints) url.Append("UseBadgePoints/v0001/");
 						else url.Append("ChooseUpgrade/v0001/");
 						StringBuilder query = new StringBuilder();
-						query.Append("input_json=");
+						query.Append("gameid=");
+						query.Append(room);
+						if (hasBadgePoints) query.Append("&ability_items=");
+						else query.Append("&upgrades=");
 						query.Append(WebUtilities.UrlEncode(upgrades_json));
 						query.Append("&access_token=");
 						query.Append(accessToken);
@@ -468,7 +473,7 @@ namespace MonsterGUI
 					else if ((notSentCount >= notSentCountLimit || refreshUpgrades || waitForUpgradeData) && !string.IsNullOrEmpty(steamId))
 					{
 						StringBuilder url = new StringBuilder();
-						url.Append("http://");
+						url.Append(http);
 						url.Append(host);
 						url.Append("GetPlayerData/v0001/?gameid=");
 						url.Append(room);

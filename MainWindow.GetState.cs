@@ -285,13 +285,17 @@ namespace MonsterGUI
 		/// </summary>
 		private void getStateInit()
 		{
-			resultTokenDetailsDelegate = new JsonCallback(resultTokenDetails);
+			// resultTokenDetailsDelegate = new JsonCallback(resultTokenDetails);
 			resultPlayerNamesDelegate = new JsonCallback(resultPlayerNames);
 			resultGameDataDelegate = new JsonCallback(resultGameData);
 			resultTuningDataDelegate = new JsonCallback(resultTuningData);
 			gameData.Init();
 			techTree.Init();
 			tuningData.Init();
+
+			string td = System.IO.File.ReadAllText("TuningData.txt");
+			JSONNode tdd = JSON.Parse(td);
+			parseTuningData(tdd);	
 		}
 
 		/// <summary>
@@ -301,9 +305,9 @@ namespace MonsterGUI
 		{
 			steamId = "";
 
-			getPlayerNames = true;
+			getPlayerNames = false; // GetPlayerNames
 			getSteamId = true;
-			getTuningData = true;
+			getTuningData = false; // GetTuningData		
 
 			abilitiesIntfs = new System.Windows.Forms.Label[8];
 			abilitiesIntfs[(int)Abilities.MoraleBooster - (int)Abilities.StartAbility] = moraleBoosterIntf;
@@ -675,7 +679,7 @@ namespace MonsterGUI
 			}
 		}
 
-		private JsonCallback resultTokenDetailsDelegate;
+		/*private JsonCallback resultTokenDetailsDelegate;
 		private void resultTokenDetails(JSONNode json)
 		{
 			JSONNode steamid = json["steamid"];
@@ -685,7 +689,7 @@ namespace MonsterGUI
 			if (personaName != null) this.personaName = personaName.Value;
 
 			Console.WriteLine("steamid: " + steamId);
-		}
+		}*/
 
 		private JsonCallback resultTuningDataDelegate;
 		private void resultTuningData(JSONNode json)
@@ -699,7 +703,11 @@ namespace MonsterGUI
 			// Console.WriteLine(jsonNode.Value);
 			// System.IO.File.WriteAllText("TuningDataExample.txt", jsonNode.Value);
 			JSONNode tuningData = JSON.Parse(jsonNode.Value);
+			parseTuningData(tuningData);
+		}
 
+		private void parseTuningData(JSONNode tuningData)
+		{
 			JSONNode player = tuningData["player"];
 			if (player != null)
 			{
@@ -900,14 +908,15 @@ namespace MonsterGUI
 			// Player List: http://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetPlayerNames/v0001/?gameid=XXXX
 			// Game Data: http://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetGameData/v0001/?gameid=37559&include_stats=1
 
-			WebClient wc = new TimeoutWebClient();
+			TimeoutWebClient wc = new TimeoutWebClient();
 			wc.Headers.Add("Accept-Charset", "utf-8");
+			wc.Cookie = "PHPSESSID=" + phpSessId;
 			while (running)
 			{
 				int startTick = System.Environment.TickCount;
 				try
 				{
-					if (getSteamId && !string.IsNullOrEmpty(accessToken))
+					/*if (getSteamId && !string.IsNullOrEmpty(accessToken))
 					{
 						StringBuilder url = new StringBuilder();
 						url.Append("https://steamapi-a.akamaihd.net/ISteamUserOAuth/GetTokenDetails/v1/?access_token=");
@@ -918,11 +927,11 @@ namespace MonsterGUI
 						if (!exiting) Invoke(resultTokenDetailsDelegate, json);
 						getSteamId = false;
 					}
-					else if (getTuningData && !string.IsNullOrEmpty(accessToken))
+					else */if (getTuningData && !string.IsNullOrEmpty(accessToken))
 					{
 						// https://steamapi-a.akamaihd.net/ITowerAttackMiniGameService/GetTuningData/v0001/?game_type=1&gameid=41671&access_token=***
 						StringBuilder url = new StringBuilder();
-						url.Append("https://");
+						url.Append(https);
 						url.Append(host);
 						url.Append("GetTuningData/v0001/?game_type=1&gameid=");
 						url.Append(room);
@@ -937,7 +946,7 @@ namespace MonsterGUI
 					else if (getPlayerNames)
 					{
 						StringBuilder url = new StringBuilder();
-						url.Append("http://");
+						url.Append(http);
 						url.Append(host);
 						url.Append("GetPlayerNames/v0001/?gameid=");
 						url.Append(room);
@@ -950,7 +959,7 @@ namespace MonsterGUI
 					else
 					{
 						StringBuilder url = new StringBuilder();
-						url.Append("http://");
+						url.Append(http);
 						url.Append(host);
 						url.Append("GetGameData/v0001/?gameid=");
 						url.Append(room);

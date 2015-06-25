@@ -53,6 +53,7 @@
 			this.fireImmediatelyCheck = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.lCheck = new System.Windows.Forms.CheckBox();
 			this.w9check = new System.Windows.Forms.CheckBox();
 			this.multiWhCheck = new System.Windows.Forms.CheckBox();
 			this.fasterWormhole = new System.Windows.Forms.CheckBox();
@@ -95,6 +96,7 @@
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.targetSpawnerCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.yowhCheck = new System.Windows.Forms.CheckBox();
 			this.bossLaneText = new System.Windows.Forms.Label();
 			this.bossLaneCheck = new System.Windows.Forms.CheckBox();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -120,7 +122,6 @@
 			this.laneSwitcherCheck = new System.Windows.Forms.CheckBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.laneSwitcherTimer = new System.Windows.Forms.NumericUpDown();
-			this.warpBox = new System.Windows.Forms.PictureBox();
 			this.gdBox = new System.Windows.Forms.GroupBox();
 			this.cpsText = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
@@ -140,6 +141,7 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.upBox = new System.Windows.Forms.GroupBox();
+			this.warpBox = new System.Windows.Forms.PictureBox();
 			this.badgesCheck = new System.Windows.Forms.CheckBox();
 			this.autoUpgradesCheck = new System.Windows.Forms.CheckBox();
 			this.dpcCritDisp = new System.Windows.Forms.Label();
@@ -181,6 +183,7 @@
 			this.groupBox14 = new System.Windows.Forms.GroupBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.groupBox8 = new System.Windows.Forms.GroupBox();
+			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.presetEverythingON = new System.Windows.Forms.Button();
 			this.presetEverythingOff = new System.Windows.Forms.Button();
@@ -192,9 +195,8 @@
 			this.postAbilitiesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.postUpgradesState = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.yowhCheck = new System.Windows.Forms.CheckBox();
-			this.button2 = new System.Windows.Forms.Button();
-			this.lCheck = new System.Windows.Forms.CheckBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label23 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.roomText)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -214,10 +216,10 @@
 			this.respawnerGroup.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.warpBox)).BeginInit();
 			this.gdBox.SuspendLayout();
 			this.plBox.SuspendLayout();
 			this.upBox.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.warpBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxLoot)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxEarth)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxAir)).BeginInit();
@@ -238,9 +240,11 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.label23);
 			this.groupBox1.Controls.Add(this.roomText);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label1);
+			this.groupBox1.Controls.Add(this.textBox1);
 			this.groupBox1.Controls.Add(this.accessTokenText);
 			this.groupBox1.Controls.Add(this.go);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -264,7 +268,7 @@
 			this.roomText.Size = new System.Drawing.Size(579, 20);
 			this.roomText.TabIndex = 5;
 			this.roomText.Value = new decimal(new int[] {
-            44888,
+            44925,
             0,
             0,
             0});
@@ -289,12 +293,10 @@
 			// 
 			// accessTokenText
 			// 
-			this.accessTokenText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.accessTokenText.Location = new System.Drawing.Point(94, 19);
 			this.accessTokenText.Name = "accessTokenText";
 			this.accessTokenText.PasswordChar = '•';
-			this.accessTokenText.Size = new System.Drawing.Size(579, 20);
+			this.accessTokenText.Size = new System.Drawing.Size(280, 20);
 			this.accessTokenText.TabIndex = 1;
 			// 
 			// go
@@ -600,6 +602,17 @@
 			this.groupBox12.TabIndex = 11;
 			this.groupBox12.TabStop = false;
 			this.groupBox12.Text = "Items";
+			// 
+			// lCheck
+			// 
+			this.lCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lCheck.Location = new System.Drawing.Point(358, 14);
+			this.lCheck.Name = "lCheck";
+			this.lCheck.Size = new System.Drawing.Size(26, 17);
+			this.lCheck.TabIndex = 4;
+			this.lCheck.Text = "L";
+			this.lCheck.UseVisualStyleBackColor = true;
+			this.lCheck.CheckedChanged += new System.EventHandler(this.lCheck_CheckedChanged);
 			// 
 			// w9check
 			// 
@@ -1023,6 +1036,18 @@
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Boss Lane Switcher";
 			// 
+			// yowhCheck
+			// 
+			this.yowhCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.yowhCheck.AutoSize = true;
+			this.yowhCheck.Location = new System.Drawing.Point(52, 19);
+			this.yowhCheck.Name = "yowhCheck";
+			this.yowhCheck.Size = new System.Drawing.Size(60, 17);
+			this.yowhCheck.TabIndex = 5;
+			this.yowhCheck.Text = "YOWH";
+			this.yowhCheck.UseVisualStyleBackColor = true;
+			this.yowhCheck.CheckedChanged += new System.EventHandler(this.yowhCheck_CheckedChanged);
+			// 
 			// bossLaneText
 			// 
 			this.bossLaneText.AutoSize = true;
@@ -1290,17 +1315,6 @@
             0});
 			this.laneSwitcherTimer.ValueChanged += new System.EventHandler(this.laneSwitcherTimer_ValueChanged);
 			// 
-			// warpBox
-			// 
-			this.warpBox.Location = new System.Drawing.Point(0, 51);
-			this.warpBox.Name = "warpBox";
-			this.warpBox.Size = new System.Drawing.Size(198, 198);
-			this.warpBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.warpBox.TabIndex = 15;
-			this.warpBox.TabStop = false;
-			this.warpBox.Visible = false;
-			this.warpBox.Click += new System.EventHandler(this.warpBox_Click);
-			// 
 			// gdBox
 			// 
 			this.gdBox.BackColor = System.Drawing.Color.Transparent;
@@ -1535,6 +1549,17 @@
 			this.upBox.TabIndex = 11;
 			this.upBox.TabStop = false;
 			this.upBox.Text = "Upgrades";
+			// 
+			// warpBox
+			// 
+			this.warpBox.Location = new System.Drawing.Point(0, 51);
+			this.warpBox.Name = "warpBox";
+			this.warpBox.Size = new System.Drawing.Size(198, 198);
+			this.warpBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.warpBox.TabIndex = 15;
+			this.warpBox.TabStop = false;
+			this.warpBox.Visible = false;
+			this.warpBox.Click += new System.EventHandler(this.warpBox_Click);
 			// 
 			// badgesCheck
 			// 
@@ -2128,6 +2153,18 @@
 			this.groupBox8.TabStop = false;
 			this.groupBox8.Text = "Presets";
 			// 
+			// button2
+			// 
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Location = new System.Drawing.Point(6, 106);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(138, 23);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "YOWH";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click_1);
+			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -2244,40 +2281,24 @@
 			this.toolStripStatusLabel1.Text = "http://steamcommunity.com/groups/monstergui";
 			this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
 			// 
-			// yowhCheck
+			// textBox1
 			// 
-			this.yowhCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.yowhCheck.AutoSize = true;
-			this.yowhCheck.Location = new System.Drawing.Point(52, 19);
-			this.yowhCheck.Name = "yowhCheck";
-			this.yowhCheck.Size = new System.Drawing.Size(60, 17);
-			this.yowhCheck.TabIndex = 5;
-			this.yowhCheck.Text = "YOWH";
-			this.yowhCheck.UseVisualStyleBackColor = true;
-			this.yowhCheck.CheckedChanged += new System.EventHandler(this.yowhCheck_CheckedChanged);
-			// 
-			// button2
-			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(6, 106);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(138, 23);
-			this.button2.TabIndex = 3;
-			this.button2.Text = "YOWH";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click_1);
+			this.textBox1.Location = new System.Drawing.Point(453, 19);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.PasswordChar = '•';
+			this.textBox1.Size = new System.Drawing.Size(220, 20);
+			this.textBox1.TabIndex = 1;
 			// 
-			// lCheck
+			// label23
 			// 
-			this.lCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lCheck.Location = new System.Drawing.Point(358, 14);
-			this.lCheck.Name = "lCheck";
-			this.lCheck.Size = new System.Drawing.Size(26, 17);
-			this.lCheck.TabIndex = 4;
-			this.lCheck.Text = "L";
-			this.lCheck.UseVisualStyleBackColor = true;
-			this.lCheck.CheckedChanged += new System.EventHandler(this.lCheck_CheckedChanged);
+			this.label23.AutoSize = true;
+			this.label23.Location = new System.Drawing.Point(383, 22);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(68, 13);
+			this.label23.TabIndex = 6;
+			this.label23.Text = "PHPSESSID";
 			// 
 			// MainWindow
 			// 
@@ -2324,13 +2345,13 @@
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.laneSwitcherTimer)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.warpBox)).EndInit();
 			this.gdBox.ResumeLayout(false);
 			this.gdBox.PerformLayout();
 			this.plBox.ResumeLayout(false);
 			this.plBox.PerformLayout();
 			this.upBox.ResumeLayout(false);
 			this.upBox.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.warpBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxLoot)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxEarth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.upgrMaxAir)).EndInit();
@@ -2522,6 +2543,8 @@
 		private System.Windows.Forms.CheckBox yowhCheck;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.CheckBox lCheck;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Label label23;
 	}
 }
 
